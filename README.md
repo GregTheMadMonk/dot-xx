@@ -81,6 +81,9 @@ modules and must be provided by you.
 
 #### Documentation
 
+Can be found [here](https://gregthemadmonk.github.io/misc/docs/dot-xx/),
+although can be a bit out-of-date.
+
 Building documentation is supported if `DXX_DOXYGEN` variable is set in
 __CMake__. To generate documentation, run `ninja docs` in the build directory.
 
