@@ -1,0 +1,94 @@
+/**
+ * @file assert.xx
+ * @brief Main and only file of the `dxx.assert` module
+ */
+
+
+/**
+ * @brief Provides and `assert` function and its debug-only counterpart. Uses
+ *        `<stacktrace>` to display stack trace on failure if possible
+ *
+ * Exports two functions:
+ * * @ref dxx::assert::always that asserts if the condition is `true`
+ * * @ref dxx::assert::debug that does the same but only if the library was
+ *        built in __Debug__ mode
+ *
+ * Both functions throw @ref dxx::assert::failure (or a user-provided exception
+ * type) if the assertion fails.
+ */
+export module dxx.assert;
+
+import std;
+
+/**
+ * @brief Main namespace for @ref dxx.assert module
+ */
+namespace dxx::assert {
+
+/**
+ * @brief A default error type that is thrown when the assertion fails
+ */
+export struct failure : public std::logic_error {
+    using std::logic_error::logic_error;
+}; // <-- struct failure
+
+/**
+ * @brief Check if the condition is `true` and throw `Failure` if it's not
+ *
+ * @par condition
+ *      the condition to check
+ * @par st
+ *      if `<stacktrace>` is not available, defaut argument provides minimal
+ *      info about the failure location
+ */
+export
+template <std::constructible_from<std::string> Failure = failure>
+inline void always(
+#ifdef __cpp_lib_stacktrace
+    bool condition
+#else // ifdef __cpp_lib_stacktrace
+    bool condition,
+    std::source_location st = std::source_location::current()
+#endif // ifdef __cpp_lib_stacktrace
+) {
+    if (condition) return;
+
+#ifdef __cpp_lib_stacktrace
+    const auto loc = std::to_string(std::stacktrace::current());
+#else // ifdef __cpp_lib_stacktrace
+    const auto loc = std::format("{}:{}", st.file_name(), st.line());
+#endif // ifdef __cpp_lib_stacktrace
+
+    throw Failure{ std::format("Assertion failed at {}", loc) };
+} // <-- always()
+
+/**
+ * @brief Same as @ref assert but only performs the check if the library
+ *        is built in __Debug__ mode
+ *
+ * @par condition
+ *      the condition to check
+ * @par st
+ *      if `<stacktrace>` is not available, defaut argument provides minimal
+ *      info about the failure location
+ */
+export
+template <std::constructible_from<std::string> Failure = failure>
+#ifdef NDEBUG
+
+inline void debug(bool) {}
+
+#else // ifdef NDEBUG
+
+#ifdef __cpp_lib_stacktrace
+inline void debug(bool condition) { always<Failure>(condition); }
+#else // ifdef __cpp_lib_stacktrace
+inline void debug(
+    bool condition,
+    std::source_location st = std::source_location::current()
+) { always<Failure>(condition, st); }
+#endif // ifdef __cpp_lib_stacktrace
+
+#endif // ifdef NDEBUG
+
+} // <-- namespace dxx::assert
