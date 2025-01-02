@@ -1,0 +1,19 @@
+/**
+ * @file compat.xx
+ * @brief Interface file for `cxx.cstd.compat` module
+ */
+
+/**
+ * @brief Exports everything exported by @ref dxx.cstd module and puts some
+ *        of the declarations in the global namespace
+ */
+export module dxx.cstd.compat;
+
+export import dxx.cstd;
+
+export using ::dxx::c::stdout;
+export using ::dxx::c::stderr;
+export using ::dxx::c::stdin;
+
+export using ::dxx::c::EXIT_SUCCESS;
+export using ::dxx::c::EXIT_FAILURE;

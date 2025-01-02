@@ -1,0 +1,27 @@
+/**
+ * @file internal.xx
+ * @brief Re-export macros as enums
+ */
+module;
+
+#include <cstdio>
+#include <cstdlib>
+
+export module dxx.cstd:internal;
+
+namespace dxx::c {
+
+/// @brief Re-exports `EXIT_SUCCESS` and `EXIT_FAILURE`
+export enum class exit : decltype(EXIT_SUCCESS) {
+    success = EXIT_SUCCESS,
+    failure = EXIT_FAILURE,
+}; // <-- enum class exit
+
+/// @brief Re-export `stdin`/`stdout`/`stderr`
+export namespace stdio {
+    inline auto& in  = stdin;
+    inline auto& out = stdout;
+    inline auto& err = stderr;
+}; // <-- namespace stdio
+
+} // <-- namespace dxx::c

@@ -1,0 +1,26 @@
+/**
+ * @file cstd.xx
+ * @brief Main interface file for `dxx.cstd` module
+ */
+
+/**
+ * @brief Export some C standard library constants that are not provided by
+ *        `std.compat`
+ */
+export module dxx.cstd;
+
+export import :internal;
+
+import std;
+
+/// @brief Main namespace for @ref dxx.cstd module
+namespace dxx::c {
+
+export inline auto& stdin  = stdio::in;
+export inline auto& stdout = stdio::out;
+export inline auto& stderr = stdio::err;
+
+export constexpr auto EXIT_SUCCESS = std::to_underlying(exit::success);
+export constexpr auto EXIT_FAILURE = std::to_underlying(exit::failure);
+
+} // <-- namespace dxx::c
