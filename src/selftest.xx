@@ -1,0 +1,156 @@
+/**
+ * @file selftest.xx
+ * @brief Main interface file for @ref dxx.selftest module
+ */
+
+/**
+ * @brief Unit testing. See @ref dxx::selftest::run_all for usage help
+ */
+export module dxx.selftest;
+
+import std;
+
+import dxx.assert;
+import dxx.cstd.compat;
+
+/**
+ * @brief Main namespace of @ref dxx.selftest module
+ */
+namespace dxx::selftest {
+
+using body_f    = std::function<void()>;
+using tests_map = std::map<std::string, body_f>;
+
+inline constinit std::unique_ptr<tests_map> all_tests = nullptr;
+
+/**
+ * @brief Create an object of that class to declare a unit test
+ */
+export class unit_test {
+public:
+    /**
+     * @brief Declare a unit test
+     * 
+     * @par name
+     *      the unit test name
+     * @par body
+     *      the unit test body
+     */
+    unit_test(const std::string& name, const body_f& body) {
+        if (all_tests == nullptr) {
+            all_tests = std::make_unique<tests_map>();
+        }
+
+        const auto [ it, ret ] = all_tests->emplace(name, body);
+        assert::always(ret);
+        this->self_ref = it;
+    } // <-- unit_test(name, body)
+
+private:
+    /**
+     * @brief References an entry corresponding to this test in @ref all_tests
+     */
+    tests_map::iterator self_ref;
+}; // <-- class unit_test
+
+/**
+ * @brief The exception type used by test assertions
+ */
+export struct test_failure : public std::logic_error {
+    using std::logic_error::logic_error;
+}; // <-- struct test_failure
+
+/// @brief Test assertion. Calls @ref dxx::assert::always with @ref test_failure
+export inline void test(
+#ifdef __cpp_lib_stacktrace
+    bool condition
+) { dxx::assert::always<test_failure>(condition); }
+#else // ifdef __cpp_lib_stacktrace
+    bool condition,
+    std::source_location st = std::source_location::current()
+) { dxx::assert::always<test_failure>(condition, st); }
+#endif // ifdef __cpp_lib_stacktrace
+
+/**
+ * @brief Run all tests that match a filter
+ *
+ * @par filters
+ *      test filters. Only tests that match at least one filter will be
+ *      performed. If no filters are specified, all tests will be run
+ *
+ * The tests are declared by creating objects of @ref unit_test, you would
+ * usually want to declare them as `static const ...` objects in a translation
+ * unit:
+ * ```cpp
+ * // in file test_example.cc
+ * static const dxx::selftest::unit_test test{
+ *     "/path/to/test", [] {
+ *         dxx::selftest::test(important_condition);
+ *     }
+ * };
+ * ```
+ *
+ * The test is __successful__ if it does not produce exceptions. The test
+ * is __failed__ if it produced an exception of type @ref test_failure (or
+ * derived). If the test produces any other exception type, it is not caught
+ * by this function and will lead to program termination if not caught by
+ * code surrounding @ref run_all.
+ *
+ * Test names could be any strings, but the filtering mechanism expects them
+ * to follow the UNIX-like filename format: starting with "/" and using it
+ * to further create the test "tree". Each filter in `filters` is tested as
+ * follows:
+ * * if the filter starts with "/", the "abolute path" to the test is matched:
+ *   this means that the test name must start with the filter value
+ * * if the filter does not start with "/" any test that contains the filter
+ *   as a substring in its name matches that filter
+ */
+export int run_all(const std::unordered_set<std::string>& filters = {}) {
+    if (all_tests == nullptr) {
+        std::println("No tests to run");
+        return EXIT_SUCCESS;
+    }
+
+    const auto match_filters = [&filters] (const auto& test) {
+        if (filters.empty()) return true;
+
+        return std::ranges::any_of(
+            filters, [&name = test.first] (const auto& filter) {
+                return filter.at(0) == '/' ? name.starts_with(filter)
+                                           : name.contains(filter);
+            }
+        );
+    }; // <-- match_filters(test)
+
+    auto run_tests = std::views::filter(*all_tests, match_filters);
+
+    std::vector<std::string> failed_tests;
+    for (const auto& [ name, body ] : run_tests) {
+        std::println("RUN {}", name);
+        try {
+            body();
+        } catch (const test_failure& tf) {
+            std::println(stderr, "FAILED:");
+            std::println(stderr, "{}", tf.what());
+            failed_tests.push_back(name);
+        }
+    }
+
+    if (failed_tests.empty()) {
+        std::println("All tests OK");
+        return EXIT_SUCCESS;
+    }
+
+    std::println(
+        stderr,
+        "Runner finished with {}/{} failed tests:",
+        failed_tests.size(),
+        std::ranges::count_if(*all_tests, match_filters)
+    );
+    for (const auto& name : failed_tests) {
+        std::println(stderr, "    {}", name);
+    }
+    return EXIT_FAILURE;
+} // <-- int run_all(filter = "")
+
+} // <-- namespace dxx::selftest
