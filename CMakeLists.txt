@@ -56,6 +56,7 @@ add_library( dot-xx::all ALIAS dot-xx-all )
 
 fetch_module( assert   )
 fetch_module( cstd     )
+fetch_module( overload )
 fetch_module( selftest )
 
 message( STATUS "dot-xx modules: ${DXX_MODULES}" )
