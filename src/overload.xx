@@ -1,0 +1,111 @@
+/**
+ * @file overload.xx
+ * @brief Main interface file of @ref dxx.overload module
+ */
+
+/**
+ * @brief `overload` pattern with a few bells and whistles
+ *
+ * Supports, aside from resgular function-like objects, free and member function
+ * pointers:
+ *
+ * ```cpp
+ * struct S {
+ *     void f()    const { std::println("S::f()");    }
+ *     void g(int) const { std::println("S::g(int)"); }
+ * };
+ *
+ * void h(const S&, float) { std::println("h(const S&, float)"); }
+ *
+ * // ... someplace else
+ *
+ * const dxx::overload::overload callback{
+ *     [] (int i) { std::println("lambda"); },
+ *     &S::f,
+ *     &S::g,
+ *     h,
+ * }; // <-- const overload callback
+ *
+ * callback(10);         // lambda
+ * callback(S{});        // S::f()
+ * callback(S{}, 10);    // S::g(int)
+ * callback(S{}, 10.0f); // h(const S&, float)
+ * ```
+ */
+export module dxx.overload;
+
+import std;
+
+/**
+ * @brief Main namespace for @ref dxx.overload module
+ */
+namespace dxx::overload {
+
+/// @brief `Class == int` means free function (can't have a method on `int`)
+template <typename Callable, typename Class, typename Ret, typename... Args>
+class fn_ptr_wrapper {
+public:
+    inline constexpr
+    fn_ptr_wrapper(Callable c_ptr) : ptr(c_ptr) {}
+
+    inline constexpr
+    decltype(auto) operator()(Args... args) const
+    requires std::same_as<Class, int> {
+        return this->ptr(std::forward<Args>(args)...);
+    } // <-- operator()
+
+    inline constexpr
+    decltype(auto) operator()(Class c, Args... args) const
+    requires (!std::same_as<Class, int>) {
+        return (std::forward<Class>(c).*(this->ptr))(std::forward<Args>(args)...);
+    } // <-- operator()
+private:
+    Callable ptr;
+}; // <-- class fn_ptr_wrapper<Callable, Class, Ret, Args...>
+
+template <typename T>
+struct wrap_callable { using type = T; };
+
+template <typename Class, typename Ret, typename... Args>
+struct wrap_callable<Ret (Class::*)(Args...)> {
+    using callable_t = Ret (Class::*)(Args...);
+    using type = fn_ptr_wrapper<callable_t, Class&, Ret, Args...>;
+}; // <-- wrap_callable<member function pointer>
+
+template <typename Class, typename Ret, typename... Args>
+struct wrap_callable<Ret (Class::*)(Args...) const> {
+    using callable_t = Ret (Class::*)(Args...) const;
+    using type = fn_ptr_wrapper<callable_t, const Class&, Ret, Args...>;
+}; // <-- wrap_callable<member function pointer const>
+
+template <typename Class, typename Ret, typename... Args>
+struct wrap_callable<Ret (Class::*)(Args...) &&> {
+    using callable_t = Ret (Class::*)(Args...) &&;
+    using type = fn_ptr_wrapper<callable_t, Class&&, Ret, Args...>;
+}; // <-- wrap_callable<member function pointer &&>
+
+template <typename Ret, typename... Args>
+struct wrap_callable<Ret (*)(Args...)> {
+    using callable_t = Ret (*)(Args...);
+    using type = fn_ptr_wrapper<callable_t, int, Ret, Args...>;
+}; // <-- wrap_callable<function pointer>
+
+/**
+ * @brief Overload pattern implementation. Itself does not differ from
+ *        https://www.cppstories.com/2019/02/2lines3featuresoverload.html/,
+ *        extra functionality comes from CTAD. See module description for usage.
+ */
+export
+template <typename... Ts>
+struct overload : public Ts... {
+    using Ts::operator()...;
+}; // <-- struct overload<Ts...>
+
+/**
+ * @brief CTAD is not necessary for basic overload pattern, but here we also
+ *        want to support free and member function pointers
+ */
+template <typename... Ts>
+overload(Ts...) -> overload<typename wrap_callable<Ts>::type...>;
+
+} // <-- namespace dxx::overload
