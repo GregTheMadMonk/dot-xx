@@ -1,7 +1,14 @@
+/**
+ * @file  fixed.xx
+ * @brief Interface file for `dxx.cstd.fixed` module
+ */
 module;
 
 #include <cstdint>
 
+/**
+ * @brief Provides shorter aliases for some fixed-width (and a few other) types
+ */
 export module dxx.cstd.fixed;
 
 import std;
