@@ -50,12 +50,14 @@ public:
 
     inline constexpr
     decltype(auto) operator()(Args... args) const
+    noexcept(noexcept(this->ptr(std::forward<Args>(args)...)))
     requires std::same_as<Class, int> {
         return this->ptr(std::forward<Args>(args)...);
     } // <-- operator()
 
     inline constexpr
     decltype(auto) operator()(Class c, Args... args) const
+    noexcept(noexcept((std::forward<Class>(c).*(this->ptr))(std::forward<Args>(args)...)))
     requires (!std::same_as<Class, int>) {
         return (std::forward<Class>(c).*(this->ptr))(std::forward<Args>(args)...);
     } // <-- operator()
