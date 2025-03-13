@@ -39,3 +39,38 @@ using f32 = float;
 using f64 = double;
 
 } // <-- export
+
+template <uz width> struct IOf;
+template <> struct IOf< 8> { using T =  i8; };
+template <> struct IOf<16> { using T = i16; };
+template <> struct IOf<32> { using T = i32; };
+template <> struct IOf<64> { using T = i64; };
+
+template <uz width> struct UOf;
+template <> struct UOf< 8> { using T =  u8; };
+template <> struct UOf<16> { using T = u16; };
+template <> struct UOf<32> { using T = u32; };
+template <> struct UOf<64> { using T = u64; };
+
+template <uz width> struct FOf;
+template <> struct FOf<32> { using T = f32; };
+template <> struct FOf<64> { using T = f64; };
+
+export {
+
+template <uz width> using iw = IOf<width>::T;
+template <uz width> using uw = UOf<width>::T;
+template <uz width> using fw = FOf<width>::T;
+
+} // <-- export
+
+static_assert(std::same_as< iw<8>,  i8>);
+static_assert(std::same_as<iw<16>, i16>);
+static_assert(std::same_as<iw<32>, i32>);
+static_assert(std::same_as<iw<64>, i64>);
+static_assert(std::same_as< uw<8>,  u8>);
+static_assert(std::same_as<uw<16>, u16>);
+static_assert(std::same_as<uw<32>, u32>);
+static_assert(std::same_as<uw<64>, u64>);
+static_assert(std::same_as<fw<32>, f32>);
+static_assert(std::same_as<fw<64>, f64>);
