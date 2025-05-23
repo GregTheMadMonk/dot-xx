@@ -12,46 +12,110 @@ import std;
 
 import dxx.assert;
 import dxx.cstd.compat;
+import dxx.cstd.fixed;
+
+import :name_deduce;
 
 /**
  * @brief Main namespace of @ref dxx.selftest module
  */
 namespace dxx::selftest {
 
-using body_f    = std::function<void()>;
-using tests_map = std::map<std::string, body_f>;
+using TestBody     = std::function<void()>;
+using TestsMap     = std::map<std::string, TestBody>;
 
-inline constinit std::unique_ptr<tests_map> all_tests = nullptr;
+/**
+ * @brief Storage for all unit tests
+ *
+ * `constinit` to ensure the smart pointer is initialized before the tests
+ * are
+ */
+inline constinit std::unique_ptr<TestsMap>     all_tests = nullptr;
 
 /**
  * @brief Create an object of that class to declare a unit test
+ *
+ * The test must be declared in the `::tests` namespace (or a namespace inside
+ * of it). The test name is inferred from the namespace it is in and either
+ * manually specified case name or the case source location.
+ *
+ * Anonymous namespaces do not contribute to the test name
+ *
+ * In order for the test to name properly, it must be defined via a lambda
+ * that is in the same scope as the declaration (the name is deduced from the
+ * callable type)
+ *
+ * Do not declare `UnitTest`s `constexpr` or `constinit`! This may lead to
+ * breaking the order of initialization!
+ *
+ * ```c++
+ * static const UnitTest test1 = [] { ... }; // Not counted as a test, compile-
+ *                                           // time error
+ *
+ * namespace test::project::suite::case {
+ *
+ * // Declares `/test/project/suite/case/file.cc:42` test
+ * static const UnitTest test2  = [] { ... };
+ * // Declares `/test/project/suite/case/my_case` test
+ * static const UnitTest amogus{ "my_case", [] { ... } };
+ *
+ * } // <-- namespace test::project::suite::case
+ * ```
+ *
+ * TODO: Find a way to remove redundancy in naming and infer test name from
+ *       the variable name!
  */
-export class unit_test {
+export
+template <named_test_body TFunc>
+class UnitTest {
 public:
+    using Func = TFunc;
+
     /**
-     * @brief Declare a unit test
-     * 
-     * @par name
-     *      the unit test name
-     * @par body
-     *      the unit test body
+     * @brief Declare a unit test. Uses a custom name instead of the source
+     *        file name and line
      */
-    unit_test(const std::string& name, const body_f& body) {
+    inline constexpr
+    UnitTest(
+        std::string_view name,
+        const TFunc& func
+    ) {
         if (all_tests == nullptr) {
-            all_tests = std::make_unique<tests_map>();
+            all_tests = std::make_unique<TestsMap>();
         }
 
-        const auto [ it, ret ] = all_tests->emplace(name, body);
+        // Can `.value()` on `get_test_name` because it's enforced by template
+        // constraint
+        const std::string full_name = std::format(
+            "{}{}", get_test_name<TFunc>().value(), name
+        );
+        const auto [ it, ret ] = all_tests->emplace(full_name, func);
         assert::always(ret);
         this->self_ref = it;
-    } // <-- unit_test(name, body)
+    } // <-- UnitTest(name, func)
+
+    /**
+     * @brief Declare a unit test. `func` needs to be a lambda local to the
+     *        declaration
+     */
+    inline constexpr
+    UnitTest(
+        const TFunc& func,
+        const std::source_location& sl = std::source_location::current()
+    ) : UnitTest(
+          std::format(
+              "{}:{}",
+              std::filesystem::path{sl.file_name()}.filename().string(),
+              sl.line()
+          ), func
+        ) {}
 
 private:
     /**
      * @brief References an entry corresponding to this test in @ref all_tests
      */
-    tests_map::iterator self_ref;
-}; // <-- class unit_test
+    TestsMap::iterator self_ref;
+}; // <-- class UnitTest<TFunc>
 
 /**
  * @brief The exception type used by test assertions

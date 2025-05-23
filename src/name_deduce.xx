@@ -1,0 +1,217 @@
+/**
+ * @file  name_deduce.cc
+ * @brief Unit test name deduction from variable name
+ */
+export module dxx.selftest:name_deduce;
+
+import dxx.cstd.fixed;
+import std;
+
+using namespace std::literals;
+
+namespace dxx::selftest {
+
+inline constexpr auto test_prefix = "T = test::"sv;
+
+// Anonymous namespace indicator
+inline constexpr std::array anonymous_indicators{
+    "{anonymous}::"sv,
+    "(anonymous namespace)::"sv,
+};
+
+/**
+ * @brief Forwards its own `std::source_location::function_name()`
+ *
+ * Required because we want to use it as a constexpr variable and some compilers
+ * may skip specifying the template parameters for such. So we wrap it in
+ * a `consteval` function within which this value is not `constexpr`, but
+ * outside of which it can be used as such.
+ */
+template <typename T>
+consteval
+std::string_view function_name() {
+    const auto sl = std::source_location::current();
+    return sl.function_name();
+} // <-- function_name<T>()
+
+/**
+ * @brief Removes anonymous namespace mentions from the function name
+ */
+template <typename T>
+consteval
+auto function_name_sanitize() {
+    constexpr auto fn      = function_name<T>();
+    // Return value length <= starting value length. Can "right-size" it
+    // in order to not pollute the binary, but hoperfully the values produced
+    // by it will be unused (only used at compile-time) and optimized away
+    // anyway
+    constexpr auto max_len = fn.length();
+    using Data = std::array<char, max_len>;
+    Data data;
+    data.fill('\0');
+
+    const auto find_next = [fn] (auto start) {
+        auto offsets = std::views::transform(
+            anonymous_indicators,
+            [fn, start] (auto indicator) { return fn.find(indicator, start); }
+        ); // <-- offsets
+        return std::ranges::min(offsets);
+    }; // <-- find_next
+
+    // There is a better way to do this
+    auto in  = fn.cbegin();
+    auto out = data.begin();
+
+    while (in != fn.cend()) {
+        const auto idx  = std::distance(fn.cbegin(), in);
+        const auto next = find_next(idx);
+
+        if (next == std::string_view::npos) {
+            out = std::copy(in, fn.cend(), out);
+            break;
+        }
+
+        const auto end = std::next(fn.cbegin(), next);
+        out = std::copy(in, end, out);
+
+        const auto resume = fn.find("::", next) + 2;
+        in = std::next(fn.cbegin(), resume);
+    }
+
+    return std::tuple{ data, std::distance(data.begin(), out) };
+} // <-- function_name_sanitize<T>()
+
+/**
+ * @brief Gets the C++ name of the type's scope (if it starts with `test::`)
+ *        and gets rid of the `test::` part, e.g. for `test::a::b::c` it will
+ *        return `a::b::c`
+ *
+ * @return A tuple of C++ name of the type's scope (or `nullopt` if the scope
+ *         is not test scope) and an expected length of the test name string
+ */
+template <typename T>
+consteval
+std::tuple<std::optional<std::string_view>, uz> get_test_name_cpp() {
+    static constexpr auto fns = function_name_sanitize<T>();
+    static constexpr std::string_view fn{
+        std::get<0>(fns).data(), std::get<1>(fns)
+    };
+    static constexpr auto start = fn.find(test_prefix);
+
+    if (start == std::string::npos) {
+        return { std::nullopt, 0 };
+    }
+
+    const auto offset = start + test_prefix.length();
+
+    // Covers GCC and Clang
+    const auto end = std::min(
+        fn.find("(", offset),
+        fn.find("<", offset)
+    );
+    const auto len = end - offset;
+
+    const auto name = fn.substr(offset, len);
+
+    const auto torem = std::ranges::count(name, ':');
+
+    return { name, len - torem / 2 };
+} // <-- get_test_name_cpp<T>()
+
+/**
+ * @brief Convertes @ref get_test_name_cpp return value into a fixed length
+ *        character array (or an empty optional)
+ */
+template <typename T>
+consteval
+auto get_test_name_data() {
+    static constexpr auto tnpp     = get_test_name_cpp<T>();
+    static constexpr auto cpp_name = std::get<0>(tnpp);
+    static constexpr auto len      = std::get<1>(tnpp);
+
+    using Array = std::array<char, len + 1>;
+
+    std::optional<Array> data_opt = std::nullopt;
+
+    if (!cpp_name.has_value()) {
+        return data_opt;
+    }
+
+    data_opt.emplace();
+    auto& data = data_opt.value();
+
+    data.fill('\0');
+    auto out_it = data.begin();
+    *out_it = '/';
+    ++out_it;
+
+    for (auto it = cpp_name->cbegin(); it != cpp_name->cend(); ++it) {
+        char next = *it;
+        if (*it == ':') {
+            ++it;
+            next = '/';
+        }
+
+        *out_it = next;
+        ++out_it;
+
+        if (out_it == data.cend()) {
+            break;
+        }
+    }
+
+    return data_opt;
+} // <-- get_test_name_data<T>()
+
+/**
+ * @brief A constexpr `string_view` returned by @ref get_test_name should
+ *        point to somewhere in the program memmory. This is that somewhere
+ */
+template <typename T>
+inline constexpr auto test_name = get_test_name_data<T>();
+
+/**
+ * @brief Get an optional `string_view` with the test name, or `nullopt` if
+ *        not a test for some reason
+ */
+template <typename T>
+consteval
+std::optional<std::string_view> get_test_name() {
+    if constexpr (test_name<T>.has_value()) {
+        return std::string_view{ test_name<T>->data(), test_name<T>->size() };
+    } else {
+        return std::nullopt;
+    }
+} // <-- get_test_name<T>()
+
+template <typename T>
+concept named_test_body = (std::invocable<T> && get_test_name<T>().has_value());
+
+} // <-- namespace dxx::selftest
+
+// Sanity check - compile time tests
+namespace some::ns {
+    auto l = [] {};
+} // <-- namespace some:ns
+
+namespace {
+namespace test::some::ns {
+    auto l  = [] {};
+    auto l2 = [] {};
+} // <-- namespace test::some::ns
+} // <-- namespace <anonymous>
+
+static_assert(
+    !dxx::selftest::get_test_name<decltype(some::ns::l)>().has_value()
+);
+static_assert(
+    dxx::selftest::get_test_name<decltype(test::some::ns::l)>().has_value()
+);
+static_assert(
+    dxx::selftest::get_test_name<decltype(test::some::ns::l)>().value()
+    == "/some/ns/"
+);
+static_assert(
+    dxx::selftest::get_test_name<decltype(test::some::ns::l2)>().value()
+    == "/some/ns/"
+);
