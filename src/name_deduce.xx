@@ -1,5 +1,5 @@
 /**
- * @file  name_deduce.cc
+ * @file  name_deduce.xx
  * @brief Unit test name deduction from variable name
  */
 export module dxx.selftest:name_deduce;
