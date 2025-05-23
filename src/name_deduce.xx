@@ -1,6 +1,6 @@
 /**
  * @file  name_deduce.xx
- * @brief Unit test name deduction from variable name
+ * @brief Unit test name deduction from callable type name
  */
 export module dxx.selftest:name_deduce;
 
