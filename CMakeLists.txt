@@ -6,7 +6,7 @@ cmake_minimum_required( VERSION 3.30 FATAL_ERROR )
 
 project(
     dot-xx::overload
-    DESCRIPTION "`overloa` module from dot-xx: overload pattern"
+    DESCRIPTION "`overload` module from dot-xx: overload pattern"
     LANGUAGES C CXX
 )
 
