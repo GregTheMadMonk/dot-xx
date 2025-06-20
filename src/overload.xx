@@ -31,6 +31,12 @@
  * callback(S{}, 10);    // S::g(int)
  * callback(S{}, 10.0f); // h(const S&, float)
  * ```
+ *
+ * There is also a utility `operator|` for the overload that automatically
+ * calls `std::visit`:
+ * ```cpp
+ * std::variant<int, S>{ 10 } | callback;
+ * ```
  */
 export module dxx.overload;
 
@@ -101,6 +107,12 @@ export
 template <typename... Ts>
 struct overload : public Ts... {
     using Ts::operator()...;
+
+    template <typename V, typename O>
+    requires std::same_as<std::remove_cvref_t<O>, overload>
+    friend inline constexpr
+    decltype(auto) operator|(V&& v, O&& o)
+    { return std::visit(std::forward<O>(o), std::forward<V>(v)); }
 }; // <-- struct overload<Ts...>
 
 /**

@@ -108,6 +108,23 @@ const UnitTest value_categories{
     }
 }; // <-- value_categories
 
+const UnitTest pipe_operator{
+    "pipe_operator", [] {
+        const overload callback{
+            &S::i,
+            &S::j,
+            &S::k,
+        };
+
+        std::variant<S> s        = S{};
+        const std::variant<S> cs = S{};
+
+        test("S::i()"       == (s                 | callback));
+        test("S::j() const" == (cs                | callback));
+        test("S::k() &&"    == (std::variant<S>{} | callback));
+    }
+}; // <-- pipe_operator
+
 } // <-- namespace test::dxx::overload
 
 } // <-- anonymous namespace
