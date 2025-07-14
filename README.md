@@ -6,12 +6,13 @@ share between projects.
 All modules require C++23's `import std`. This means at least __CMake 3.30__ and
 __Ninja__ (what version?)
 
-|Module|Docs|C++ version|Depends on|Description|
+|Module|Docs|Depends on|Description|Included by default|
 |---|---|---|---|---|
-|[assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert)| [dxx.assert](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8assert.html) | C++23 | - | Provides `dxx::assert::always`/`dxx::assert::debug` functions. Makes use of `<stacktrace>` if available |
-|[cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd)| [dxx.cstd](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8cstd.html), [dxx.cstd.compat](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8cstd_8compat.html), [dxx.cstd.fixed](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8cstd_8fixed.html) | C++23 | - | Exports some of the things not provided by `std.compat` module (like `stdout`/`stdin`/etc.) Provides aliases for some fixed-width (and other) types |
-|[overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload)| [dxx.overload](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8overload.html) | C++23 | - | [Overload](https://www.cppstories.com/2019/02/2lines3featuresoverload.html/) pattern with a few bells and whistles |
-|[selftest](https://github.com/GregTheMadMonk/dot-xx/tree/selftest)| [dxx.selftest](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8selftest.html) | C++23 | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd) | Simple unit testing |
+|[assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert)| [dxx.assert](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8assert.html) | - | Provides `dxx::assert::always`/`dxx::assert::debug` functions. Makes use of `<stacktrace>` if available | Yes |
+|[cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd)| [dxx.cstd](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8cstd.html), [dxx.cstd.compat](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8cstd_8compat.html), [dxx.cstd.fixed](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8cstd_8fixed.html) | - | Exports some of the things not provided by `std.compat` module (like `stdout`/`stdin`/etc.) Provides aliases for some fixed-width (and other) types | Yes |
+|[http](https://github.com/GregTheMadMonk/dot-xx/tree/http)| [dxx.http](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8http.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd), [overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload) | A feature-poor and possibly incomplete HTTP server implementation built with C++20 coroutines. Supports networking through UNIX sockets only. Supports long polling. See [example](https://github.com/GregTheMadMonk/dot-xx/blob/http/example/main.cc). | No. Set `DXX_WITH_HTTP` CMake option to `ON` to include |
+|[overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload)| [dxx.overload](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8overload.html) | - | [Overload](https://www.cppstories.com/2019/02/2lines3featuresoverload.html/) pattern with a few bells and whistles | Yes |
+|[selftest](https://github.com/GregTheMadMonk/dot-xx/tree/selftest)| [dxx.selftest](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8selftest.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd) | Simple unit testing | Yes |
 
 ### Navigating the repo
 
@@ -95,7 +96,7 @@ The command line I personally use:
 mkdir build && cd build
 CC=clang CXX=clang++ cmake .. -GNinja \
                               -DCMAKE_CXX_FLAGS='-stdlib=libc++' \
-                              -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD='0e5b6991-d74f-4b3d-a41c-cf096e0b2508' \
+                              -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD='whatever-the-feature-test-value-is-now' \
                               -DDXX_SELFTEST=ON \
                               -DDXX_DOXYGEN=ON
 ```

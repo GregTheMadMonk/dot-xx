@@ -11,6 +11,8 @@ option( DXX_NO_CPM   "Don't try to use CPM.cmake"                     OFF )
 option( DXX_SELFTEST "Test the modules"                               OFF )
 option( DXX_DOXYGEN  "Generate docs with doxygen"                     OFF )
 
+option( DXX_WITH_HTTP "Include dxx.http module" OFF )
+
 if( DXX_SELFTEST )
     set( CMAKE_CXX_MODULE_STD ON )
 endif()
@@ -56,6 +58,9 @@ add_library( dot-xx::all ALIAS dot-xx-all )
 
 fetch_module( assert   )
 fetch_module( cstd     )
+if( DXX_WITH_HTTP )
+    fetch_module( http     )
+endif()
 fetch_module( overload )
 fetch_module( selftest )
 
