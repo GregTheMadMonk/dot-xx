@@ -1,0 +1,100 @@
+/**
+ * @file  server.xx
+ * @brief A simple HTTP server
+ */
+export module dxx.http:server;
+
+import dxx.cstd.fixed;
+import std;
+
+import :coro;
+import :method;
+import :message;
+import :path;
+import :utils;
+
+namespace dxx::http {
+
+/**
+ * @brief A simple HTTP server
+ */
+export
+class Server {
+public:
+    /**
+     * @brief A callback type for requests that return their response
+     *        immediately
+     */
+    using DispatcherImmediate = std::function<void(const Request&, Response&)>;
+    /**
+     * @brief A callback type for requests that assume ownership over the
+     *        connection to be processed later
+     */
+    using DispatcherDelayed   = std::function<
+        void(
+            const Request&,
+            const Response&,
+            std::unique_ptr<PendingConnection<std::string>>
+        )
+    >; // <-- using DispatcherDelayed
+    /**
+     * @brief A generalized response callback type
+     */
+    using Dispatcher = std::variant<DispatcherImmediate, DispatcherDelayed>;
+
+    /**
+     * @brief Run the server life cycle as a coroutine
+     *
+     * Before serving each next connection, is suspends to allow the program
+     * to do some other work or to allow to gracefully shut down the server
+     *
+     *
+     * @param ip   IP to bind to, uses `std::string` instead of
+     *             `std::string_view` because we want to ensure it is
+     *             null-terminated (couldn't find it in the man, just to be
+     *             safe)
+     * @param port server port
+     */
+    SimpleTask listen_and_wait(const std::string& ip, u16 port);
+
+    /**
+     * @brief Run the server life cycle. Self-explanatory
+     *
+     * @param ip   IP to bind to, uses `std::string` instead of
+     *             `std::string_view` because we want to ensure it is
+     *             null-terminated (couldn't find it in the man, just to be
+     *             safe)
+     * @param port server port
+     */
+    void listen(const std::string& ip, u16 port);
+
+    /**
+     * @brief Interrupt the server listen loop on the next iteration
+     */
+    inline void request_stop() { this->running = false; }
+
+    /**
+     * @brief Bind a callback to process the request
+     */
+    inline void bind(
+        Method method,
+        const std::filesystem::path& path,
+        const Dispatcher& cb
+    ) {
+        const auto [ it, _ ] = this->dispatchers.try_emplace(method, "/");
+        it->second.emplace(path, cb);
+    } // <-- void Server::bind(method, path, cb)
+
+private:
+    SimpleTask handle_connection(
+        utils::File stream,
+        PendingConnection<std::string>& conn_handle,
+        Request& request
+    );
+
+    std::map<Method, PathNode<Dispatcher>> dispatchers;
+
+    bool running = false;
+}; // <-- class Server
+
+} // <-- namespace dxx::http

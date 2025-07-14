@@ -1,0 +1,44 @@
+/**
+ * @file  utils.xx
+ * @brief Misc utility code
+ */
+module;
+
+#include <unistd.h>
+
+export module dxx.http:utils;
+
+import std;
+
+namespace dxx::http::utils {
+
+/**
+ * @brief RAII file descriptor
+ */
+class File {
+public:
+    File(int c_fd) : fd(c_fd) {}
+
+    File(const File&)            = delete;
+    File& operator=(const File&) = delete;
+
+    File(File&& other) : fd(other.fd) { other.fd = -1; }
+    File& operator=(File&& other) {
+        if (this->fd != -1) {
+            close(this->fd);
+        }
+        this->fd = other.fd;
+        other.fd = -1;
+        return *this;
+    } // <-- File::operator=(&&other)
+
+    ~File() { if (this->fd != -1) close(this->fd); }
+
+    inline operator int() const { return this->fd; }
+    inline int get() const { return this->fd; }
+
+private:
+    int fd;
+}; // <-- struct File
+
+} // <-- namespace dxx::http::utils

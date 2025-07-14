@@ -1,0 +1,239 @@
+/**
+ * @file  message.xx
+ * @brief @ref Request and @ref Response types
+ */
+export module dxx.http:message;
+
+import std;
+
+import :method;
+import :status_codes;
+
+namespace dxx::http {
+
+/**
+ * @brief HTTP headers comparison struct - they must be case-insensitive
+ */
+struct HeaderCompare {
+    [[nodiscard]]
+    inline constexpr
+    bool operator()(std::string_view lhs, std::string_view rhs) const {
+        for (auto [ lc, rc ] : std::views::zip(lhs, rhs)) {
+            const auto llc = std::tolower(lc);
+            const auto lrc = std::tolower(rc);
+            if (llc < lrc) {
+                return true;
+            } else if (llc > lrc) {
+                return false;
+            }
+        }
+        return lhs.length() < rhs.length();
+    } // <-- bool HeaderCompare::operator(lhs, rhs)
+}; // <-- struct HeaderCompare
+
+/**
+ * @brief An error during HTTP request header parsing
+ */
+export enum class HeaderError {
+    /**
+     * @brief No error was discovered
+     */
+    None,
+    /**
+     * @brief Incorrect method string
+     */
+    Method,
+    /**
+     * @brief Incorrect header
+     */
+    Header,
+    /**
+     * @brief Parser reached the end of the content in a state that's not
+     *        the final expected state
+     */
+    Unterminated,
+    /**
+     * @brief Stray data in the header
+     *
+     * This is not a fatal error, the result is still usable if this value
+     * is returned
+     */
+    StrayData,
+}; // <-- enum class HeaderError
+
+/**
+ * @brief An error during parsing of a multipart request
+ */
+export enum class MultipartError {
+    /**
+     * @brief The request is not a multipart request
+     */
+    NotMultipart,
+    /**
+     * @brief The multipart data was not properly terminated
+     */
+    Unterminated,
+    /**
+     * @brief A single part was read, but the header/body separator is missing
+     */
+    NoPartBody,
+    /**
+     * @brief Multipart header unterminated
+     */
+    UnterminatedHeader,
+    /**
+     * @brief Invalid header
+     */
+    InvalidHeader,
+}; // <-- enum class MultipartError
+
+using StringMap = std::unordered_map<std::string, std::string>;
+
+/**
+ * @brief Parse Content-Disposition header
+ */
+export
+[[nodiscard]]
+StringMap parse_content_disposition(std::string_view data);
+
+/**
+ * @brief HTTP request structure. Also used for multipart request data
+ */
+export
+struct Request {
+    /**
+     * @brief Full data of the request header, as recieved from the network
+     */
+    std::string header;
+
+    /**
+     * @brief Method string (e.g. `"GET"`, `"POST"` etc.)
+     *
+     * Empty for multipart data
+     */
+    std::string_view method_string;
+
+    /**
+     * @brief Method tag if parsed successfully
+     *
+     * Uninitialized for multipart data
+     */
+    Method method;
+
+    /**
+     * @brief Full requested resource URL (path + parameters)
+     *
+     * Empty for multipart data
+     */
+    std::string_view url;
+    /**
+     * @brief The decoded path part of the resource URL
+     *
+     * Empty for multipart data
+     */
+    std::string resource;
+    /**
+     * @brief The params part of the resource URL (not decoded)
+     *
+     * Empty for multipart data
+     */
+    std::string_view params_string;
+
+    /**
+     * @brief Protocol version string, e.g. `"HTTP/1.1"`
+     *
+     * Empty for multipart data
+     */
+    std::string_view protocol;
+
+    using HeaderMap = std::flat_map<
+        std::string_view, std::string_view, HeaderCompare
+    >;
+    /**
+     * @brief Header strings e.g.
+     *        `[ "Content-Type: text/plain", "Content-Length: 22" ]`
+     */
+    HeaderMap headers;
+    /**
+     * @brief @ref params_string parsed into a params map and decoded
+     *
+     * Empty for multipart data
+     */
+    std::flat_map<std::string, std::string> params;
+
+    /**
+     * @brief URL substitutions during URL matching done by the server
+     *
+     * Empty for multipart data
+     */
+    std::vector<std::string> substs;
+
+    /**
+     * @brief The request body, as recieved from the network
+     */
+    std::string body;
+
+    Request() = default;
+
+#warning "Move does not guarantee validity of string_view's due to possible SSO"
+    // Prevent this struct from being copied since this will invalidate
+    // the view
+    Request(const Request&)            = delete;
+    Request& operator=(const Request&) = delete;
+
+    Request(Request&&)            = default;
+    Request& operator=(Request&&) = default;
+
+    /**
+     * @brief Parse the header and fill the corresponding string views after
+     *        we are sure that the `header` data will not be re-allocated
+     *
+     * @param skip_method skip parsing the method string (e.g. "GET / HTTP/1.1")
+     *                    and jump right to the headers (used in multipart
+     *                    request parsing)
+     */
+    [[nodiscard("Possible error value unchecked")]]
+    HeaderError parse_header(bool skip_method = false);
+
+    /**
+     * @brief Parse the multipart content if the request is multipart
+     */
+    [[nodiscard]]
+    std::expected<std::vector<Request>, MultipartError> parse_multipart() const;
+}; // <-- struct Request
+
+/**
+ * @brief Server's response to the client
+ *
+ * The response constructor that needs to be converted into a string to be
+ * sent over the network
+ */
+export
+struct Response {
+    /**
+     * @brief Protocol info
+     */
+    std::string protocol;
+    /**
+     * @brief Response status
+     *
+     * `std::string` variant option is available to provide support for custom
+     * non-standard responses
+     */
+    std::variant<StatusCode, std::string> status;
+    /**
+     * @brief Response headers
+     */
+    std::flat_map<std::string, std::string> headers;
+    /**
+     * @brief Response data
+     */
+    std::string body;
+
+    /**
+     * @brief Create the response text data
+     */
+    [[nodiscard]] std::string pack() const;
+}; // <-- struct Response
+
+} // <-- namespace dxx::http

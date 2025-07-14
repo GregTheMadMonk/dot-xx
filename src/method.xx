@@ -1,0 +1,34 @@
+/**
+ * @file  method.xx
+ * @brief HTTP methods enum and strings
+ */
+export module dxx.http:method;
+
+import std;
+
+namespace dxx::http {
+
+export enum class Method {
+    /**
+     * @brief A special value that indicates a parsing error
+     */
+    Invalid,
+
+    Get,     Head,    Post,  Put,   Delete,
+    Connect, Options, Trace, Patch,
+}; // <-- enum class Method
+
+export
+inline const std::flat_map<std::string_view, Method> methods_map{
+    { "GET",     Method::Get     },
+    { "HEAD",    Method::Head    },
+    { "POST",    Method::Post    },
+    { "PUT",     Method::Put     },
+    { "DELETE",  Method::Delete  },
+    { "CONNECT", Method::Connect },
+    { "OPTIONS", Method::Options },
+    { "TRACE",   Method::Trace   },
+    { "PATCH",   Method::Patch   },
+}; // <-- methods_map
+
+} // <-- namespace dxx::http

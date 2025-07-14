@@ -1,0 +1,25 @@
+/**
+ * @file  http.xx
+ * @brief Main interface file for @ref dxx.http module
+ */
+
+/**
+ * @brief A feature-poor HTTP server implementation
+ *
+ * Implements the server on top of C++20 coroutines which results in a
+ * relatively extensible approach, supporting e.g. long polling
+ *
+ * See https://github.com/GregTheMadMonk/dot-xx/blob/http/example/main.cc
+ * to see what this library is capable of
+ */
+export module dxx.http;
+
+export import :coro;
+export import :errors;
+export import :message;
+export import :method;
+export import :mime;
+export import :path;
+export import :server;
+export import :status_codes;
+export import :url;

@@ -1,0 +1,52 @@
+/**
+ * @file  errors.xx
+ * @brief HTTP server exception types
+ */
+module;
+
+#include <errno.h>
+
+export module dxx.http:errors;
+
+import std;
+import std.compat;
+
+namespace dxx::http {
+
+struct Errno {};
+
+/**
+ * @brief Exception class that supports construction from a format-like args
+ *        and automatic `errno` capture in the message
+ */
+export
+struct ServerError : public std::runtime_error {
+    template <typename... Args>
+    ServerError(std::format_string<Args...> fmt, Args&&... args)
+        : std::runtime_error{ std::format(fmt, std::forward<Args>(args)...) }
+    {}
+
+    template <typename... Args>
+    ServerError(Errno, std::format_string<Args...> fmt, Args&&... args)
+        : std::runtime_error{
+            std::format(
+                "{} (errno {}: {})",
+                std::format(fmt, std::forward<Args>(args)...),
+                errno,
+                strerror(errno)
+            )
+          }
+    {}
+}; // <-- struct ServerError
+
+export
+struct StreamError : public ServerError {
+    using ServerError::ServerError;
+}; // <-- struct StreamError
+
+export
+struct RequestError : public ServerError {
+    using ServerError::ServerError;
+}; // <-- struct RequestError
+
+} // <-- namespace dxx::http

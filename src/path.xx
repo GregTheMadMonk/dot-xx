@@ -1,0 +1,184 @@
+/**
+ * @file  path.xx
+ * @brief The server's path matching
+ */
+export module dxx.http:path;
+
+import std;
+
+import :url;
+
+namespace dxx::http {
+
+export
+template <typename TData>
+class PathNode {
+public:
+    using Data = TData;
+
+    /**
+     * @brief Construct a node without data
+     */
+    inline PathNode(std::string_view c_name)
+        : name(c_name)
+        , data(std::nullopt)
+    {}
+
+    /**
+     * @brief Construct a node and initialize it with some data
+     */
+    template <typename... Args>
+    requires std::constructible_from<Data, Args...>
+    inline PathNode(std::string_view c_name, Args&&... args)
+        : name(c_name)
+    { this->data.emplace(std::forward<Args>(args)...); }
+
+    /**
+     * @brief Get the node name
+     */
+    [[nodiscard]]
+    inline
+    const std::string& get_name() const { return this->name; }
+
+    /**
+     * @brief Get the node data
+     */
+    [[nodiscard]]
+    inline
+    auto& get_data(this auto& self) { return self.data; }
+
+    /**
+     * @brief Find a pointer to the node that is located at the relative path
+     *        from the current one
+     *
+     * @param cur    current position in the path being searched
+     * @param end    the past-the-end iterator to the path
+     * @param substs a list of substitutions that were made in place of `#`
+     *               and `##` (leave `nullptr` if not needed)
+     */
+    [[nodiscard]]
+    inline
+    auto* find(
+        this auto& self,
+        std::filesystem::path::const_iterator cur,
+        std::filesystem::path::const_iterator end,
+        std::vector<std::string>* substs = nullptr
+    ) {
+        if (cur != end && cur->string() == "/") {
+            ++cur;
+        }
+
+        if (cur == end) {
+            return self.data.has_value() ? std::addressof(self) : nullptr;
+        }
+
+        const auto next = std::next(cur);
+        const auto cs   = cur->string();
+
+        const auto it = self.children.find(cs);
+        if (it != self.children.cend()) {
+            if (auto* ret = it->second->find(next, end, substs); ret) {
+                return ret;
+            }
+        }
+
+        const auto match_one = self.children.find("#");
+        if (match_one != self.children.cend()) {
+            if (auto* ret = match_one->second->find(next, end, substs); ret) {
+                if (substs != nullptr) {
+                    substs->insert(substs->begin(), cs);
+                }
+                return ret;
+            }
+        }
+
+        const auto match_rest_it = self.children.find("##");
+        if (match_rest_it != self.children.cend()) {
+            if (substs != nullptr) {
+                auto& str = *substs->emplace(substs->begin());
+                for (auto it = cur; it != end; ++it) {
+                    if (it != cur) {
+                        str.append(1, '/');
+                    }
+                    str.append(it->string());
+                }
+            }
+            return match_rest_it->second.get();
+        }
+
+        return static_cast<decltype(std::addressof(self))>(nullptr);
+    } // <-- auto* PathNode::find(this self, cur, end)
+
+    /**
+     * @brief Equivalent to `find(p.begin(), p.end(), substs)`
+     */
+    [[nodiscard]]
+    inline
+    auto* find(
+        this auto& self,
+        const std::filesystem::path& p,
+        std::vector<std::string>* substs = nullptr
+    ) { return self.find(p.begin(), p.end(), substs); }
+
+    /**
+     * @brief Create a node at the path, or emplace data into an existing
+     *        node. Creates intermediate nodes too
+     */
+    template <typename... Args>
+    requires (sizeof...(Args) > 0)
+    inline
+    PathNode* emplace(const std::filesystem::path& path, Args&&... args) {
+        PathNode* cur = this;
+        auto path_cur = path.begin();
+        if (path_cur->string() == "/") {
+            ++path_cur;
+            if (path_cur == path.end()) {
+                this->data.emplace(std::forward<Args>(args)...);
+                return this;
+            }
+        }
+        for (; path_cur != path.end(); ++path_cur) {
+            const auto it = cur->children.find(path_cur->string()); 
+            if (it != cur->children.cend()) {
+                // The node exists
+                cur = it->second.get();
+                if (std::next(path_cur) == path.end()) {
+                    cur->data.emplace(std::forward<Args>(args)...);
+                }
+            } else if (std::next(path_cur) != path.end()) {
+                // The node does not exist and is an intermediate node
+                const auto [ it_new, ok ] = cur->children.emplace(
+                    path_cur->string(),
+                    std::make_unique<PathNode>(path_cur->string())
+                );
+                dxx::assert::debug(ok);
+                cur = it_new->second.get();
+            } else {
+                // The node does not exist and is our final destination
+                const auto [ it_new, ok ] = cur->children.emplace(
+                    path_cur->string(),
+                    std::make_unique<PathNode>(
+                        path_cur->string(), std::forward<Args>(args)...
+                    )
+                );
+                dxx::assert::debug(ok);
+                cur = it_new->second.get();
+            }
+        }
+        return cur;
+    } // <-- PathNode* PathNode::emplace(path)
+
+private:
+    std::map<std::string, std::unique_ptr<PathNode>> children;
+
+    std::string name;
+    /**
+     * @brief Node data
+     *
+     * May have or not have data - e.g. if it's just a part of some other
+     * path, but doesn't have its own endpoint
+     */
+    std::optional<Data> data;
+}; // <-- struct PathNode
+
+} // <-- namespace dxx::http

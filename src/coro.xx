@@ -1,0 +1,216 @@
+/**
+ * @file  coro.xx
+ * @brief Coroutine types for the server
+ */
+export module dxx.http:coro;
+
+import dxx.assert;
+import std;
+
+import :errors;
+
+namespace dxx::http {
+
+/**
+ * @brief A single connection handler coroutine task
+ */
+class SimpleTask {
+public:
+    struct promise_type {
+        SimpleTask get_return_object() noexcept {
+            return SimpleTask{
+                std::coroutine_handle<promise_type>::from_promise(*this)
+            };
+        } // <-- SimpleTask promise_type::get_return_object()
+
+        std::suspend_never  initial_suspend() const noexcept { return {}; }
+        std::suspend_always final_suspend()   const noexcept { return {}; }
+
+        void return_void() const noexcept {}
+        void unhandled_exception() const { throw; }
+    }; // <-- struct promise_type
+
+    SimpleTask(const std::coroutine_handle<promise_type>& c_handle)
+        : handle(c_handle)
+    {}
+
+    SimpleTask(const SimpleTask&) = delete;
+    SimpleTask& operator=(const SimpleTask&) = delete;
+
+    SimpleTask(SimpleTask&& other)
+        : handle(other.handle)
+    { other.handle = {}; }
+    SimpleTask& operator=(SimpleTask&& other) {
+        if (this != &other) {
+            if (this->handle) {
+                this->handle.destroy();
+            }
+            this->handle = other.handle;
+            other.handle = {};
+        }
+        return *this;
+    } // <-- SimpleTask& operator=(&&other)
+
+    ~SimpleTask() {
+        if (this->handle) {
+            this->handle.destroy();
+        }
+    } // <-- ~SimpleTask()
+
+    inline void force_resume() {
+        if (this->handle && !this->handle.done()) {
+            this->handle.resume();
+        }
+    } // <-- void SimpleTask::force_resume()
+
+    /**
+     * @brief Release ownership of the handle and invalidate the object
+     */
+    [[nodiscard]]
+    inline
+    std::coroutine_handle<promise_type> release() {
+        auto ret = this->handle;
+        this->handle = {};
+        return ret;
+    } // <-- coroutine_handle SimpleTask::release()
+
+    [[nodiscard]]
+    inline const auto& get_handle() const { return this->handle; }
+
+private:
+    friend struct SimpleTask::promise_type;
+
+    std::coroutine_handle<promise_type> handle;
+}; // <-- struct SimpleTask
+
+/**
+ * @brief An awaitable object that allows the handler code to respond to the
+ *        request at a later point in time
+ *
+ *
+ * @tparam TResponse response data type
+ */
+export
+template <typename TResponse>
+class PendingConnection {
+public:
+    using Response = TResponse;
+
+    PendingConnection() = default;
+    PendingConnection(bool c_owned) : owned(c_owned) {}
+
+    PendingConnection(const PendingConnection&)            = delete;
+    PendingConnection& operator=(const PendingConnection&) = delete;
+
+    PendingConnection(PendingConnection&& other) {
+        this->response = std::move(other.response);
+        this->owned    = other.owned;
+        this->handle   = other.handle;
+        other.handle   = {};
+    } // <-- PendingConnection(&&other)
+
+    PendingConnection& operator=(PendingConnection&& other) {
+        if (this->owned && this->handle) {
+            this->handle.destroy();
+        }
+        this->response = std::move(other.response);
+        this->owned    = other.owned;
+        this->handle   = other.handle;
+        other.handle   = {};
+        return *this;
+    } // <-- PendingConnection& operator=(&&other)
+
+    ~PendingConnection() {
+        if (this->owned && this->handle) {
+            this->handle.destroy();
+        }
+    } // <-- ~PendingConnection()
+
+    [[nodiscard]]
+    inline
+    bool await_ready() const noexcept { return this->response.has_value(); }
+
+    inline
+    void await_suspend(std::coroutine_handle<> h) { this->handle = h; }
+
+    inline
+    Response& emplace(auto&& arg)
+    requires requires {
+        { std::forward<decltype(arg)>(arg).pack() }
+        -> std::same_as<std::string>;
+    } {
+        return this->response.emplace(std::forward<decltype(arg)>(arg).pack());
+    } // <-- void PendingConnection::emplace(arg (packable))
+
+    inline
+    Response& emplace(auto&&... args) {
+        return this->response.emplace(std::forward<decltype(args)>(args)...);
+    } // <-- void PendingConnection::emplace(args...)
+
+    inline
+    void respond() {
+        if (this->handle && !this->handle.done()) {
+            this->handle.resume();
+        }
+        if (this->owned) {
+            this->close();
+        }
+    } // <-- void PendingConnection::respond() const
+
+    inline
+    void respond_with(auto&&... args) {
+        this->emplace(std::forward<decltype(args)>(args)...);
+        this->respond();
+    } // <-- void PendingConnection::respond_with(args...)
+
+    inline
+    const std::optional<Response>& await_resume() const {
+        return this->response;
+    } // <-- Response PendingConnection::await_resume() const
+
+    /**
+     * @brief Take ownership of a coroutine handle from the task
+     *
+     * This is horrible API
+     */
+    inline void own(auto&& coro_task)
+    requires requires {
+        { coro_task.release() } -> std::convertible_to<std::coroutine_handle<>>;
+        { coro_task.get_handle() }
+            -> std::equality_comparable_with<std::coroutine_handle<>>;
+    } {
+        if (coro_task.get_handle() != this->handle) {
+            throw ServerError{
+                "Cannot make a foreign handle own: mine {}, theirs {}",
+                this->handle.address(),
+                coro_task.get_handle().address()
+            };
+        }
+
+        std::ignore = coro_task.release(); // Already have the same one
+        this->owned = true;
+    } // <-- void PendingConnection::own(coro_task)
+
+    [[nodiscard]]
+    inline constexpr
+    auto operator<=>(const PendingConnection& other) {
+        return this->handle <=> other.handle;
+    } // <-- PendingConnection::operator<=>
+
+private:
+    inline void close() {
+        if (!this->owned) {
+            throw ServerError{ "Cannot close a session that is not owned" };
+        }
+        if (this->handle) {
+            this->handle.destroy();
+            this->handle = {};
+        }
+    } // <-- void PendingConnection::close()
+
+    std::optional<Response> response = std::nullopt;
+    std::coroutine_handle<> handle;
+    bool                    owned = false;
+}; // <-- struct PendingConnection<TResponse>
+
+} // <-- namespace dxx::http
