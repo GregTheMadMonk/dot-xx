@@ -191,13 +191,13 @@ concept named_test_body = (std::invocable<T> && get_test_name<T>().has_value());
 
 // Sanity check - compile time tests
 namespace some::ns {
-    auto l = [] {};
+    [[maybe_unused]] auto l = [] {};
 } // <-- namespace some:ns
 
 namespace {
 namespace test::some::ns {
-    auto l  = [] {};
-    auto l2 = [] {};
+    [[maybe_unused]] auto l  = [] {};
+    [[maybe_unused]] auto l2 = [] {};
 } // <-- namespace test::some::ns
 } // <-- namespace <anonymous>
 
