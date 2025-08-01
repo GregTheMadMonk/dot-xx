@@ -33,3 +33,12 @@ jobs:
       - name:  Generate docs (dummy)
         run:   /usr/bin/cmake --build build --target docs
         shell: bash
+      - name:  Checkout gh-pages
+        run:   git worktree add ../gh-pages origin/gh-pages
+        shell: bash
+      - name:  Copy generated documentation
+        run:   rm -rf ../gh-pages/* && cp -R build/html/* ../gh-pages
+        shell: bash
+      - name:  Upload the new version of pages
+        run:   cd ../gh-pages && git add -A && git commit -m "Auto-update" && git push origin gh-pages
+        shell: bash
