@@ -22,11 +22,14 @@ jobs:
       - name: Init CPM.cmake
         run:  git submodule update --init --recursive
       - name:  Configure the project with CMake
-        run:   mkdir build && CC=clang-20 CXX=clang++-20 /usr/bin/cmake . -B build -GNinja -DCMAKE_CXX_FLAGS='-stdlib=libc++ -Wall -Wextra -pedantic' -DDXX_SELFTEST=ON -DXX_WITH_HTTP=ON -DDXX_DOXYGEN=ON -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD='d0edc3af-4c50-42ea-a356-e2862fe7a444'
+        run:   mkdir build && CC=clang-20 CXX=clang++-20 /usr/bin/cmake . -B build -GNinja -DCMAKE_CXX_FLAGS='-stdlib=libc++ -Wall -Wextra -pedantic' -DDXX_SELFTEST=ON -DDXX_WITH_HTTP=ON -DDXX_DOXYGEN=ON -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD='d0edc3af-4c50-42ea-a356-e2862fe7a444'
         shell: bash
       - name:  Build the project
         run:   /usr/bin/cmake --build build
         shell: bash
       - name:  Run selftest
         run:   ./build/selftest
+        shell: bash
+      - name:  Generate docs (dummy)
+        run:   /usr/bin/cmake --build build docs
         shell: bash
