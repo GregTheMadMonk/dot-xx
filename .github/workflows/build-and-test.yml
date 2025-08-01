@@ -5,19 +5,28 @@ jobs:
     runs-on: ubuntu-latest
     name:    Build the library and run tests
     steps:
-      - uses: actions/checkout@v4.2.2
-      - name: Configure and build the project with CMake
-        uses: thereeal/cmake-action@v2.1.0
-        with:
-          generator:    Ninja
-          c-compiler:   clang-20
-          cxx-compiler: clang++-20
-          cxx-flags:    '-stdlib=libc++ -Wall -Wextra -pedantic'
-          options: |
-            DXX_SElFTEST=ON
-            DXX_WITH_HTTP=ON
-            DXX_DOXYGEN=ON
-            CMAKE_EXPERIMENTAL_CXX_IMPORT_STD='0e5b6991-d74f-4b3d-a41c-cf096e0b2508'
+      - name:  Install Doxygen
+        run:   sudo apt install -y doxygen
+        shell: bash
+      - name:  Install the latest available LLVM toolchain
+        run:   wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && sudo ./llvm.sh 20 all
+        shell: bash
+      - name:  Install the latest CMake - Add Kitware archive
+        run:   wget https://apt.kitware.com/kitware-archive.sh && chmod +x kitware-archive.sh && sudo ./kitware-archive.sh
+        shell: bash
+      - name:  Install the latest CMake - Install
+        run:   sudo apt update && sudo apt install cmake -y && cmake --version && /usr/bin/cmake --version
+        shell: bash
+      - name: Checkout the project
+        uses: actions/checkout@v4.2.2
+      - name: Init CPM.cmake
+        run:  git submodule update --init --recursive
+      - name:  Configure the project with CMake
+        run:   mkdir build && CC=clang-20 CXX=clang++-20 /usr/bin/cmake . -B build -GNinja -DCMAKE_CXX_FLAGS='-stdlib=libc++ -Wall -Wextra -pedantic' -DDXX_SELFTEST=ON -DXX_WITH_HTTP=ON -DDXX_DOXYGEN=ON -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD='d0edc3af-4c50-42ea-a356-e2862fe7a444'
+        shell: bash
+      - name:  Build the project
+        run:   /usr/bin/cmake --build build
+        shell: bash
       - name:  Run selftest
         run:   ./build/selftest
         shell: bash
