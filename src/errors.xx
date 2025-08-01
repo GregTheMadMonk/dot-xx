@@ -1,0 +1,60 @@
+/**
+ * @file  errors.xx
+ * @brief Main interface file of @ref dxx.errors module
+ */
+
+module;
+
+#include <errno.h>
+
+/**
+ * @brief Fancier exceptions/errors
+ *
+ * Support automatic `errno` extraction and `std::format`-like construtor
+ */
+export module dxx.errors;
+
+import std;
+import std.compat;
+
+namespace dxx::errors {
+
+/**
+ * @brief Tag type, helps indicate that `errno` info should be added to the
+ *        error message
+ */
+export struct Errno {};
+
+/**
+ * @brief Exception class that supports construction from `std::format`-like
+ *        args and automatic `errno` capture in the message
+ */
+export
+struct Error : public std::runtime_error {
+    /**
+     * @brief Regular constructor
+     */
+    template <typename... Args>
+    inline constexpr
+    Error(std::format_string<Args...> fmt, Args&&... args)
+        : std::runtime_error{ std::format(fmt, std::forward<Args>(args)...) }
+    {}
+
+    /**
+     * @brief Automatically adds `errno` info to the message
+     */
+    template <typename... Args>
+    inline constexpr
+    Error(Errno, std::format_string<Args...> fmt, Args&&... args)
+        : std::runtime_error{
+            std::format(
+                "{} (errno {}: {})",
+                std::format(fmt, std::forward<Args>(args)...),
+                errno,
+                strerror(errno)
+            )
+          }
+    {}
+}; // <-- struct Error
+
+} // <-- namespace dxx::errors
