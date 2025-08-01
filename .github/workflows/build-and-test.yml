@@ -1,0 +1,23 @@
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    name:    Build the library and run tests
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - name: Configure and build the project with CMake
+        uses: thereeal/cmake-action@v2.1.0
+        with:
+          generator:    Ninja
+          c-compiler:   clang-20
+          cxx-compiler: clang++-20
+          cxx-flags:    '-stdlib=libc++ -Wall -Wextra -pedantic'
+          options: |
+            DXX_SElFTEST=ON
+            DXX_WITH_HTTP=ON
+            DXX_DOXYGEN=ON
+            CMAKE_EXPERIMENTAL_CXX_IMPORT_STD='0e5b6991-d74f-4b3d-a41c-cf096e0b2508'
+      - name:  Run selftest
+        run:   ./build/selftest
+        shell: bash
