@@ -31,5 +31,5 @@ jobs:
         run:   ./build/selftest
         shell: bash
       - name:  Generate docs (dummy)
-        run:   /usr/bin/cmake --build build docs
+        run:   /usr/bin/cmake --build build --target docs
         shell: bash
