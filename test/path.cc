@@ -19,7 +19,7 @@ const UnitTest search{
         test(root.find("/")->get_data() == 46);
         test(root.find("api1") == nullptr);
         test(root.find("api2") == nullptr);
-        auto* api1 = root.emplace("/api1", 1);
+        root.emplace("/api1", 1);
         test(root.find("api1") != nullptr);
         test(root.find("/api1") == root.find("api1"));
         test(root.find("api2") == nullptr);
@@ -28,7 +28,7 @@ const UnitTest search{
         test(root.find("/api1/point") == nullptr);
 
         std::vector<std::string> substs;
-        auto* any = root.emplace("/#/point", 42);
+        root.emplace("/#/point", 42);
         test(root.find("/api1/point", &substs) != nullptr);
         test(root.find("/api1/point")->get_data() == 42);
         test(std::ranges::equal(substs, std::vector{ "api1" }));

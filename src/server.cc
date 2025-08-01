@@ -37,7 +37,7 @@ public:
             this->fd = -1;
             return;
         }
-        if (read_bytes < sizeof(T)) {
+        if (static_cast<uz>(read_bytes) < sizeof(T)) {
             throw StreamError{
                 "Can't read a full object: {}/{} bytes read",
                 read_bytes, sizeof(T)
@@ -236,6 +236,7 @@ SimpleTask Server::listen_and_wait(const std::string& ip, u16 port) {
                 .protocol = std::string{req.protocol},
                 .status   = StatusCode::OK,
                 .headers  = { { "Connection", "close" } },
+                .body     = {},
             };
             // Find the route for the request to go to
             const auto router = this->dispatchers.find(req.method);

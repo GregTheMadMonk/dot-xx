@@ -96,11 +96,11 @@ public:
         if (match_rest_it != self.children.cend()) {
             if (substs != nullptr) {
                 auto& str = *substs->emplace(substs->begin());
-                for (auto it = cur; it != end; ++it) {
-                    if (it != cur) {
+                for (auto p_it = cur; p_it != end; ++p_it) {
+                    if (p_it != cur) {
                         str.append(1, '/');
                     }
-                    str.append(it->string());
+                    str.append(p_it->string());
                 }
             }
             return match_rest_it->second.get();

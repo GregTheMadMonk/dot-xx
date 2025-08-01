@@ -136,7 +136,7 @@ int main(int argc, char** argv) {
     }
 
     srv.bind(
-        dxx::http::Method::Get, "/", [] (const auto& req, auto& res) {
+        dxx::http::Method::Get, "/", [] (const auto&, auto& res) {
             res.headers["Content-Type"] = "text/html";
             res.body = root;
         }
@@ -395,7 +395,6 @@ int main(int argc, char** argv) {
         // Try to accept a new connection
         listener.force_resume();
 
-        for (auto& conn : conns) {
-        }
+        // Maybe do some other work in-between
     }
 } // <-- int main(argc, argv)
