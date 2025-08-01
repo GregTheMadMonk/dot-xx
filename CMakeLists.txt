@@ -58,6 +58,7 @@ add_library( dot-xx::all ALIAS dot-xx-all )
 
 fetch_module( assert   )
 fetch_module( cstd     )
+fetch_module( errors   )
 if( DXX_WITH_HTTP )
     fetch_module( http     )
 endif()

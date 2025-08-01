@@ -5,6 +5,6 @@ import dxx.cstd.fixed;
 
 int main(int argc, char** argv) {
     std::unordered_set<std::string> filters;
-    for (uz i = 1; i < argc; ++i) filters.insert(argv[i]);
+    for (int i = 1; i < argc; ++i) filters.insert(argv[i]);
     return dxx::selftest::run_all(filters);
 }
