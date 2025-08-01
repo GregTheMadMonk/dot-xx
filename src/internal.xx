@@ -22,6 +22,6 @@ export namespace stdio {
     inline auto& in  = stdin;
     inline auto& out = stdout;
     inline auto& err = stderr;
-}; // <-- namespace stdio
+} // <-- namespace stdio
 
 } // <-- namespace dxx::c
