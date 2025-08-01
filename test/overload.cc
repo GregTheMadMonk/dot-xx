@@ -22,15 +22,15 @@ struct S {
     auto k() &&    { return "S::k() &&"s; }
 }; // <-- struct S
 
-auto f(const S& s, float f) { return std::format("free f({})", f); }
+auto f(const S&, float f) { return std::format("free f({})", f); }
 auto g(float f) { return std::format("free g({})", f); }
 
 const UnitTest simple{
     "simple", [] {
         const overload callback{
-            [] (int i)   { return "int"s;   },
-            [] (float f) { return "float"s; },
-            [] (char c)  { return "char"s;  },
+            [] (int)   { return "int"s;   },
+            [] (float) { return "float"s; },
+            [] (char)  { return "char"s;  },
         };
 
         test("int"   == callback(10));
@@ -42,7 +42,7 @@ const UnitTest simple{
 const UnitTest member{
     "method", [] {
         const overload callback{
-            [] (int i) { return "int"s; },
+            [] (int) { return "int"s; },
             &S::f,
             &S::g,
         };
@@ -57,7 +57,7 @@ const UnitTest member{
 const UnitTest all{
     "all", [] {
         const overload callback{
-            [] (int i) { return "int"s; },
+            [] (int) { return "int"s; },
             &S::f,
             &S::g,
             f
@@ -73,7 +73,7 @@ const UnitTest all{
 const UnitTest visit{
     "visit", [] {
         const overload callback{
-            [] (int i) { return "int"s; },
+            [] (int) { return "int"s; },
             &S::f,
             &g
         };
