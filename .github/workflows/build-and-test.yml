@@ -6,7 +6,7 @@ jobs:
     name:    Full CI/CD cycle for dot-xx
     steps:
       - name:  Install Doxygen
-        run:   sudo apt install -y doxygen
+        run:   mkdir ~/doxygen && wget https://www.doxygen.nl/files/doxygen-1.14.0.linux.bin.tar.gz && tar xfv doxygen-1.14.0.linux.bin.tar.gz && cd doxygen-1.14.0 && sudo make install
         shell: bash
       - name:  Install the latest available LLVM toolchain
         run:   wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && sudo ./llvm.sh 20 all

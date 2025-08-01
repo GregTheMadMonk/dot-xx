@@ -8,12 +8,12 @@ __Ninja__ (what version?)
 
 |Module|Docs|Depends on|Description|Included by default|
 |---|---|---|---|---|
-|[assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert)| [dxx.assert](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8assert.html) | - | Provides `dxx::assert::always`/`dxx::assert::debug` functions. Makes use of `<stacktrace>` if available | Yes |
-|[cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd)| [dxx.cstd](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8cstd.html), [dxx.cstd.compat](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8cstd_8compat.html), [dxx.cstd.fixed](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8cstd_8fixed.html) | - | Exports some of the things not provided by `std.compat` module (like `stdout`/`stdin`/etc.) Provides aliases for some fixed-width (and other) types | Yes |
-|[errors](https://github.com/GregTheMadMonk/dot-xx/tree/errors)| [dxx.errors](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8errors.html) | - | Fancier exceptions | Yes |
-|[http](https://github.com/GregTheMadMonk/dot-xx/tree/http)| [dxx.http](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8http.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd), [overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload) | A feature-poor and possibly incomplete HTTP server implementation built with C++20 coroutines. Supports networking through UNIX sockets only. Supports long polling. See [example](https://github.com/GregTheMadMonk/dot-xx/blob/http/example/main.cc). | No. Set `DXX_WITH_HTTP` CMake option to `ON` to include |
-|[overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload)| [dxx.overload](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8overload.html) | - | [Overload](https://www.cppstories.com/2019/02/2lines3featuresoverload.html/) pattern with a few bells and whistles | Yes |
-|[selftest](https://github.com/GregTheMadMonk/dot-xx/tree/selftest)| [dxx.selftest](https://gregthemadmonk.github.io/misc/docs/dot-xx/module__dxx_8selftest.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd) | Simple unit testing | Yes |
+|[assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert)| [dxx.assert](https://gregthemadmonk.github.io/dot-xx/module__dxx_8assert.html) | - | Provides `dxx::assert::always`/`dxx::assert::debug` functions. Makes use of `<stacktrace>` if available | Yes |
+|[cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd)| [dxx.cstd](https://gregthemadmonk.github.io/dot-xx/module__dxx_8cstd.html), [dxx.cstd.compat](https://gregthemadmonk.github.io/dot-xx/module__dxx_8cstd_8compat.html), [dxx.cstd.fixed](https://gregthemadmonk.github.io/dot-xx/module__dxx_8cstd_8fixed.html) | - | Exports some of the things not provided by `std.compat` module (like `stdout`/`stdin`/etc.) Provides aliases for some fixed-width (and other) types | Yes |
+|[errors](https://github.com/GregTheMadMonk/dot-xx/tree/errors)| [dxx.errors](https://gregthemadmonk.github.io/dot-xx/module__dxx_8errors.html) | - | Fancier exceptions | Yes |
+|[http](https://github.com/GregTheMadMonk/dot-xx/tree/http)| [dxx.http](https://gregthemadmonk.github.io/dot-xx/module__dxx_8http.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd), [overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload) | A feature-poor and possibly incomplete HTTP server implementation built with C++20 coroutines. Supports networking through UNIX sockets only. Supports long polling. See [example](https://github.com/GregTheMadMonk/dot-xx/blob/http/example/main.cc). | No. Set `DXX_WITH_HTTP` CMake option to `ON` to include |
+|[overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload)| [dxx.overload](https://gregthemadmonk.github.io/dot-xx/module__dxx_8overload.html) | - | [Overload](https://www.cppstories.com/2019/02/2lines3featuresoverload.html/) pattern with a few bells and whistles | Yes |
+|[selftest](https://github.com/GregTheMadMonk/dot-xx/tree/selftest)| [dxx.selftest](https://gregthemadmonk.github.io/dot-xx/module__dxx_8selftest.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd) | Simple unit testing | Yes |
 
 ### Navigating the repo
 
@@ -84,7 +84,7 @@ modules and must be provided by you.
 
 #### Documentation
 
-Can be found [here](https://gregthemadmonk.github.io/misc/docs/dot-xx/),
+Can be found [here](https://gregthemadmonk.github.io/dot-xx/),
 although can be a bit out-of-date.
 
 Building documentation is supported if `DXX_DOXYGEN` variable is set in
