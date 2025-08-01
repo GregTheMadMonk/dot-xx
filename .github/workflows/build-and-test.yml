@@ -1,9 +1,9 @@
 on: [push]
 
 jobs:
-  build-and-test:
+  all:
     runs-on: ubuntu-latest
-    name:    Build the library and run tests
+    name:    Full CI/CD cycle for dot-xx
     steps:
       - name:  Install Doxygen
         run:   sudo apt install -y doxygen
@@ -33,12 +33,17 @@ jobs:
       - name:  Generate docs (dummy)
         run:   /usr/bin/cmake --build build --target docs
         shell: bash
+      - name:  Add a remote to push to
+        run:   git remote add push_origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/GregTheMadMonk/dot-xx.git && git fetch --all
+      - name:  Configure git
+        run:   git config --global user.email "yagreg7@gmail.com" && git config --global user.name "Docs autoupdate"
+        shell: bash
       - name:  Checkout gh-pages
-        run:   git worktree add ../gh-pages origin/gh-pages
+        run:   git worktree add ../gh-pages -b gh-pages push_origin/gh-pages
         shell: bash
       - name:  Copy generated documentation
         run:   rm -rf ../gh-pages/* && cp -R build/html/* ../gh-pages
         shell: bash
       - name:  Upload the new version of pages
-        run:   cd ../gh-pages && git add -A && git commit -m "Auto-update" && git push origin gh-pages
+        run:   cd ../gh-pages && git add -A && git commit -m "Auto-update" && git push push_origin gh-pages
         shell: bash
