@@ -96,11 +96,23 @@ $(function(){initNavTree('module__dxx_8math_8utils.html','',''); });
 <p>Miscellaneous math facilities.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ae8b898e075e71875f70842892f1313b4" id="r_ae8b898e075e71875f70842892f1313b4"><td class="memItemLeft" align="right" valign="top"><a id="ae8b898e075e71875f70842892f1313b4" name="ae8b898e075e71875f70842892f1313b4"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedxx_1_1math.html#ae8b898e075e71875f70842892f1313b4">dxx::math::Sign</a> : int { <b>Positive</b> = 1
+, <b>Zero</b> = 0
+, <b>Negative</b> = -1
+ }</td></tr>
+<tr class="memdesc:ae8b898e075e71875f70842892f1313b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return type of sign. Use <span class="tt">std::to_underlying</span> to convert to <span class="tt">int</span> <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ae5404f0f4f383c98cf0fadcaca4c19e5" id="r_ae5404f0f4f383c98cf0fadcaca4c19e5"><td class="memTemplParams" colspan="2">template&lt;typename <a class="el" href="structIOf.html">T</a>, typename Compare = std::less&lt;T&gt;, typename Diff = Sub&gt; </td></tr>
 <tr class="memitem:ae5404f0f4f383c98cf0fadcaca4c19e5 template"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="structIOf.html">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedxx_1_1math.html#ae5404f0f4f383c98cf0fadcaca4c19e5">dxx::math::abs_diff</a> (const <a class="el" href="structIOf.html">T</a> &amp;a, const <a class="el" href="structIOf.html">T</a> &amp;b, Compare comp={}, Diff diff={})</td></tr>
 <tr class="memdesc:ae5404f0f4f383c98cf0fadcaca4c19e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Underflow-safe absolute difference between two numbers.  <br /></td></tr>
+<tr class="memitem:a838a49e093cfcd8e936bc7522188337a" id="r_a838a49e093cfcd8e936bc7522188337a"><td class="memTemplParams" colspan="2"><a id="a838a49e093cfcd8e936bc7522188337a" name="a838a49e093cfcd8e936bc7522188337a"></a>
+template&lt;typename <a class="el" href="structIOf.html">T</a>, typename Less = std::less&lt;T&gt;&gt; </td></tr>
+<tr class="memitem:a838a49e093cfcd8e936bc7522188337a template"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespacedxx_1_1math.html#ae8b898e075e71875f70842892f1313b4">Sign</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dxx::math::sign</b> (<a class="el" href="structIOf.html">T</a> t, Less less={}, <a class="el" href="structIOf.html">T</a> zero={})</td></tr>
+<tr class="memdesc:a838a49e093cfcd8e936bc7522188337a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the sign of a number. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Miscellaneous math facilities. </p>
@@ -111,6 +123,8 @@ Files</h2></td></tr>
 <tr class="memdesc:dot-xx-math-src_2src_2utils_2utils_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main interface file for the dxx.math.utils module. <br /></td></tr>
 <tr class="memitem:abs_5Fdiff_2Exx" id="r_abs_5Fdiff_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-math-src/src/utils/<a class="el" href="abs__diff_8xx.html">abs_diff.xx</a></td></tr>
 <tr class="memdesc:abs__diff_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Absolute difference between two numbers. <br /></td></tr>
+<tr class="memitem:sign_2Exx" id="r_sign_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-math-src/src/utils/<a class="el" href="sign_8xx.html">sign.xx</a></td></tr>
+<tr class="memdesc:sign_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number sign. <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->

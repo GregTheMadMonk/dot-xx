@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dot-xx: build/_deps/dot-xx-math-src/src/utils/utils.xx File Reference</title>
+<title>dot-xx: build/_deps/dot-xx-math-src/src/utils/sign.xx File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('dot-xx-math-src_2src_2utils_2utils_8xx.html','',''); });
+$(function(){initNavTree('sign_8xx.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -89,15 +89,36 @@ $(function(){initNavTree('dot-xx-math-src_2src_2utils_2utils_8xx.html','',''); }
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">utils.xx File Reference<div class="ingroups">module <a class="el" href="module__dxx_8math_8utils.html">dxx.math.utils</a></div></div></div>
+  <div class="headertitle"><div class="title">sign.xx File Reference<div class="ingroups">module <a class="el" href="module__dxx_8math_8utils.html">dxx.math.utils</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Main interface file for the dxx.math.utils module.  
+<p>Number sign.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>import <a class="el" href="dot-xx-math-src_2src_2utils_2utils_8xx.html">dxx.math.utils:sign</a>;</code><br />
-</div><a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Main interface file for the dxx.math.utils module. </p>
+<div class="textblock"><code>import std;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:dxx_3A_3Amath" id="r_dxx_3A_3Amath"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedxx_1_1math.html">dxx::math</a></td></tr>
+<tr class="memdesc:namespacedxx_1_1math"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main namespace of the <a class="el" href="namespacedxx_1_1math.html">dxx::math</a> module. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ae8b898e075e71875f70842892f1313b4" id="r_ae8b898e075e71875f70842892f1313b4"><td class="memItemLeft" align="right" valign="top"><a id="ae8b898e075e71875f70842892f1313b4" name="ae8b898e075e71875f70842892f1313b4"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedxx_1_1math.html#ae8b898e075e71875f70842892f1313b4">dxx::math::Sign</a> : int { <b>Positive</b> = 1
+, <b>Zero</b> = 0
+, <b>Negative</b> = -1
+ }</td></tr>
+<tr class="memdesc:ae8b898e075e71875f70842892f1313b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return type of sign. Use <span class="tt">std::to_underlying</span> to convert to <span class="tt">int</span> <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a838a49e093cfcd8e936bc7522188337a" id="r_a838a49e093cfcd8e936bc7522188337a"><td class="memTemplParams" colspan="2"><a id="a838a49e093cfcd8e936bc7522188337a" name="a838a49e093cfcd8e936bc7522188337a"></a>
+template&lt;typename <a class="el" href="structIOf.html">T</a>, typename Less = std::less&lt;T&gt;&gt; </td></tr>
+<tr class="memitem:a838a49e093cfcd8e936bc7522188337a template"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespacedxx_1_1math.html#ae8b898e075e71875f70842892f1313b4">Sign</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dxx::math::sign</b> (<a class="el" href="structIOf.html">T</a> t, Less less={}, <a class="el" href="structIOf.html">T</a> zero={})</td></tr>
+<tr class="memdesc:a838a49e093cfcd8e936bc7522188337a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the sign of a number. <br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Number sign. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -111,7 +132,7 @@ $(function(){initNavTree('dot-xx-math-src_2src_2utils_2utils_8xx.html','',''); }
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_4fef79e7177ba769987a8da36c892c5f.html">build</a></li><li class="navelem"><a href="dir_a57a94e38c03835eed49274b75b0176d.html">_deps</a></li><li class="navelem"><a href="dir_aa1acd8bf23d8c65aa2e387642984564.html">dot-xx-math-src</a></li><li class="navelem"><a href="dir_f93c04595b4e5ece07937b93d24ecb79.html">src</a></li><li class="navelem"><a href="dir_a50cfc6fefbb7fe0a6dc821c24327f46.html">utils</a></li><li class="navelem"><a href="dot-xx-math-src_2src_2utils_2utils_8xx.html">utils.xx</a></li>
+    <li class="navelem"><a href="dir_4fef79e7177ba769987a8da36c892c5f.html">build</a></li><li class="navelem"><a href="dir_a57a94e38c03835eed49274b75b0176d.html">_deps</a></li><li class="navelem"><a href="dir_aa1acd8bf23d8c65aa2e387642984564.html">dot-xx-math-src</a></li><li class="navelem"><a href="dir_f93c04595b4e5ece07937b93d24ecb79.html">src</a></li><li class="navelem"><a href="dir_a50cfc6fefbb7fe0a6dc821c24327f46.html">utils</a></li><li class="navelem"><a href="sign_8xx.html">sign.xx</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

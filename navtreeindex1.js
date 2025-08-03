@@ -1,5 +1,15 @@
 var NAVTREEINDEX1 =
 {
+"namespacedxx_1_1math_1_1norms.html#acb80fbd4f6a781a45d833496eb7713fe":[1,0,0,2,0,1],
+"namespacedxx_1_1overload.html":[1,0,0,3],
+"namespacedxx_1_1overload.html#abc1198b760e9e2a924743bd97d63e5da":[1,0,0,3,7],
+"namespacedxx_1_1selftest.html":[1,0,0,4],
+"namespacedxx_1_1selftest.html#a23c78c7b1849cfb8e5cc5a89cee74da3":[1,0,0,4,11],
+"namespacedxx_1_1selftest.html#a5c4cc9ba4f4359828c5f4299dc9c2fbe":[1,0,0,4,10],
+"namespacedxx_1_1selftest.html#a5d50bf496faf9d6693b551372f345ee8":[1,0,0,4,6],
+"namespacedxx_1_1selftest.html#a63ced55ad03368aa9cfd557252544fd3":[1,0,0,4,3],
+"namespacedxx_1_1selftest.html#a6b3de5700058a3000d2e56b31ef964e3":[1,0,0,4,4],
+"namespacedxx_1_1selftest.html#aae10cbc5f67422b2e4778fa8f65c5660":[1,0,0,4,5],
 "namespacedxx_1_1selftest.html#abaa7ed75cd9aad2dad39d4319b63ff5d":[1,0,0,4,8],
 "namespacedxx_1_1selftest.html#ad01f2ed983e1e20a193bf83c020e75a7":[1,0,0,4,9],
 "namespacedxx_1_1selftest.html#add08cd735bffb594d6e5288544707cb7":[1,0,0,4,7],
@@ -21,6 +31,7 @@ var NAVTREEINDEX1 =
 "ranges_8xx.html":[4,0,0,0,7,0,1],
 "selftest_8xx.html":[4,0,0,0,6,0,1],
 "server_8xx.html":[4,0,0,0,3,0,7],
+"sign_8xx.html":[4,0,0,0,4,0,1,1],
 "status__codes_8xx.html":[4,0,0,0,3,0,8],
 "structFOf.html":[3,0,1],
 "structFOf_3_0132_01_4.html":[3,0,2],
