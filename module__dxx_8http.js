@@ -1,9 +1,9 @@
 var module__dxx_8http =
 [
-    [ "PathNode", "classdxx_1_1http_1_1PathNode.html", "classdxx_1_1http_1_1PathNode" ],
     [ "ServerError", "structdxx_1_1http_1_1ServerError.html", null ],
     [ "StreamError", "structdxx_1_1http_1_1StreamError.html", null ],
     [ "RequestError", "structdxx_1_1http_1_1RequestError.html", null ],
+    [ "PathNode", "classdxx_1_1http_1_1PathNode.html", "classdxx_1_1http_1_1PathNode" ],
     [ "Server", "classdxx_1_1http_1_1Server.html", "classdxx_1_1http_1_1Server" ],
     [ "PendingConnection", "classdxx_1_1http_1_1PendingConnection.html", "classdxx_1_1http_1_1PendingConnection" ],
     [ "Request", "structdxx_1_1http_1_1Request.html", "structdxx_1_1http_1_1Request" ],

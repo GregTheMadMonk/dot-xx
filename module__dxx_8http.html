@@ -98,11 +98,11 @@ $(function(){initNavTree('module__dxx_8http.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:dxx_3A_3Ahttp_3A_3APathNode_3C_20TData_20_3E" id="r_dxx_3A_3Ahttp_3A_3APathNode_3C_20TData_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdxx_1_1http_1_1PathNode.html">dxx::http::PathNode&lt; TData &gt;</a></td></tr>
 <tr class="memitem:dxx_3A_3Ahttp_3A_3AServerError" id="r_dxx_3A_3Ahttp_3A_3AServerError"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdxx_1_1http_1_1ServerError.html">dxx::http::ServerError</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception class that supports construction from a format-like args and automatic <span class="tt">errno</span> capture in the message.  <a href="structdxx_1_1http_1_1ServerError.html#details">More...</a><br /></td></tr>
 <tr class="memitem:dxx_3A_3Ahttp_3A_3AStreamError" id="r_dxx_3A_3Ahttp_3A_3AStreamError"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdxx_1_1http_1_1StreamError.html">dxx::http::StreamError</a></td></tr>
 <tr class="memitem:dxx_3A_3Ahttp_3A_3ARequestError" id="r_dxx_3A_3Ahttp_3A_3ARequestError"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdxx_1_1http_1_1RequestError.html">dxx::http::RequestError</a></td></tr>
+<tr class="memitem:dxx_3A_3Ahttp_3A_3APathNode_3C_20TData_20_3E" id="r_dxx_3A_3Ahttp_3A_3APathNode_3C_20TData_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdxx_1_1http_1_1PathNode.html">dxx::http::PathNode&lt; TData &gt;</a></td></tr>
 <tr class="memitem:dxx_3A_3Ahttp_3A_3AServer" id="r_dxx_3A_3Ahttp_3A_3AServer"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdxx_1_1http_1_1Server.html">dxx::http::Server</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple HTTP server.  <a href="classdxx_1_1http_1_1Server.html#details">More...</a><br /></td></tr>
 <tr class="memitem:dxx_3A_3Ahttp_3A_3APendingConnection_3C_20TResponse_20_3E" id="r_dxx_3A_3Ahttp_3A_3APendingConnection_3C_20TResponse_20_3E"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdxx_1_1http_1_1PendingConnection.html">dxx::http::PendingConnection&lt; TResponse &gt;</a></td></tr>
@@ -242,9 +242,9 @@ constexpr std::string&#160;</td><td class="memItemRight" valign="bottom"><b>dxx:
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a6f21bafa0e087328ce22dc138a8f583b" id="r_a6f21bafa0e087328ce22dc138a8f583b"><td class="memItemLeft" align="right" valign="top">const std::flat_map&lt; std::string_view, <a class="el" href="method_8xx.html#a5c7756ecc048c70e8e7feaddad0be072">Method</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="method_8xx.html#a6f21bafa0e087328ce22dc138a8f583b">dxx::http::methods_map</a></td></tr>
 <tr class="memitem:abee544ac8dde5b6b22c2acc7cbfc5ad1" id="r_abee544ac8dde5b6b22c2acc7cbfc5ad1"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; std::string, std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mime_8xx.html#abee544ac8dde5b6b22c2acc7cbfc5ad1">dxx::http::mime_types</a></td></tr>
 <tr class="memdesc:abee544ac8dde5b6b22c2acc7cbfc5ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mappings of some file extensions to their corresponding content type.  <br /></td></tr>
-<tr class="memitem:a6f21bafa0e087328ce22dc138a8f583b" id="r_a6f21bafa0e087328ce22dc138a8f583b"><td class="memItemLeft" align="right" valign="top">const std::flat_map&lt; std::string_view, <a class="el" href="method_8xx.html#a5c7756ecc048c70e8e7feaddad0be072">Method</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="method_8xx.html#a6f21bafa0e087328ce22dc138a8f583b">dxx::http::methods_map</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A feature-poor HTTP server implementation. </p>
@@ -253,27 +253,27 @@ Variables</h2></td></tr>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-files" class="groupheader"><a id="files" name="files"></a>
 Files</h2></td></tr>
-<tr class="memitem:http_2Exx" id="r_http_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="http_8xx.html">http.xx</a></td></tr>
+<tr class="memitem:http_2Exx" id="r_http_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="http_8xx.html">http.xx</a></td></tr>
 <tr class="memdesc:http_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main interface file for dxx.http module. <br /></td></tr>
-<tr class="memitem:coro_2Exx" id="r_coro_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="coro_8xx.html">coro.xx</a></td></tr>
+<tr class="memitem:coro_2Exx" id="r_coro_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="coro_8xx.html">coro.xx</a></td></tr>
 <tr class="memdesc:coro_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coroutine types for the server. <br /></td></tr>
-<tr class="memitem:errors_2Exx" id="r_errors_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="dot-xx-http-src_2src_2errors_8xx.html">errors.xx</a></td></tr>
+<tr class="memitem:errors_2Exx" id="r_errors_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="dot-xx-http-src_2src_2errors_8xx.html">errors.xx</a></td></tr>
 <tr class="memdesc:dot-xx-http-src_2src_2errors_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP server exception types. <br /></td></tr>
-<tr class="memitem:message_2Exx" id="r_message_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="message_8xx.html">message.xx</a></td></tr>
+<tr class="memitem:message_2Exx" id="r_message_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="message_8xx.html">message.xx</a></td></tr>
 <tr class="memdesc:message_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request and Response types <br /></td></tr>
-<tr class="memitem:method_2Exx" id="r_method_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="method_8xx.html">method.xx</a></td></tr>
+<tr class="memitem:method_2Exx" id="r_method_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="method_8xx.html">method.xx</a></td></tr>
 <tr class="memdesc:method_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP methods enum and strings. <br /></td></tr>
-<tr class="memitem:mime_2Exx" id="r_mime_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="mime_8xx.html">mime.xx</a></td></tr>
+<tr class="memitem:mime_2Exx" id="r_mime_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="mime_8xx.html">mime.xx</a></td></tr>
 <tr class="memdesc:mime_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Built-in mime-type mappings. <br /></td></tr>
-<tr class="memitem:path_2Exx" id="r_path_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="path_8xx.html">path.xx</a></td></tr>
+<tr class="memitem:path_2Exx" id="r_path_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="path_8xx.html">path.xx</a></td></tr>
 <tr class="memdesc:path_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">The server's path matching. <br /></td></tr>
-<tr class="memitem:server_2Exx" id="r_server_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="server_8xx.html">server.xx</a></td></tr>
+<tr class="memitem:server_2Exx" id="r_server_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="server_8xx.html">server.xx</a></td></tr>
 <tr class="memdesc:server_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple HTTP server. <br /></td></tr>
-<tr class="memitem:status_5Fcodes_2Exx" id="r_status_5Fcodes_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="status__codes_8xx.html">status_codes.xx</a></td></tr>
+<tr class="memitem:status_5Fcodes_2Exx" id="r_status_5Fcodes_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="status__codes_8xx.html">status_codes.xx</a></td></tr>
 <tr class="memdesc:status__codes_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP status codes enum. <br /></td></tr>
-<tr class="memitem:url_2Exx" id="r_url_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="url_8xx.html">url.xx</a></td></tr>
+<tr class="memitem:url_2Exx" id="r_url_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="url_8xx.html">url.xx</a></td></tr>
 <tr class="memdesc:url_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">URL encoding and decoding. <br /></td></tr>
-<tr class="memitem:utils_2Exx" id="r_utils_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">build/_deps/dot-xx-http-src/src/<a class="el" href="dot-xx-http-src_2src_2utils_8xx.html">utils.xx</a></td></tr>
+<tr class="memitem:utils_2Exx" id="r_utils_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="dot-xx-http-src_2src_2utils_8xx.html">utils.xx</a></td></tr>
 <tr class="memdesc:dot-xx-http-src_2src_2utils_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Misc utility code. <br /></td></tr>
 </table>
 </div><!-- contents -->
