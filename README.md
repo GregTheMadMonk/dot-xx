@@ -14,6 +14,7 @@ __Ninja__ (what version?)
 |[http](https://github.com/GregTheMadMonk/dot-xx/tree/http)| [dxx.http](https://gregthemadmonk.github.io/dot-xx/module__dxx_8http.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd), [overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload) | A feature-poor and possibly incomplete HTTP server implementation built with C++20 coroutines. Supports networking through UNIX sockets only. Supports long polling. See [example](https://github.com/GregTheMadMonk/dot-xx/blob/http/example/main.cc). | No. Set `DXX_WITH_HTTP` CMake option to `ON` to include |
 |[overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload)| [dxx.overload](https://gregthemadmonk.github.io/dot-xx/module__dxx_8overload.html) | - | [Overload](https://www.cppstories.com/2019/02/2lines3featuresoverload.html/) pattern with a few bells and whistles | Yes |
 |[selftest](https://github.com/GregTheMadMonk/dot-xx/tree/selftest)| [dxx.selftest](https://gregthemadmonk.github.io/dot-xx/module__dxx_8selftest.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd) | Simple unit testing | Yes |
+|[utils](https://github.com/GregTheMadMonk/dot-xx/tree/utils)| [dxx.utils](https://gregthemadmonk.github.io/dot-xx/module__dxx_8utils.html) | - | Things that are too miscellaneous to have their own module | Yes |
 
 ### Navigating the repo
 

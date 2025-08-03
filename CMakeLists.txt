@@ -60,10 +60,12 @@ fetch_module( assert   )
 fetch_module( cstd     )
 fetch_module( errors   )
 if( DXX_WITH_HTTP )
-    fetch_module( http     )
+fetch_module( http     )
 endif()
+fetch_module( math     )
 fetch_module( overload )
 fetch_module( selftest )
+fetch_module( utils    )
 
 message( STATUS "dot-xx modules: ${DXX_MODULES}" )
 
