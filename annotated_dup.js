@@ -24,6 +24,14 @@ var annotated_dup =
         [ "SimpleTask", "classdxx_1_1http_1_1SimpleTask.html", "classdxx_1_1http_1_1SimpleTask" ],
         [ "StreamError", "structdxx_1_1http_1_1StreamError.html", null ]
       ] ],
+      [ "math", "namespacedxx_1_1math.html", [
+        [ "detail", null, [
+          [ "RealOf", "structdxx_1_1math_1_1detail_1_1RealOf.html", null ],
+          [ "RealOf< T >", "structdxx_1_1math_1_1detail_1_1RealOf_3_01T_01_4.html", null ]
+        ] ],
+        [ "Norm", "structdxx_1_1math_1_1Norm.html", null ],
+        [ "Sub", "structdxx_1_1math_1_1Sub.html", null ]
+      ] ],
       [ "overload", "namespacedxx_1_1overload.html", [
         [ "fn_ptr_wrapper", "classdxx_1_1overload_1_1fn__ptr__wrapper.html", null ],
         [ "overload", "structdxx_1_1overload_1_1overload.html", null ],

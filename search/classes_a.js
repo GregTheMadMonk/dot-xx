@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['t_0',['T',['../structFOf.html',1,'T&lt; width &gt;'],['../structIOf.html',1,'T&lt; width &gt;'],['../structUOf.html',1,'T&lt; width &gt;']]],
-  ['test_5ffailure_1',['test_failure',['../structdxx_1_1selftest_1_1test__failure.html',1,'dxx::selftest']]]
+  ['server_0',['Server',['../classdxx_1_1http_1_1Server.html',1,'dxx::http']]],
+  ['servererror_1',['ServerError',['../structdxx_1_1http_1_1ServerError.html',1,'dxx::http']]],
+  ['simpletask_2',['SimpleTask',['../classdxx_1_1http_1_1SimpleTask.html',1,'dxx::http']]],
+  ['streamerror_3',['StreamError',['../structdxx_1_1http_1_1StreamError.html',1,'dxx::http']]],
+  ['sub_4',['Sub',['../structdxx_1_1math_1_1Sub.html',1,'dxx::math']]]
 ];

@@ -6,6 +6,9 @@ var modules_dup =
     [ "dxx.cstd.fixed", "module__dxx_8cstd_8fixed.html", "module__dxx_8cstd_8fixed" ],
     [ "dxx.errors", "module__dxx_8errors.html", "module__dxx_8errors" ],
     [ "dxx.http", "module__dxx_8http.html", "module__dxx_8http" ],
+    [ "dxx.math.linalg", "module__dxx_8math_8linalg.html", "module__dxx_8math_8linalg" ],
+    [ "dxx.math", "module__dxx_8math.html", null ],
+    [ "dxx.math.utils", "module__dxx_8math_8utils.html", "module__dxx_8math_8utils" ],
     [ "dxx.overload", "module__dxx_8overload.html", "module__dxx_8overload" ],
     [ "dxx.selftest", "module__dxx_8selftest.html", "module__dxx_8selftest" ],
     [ "dxx.utils", "module__dxx_8utils.html", "module__dxx_8utils" ]

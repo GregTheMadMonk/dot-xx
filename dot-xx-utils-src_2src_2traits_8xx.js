@@ -1,4 +1,4 @@
-var traits_8xx =
+var dot_xx_utils_src_2src_2traits_8xx =
 [
     [ "dxx::utils::pointer", "conceptdxx_1_1utils_1_1pointer.html", null ],
     [ "dxx::utils::reference", "conceptdxx_1_1utils_1_1reference.html", null ],

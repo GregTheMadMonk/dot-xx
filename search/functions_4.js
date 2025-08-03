@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['find_0',['find',['../classdxx_1_1http_1_1PathNode.html#ab8a03c6e174ea57e5f3db5bbbc67959c',1,'dxx::http::PathNode::find(this auto &amp;self, std::filesystem::path::const_iterator cur, std::filesystem::path::const_iterator end, std::vector&lt; std::string &gt; *substs=nullptr)'],['../classdxx_1_1http_1_1PathNode.html#ac27e30fbe885eb8896d40add99adf6ad',1,'dxx::http::PathNode::find(this auto &amp;self, const std::filesystem::path &amp;p, std::vector&lt; std::string &gt; *substs=nullptr)']]],
-  ['function_5fname_1',['function_name',['../namespacedxx_1_1selftest.html#a63ced55ad03368aa9cfd557252544fd3',1,'dxx::selftest']]],
-  ['function_5fname_5fsanitize_2',['function_name_sanitize',['../namespacedxx_1_1selftest.html#a6b3de5700058a3000d2e56b31ef964e3',1,'dxx::selftest']]]
+  ['emplace_0',['emplace',['../classdxx_1_1http_1_1PathNode.html#a4faab66b69ae7afcafcf660e88a48efb',1,'dxx::http::PathNode']]],
+  ['error_1',['Error',['../structdxx_1_1errors_1_1Error.html#af46bad6b7908d3d8cb2defb2a32235a1',1,'dxx::errors::Error::Error(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../structdxx_1_1errors_1_1Error.html#ad4ecea3f7b379f51ef02f961f1c74382',1,'dxx::errors::Error::Error(Errno, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)']]]
 ];

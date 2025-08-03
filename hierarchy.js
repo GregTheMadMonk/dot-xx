@@ -19,9 +19,12 @@ var hierarchy =
       [ "dxx::assert::failure", "structdxx_1_1assert_1_1failure.html", null ],
       [ "dxx::selftest::test_failure", "structdxx_1_1selftest_1_1test__failure.html", null ]
     ] ],
+    [ "dxx::math::Norm< Func, SqFunc >", "structdxx_1_1math_1_1Norm.html", null ],
     [ "dxx::http::PathNode< TData >", "classdxx_1_1http_1_1PathNode.html", null ],
     [ "dxx::http::PendingConnection< TResponse >", "classdxx_1_1http_1_1PendingConnection.html", null ],
     [ "dxx::http::SimpleTask::promise_type", "structdxx_1_1http_1_1SimpleTask_1_1promise__type.html", null ],
+    [ "dxx::math::detail::RealOf< T >", "structdxx_1_1math_1_1detail_1_1RealOf.html", null ],
+    [ "dxx::math::detail::RealOf< T >", "structdxx_1_1math_1_1detail_1_1RealOf_3_01T_01_4.html", null ],
     [ "dxx::http::Request", "structdxx_1_1http_1_1Request.html", null ],
     [ "dxx::http::Response", "structdxx_1_1http_1_1Response.html", null ],
     [ "std::runtime_error", null, [
@@ -33,6 +36,7 @@ var hierarchy =
     ] ],
     [ "dxx::http::Server", "classdxx_1_1http_1_1Server.html", null ],
     [ "dxx::http::SimpleTask", "classdxx_1_1http_1_1SimpleTask.html", null ],
+    [ "dxx::math::Sub", "structdxx_1_1math_1_1Sub.html", null ],
     [ "Ts...", null, [
       [ "dxx::overload::overload< Ts >", "structdxx_1_1overload_1_1overload.html", null ]
     ] ],

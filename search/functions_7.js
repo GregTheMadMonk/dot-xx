@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['overload_0',['overload',['../namespacedxx_1_1overload.html#abc1198b760e9e2a924743bd97d63e5da',1,'dxx::overload']]],
-  ['own_1',['own',['../classdxx_1_1http_1_1PendingConnection.html#adc24b37eb7ae894d758de5a060563f84',1,'dxx::http::PendingConnection']]]
+  ['listen_0',['listen',['../classdxx_1_1http_1_1Server.html#abc4b58b4b471101f21754a41bc76f226',1,'dxx::http::Server']]],
+  ['listen_5fand_5fwait_1',['listen_and_wait',['../classdxx_1_1http_1_1Server.html#a5f38c6b70be93db58950dbe2af2766bc',1,'dxx::http::Server']]]
 ];

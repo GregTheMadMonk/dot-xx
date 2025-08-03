@@ -10,5 +10,5 @@ var searchData=
   ['uof_3c_208_20_3e_7',['UOf&lt; 8 &gt;',['../structUOf_3_018_01_4.html',1,'']]],
   ['url_8',['url',['../structdxx_1_1http_1_1Request.html#a234d7cdb81758dee8838fafd23ff0e7a',1,'dxx::http::Request']]],
   ['url_2exx_9',['url.xx',['../url_8xx.html',1,'']]],
-  ['utils_2exx_10',['utils.xx',['../dot-xx-http-src_2src_2utils_8xx.html',1,'(Global Namespace)'],['../dot-xx-utils-src_2src_2utils_8xx.html',1,'(Global Namespace)']]]
+  ['utils_2exx_10',['utils.xx',['../dot-xx-http-src_2src_2utils_8xx.html',1,'(Global Namespace)'],['../dot-xx-math-src_2src_2utils_2utils_8xx.html',1,'(Global Namespace)'],['../dot-xx-utils-src_2src_2utils_8xx.html',1,'(Global Namespace)']]]
 ];

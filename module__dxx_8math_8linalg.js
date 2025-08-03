@@ -1,0 +1,19 @@
+var module__dxx_8math_8linalg =
+[
+    [ "Norm", "structdxx_1_1math_1_1Norm.html", null ],
+    [ "vector", "conceptdxx_1_1math_1_1vector.html", null ],
+    [ "mut_vector", "conceptdxx_1_1math_1_1mut__vector.html", null ],
+    [ "vector_like", "conceptdxx_1_1math_1_1vector__like.html", null ],
+    [ "mut_vector_like", "conceptdxx_1_1math_1_1mut__vector__like.html", null ],
+    [ "dxx::math::RealOf", "module__dxx_8math_8linalg.html#a46e09c9f88a6079b4ff5d614682c0b4c", null ],
+    [ "dxx::math::cross", "module__dxx_8math_8linalg.html#afd832683685ddcaf55d7f3106f63402a", null ],
+    [ "dxx::math::cross", "module__dxx_8math_8linalg.html#a1b340249e65288d34c11d5ac3da2d58b", null ],
+    [ "dxx::math::cross", "module__dxx_8math_8linalg.html#a623ee5c8ff3baf10d3ea9ed15c73d898", null ],
+    [ "dxx::math::norm", "module__dxx_8math_8linalg.html#a9b7665166259eb75a98afaf1f41d9e8e", null ],
+    [ "dxx::math::sq_norm", "module__dxx_8math_8linalg.html#aad86f63c526c9b41c6b4d7f85836ceea", null ],
+    [ "dxx::math::dist", "module__dxx_8math_8linalg.html#a18fd39bddfa007c9197cdac0a7fbae5f", null ],
+    [ "dxx::math::sq_dist", "module__dxx_8math_8linalg.html#aa8b229a6ed5f7a31ac936b091d4878f4", null ],
+    [ "dxx::math::norms::euclidean", "module__dxx_8math_8linalg.html#a9787b29e40ffeecda74622322651dffb", null ],
+    [ "dxx::math::norms::p_one", "module__dxx_8math_8linalg.html#a3b7cb7c26491e1c09d4b384f84bcdfcd", null ],
+    [ "dxx::math::norms::infinity", "module__dxx_8math_8linalg.html#acb80fbd4f6a781a45d833496eb7713fe", null ]
+];

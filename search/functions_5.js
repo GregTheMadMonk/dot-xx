@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['get_5fdata_0',['get_data',['../classdxx_1_1http_1_1PathNode.html#acc98892c271714f97ee4a3e9fee00afc',1,'dxx::http::PathNode']]],
-  ['get_5fname_1',['get_name',['../classdxx_1_1http_1_1PathNode.html#a2e3cffdda3aa559dd3e9f11319bd8e82',1,'dxx::http::PathNode']]],
-  ['get_5ftest_5fname_2',['get_test_name',['../namespacedxx_1_1selftest.html#aae10cbc5f67422b2e4778fa8f65c5660',1,'dxx::selftest']]],
-  ['get_5ftest_5fname_5fcpp_3',['get_test_name_cpp',['../namespacedxx_1_1selftest.html#a5d50bf496faf9d6693b551372f345ee8',1,'dxx::selftest']]],
-  ['get_5ftest_5fname_5fdata_4',['get_test_name_data',['../namespacedxx_1_1selftest.html#add08cd735bffb594d6e5288544707cb7',1,'dxx::selftest']]]
+  ['find_0',['find',['../classdxx_1_1http_1_1PathNode.html#ab8a03c6e174ea57e5f3db5bbbc67959c',1,'dxx::http::PathNode::find(this auto &amp;self, std::filesystem::path::const_iterator cur, std::filesystem::path::const_iterator end, std::vector&lt; std::string &gt; *substs=nullptr)'],['../classdxx_1_1http_1_1PathNode.html#ac27e30fbe885eb8896d40add99adf6ad',1,'dxx::http::PathNode::find(this auto &amp;self, const std::filesystem::path &amp;p, std::vector&lt; std::string &gt; *substs=nullptr)']]],
+  ['function_5fname_1',['function_name',['../namespacedxx_1_1selftest.html#a63ced55ad03368aa9cfd557252544fd3',1,'dxx::selftest']]],
+  ['function_5fname_5fsanitize_2',['function_name_sanitize',['../namespacedxx_1_1selftest.html#a6b3de5700058a3000d2e56b31ef964e3',1,'dxx::selftest']]]
 ];

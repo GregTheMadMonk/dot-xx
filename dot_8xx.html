@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.14.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dot-xx: build/_deps/dot-xx-utils-src/src/traits.xx File Reference</title>
+<title>dot-xx: build/_deps/dot-xx-math-src/src/linalg/dot.xx File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('traits_8xx.html','',''); });
+$(function(){initNavTree('dot_8xx.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -89,34 +89,28 @@ $(function(){initNavTree('traits_8xx.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">traits.xx File Reference<div class="ingroups">module <a class="el" href="module__dxx_8utils.html">dxx.utils</a></div></div></div>
+  <div class="headertitle"><div class="title">dot.xx File Reference<div class="ingroups">module <a class="el" href="module__dxx_8math_8linalg.html">dxx.math.linalg</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Type traits and concepts.  
+<p>Dot product.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>import std;</code><br />
+<div class="textblock"><code>import <a class="el" href="linalg_8xx.html">dxx.math.linalg:traits</a>;</code><br />
+<code>import <a class="el" href="assert_8xx.html">dxx.assert</a>;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:dxx_3A_3Autils" id="r_dxx_3A_3Autils"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedxx_1_1utils.html">dxx::utils</a></td></tr>
-<tr class="memdesc:namespacedxx_1_1utils"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main namespace of the <a class="el" href="namespacedxx_1_1utils.html">dxx::utils</a> module. <br /></td></tr>
+<tr class="memitem:dxx_3A_3Amath" id="r_dxx_3A_3Amath"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedxx_1_1math.html">dxx::math</a></td></tr>
+<tr class="memdesc:namespacedxx_1_1math"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main namespace of the <a class="el" href="namespacedxx_1_1math.html">dxx::math</a> module. <br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
-Concepts</h2></td></tr>
-<tr class="memitem:dxx_3A_3Autils_3A_3Apointer" id="r_dxx_3A_3Autils_3A_3Apointer"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptdxx_1_1utils_1_1pointer.html">dxx::utils::pointer</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept over <span class="tt">std::is_pointer_v</span> <br /></td></tr>
-<tr class="memitem:dxx_3A_3Autils_3A_3Areference" id="r_dxx_3A_3Autils_3A_3Areference"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptdxx_1_1utils_1_1reference.html">dxx::utils::reference</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept over <span class="tt">std::is_reference_v</span> <br /></td></tr>
-<tr class="memitem:dxx_3A_3Autils_3A_3Aconst_5Fvrp" id="r_dxx_3A_3Autils_3A_3Aconst_5Fvrp"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptdxx_1_1utils_1_1const__vrp.html">dxx::utils::const_vrp</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A const value, a pointer to const, or a reference to const. <br /></td></tr>
-<tr class="memitem:dxx_3A_3Autils_3A_3Amut_5Fvrp" id="r_dxx_3A_3Autils_3A_3Amut_5Fvrp"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptdxx_1_1utils_1_1mut__vrp.html">dxx::utils::mut_vrp</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverse of const_vrp. <br /></td></tr>
-<tr class="memitem:dxx_3A_3Autils_3A_3Ais_5Fa" id="r_dxx_3A_3Autils_3A_3Ais_5Fa"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptdxx_1_1utils_1_1is__a.html">dxx::utils::is_a</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the type is an instance of a template. <br /></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a186b340da5975000866155f035accbe1" id="r_a186b340da5975000866155f035accbe1"><td class="memTemplParams" colspan="2"><a id="a186b340da5975000866155f035accbe1" name="a186b340da5975000866155f035accbe1"></a>
+template&lt;vector U, vector_like&lt; U &gt; V&gt; </td></tr>
+<tr class="memitem:a186b340da5975000866155f035accbe1 template"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="namespacedxx_1_1math.html#a46e09c9f88a6079b4ff5d614682c0b4c">RealOf</a>&lt; U &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>dxx::math::dot</b> (const U &amp;u, const V &amp;v)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Type traits and concepts. </p>
+<div class="textblock"><p>Dot product. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -130,7 +124,7 @@ Concepts</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_4fef79e7177ba769987a8da36c892c5f.html">build</a></li><li class="navelem"><a href="dir_a57a94e38c03835eed49274b75b0176d.html">_deps</a></li><li class="navelem"><a href="dir_f147010f3b98d80438851280bc8d9d88.html">dot-xx-utils-src</a></li><li class="navelem"><a href="dir_8fcbfcb9630059f322e1abc79ae29ff5.html">src</a></li><li class="navelem"><a href="traits_8xx.html">traits.xx</a></li>
+    <li class="navelem"><a href="dir_4fef79e7177ba769987a8da36c892c5f.html">build</a></li><li class="navelem"><a href="dir_a57a94e38c03835eed49274b75b0176d.html">_deps</a></li><li class="navelem"><a href="dir_aa1acd8bf23d8c65aa2e387642984564.html">dot-xx-math-src</a></li><li class="navelem"><a href="dir_f93c04595b4e5ece07937b93d24ecb79.html">src</a></li><li class="navelem"><a href="dir_c840d6344f17f6bb89809d05f5ad1a7b.html">linalg</a></li><li class="navelem"><a href="dot_8xx.html">dot.xx</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
