@@ -28,7 +28,7 @@ jobs:
       - name:  Env - Disable checking signatures in pacman.conf
         run:   sudo chroot root.x86_64 sed -i 's/Required DatabaseOptional/Never/' /etc/pacman.conf
       - name:  Env - Update keyring
-        run:   sudo chroot root.x86_64 bash -c 'pacman -Syy && pacman -S --noconfirm archlinux-keyring && pacman-key --populate'
+        run:   sudo chroot root.x86_64 bash -c 'pacman -Syy && pacman -S --noconfirm archlinux-keyring && pacman-key --init && pacman-key --populate'
       - name:  Env - Re-enable signatures in pacman.conf
         run:   sudo chroot root.x86_64 sed -i 's/Never/Required DatabaseOptional/' /etc/pacman.conf
       - name:  Env - Install the necessary software
