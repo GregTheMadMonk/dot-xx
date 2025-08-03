@@ -1,0 +1,33 @@
+/**
+ * @file  sign.xx
+ * @brief Number sign
+ */
+export module dxx.math.utils:sign;
+
+import std;
+
+namespace dxx::math {
+
+/**
+ * @brief Return type of @ref sign. Use `std::to_underlying` to convert to `int`
+ */
+export
+enum class Sign : int {
+    Positive = 1,
+    Zero     = 0,
+    Negative = -1,
+}; // <-- enum class Sign
+
+/**
+ * @brief Gets the sign of a number
+ */
+export
+template <typename T, typename Less = std::less<T>>
+[[nodiscard]]
+inline constexpr
+Sign sign(T t, Less less = {}, T zero = {}) {
+    using enum Sign;
+    return less(t, zero) ? Negative : (less(zero, t) ? Positive : Zero);
+} // <-- T sign(t, less, zero)
+
+} // <-- namespace dxx::math

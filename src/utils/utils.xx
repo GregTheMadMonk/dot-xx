@@ -9,3 +9,4 @@
 export module dxx.math.utils;
 
 export import :abs_diff;
+export import :sign;
