@@ -34,7 +34,7 @@ jobs:
       - name:  Env - Install the necessary software
         run:   sudo chroot root.x86_64 bash -c 'pacman -Syu --noconfirm && pacman -S --noconfirm clang gcc cmake ninja git libc++ doxygen'
       - name:  Env - Clone the project
-        run:   sudo chroot root.x86_64 'git clone https://github.com/gregthemadmonk/dot-xx.git --recursive'
+        run:   sudo chroot root.x86_64 git clone https://github.com/gregthemadmonk/dot-xx.git --recursive
       - name:  Clang + libc++ - Create build dir
         run:   sudo chroot root.x86_64 mkdir build-llvm-libcpp
       - name:  Clang + libc++ - Configure build
