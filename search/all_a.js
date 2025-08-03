@@ -7,5 +7,6 @@ var searchData=
   ['method_5fstring_4',['method_string',['../structdxx_1_1http_1_1Request.html#a51568d4d6282ec877e359599a6e413b8',1,'dxx::http::Request']]],
   ['mime_2exx_5',['mime.xx',['../mime_8xx.html',1,'']]],
   ['mime_5ftypes_6',['mime_types',['../mime_8xx.html#abee544ac8dde5b6b22c2acc7cbfc5ad1',1,'dxx::http']]],
-  ['multiparterror_7',['MultipartError',['../message_8xx.html#ad18b638d24185f2c1e080356dd2e2ce2',1,'dxx::http']]]
+  ['multiparterror_7',['MultipartError',['../message_8xx.html#ad18b638d24185f2c1e080356dd2e2ce2',1,'dxx::http']]],
+  ['mut_5fvrp_8',['mut_vrp',['../conceptdxx_1_1utils_1_1mut__vrp.html',1,'dxx::utils']]]
 ];

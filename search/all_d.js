@@ -9,6 +9,7 @@ var searchData=
   ['path_2exx_6',['path.xx',['../path_8xx.html',1,'']]],
   ['pathnode_7',['PathNode',['../classdxx_1_1http_1_1PathNode.html',1,'dxx::http::PathNode&lt; TData &gt;'],['../classdxx_1_1http_1_1PathNode.html#a16aa999f910a1ab960f2a5f35218cdc9',1,'dxx::http::PathNode::PathNode(std::string_view c_name)'],['../classdxx_1_1http_1_1PathNode.html#a411c2959302da5b6d5420a4c6f1e2310',1,'dxx::http::PathNode::PathNode(std::string_view c_name, Args &amp;&amp;... args)']]],
   ['pendingconnection_8',['PendingConnection',['../classdxx_1_1http_1_1PendingConnection.html',1,'dxx::http']]],
-  ['promise_5ftype_9',['promise_type',['../structdxx_1_1http_1_1SimpleTask_1_1promise__type.html',1,'dxx::http::SimpleTask']]],
-  ['protocol_10',['protocol',['../structdxx_1_1http_1_1Request.html#ad03d5cc2a97ad8e8ac638299a7491d4a',1,'dxx::http::Request::protocol'],['../structdxx_1_1http_1_1Response.html#a573325894116c1021a863446586d5287',1,'dxx::http::Response::protocol']]]
+  ['pointer_9',['pointer',['../conceptdxx_1_1utils_1_1pointer.html',1,'dxx::utils']]],
+  ['promise_5ftype_10',['promise_type',['../structdxx_1_1http_1_1SimpleTask_1_1promise__type.html',1,'dxx::http::SimpleTask']]],
+  ['protocol_11',['protocol',['../structdxx_1_1http_1_1Request.html#ad03d5cc2a97ad8e8ac638299a7491d4a',1,'dxx::http::Request::protocol'],['../structdxx_1_1http_1_1Response.html#a573325894116c1021a863446586d5287',1,'dxx::http::Response::protocol']]]
 ];

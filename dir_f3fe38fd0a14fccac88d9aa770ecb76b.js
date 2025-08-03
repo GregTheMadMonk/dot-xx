@@ -10,5 +10,5 @@ var dir_f3fe38fd0a14fccac88d9aa770ecb76b =
     [ "server.xx", "server_8xx.html", "server_8xx" ],
     [ "status_codes.xx", "status__codes_8xx.html", null ],
     [ "url.xx", "url_8xx.html", null ],
-    [ "utils.xx", "utils_8xx.html", "utils_8xx" ]
+    [ "utils.xx", "dot-xx-http-src_2src_2utils_8xx.html", "dot-xx-http-src_2src_2utils_8xx" ]
 ];

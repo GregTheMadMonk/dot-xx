@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['errno_0',['Errno',['../structdxx_1_1errors_1_1Errno.html',1,'dxx::errors::Errno'],['../structdxx_1_1http_1_1Errno.html',1,'dxx::http::Errno']]],
-  ['error_1',['Error',['../structdxx_1_1errors_1_1Error.html',1,'dxx::errors']]]
+  ['as_0',['As',['../structdxx_1_1utils_1_1As.html',1,'dxx::utils']]]
 ];

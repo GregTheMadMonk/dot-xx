@@ -7,5 +7,6 @@ var searchData=
   ['dxx_2eerrors_4',['dxx.errors',['../module__dxx_8errors.html',1,'']]],
   ['dxx_2ehttp_5',['dxx.http',['../module__dxx_8http.html',1,'']]],
   ['dxx_2eoverload_6',['dxx.overload',['../module__dxx_8overload.html',1,'']]],
-  ['dxx_2eselftest_7',['dxx.selftest',['../module__dxx_8selftest.html',1,'']]]
+  ['dxx_2eselftest_7',['dxx.selftest',['../module__dxx_8selftest.html',1,'']]],
+  ['dxx_2eutils_8',['dxx.utils',['../module__dxx_8utils.html',1,'']]]
 ];

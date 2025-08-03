@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['t_0',['T',['../structFOf.html',1,'T&lt; width &gt;'],['../structIOf.html',1,'T&lt; width &gt;'],['../structUOf.html',1,'T&lt; width &gt;']]],
-  ['test_5ffailure_1',['test_failure',['../structdxx_1_1selftest_1_1test__failure.html',1,'dxx::selftest']]]
+  ['request_0',['Request',['../structdxx_1_1http_1_1Request.html',1,'dxx::http']]],
+  ['requesterror_1',['RequestError',['../structdxx_1_1http_1_1RequestError.html',1,'dxx::http']]],
+  ['response_2',['Response',['../structdxx_1_1http_1_1Response.html',1,'dxx::http']]]
 ];

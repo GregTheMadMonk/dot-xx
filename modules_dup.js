@@ -7,5 +7,6 @@ var modules_dup =
     [ "dxx.errors", "module__dxx_8errors.html", "module__dxx_8errors" ],
     [ "dxx.http", "module__dxx_8http.html", "module__dxx_8http" ],
     [ "dxx.overload", "module__dxx_8overload.html", "module__dxx_8overload" ],
-    [ "dxx.selftest", "module__dxx_8selftest.html", "module__dxx_8selftest" ]
+    [ "dxx.selftest", "module__dxx_8selftest.html", "module__dxx_8selftest" ],
+    [ "dxx.utils", "module__dxx_8utils.html", "module__dxx_8utils" ]
 ];

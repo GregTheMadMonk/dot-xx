@@ -1,5 +1,7 @@
 var hierarchy =
 [
+    [ "dxx::utils::As< Range >", "structdxx_1_1utils_1_1As.html", null ],
+    [ "dxx::utils::Defer< TDeferred >", "classdxx_1_1utils_1_1Defer.html", null ],
     [ "dxx::errors::Errno", "structdxx_1_1errors_1_1Errno.html", null ],
     [ "dxx::http::Errno", "structdxx_1_1http_1_1Errno.html", null ],
     [ "dxx::http::utils::File", "classdxx_1_1http_1_1utils_1_1File.html", null ],

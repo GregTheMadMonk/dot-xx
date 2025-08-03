@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['overload_0',['overload',['../structdxx_1_1overload_1_1overload.html',1,'dxx::overload']]]
+  ['headercompare_0',['HeaderCompare',['../structdxx_1_1http_1_1HeaderCompare.html',1,'dxx::http']]]
 ];

@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['pathnode_0',['PathNode',['../classdxx_1_1http_1_1PathNode.html',1,'dxx::http']]],
-  ['pendingconnection_1',['PendingConnection',['../classdxx_1_1http_1_1PendingConnection.html',1,'dxx::http']]],
-  ['promise_5ftype_2',['promise_type',['../structdxx_1_1http_1_1SimpleTask_1_1promise__type.html',1,'dxx::http::SimpleTask']]]
+  ['iof_0',['IOf',['../structIOf.html',1,'']]],
+  ['iof_3c_2016_20_3e_1',['IOf&lt; 16 &gt;',['../structIOf_3_0116_01_4.html',1,'']]],
+  ['iof_3c_2032_20_3e_2',['IOf&lt; 32 &gt;',['../structIOf_3_0132_01_4.html',1,'']]],
+  ['iof_3c_2064_20_3e_3',['IOf&lt; 64 &gt;',['../structIOf_3_0164_01_4.html',1,'']]],
+  ['iof_3c_208_20_3e_4',['IOf&lt; 8 &gt;',['../structIOf_3_018_01_4.html',1,'']]]
 ];

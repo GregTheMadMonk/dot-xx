@@ -36,6 +36,10 @@ var annotated_dup =
       [ "selftest", "namespacedxx_1_1selftest.html", [
         [ "test_failure", "structdxx_1_1selftest_1_1test__failure.html", null ],
         [ "UnitTest", "classdxx_1_1selftest_1_1UnitTest.html", "classdxx_1_1selftest_1_1UnitTest" ]
+      ] ],
+      [ "utils", "namespacedxx_1_1utils.html", [
+        [ "As", "structdxx_1_1utils_1_1As.html", null ],
+        [ "Defer", "classdxx_1_1utils_1_1Defer.html", null ]
       ] ]
     ] ],
     [ "FOf", "structFOf.html", null ],
