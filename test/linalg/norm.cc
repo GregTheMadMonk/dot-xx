@@ -58,8 +58,6 @@ const UnitTest distance{
 
         const Vec d{ -2, -2, -3 };
 
-        std::println("{} {}", sq_norm(d), sq_dist(a, b));
-
         test(sq_norm(d) == sq_dist(a, b));
         test(sq_norm<norms::p_one>(d) == sq_dist<norms::p_one>(a, b));
         test(sq_norm<norms::infinity>(d) == sq_dist<norms::infinity>(a, b));
