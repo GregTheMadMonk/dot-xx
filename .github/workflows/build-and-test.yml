@@ -35,21 +35,21 @@ jobs:
         run:   sudo chroot root.x86_64 bash -c 'pacman -Syu --noconfirm && pacman -S --noconfirm clang gcc cmake ninja git libc++ doxygen'
       - name:  Env - Clone the project
         run:   sudo chroot root.x86_64 'git clone https://github.com/gregthemadmonk/dot-xx.git --recursive'
-      - name:  [Clang + libc++] Create build dir
+      - name:  Clang + libc++ - Create build dir
         run:   sudo chroot root.x86_64 mkdir build-llvm-libcpp
-      - name:  [Clang + libc++] Configure build
+      - name:  Clang + libc++ - Configure build
         run:   sudo chroot root.x86_64 bash -c 'CC=clang CXX=clang++ cmake dot-xx -B build-llvm-libcpp -GNinja -DCMAKE_CXX_FLAGS="-stdlib=libc++ -fsanitize=address,undefined -Wall -Wextra -pedantic" -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD="d0edc3af-4c50-42ea-a356-e2862fe7a444" -DCMAKE_BUILD_TYPE=Debug -DDXX_SELFTEST=ON -DDXX_DOXYGEN=ON -DDXX_WITH_HTTP=ON -DDXX_WITH_MATH=ON'
-      - name:  [Clang + libc++] Build the library
+      - name:  Clang + libc++ - Build the library
         run:   sudo chroot root.x86_64 cmake --build build-llvm-libcpp
-      - name:  [Clang + libc++] Run the unit tests
+      - name:  Clang + libc++ - Run the unit tests
         run:   sudo chroot root.x86_64 /build-llvm-libcpp/selftest
-      - name:  [Clang + libstdc++] Create build dir
+      - name:  Clang + libstdc++ - Create build dir
         run:   sudo chroot root.x86_64 mkdir build-llvm-libstdcpp
-      - name:  [Clang + libstdc++] Configure build
+      - name:  Clang + libstdc++ - Configure build
         run:   sudo chroot root.x86_64 bash -c 'CC=clang CXX=clang++ cmake dot-xx -B build-llvm-libstdcpp -GNinja -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -Wall -Wextra -pedantic" -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD="d0edc3af-4c50-42ea-a356-e2862fe7a444" -DCMAKE_BUILD_TYPE=Debug -DDXX_SELFTEST=ON -DDXX_DOXYGEN=ON -DDXX_WITH_HTTP=ON -DDXX_WITH_MATH=ON'
-      - name:  [Clang + libstdc++] Build the library
+      - name:  Clang + libstdc++ - Build the library
         run:   sudo chroot root.x86_64 cmake --build build-llvm-libstdcpp
-      - name:  [Clang + libstdc++] Run the unit tests
+      - name:  Clang + libstdc++ - Run the unit tests
         run:   sudo chroot root.x86_64 /build-llvm-libstdcpp/selftest
       - name:  Docs - Build the docs
         run:   sudo chroot root.x86_64 cmake --build build-llvm-libcpp --target docs
