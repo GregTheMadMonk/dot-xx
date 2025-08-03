@@ -1,0 +1,19 @@
+/**
+ * @file  utils.xx
+ * @brief The main interface file of the @ref dxx.utils module
+ */
+
+/**
+ * @brief Miscellaneous stuff that is useful but too small/unimportant to
+ *        be put in its own module
+ */
+export module dxx.utils;
+
+export import :defer;
+export import :ranges;
+export import :traits;
+
+/**
+ * @brief The main namespace of the @ref dxx.utils module
+ */
+namespace dxx::utils {}

@@ -1,0 +1,56 @@
+/**
+ * @file  traits.xx
+ * @brief Type traits and concepts
+ */
+export module dxx.utils:traits;
+
+import std;
+
+namespace dxx::utils {
+
+/**
+ * @brief Concept over `std::is_pointer_v`
+ */
+export
+template <typename T> concept pointer = std::is_pointer_v<T>;
+
+/**
+ * @brief Concept over `std::is_reference_v`
+ */
+export
+template <typename T> concept reference = std::is_reference_v<T>;
+
+/**
+ * @brief A const value, a pointer to const, or a reference to const
+ *
+ * Const pointers to mutable values (`T* const`) return `false` here
+ */
+export
+template <typename T>
+concept const_vrp = [] {
+    if constexpr (pointer<T>) {
+        return std::is_const_v<std::remove_pointer_t<T>>;
+    } else if constexpr (reference<T>) {
+        return std::is_const_v<std::remove_reference_t<T>>;
+    } else {
+        return std::is_const_v<T>;
+    }
+} ();
+
+/**
+ * @brief Inverse of @ref const_vrp
+ */
+export template <typename T> concept mut_vrp = !const_vrp<T>;
+
+/**
+ * @brief Checks if the type is an instance of a template
+ *
+ * Templates with NTTP are not supported :(
+ */
+export
+template <typename T, template <typename...> typename Template>
+concept is_a = requires (T t) {
+    { [] <typename... Args> (const Template<Args...>&) {} (t) };
+}; // <-- concept is_a<T, Template>
+
+} // <-- namespace dxx::utils

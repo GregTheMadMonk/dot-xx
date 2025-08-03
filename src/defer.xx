@@ -1,0 +1,53 @@
+/**
+ * @file  defer.xx
+ * @brief A simple RAII wrapper to run stuff at the end of scope
+ */
+export module dxx.utils:defer;
+
+import std;
+
+namespace dxx::utils {
+
+/**
+ * @brief Class for deferring operations until the end of lifetime
+ *
+ * Even though the class is designed to run things at the end of scope, if
+ * you really want to, you can move it and extends it's "scope"
+ */
+export
+template <typename TDeferred>
+class Defer {
+public:
+    using Deferred = TDeferred;
+
+    inline constexpr
+    Defer(TDeferred d) : deferred{ std::move(d) } {}
+
+    Defer(const Defer&) = delete;
+    Defer& operator=(const Defer&) = delete;
+
+    inline constexpr
+    Defer(Defer&& other) : deferred{ std::move(other.deferred) } {
+        other.deferred.reset();
+    } // <-- Defer(&&other)
+
+    inline constexpr
+    Defer& operator=(Defer&& other) {
+        if (this != std::addressof(other)) {
+            this->deferred = std::move(other.deferred);
+            other.deferred.reset();
+        }
+
+        return *this;
+    } // <-- Defer& operator=(&&other)
+
+    inline constexpr
+    ~Defer() {
+        if (this->deferred.has_value()) { std::invoke(*this->deferred); }
+    } // <-- ~Defer()
+
+private:
+    std::optional<Deferred> deferred;
+}; // <-- class Defer<TDeferred>
+
+} // <-- namespace dxx::utils

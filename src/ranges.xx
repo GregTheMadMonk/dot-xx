@@ -1,0 +1,93 @@
+/**
+ * @file  ranges.xx
+ * @brief Utility code that helps working with ranges
+ */
+export module dxx.utils:ranges;
+
+import std;
+
+namespace dxx::utils {
+
+/**
+ * @brief Python-like `range` function (`[ 0, to )`)
+ *
+ * @return An appropriate `std::views::iota` view
+ */
+export
+template <typename Integer>
+[[nodiscard]]
+inline constexpr auto range(const Integer& to)
+{ return std::views::iota(Integer{}, to); }
+
+/**
+ * @brief Python-like `range` function (`[ from, to )`)
+ *
+ * @return An appropriate `std::views::iota` view
+ */
+export
+template <typename From, std::convertible_to<From> To>
+[[nodiscard]]
+inline constexpr auto range(const From& from, const To& to)
+{ return std::views::iota(from, static_cast<From>(to)); }
+
+/**
+ * @brief Python-like `range` function (`[ from, to )` with step `step`)
+ *
+ * @return An `std::views::iota` range transformed to have step `step`
+ */
+export
+template <
+    typename From,
+    std::convertible_to<From> To,
+    std::convertible_to<From> Step
+>
+[[nodiscard]]
+inline constexpr auto range(const From& from, const To& to, const Step& step) {
+    const auto sz = (static_cast<From>(to) - from) / static_cast<From>(step);
+    return std::views::iota(From{}, sz) | std::views::transform(
+        [from, step] (const auto& idx) { return from + idx * step; }
+    );
+} // <-- auto range(from, to, step)
+
+template <template <typename...> typename Range>
+struct As {
+    [[nodiscard]]
+    inline constexpr
+    auto operator()(std::ranges::input_range auto&& r) const {
+        return Range{ std::from_range, std::forward<decltype(r)>(r) };
+    } // <-- operator(&&r) const
+
+    [[nodiscard]]
+    friend
+    inline constexpr
+    auto operator|(std::ranges::input_range auto&& r, const As& as) {
+        return std::invoke(as, std::forward<decltype(r)>(r));
+    } // <-- auto operator|(r, as)
+}; // <-- struct As<Range<>>
+
+/**
+ * @brief An adaptor-like shortcut to invoking an `std::from_range` constructor
+ *        for a class _template_
+ *
+ * Does not work with regular types - use `std::ranges::to` or the constructor
+ * directly
+ *
+ * E.g
+ * ```c++
+ * auto v = range(10) | as<std::vector>;
+ * ```
+ * is the same as
+ * ```c++
+ * std::vector v{ std::from_range, range(10) };
+ * ```
+ * or
+ * ```c++
+ * std::vector<int> v{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+ * ```
+ */
+export
+template <template <typename...> typename Range>
+inline constexpr
+As<Range> as{};
+
+} // <-- namespace dxx::utils
