@@ -1,0 +1,76 @@
+/**
+ * @file  cross.xx
+ * @brief Cross product of 3D vectors
+ */
+export module dxx.math.linalg:cross;
+
+import dxx.assert;
+import dxx.cstd.fixed;
+
+import :traits;
+
+namespace dxx::math {
+
+/**
+ * @brief Cross product of two 3D vectors (via out parameter)
+ */
+export
+template <mut_vector Out, vector_like<Out> U, vector_like<Out> V>
+void cross(const U& u, const V& v, Out& out) {
+    assert::debug(std::ranges::size(u)   == 3);
+    assert::debug(std::ranges::size(v)   == 3);
+    assert::debug(std::ranges::size(out) == 3);
+
+    // We don't know if the vectors have random-access storage. Extract their
+    // elemenst here
+    auto u_it = std::ranges::begin(u);
+    auto v_it = std::ranges::begin(v);
+
+    const auto& ux = *u_it;
+    ++u_it;
+    const auto& uy = *u_it;
+    ++u_it;
+    const auto& uz = *u_it;
+
+    const auto& vx = *v_it;
+    ++v_it;
+    const auto& vy = *v_it;
+    ++v_it;
+    const auto& vz = *v_it;
+
+    auto o_it = std::ranges::begin(out);
+    *o_it = uy * vz - uz * vy;
+    ++o_it;
+    *o_it = uz * vx - ux * vz;
+    ++o_it;
+    *o_it = ux * vy - uy * vx;
+} // <-- void corss(u, v, out)
+
+/**
+ * @brief Cross product of two 3D vectors (via return value)
+ */
+export
+template <mut_vector Out, vector_like<Out> U, vector_like<Out> V>
+[[nodiscard]]
+inline constexpr
+Out cross(const U& u, const V& v) {
+    Out ret{};
+    if constexpr ( requires { { ret.resize(3uz) }; } ) {
+        ret.resize(3uz);
+    }
+    cross(u, v, ret);
+    return ret;
+} // <-- Out cross(u, v)
+
+/**
+ * @brief Cross product of two 3D vectors (via return value of default type)
+ */
+export
+template <mut_vector U, vector_like<U> V>
+[[nodiscard]]
+inline constexpr
+U cross(const U& u, const V& v) {
+    return cross<U, U, V>(u, v);
+} // <-- U cross(u, v)
+
+} // <-- namespace dxx::math

@@ -1,0 +1,17 @@
+/**
+ * @file  math.xx
+ * @brief The main interface file of the @ref dxx.math module
+ */
+
+/**
+ * @brief Various math utilities
+ */
+export module dxx.math;
+
+export import dxx.math.linalg;
+export import dxx.math.utils;
+
+/**
+ * @brief The main namespace of the @ref dxx.math module
+ */
+namespace dxx::math {}

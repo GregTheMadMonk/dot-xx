@@ -1,0 +1,29 @@
+/**
+ * @file  dot.xx
+ * @brief Dot product
+ */
+export module dxx.math.linalg:dot;
+
+import dxx.assert;
+
+import :traits;
+
+namespace dxx::math {
+
+export
+template <vector U, vector_like<U> V>
+[[nodiscard]]
+inline constexpr
+RealOf<U> dot(const U& u, const V& v) {
+    assert::debug(std::ranges::size(u) == std::ranges::size(v));
+
+    using Real = RealOf<U>;
+
+    Real ret{};
+    for (const auto& [ ue, ve ] : std::views::zip(u, v)) {
+        ret += ue * static_cast<Real>(ve);
+    }
+    return ret;
+} // <-- dot(v, u)
+
+} // <-- namespace dxx::math

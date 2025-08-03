@@ -1,0 +1,14 @@
+/**
+ * @file  linalg.xx
+ * @brief Linear algebra utilities for @ref dxx.math
+ */
+
+/**
+ * @brief Linear algebra utilities for @ref dxx.math
+ */
+export module dxx.math.linalg;
+
+export import :cross;
+export import :dot;
+export import :norm;
+export import :traits;

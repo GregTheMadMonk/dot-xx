@@ -1,0 +1,62 @@
+/**
+ * @file  traits.xx
+ * @brief Type traits and concepts for linear algebra utilities
+ */
+export module dxx.math.linalg:traits;
+
+import dxx.utils;
+import std;
+
+namespace dxx::math {
+
+/**
+ * @brief We can treat any input range as a vector
+ */
+export
+template <typename T>
+concept vector = std::ranges::input_range<T>;
+
+/**
+ * @brief A vector for which the elements can be written to
+ *
+ * This does not require for the container itself to be resizeable
+ */
+export
+template <typename T>
+concept mut_vector = vector<T>
+                  && utils::mut_vrp<std::ranges::range_reference_t<T>>;
+
+namespace detail {
+
+template <typename T> struct RealOf;
+template <vector T> struct RealOf<T> {
+    using Type = std::ranges::range_value_t<T>;
+}; // <-- struct RealOf<vector T>
+
+} // <-- namespace detail
+
+/**
+ * @brief (Non-cv-qualified) Real type of the linalg type
+ */
+export
+template <typename T>
+using RealOf = detail::RealOf<T>::Type;
+
+/**
+ * @brief Vector for which the element type is convertible to a target vector's
+ *        type
+ */
+export
+template <typename T, typename V>
+concept vector_like = vector<T>
+                   && vector<V>
+                   && std::convertible_to<RealOf<T>, RealOf<V>>;
+
+/**
+ * @brief Similar to @ref vector_like, but also satisfies @ref mut_vector
+ */
+export
+template <typename T, typename V>
+concept mut_vector_like = mut_vector<T> && vector_like<T, V>;
+
+} // <-- namespace dxx::math

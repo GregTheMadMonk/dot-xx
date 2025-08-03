@@ -1,0 +1,11 @@
+/**
+ * @file  utils.xx
+ * @brief Main interface file for the @ref dxx.math.utils module
+ */
+
+/**
+ * @brief Miscellaneous math facilities
+ */
+export module dxx.math.utils;
+
+export import :abs_diff;

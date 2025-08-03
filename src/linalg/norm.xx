@@ -1,0 +1,145 @@
+/**
+ * @file  norm.xx
+ * @brief Vector norms
+ */
+export module dxx.math.linalg:norm;
+
+import dxx.math.utils;
+
+import :dot;
+import :traits;
+
+namespace dxx::math {
+
+namespace detail {
+
+inline constexpr auto euclidean_squared = [] (const vector auto& v) static {
+    return dot(v, v);
+}; // <-- euclidean_squared(v)
+
+} // <-- namespace detail
+
+/**
+ * @brief Defines a norm. Only `norm` field is required, all other fields
+ *        can be assigned a `nullptr`
+ */
+export
+template <typename Func, typename SqFunc = std::nullptr_t>
+struct Norm {
+    Func   norm;
+    SqFunc sq_norm = nullptr;
+}; // <-- struct Norm<Func, SqFunc>
+
+/**
+ * @brief Built-in norms
+ */
+namespace norms {
+
+/**
+ * @brief Euclidean norm (2-norm)
+ */
+export
+inline constexpr Norm euclidean{
+    .norm = [] (const vector auto& v) static {
+        return std::sqrt(detail::euclidean_squared(v));
+    },
+    .sq_norm = detail::euclidean_squared,
+}; // <-- euclidean
+
+/**
+ * @brief 1-norm (sum of absolute values of elements)
+ */
+export
+inline constexpr Norm p_one{
+    .norm = [] <vector V> (const V& v) static {
+        RealOf<V> ret{};
+        for (const auto& ve : v) {
+            ret += std::abs(ve);
+        }
+        return ret;
+    },
+}; // <-- p_ine
+
+/**
+ * @brief Infinity norm (max absolute value across elements)
+ */
+export
+inline constexpr Norm infinity {
+    .norm = [] <vector V> (const V& v) static {
+        RealOf<V> ret{};
+        for (const auto& ve : v) {
+            const auto ave = std::abs(ve);
+            if (ave > ret) {
+                ret = ave;
+            }
+        }
+        return ret;
+    },
+}; // <-- infinity
+
+} // <-- namespace norms
+
+/**
+ * @brief Calculates norm `t_norm` for vector `v`
+ */
+export
+template <Norm t_norm = norms::euclidean, vector V>
+[[nodiscard]]
+inline constexpr
+RealOf<V> norm(const V& v)
+{ return t_norm.norm(v); }
+
+/**
+ * @brief Calculates the square of the norm `t_norm` for vector `v`
+ */
+export
+template <Norm t_norm = norms::euclidean, vector V>
+[[nodiscard]]
+inline constexpr
+RealOf<V> sq_norm(const V& v) {
+    if constexpr (std::same_as<decltype(t_norm.sq_norm), std::nullptr_t>) {
+        const auto n = norm<t_norm>(v);
+        return n * n;
+    } else {
+        return t_norm.sq_norm(v);
+    }
+} // <-- RealOf<V> sq_norm(v)
+
+/**
+ * @brief Calculates the distance between vector `v` and `u` according to
+ *        norm `t_norm`
+ */
+export
+template <Norm t_norm = norms::euclidean, vector V, vector_like<V> U>
+[[nodiscard]]
+inline constexpr
+RealOf<V> dist(const V& v, const U& u) {
+    std::vector<RealOf<V>> ret( std::ranges::size(v) );
+    for (auto [ re, ve, ue ] : std::views::zip(ret, v, u)) {
+        re = abs_diff(ve, static_cast<RealOf<V>>(ue));
+    }
+    return t_norm.norm(ret);
+} // <-- RealOf<V> sq_dist(v, u)
+
+/**
+ * @brief Calculates the square of the distance between vector `v` and `u`
+ *        according to norm `t_norm`
+ */
+export
+template <Norm t_norm = norms::euclidean, vector V, vector_like<V> U>
+[[nodiscard]]
+inline constexpr
+RealOf<V> sq_dist(const V& v, const U& u) {
+    if constexpr (std::same_as<decltype(t_norm.sq_norm), std::nullptr_t>) {
+        const auto d = dist<t_norm>(v, u);
+        return d * d;
+    } else {
+        std::vector<RealOf<V>> ret( std::ranges::size(v) );
+        for (auto [ re, ve, ue ] : std::views::zip(ret, v, u)) {
+            re = abs_diff(ve, static_cast<RealOf<V>>(ue));
+        }
+        return t_norm.sq_norm(ret);
+    }
+} // <-- RealOf<V> sq_dist(v, u)
+
+} // <-- namespace dxx::math
