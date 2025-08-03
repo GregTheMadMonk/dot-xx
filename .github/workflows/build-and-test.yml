@@ -5,45 +5,61 @@ jobs:
     runs-on: ubuntu-latest
     name:    Full CI/CD cycle for dot-xx
     steps:
-      - name:  Install Doxygen
-        run:   mkdir ~/doxygen && wget https://www.doxygen.nl/files/doxygen-1.14.0.linux.bin.tar.gz && tar xfv doxygen-1.14.0.linux.bin.tar.gz && cd doxygen-1.14.0 && sudo make install
-        shell: bash
-      - name:  Install the latest available LLVM toolchain
-        run:   wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && sudo ./llvm.sh 20 all
-        shell: bash
-      - name:  Install the latest CMake - Add Kitware archive
-        run:   wget https://apt.kitware.com/kitware-archive.sh && chmod +x kitware-archive.sh && sudo ./kitware-archive.sh
-        shell: bash
-      - name:  Install the latest CMake - Install
-        run:   sudo apt update && sudo apt install cmake -y && cmake --version && /usr/bin/cmake --version
-        shell: bash
-      - name: Checkout the project
-        uses: actions/checkout@v4.2.2
-      - name: Init CPM.cmake
-        run:  git submodule update --init --recursive
-      - name:  Configure the project with CMake
-        run:   mkdir build && CC=clang-20 CXX=clang++-20 /usr/bin/cmake . -B build -GNinja -DCMAKE_CXX_FLAGS='-stdlib=libc++ -fsanitize=address,undefined -Wall -Wextra -pedantic' -DDXX_SELFTEST=ON -DDXX_WITH_HTTP=ON -DDXX_WITH_MATH=ON -DDXX_DOXYGEN=ON -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD='d0edc3af-4c50-42ea-a356-e2862fe7a444'
-        shell: bash
-      - name:  Build the project
-        run:   /usr/bin/cmake --build build
-        shell: bash
-      - name:  Run selftest
-        run:   ./build/selftest
-        shell: bash
-      - name:  Generate docs (dummy)
-        run:   /usr/bin/cmake --build build --target docs
-        shell: bash
-      - name:  Add a remote to push to
-        run:   git remote add push_origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/GregTheMadMonk/dot-xx.git && git fetch --all
-      - name:  Configure git
-        run:   git config --global user.email "yagreg7@gmail.com" && git config --global user.name "Docs autoupdate"
-        shell: bash
-      - name:  Checkout gh-pages
-        run:   git worktree add ../gh-pages -b gh-pages push_origin/gh-pages
-        shell: bash
-      - name:  Copy generated documentation
-        run:   rm -rf ../gh-pages/* && cp -R build/html/* ../gh-pages
-        shell: bash
-      - name:  Upload the new version of pages
-        run:   cd ../gh-pages && git add -A && git commit -m "Auto-update" && git push push_origin gh-pages
-        shell: bash
+      - name:  [Env] Download Arch Linux rootfs
+        run:   wget https://archive.archlinux.org/iso/2025.08.01/archlinux-bootstrap-2025.08.01-x86_64.tar.zst
+      - name:  [Env] Unpack Arch Linux rootfs
+        run:   sudo tar xfv archlinux-bootstrap-2025.08.01-x86_64.tar.zst
+      - name:  [Env] Bind /dev
+        run:   sudo mount -o bind /dev root.x86_64/dev
+      - name:  [Env] Bind /dev/pts
+        run:   sudo mount -o bind /dev/pts root.x86_64/dev/pts
+      - name:  [Env] Bind /proc
+        run:   sudo mount -o bind /proc root.x86_64/proc
+      - name:  [Env] Bind /sys
+        run:   sudo mount -o bind /sys root.x86_64/sys
+      - name:  [Env] Bind /tmp
+        run:   sudo mount -t tmpfs tmpfs root.x86_64/tmp
+      - name:  [Env] Set up the nameserver
+        run:   sudo chroot root.x86_64 bash -c 'echo "nameserver 8.8.8.8" >> /etc/resolv.conf'
+      - name:  [Env] Enable mirrors
+        run:   sudo chroot root.x86_64 sed -i 's/#Server/Server/' /etc/pacman.d/mirrorlist
+      - name:  [Env] Disable 'CheckSpace' in pacman.conf
+        run:   sudo chroot root.x86_64 sed -i 's/CheckSpace/#CheckSpace/' /etc/pacman.conf
+      - name:  [Env] Disable checking signatures in pacman.conf
+        run:   sudo chroot root.x86_64 sed -i 's/Required DatabaseOptional/Never/' /etc/pacman.conf
+      - name:  [Env] Update keyring
+        run:   sudo chroot root.x86_64 bash -c 'pacman -Syy && pacman -S --noconfirm archlinux-keyring && pacman-key --populate'
+      - name:  [Env] Re-enable signatures in pacman.conf
+        run:   sudo chroot root.x86_64 sed -i 's/Never/Required DatabaseOptional/' /etc/pacman.conf
+      - name:  [Env] Install the necessary software
+        run:   sudo chroot root.x86_64 bash -c 'pacman -Syu --noconfirm && pacman -S --noconfirm clang gcc cmake ninja git libc++ doxygen'
+      - name:  [Env] Clone the project
+        run:   sudo chroot root.x86_64 'git clone https://github.com/gregthemadmonk/dot-xx.git --recursive'
+      - name:  [Clang + libc++] Create build dir
+        run:   sudo chroot root.x86_64 mkdir build-llvm-libcpp
+      - name:  [Clang + libc++] Configure build
+        run:   sudo chroot root.x86_64 bash -c 'CC=clang CXX=clang++ cmake dot-xx -B build-llvm-libcpp -GNinja -DCMAKE_CXX_FLAGS="-stdlib=libc++ -fsanitize=address,undefined -Wall -Wextra -pedantic" -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD="d0edc3af-4c50-42ea-a356-e2862fe7a444" -DCMAKE_BUILD_TYPE=Debug -DDXX_SELFTEST=ON -DDXX_DOXYGEN=ON -DDXX_WITH_HTTP=ON -DDXX_WITH_MATH=ON'
+      - name:  [Clang + libc++] Build the library
+        run:   sudo chroot root.x86_64 cmake --build build-llvm-libcpp
+      - name:  [Clang + libc++] Run the unit tests
+        run:   sudo chroot root.x86_64 /build-llvm-libcpp/selftest
+      - name:  [Clang + libstdc++] Create build dir
+        run:   sudo chroot root.x86_64 mkdir build-llvm-libstdcpp
+      - name:  [Clang + libstdc++] Configure build
+        run:   sudo chroot root.x86_64 bash -c 'CC=clang CXX=clang++ cmake dot-xx -B build-llvm-libstdcpp -GNinja -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -Wall -Wextra -pedantic" -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD="d0edc3af-4c50-42ea-a356-e2862fe7a444" -DCMAKE_BUILD_TYPE=Debug -DDXX_SELFTEST=ON -DDXX_DOXYGEN=ON -DDXX_WITH_HTTP=ON -DDXX_WITH_MATH=ON'
+      - name:  [Clang + libstdc++] Build the library
+        run:   sudo chroot root.x86_64 cmake --build build-llvm-libstdcpp
+      - name:  [Clang + libstdc++] Run the unit tests
+        run:   sudo chroot root.x86_64 /build-llvm-libstdcpp/selftest
+      - name:  [Docs] Build the docs
+        run:   sudo chroot root.x86_64 cmake --build build-llvm-libcpp --target docs
+      - name:  [Docs] Add a remote to push to
+        run:   sudo chroot root.x86_64 bash -c 'cd dot-xx && git remote add push_origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/GregTheMadMonk/dot-xx.git && git fetch --all'
+      - name:  [Docs] Configure git
+        run:   sudo chroot root.x86_64 bash -c 'git config --global user.email "yagreg7@gmail.com" && git config --global user.name "Docs autoupdate"'
+      - name:  [Docs] Checkout gh-pages
+        run:   sudo chroot root.x86_64 bash -c 'cd dot-xx && git worktree add ../gh-pages -b gh-pages push_origin/gh-pages'
+      - name:  [Docs] Copy generated documentation
+        run:   sudo chroot root.x86_64 bash -c 'rm -rf /gh-pages/* && cp -R /build-llvm-libcpp/html/* /gh-pages'
+      - name:  [Docs] Upload the new version of docs
+        run:   sudo chroot root.x86_64 bash -c 'cd /gh-pages && git add -A && git commit -m "Auto-update" && git push push_origin gh-pages'
