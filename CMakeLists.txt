@@ -24,7 +24,7 @@ target_sources(
 target_compile_features( dot-xx-http PUBLIC cxx_std_23 )
 target_link_libraries(
     dot-xx-http PRIVATE
-    dot-xx::assert dot-xx::cstd dot-xx::overload dot-xx::selftest
+    dot-xx::assert dot-xx::cstd dot-xx::errors dot-xx::overload dot-xx::selftest
 )
 
 add_library( dot-xx::http ALIAS dot-xx-http )
