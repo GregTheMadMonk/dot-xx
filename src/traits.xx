@@ -53,4 +53,18 @@ concept is_a = requires (T t) {
     { [] <typename... Args> (const Template<Args...>&) {} (t) };
 }; // <-- concept is_a<T, Template>
 
+/**
+ * @brief Checks if a type is the same as at least one of the provided arguments
+ */
+export
+template <typename T, typename... Ts>
+concept either_of = (std::same_as<T, Ts> || ...);
+
+/**
+ * @brief Checks if the type was used to declare a certain value
+ */
+export
+template <typename T, auto val>
+concept declares = std::same_as<T, decltype(val)>;
+
 } // <-- namespace dxx::utils
