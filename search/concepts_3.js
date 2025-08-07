@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['named_5ftest_5fbody_0',['named_test_body',['../conceptdxx_1_1selftest_1_1named__test__body.html',1,'dxx::selftest']]]
+  ['is_5fa_0',['is_a',['../conceptdxx_1_1utils_1_1is__a.html',1,'dxx::utils']]]
 ];

@@ -12,7 +12,6 @@ var annotated_dup =
         [ "utils", null, [
           [ "File", "classdxx_1_1http_1_1utils_1_1File.html", null ]
         ] ],
-        [ "Errno", "structdxx_1_1http_1_1Errno.html", null ],
         [ "HeaderCompare", "structdxx_1_1http_1_1HeaderCompare.html", null ],
         [ "PathNode", "classdxx_1_1http_1_1PathNode.html", "classdxx_1_1http_1_1PathNode" ],
         [ "PendingConnection", "classdxx_1_1http_1_1PendingConnection.html", "classdxx_1_1http_1_1PendingConnection" ],
@@ -20,7 +19,7 @@ var annotated_dup =
         [ "RequestError", "structdxx_1_1http_1_1RequestError.html", null ],
         [ "Response", "structdxx_1_1http_1_1Response.html", "structdxx_1_1http_1_1Response" ],
         [ "Server", "classdxx_1_1http_1_1Server.html", "classdxx_1_1http_1_1Server" ],
-        [ "ServerError", "structdxx_1_1http_1_1ServerError.html", null ],
+        [ "ServerError", "structdxx_1_1http_1_1ServerError.html", "structdxx_1_1http_1_1ServerError" ],
         [ "SimpleTask", "classdxx_1_1http_1_1SimpleTask.html", "classdxx_1_1http_1_1SimpleTask" ],
         [ "StreamError", "structdxx_1_1http_1_1StreamError.html", null ]
       ] ],

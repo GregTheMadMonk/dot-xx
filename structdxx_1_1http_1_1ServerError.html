@@ -92,32 +92,39 @@ $(function(){initNavTree('structdxx_1_1http_1_1ServerError.html','','structdxx_1
   <div class="headertitle"><div class="title">dxx::http::ServerError Struct Reference<span class="mlabels"><span class="mlabel export">export</span></span><div class="ingroups">module <a class="el" href="module__dxx_8http.html">dxx.http</a></div></div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Exception class that supports construction from a format-like args and automatic <span class="tt">errno</span> capture in the message.  
- <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for dxx::http::ServerError:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="structdxx_1_1http_1_1ServerError.png" usemap="#dxx_3A_3Ahttp_3A_3AServerError_map" alt=""/>
   <map id="dxx_3A_3Ahttp_3A_3AServerError_map" name="dxx_3A_3Ahttp_3A_3AServerError_map">
-<area href="structdxx_1_1http_1_1RequestError.html" alt="dxx::http::RequestError" shape="rect" coords="0,112,137,136"/>
-<area href="structdxx_1_1http_1_1StreamError.html" alt="dxx::http::StreamError" shape="rect" coords="147,112,284,136"/>
+<area href="structdxx_1_1errors_1_1Error.html" title="Exception class that supports construction from std::format-like args and automatic errno capture in ..." alt="dxx::errors::Error" shape="rect" coords="73,56,210,80"/>
+<area href="structdxx_1_1http_1_1RequestError.html" alt="dxx::http::RequestError" shape="rect" coords="0,168,137,192"/>
+<area href="structdxx_1_1http_1_1StreamError.html" alt="dxx::http::StreamError" shape="rect" coords="147,168,284,192"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0442a84c0a6a52f1061018e09a90869c" id="r_a0442a84c0a6a52f1061018e09a90869c"><td class="memTemplParams" colspan="2"><a id="a0442a84c0a6a52f1061018e09a90869c" name="a0442a84c0a6a52f1061018e09a90869c"></a>
+<tr class="memitem:af46bad6b7908d3d8cb2defb2a32235a1" id="r_af46bad6b7908d3d8cb2defb2a32235a1"><td class="memTemplParams" colspan="2"><a id="af46bad6b7908d3d8cb2defb2a32235a1" name="af46bad6b7908d3d8cb2defb2a32235a1"></a>
 template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:a0442a84c0a6a52f1061018e09a90869c template"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>ServerError</b> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
-<tr class="memitem:adc3c1734d7cc6e05adfc5eeb2de4902a" id="r_adc3c1734d7cc6e05adfc5eeb2de4902a"><td class="memTemplParams" colspan="2"><a id="adc3c1734d7cc6e05adfc5eeb2de4902a" name="adc3c1734d7cc6e05adfc5eeb2de4902a"></a>
+<tr class="memitem:af46bad6b7908d3d8cb2defb2a32235a1 template"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>Error</b> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:af46bad6b7908d3d8cb2defb2a32235a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Regular constructor. <br /></td></tr>
+<tr class="memitem:ad4ecea3f7b379f51ef02f961f1c74382" id="r_ad4ecea3f7b379f51ef02f961f1c74382"><td class="memTemplParams" colspan="2"><a id="ad4ecea3f7b379f51ef02f961f1c74382" name="ad4ecea3f7b379f51ef02f961f1c74382"></a>
 template&lt;typename... Args&gt; </td></tr>
-<tr class="memitem:adc3c1734d7cc6e05adfc5eeb2de4902a template"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><b>ServerError</b> (<a class="el" href="structdxx_1_1http_1_1Errno.html">Errno</a>, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memitem:ad4ecea3f7b379f51ef02f961f1c74382 template"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>Error</b> (<a class="el" href="structdxx_1_1errors_1_1Errno.html">Errno</a>, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ad4ecea3f7b379f51ef02f961f1c74382"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically adds <span class="tt">errno</span> info to the message. <br /></td></tr>
+<tr class="inherit_header pub_methods_structdxx_1_1errors_1_1Error"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_structdxx_1_1errors_1_1Error')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="structdxx_1_1errors_1_1Error.html">dxx::errors::Error</a></td></tr>
+<tr class="memitem:af46bad6b7908d3d8cb2defb2a32235a1 inherit pub_methods_structdxx_1_1errors_1_1Error" id="r_af46bad6b7908d3d8cb2defb2a32235a1"><td class="memTemplParams" colspan="2">
+template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:af46bad6b7908d3d8cb2defb2a32235a1 inherit pub_methods_structdxx_1_1errors_1_1Error template"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>Error</b> (std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:af46bad6b7908d3d8cb2defb2a32235a1 inherit pub_methods_structdxx_1_1errors_1_1Error"><td class="mdescLeft">&#160;</td><td class="mdescRight">Regular constructor. <br /></td></tr>
+<tr class="memitem:ad4ecea3f7b379f51ef02f961f1c74382 inherit pub_methods_structdxx_1_1errors_1_1Error" id="r_ad4ecea3f7b379f51ef02f961f1c74382"><td class="memTemplParams" colspan="2">
+template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ad4ecea3f7b379f51ef02f961f1c74382 inherit pub_methods_structdxx_1_1errors_1_1Error template"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><b>Error</b> (<a class="el" href="structdxx_1_1errors_1_1Errno.html">Errno</a>, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ad4ecea3f7b379f51ef02f961f1c74382 inherit pub_methods_structdxx_1_1errors_1_1Error"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically adds <span class="tt">errno</span> info to the message. <br /></td></tr>
 </table>
-<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Exception class that supports construction from a format-like args and automatic <span class="tt">errno</span> capture in the message. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/build-llvm-libcpp/_deps/dot-xx-http-src/src/<a class="el" href="dot-xx-http-src_2src_2errors_8xx.html">errors.xx</a></li>
 </ul>
 </div><!-- contents -->

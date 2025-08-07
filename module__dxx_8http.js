@@ -1,6 +1,6 @@
 var module__dxx_8http =
 [
-    [ "ServerError", "structdxx_1_1http_1_1ServerError.html", null ],
+    [ "ServerError", "structdxx_1_1http_1_1ServerError.html", "structdxx_1_1http_1_1ServerError" ],
     [ "StreamError", "structdxx_1_1http_1_1StreamError.html", null ],
     [ "RequestError", "structdxx_1_1http_1_1RequestError.html", null ],
     [ "PathNode", "classdxx_1_1http_1_1PathNode.html", "classdxx_1_1http_1_1PathNode" ],

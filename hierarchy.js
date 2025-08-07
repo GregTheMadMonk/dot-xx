@@ -3,7 +3,6 @@ var hierarchy =
     [ "dxx::utils::As< Range >", "structdxx_1_1utils_1_1As.html", null ],
     [ "dxx::utils::Defer< TDeferred >", "classdxx_1_1utils_1_1Defer.html", null ],
     [ "dxx::errors::Errno", "structdxx_1_1errors_1_1Errno.html", null ],
-    [ "dxx::http::Errno", "structdxx_1_1http_1_1Errno.html", null ],
     [ "dxx::http::utils::File", "classdxx_1_1http_1_1utils_1_1File.html", null ],
     [ "dxx::overload::fn_ptr_wrapper< Callable, Class, Ret, Args >", "classdxx_1_1overload_1_1fn__ptr__wrapper.html", null ],
     [ "FOf< width >", "structFOf.html", null ],
@@ -28,10 +27,11 @@ var hierarchy =
     [ "dxx::http::Request", "structdxx_1_1http_1_1Request.html", null ],
     [ "dxx::http::Response", "structdxx_1_1http_1_1Response.html", null ],
     [ "std::runtime_error", null, [
-      [ "dxx::errors::Error", "structdxx_1_1errors_1_1Error.html", null ],
-      [ "dxx::http::ServerError", "structdxx_1_1http_1_1ServerError.html", [
-        [ "dxx::http::RequestError", "structdxx_1_1http_1_1RequestError.html", null ],
-        [ "dxx::http::StreamError", "structdxx_1_1http_1_1StreamError.html", null ]
+      [ "dxx::errors::Error", "structdxx_1_1errors_1_1Error.html", [
+        [ "dxx::http::ServerError", "structdxx_1_1http_1_1ServerError.html", [
+          [ "dxx::http::RequestError", "structdxx_1_1http_1_1RequestError.html", null ],
+          [ "dxx::http::StreamError", "structdxx_1_1http_1_1StreamError.html", null ]
+        ] ]
       ] ]
     ] ],
     [ "dxx::http::Server", "classdxx_1_1http_1_1Server.html", null ],

@@ -15,7 +15,9 @@ var concepts =
         [ "reference", "conceptdxx_1_1utils_1_1reference.html", null ],
         [ "const_vrp", "conceptdxx_1_1utils_1_1const__vrp.html", null ],
         [ "mut_vrp", "conceptdxx_1_1utils_1_1mut__vrp.html", null ],
-        [ "is_a", "conceptdxx_1_1utils_1_1is__a.html", null ]
+        [ "is_a", "conceptdxx_1_1utils_1_1is__a.html", null ],
+        [ "either_of", "conceptdxx_1_1utils_1_1either__of.html", null ],
+        [ "declares", "conceptdxx_1_1utils_1_1declares.html", null ]
       ] ]
     ] ]
 ];
