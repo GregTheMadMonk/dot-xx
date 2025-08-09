@@ -25,17 +25,17 @@ target_compile_features( dot-xx-math PUBLIC cxx_std_23 )
 if( NOT DXX_NO_CPM )
     CPMAddPackage(
         NAME "dot-xx-assert"
-        GITHUB_REPOSITORY "gregthemadmonk/dxx"
+        GITHUB_REPOSITORY "gregthemadmonk/dot-xx"
         GIT_TAG "assert"
     )
     CPMAddPackage(
         NAME "dot-xx-cstd"
-        GITHUB_REPOSITORY "gregthemadmonk/dxx"
+        GITHUB_REPOSITORY "gregthemadmonk/dot-xx"
         GIT_TAG "cstd"
     )
     CPMAddPackage(
         NAME "dot-xx-utils"
-        GITHUB_REPOSITORY "gregthemadmonk/dxx"
+        GITHUB_REPOSITORY "gregthemadmonk/dot-xx"
         GIT_TAG "utils"
     )
 endif()
