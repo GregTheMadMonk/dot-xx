@@ -122,7 +122,9 @@ if( DXX_DOXYGEN )
 
     message( STATUS "Doxygen source paths: ${DXX_DOC_DIRS}" )
 
-    set( DOXYGEN_EXTENSION_MAPPING ".xx=C++" )
-    set( DOXYGEN_FILE_PATTERNS "*.xx" )
+    set( DOXYGEN_EXTENSION_MAPPING    ".xx=C++" )
+    set( DOXYGEN_FILE_PATTERNS        "*.xx"    )
+    set( DOXYGEN_ENABLE_PREPROCESSING YES       )
+    set( DOXYGEN_MACRO_EXPANSION      YES       )
     doxygen_add_docs( docs ${DXX_DOC_DIRS} )
 endif()
