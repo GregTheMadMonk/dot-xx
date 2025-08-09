@@ -38,3 +38,8 @@ endif()
 target_link_libraries( dot-xx-selftest PRIVATE dot-xx::assert dot-xx::cstd )
 
 add_library( dot-xx::selftest ALIAS dot-xx-selftest )
+
+add_library( dot-xx-selftest-main STATIC src/selftest_main.cc )
+target_compile_features( dot-xx-selftest-main PUBLIC cxx_std_23 )
+target_link_libraries( dot-xx-selftest-main PUBLIC dot-xx-selftest )
+add_library( dot-xx::selftest-main ALIAS dot-xx-selftest-main )
