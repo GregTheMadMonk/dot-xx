@@ -48,7 +48,9 @@ function( fetch_module MOD_NAME )
         )
     endif()
 
-    target_link_libraries( dot-xx-all INTERFACE "dot-xx::${MOD_NAME}" )
+    if( NOT "${MOD_NAME}" STREQUAL "selftest" )
+        target_link_libraries( dot-xx-all INTERFACE "dot-xx::${MOD_NAME}" )
+    endif()
 
     list( APPEND DXX_MODULES "${MOD_NAME}" )
     set( DXX_MODULES "${DXX_MODULES}" PARENT_SCOPE )
@@ -95,8 +97,8 @@ if( DXX_SELFTEST )
     endforeach() # DXX_MODULE IN LISTS DXX_MODULES
 
     message( STATUS "Test files: ${DXX_TST_FILES}" )
-    add_executable( selftest test/main.cc ${DXX_TST_FILES} )
-    target_link_libraries( selftest PUBLIC dot-xx::all )
+    add_executable( selftest ${DXX_TST_FILES} )
+    target_link_libraries( selftest PUBLIC dot-xx::all dot-xx::selftest-main )
 endif()
 
 if( DXX_DOXYGEN )

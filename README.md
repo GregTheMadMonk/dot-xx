@@ -14,7 +14,7 @@ __Ninja__ (what version?)
 |[http](https://github.com/GregTheMadMonk/dot-xx/tree/http)| [dxx.http](https://gregthemadmonk.github.io/dot-xx/module__dxx_8http.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd), [errors](https://github.com/GregTheMadMonk/dot-xx/tree/errors), [overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload) | A feature-poor and possibly incomplete HTTP server implementation built with C++20 coroutines. Supports networking through UNIX sockets only. Supports long polling. See [example](https://github.com/GregTheMadMonk/dot-xx/blob/http/example/main.cc). | No. Set `DXX_WITH_HTTP` CMake option to `ON` to include |
 |[math](https://github.com/GregTheMadMonk/dot-xx/tree/math)| [dxx.math](https://gregthemadmonk.github.io/dot-xx/module__dxx_8math.html), [dxx.math.linalg](https://gregthemadmonk.github.io/dot-xx/module__dxx_8math_8linalg.html), [dxx.math.utils](https://gregthemadmonk.github.io/dot-xx/module__dxx_8math_8utils.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd), [utils](https://github.com/GregTheMadMonk/dot-xx/tree/utils) | Some helpful math functions | No. Set `DXX_WITH_MATH` CMake option to `ON` to include |
 |[overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload)| [dxx.overload](https://gregthemadmonk.github.io/dot-xx/module__dxx_8overload.html) | - | [Overload](https://www.cppstories.com/2019/02/2lines3featuresoverload.html/) pattern with a few bells and whistles | Yes |
-|[selftest](https://github.com/GregTheMadMonk/dot-xx/tree/selftest)| [dxx.selftest](https://gregthemadmonk.github.io/dot-xx/module__dxx_8selftest.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd) | Simple unit testing | Yes |
+|[selftest](https://github.com/GregTheMadMonk/dot-xx/tree/selftest)| [dxx.selftest](https://gregthemadmonk.github.io/dot-xx/module__dxx_8selftest.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd) | Simple unit testing. Link against `dot-xx::selftest-main` if you don't need to defined your own `main()` | Yes |
 |[utils](https://github.com/GregTheMadMonk/dot-xx/tree/utils)| [dxx.utils](https://gregthemadmonk.github.io/dot-xx/module__dxx_8utils.html) | - | Things that are too miscellaneous to have their own module | Yes |
 
 ### Navigating the repo
@@ -49,7 +49,8 @@ Local builds without pulling from __GitHub__ are also supported, see below.
 ```cmake
 CPMAddPackage( "gh:gregthemadmonk/dot-xx#main" )
 
-target_link_libraries( your_target PRIVATE dot-xx::all )      # link all modules
+target_link_libraries( your_target PRIVATE dot-xx::all )      # link all modules (except selftest)
+target_link_libraries( your_target PRIVATE dot-xx::math )     # link only math and required
 target_link_libraries( your_target PRIVATE dot-xx::selftest ) # link only selftest and required
 ```
 
