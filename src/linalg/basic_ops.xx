@@ -13,8 +13,9 @@ import :traits;
 
 namespace dxx::math {
 
-#define DEF_BINARY(op_name, op_sym) \
+#define DEF_BINARY(op_name, op_sym, op_doc) \
 /* vector-vector operation */\
+/*! @brief Element-wise vector op_doc. Result via output parameter */\
 export \
 template <\
     mut_vector Out,\
@@ -30,6 +31,7 @@ void op_name (U&& u, V&& v, Out& out) {\
     ) { oe = ue op_sym ve; }\
 } /* <-- op_name(u, v, out) */\
 \
+/*! @brief Element-wise vector op_doc. Result in return value of a user-provided type */\
 export \
 template <\
     container_traits::returnable Out,\
@@ -46,6 +48,7 @@ Out op_name (U&& u, V&& v) {\
     return out;\
 } /* <-- Out op_name(u, v) */\
 \
+/*! @brief Element-wise vector op_doc. Result in return value of automatically selected type */\
 export \
 template <vector U, vector_like<U> V>\
 requires container_traits::returnable<std::remove_cvref_t<U>>\
@@ -60,6 +63,7 @@ std::remove_cvref_t<U> op_name (U&& u, V&& v) {\
 \
 namespace vector_operators {\
 \
+/*! @brief Operator for a corrsponding @ref op_name overload */\
 export \
 template <vector U, vector_like<U> V>\
 requires container_traits::returnable<std::remove_cvref_t<U>>\
@@ -72,6 +76,7 @@ std::remove_cvref_t<U> operator op_sym (U&& u, V&& v) {\
 } /* <-- namespace vector_operators */\
 \
 /* vector-real operation */\
+/*! @brief Element-wise op_doc of vector elements with a scalar. Result via output parameter */\
 export \
 template <\
     mut_vector Out,\
@@ -86,6 +91,7 @@ void op_name (U&& u, const Scalar& scalar, Out& out) {\
     ) { oe = ue op_sym static_cast<RealOf<U>>(scalar); }\
 } /* <-- op_name(u, scalar, out) */\
 \
+/*! @brief Element-wise op_doc of vector elements with a scalar. Result in return value of a user-provided type */\
 export \
 template <\
     container_traits::returnable Out,\
@@ -99,6 +105,7 @@ Out op_name (U&& u, const Scalar& scalar) {\
     op_name(std::forward<U>(u), scalar, ret);\
     return ret;\
 } /* <-- Out op_name(u, scalar) */ \
+/*! @brief Element-wise op_doc of vector elements with a scalar. Result in return value of automatically selected type */\
 export \
 template <\
     vector U,\
@@ -114,6 +121,7 @@ std::remove_cvref_t<U> op_name(U&& u, const Scalar& scalar) {\
 \
 namespace vector_operators {\
 \
+/*! @brief Operator for a corrsponding @ref op_name overload */\
 export \
 template <\
     vector U,\
@@ -128,6 +136,7 @@ std::remove_cvref_t<U> operator op_sym (U&& u, const Scalar& scalar) {\
 } /* <-- namespace vector_operators */\
 \
 /* real-vector operation */\
+/*! @brief Element-wise op_doc of scalar with vector elements. Result via output parameter */\
 export \
 template <\
     mut_vector Out,\
@@ -142,6 +151,7 @@ void op_name (const Scalar& scalar, U&& u, Out& out) {\
     ) { oe = static_cast<RealOf<U>>(scalar) op_sym ue; }\
 } /* <-- op_name(scalar, u, out) */\
 \
+/*! @brief Element-wise op_doc of scalar with vector elements. Result in return value of a user-provided type */\
 export \
 template <\
     container_traits::returnable Out,\
@@ -155,6 +165,7 @@ Out op_name (const Scalar& scalar, U&& u) {\
     op_name(scalar, std::forward<U>(u), ret);\
     return ret;\
 } /* <-- Out op_name(scalar, u) */ \
+/*! @brief Element-wise op_doc of vector elements with a scalar. Result in return value of automatically selected type */\
 export \
 template <\
     vector U,\
@@ -170,6 +181,7 @@ std::remove_cvref_t<U> op_name(const Scalar& scalar, U&& u) {\
 \
 namespace vector_operators {\
 \
+/*! @brief Operator for a corrsponding @ref op_name overload */\
 export \
 template <\
     vector U,\
@@ -183,10 +195,10 @@ std::remove_cvref_t<U> operator op_sym (const Scalar& scalar, U&& u) {\
 \
 } /* <-- namespace vector_operators */\
 
-DEF_BINARY(add, +)
-DEF_BINARY(sub, -)
-DEF_BINARY(mul, *)
-DEF_BINARY(div, /)
+DEF_BINARY(add, +, addition)
+DEF_BINARY(sub, -, subtraction)
+DEF_BINARY(mul, *, multiplication)
+DEF_BINARY(div, /, division)
 
 #undef DEF_BINARY
 
@@ -215,9 +227,6 @@ DEF_BINARY(div, /)
  *     U operator+(scalar, &&u);
  * } // <-- namespace vector_operators
  * ```
- *
- * For specifics about accepted argument types, see the source code. I know,
- * I'm sorry, but there is a lot
  */
 namespace vector_operators {}
 
