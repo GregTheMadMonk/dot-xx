@@ -22,9 +22,33 @@ target_sources(
     FILES ${DXX_HTTP_SRC_XX}
 )
 target_compile_features( dot-xx-http PUBLIC cxx_std_23 )
+
+if( NOT DXX_NO_CPM )
+    CPMAddPackage(
+        NAME "dot-xx-assert"
+        GITHUB_REPOSITORY "gregthemadmonk/dxx"
+        GIT_TAG "assert"
+    )
+    CPMAddPackage(
+        NAME "dot-xx-cstd"
+        GITHUB_REPOSITORY "gregthemadmonk/dxx"
+        GIT_TAG "cstd"
+    )
+    CPMAddPackage(
+        NAME "dot-xx-errors"
+        GITHUB_REPOSITORY "gregthemadmonk/dxx"
+        GIT_TAG "errors"
+    )
+    CPMAddPackage(
+        NAME "dot-xx-overload"
+        GITHUB_REPOSITORY "gregthemadmonk/dxx"
+        GIT_TAG "overload"
+    )
+endif()
+
 target_link_libraries(
     dot-xx-http PRIVATE
-    dot-xx::assert dot-xx::cstd dot-xx::errors dot-xx::overload dot-xx::selftest
+    dot-xx::assert dot-xx::cstd dot-xx::errors dot-xx::overload
 )
 
 add_library( dot-xx::http ALIAS dot-xx-http )
