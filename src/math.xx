@@ -15,3 +15,11 @@ export import dxx.math.utils;
  * @brief The main namespace of the @ref dxx.math module
  */
 namespace dxx::math {}
+
+/**
+ * @brief The namespace that collects all operators defined by `dxx.math.*`
+ *        modules
+ */
+export namespace dxx::math::operators {
+    using namespace dxx::math::vector_operators;
+} // <-- namespace dxx::math::operators

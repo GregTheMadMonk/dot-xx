@@ -7,6 +7,7 @@ export module dxx.math.linalg:cross;
 import dxx.assert;
 import dxx.cstd.fixed;
 
+import :container_traits;
 import :traits;
 
 namespace dxx::math {
@@ -50,14 +51,11 @@ void cross(const U& u, const V& v, Out& out) {
  * @brief Cross product of two 3D vectors (via return value)
  */
 export
-template <mut_vector Out, vector_like<Out> U, vector_like<Out> V>
+template <container_traits::returnable Out, vector_like<Out> U, vector_like<Out> V>
 [[nodiscard]]
 inline constexpr
 Out cross(const U& u, const V& v) {
-    Out ret{};
-    if constexpr ( requires { { ret.resize(3uz) }; } ) {
-        ret.resize(3uz);
-    }
+    Out ret = container_traits::Traits<Out>::construct(std::ranges::size(u));
     cross(u, v, ret);
     return ret;
 } // <-- Out cross(u, v)
@@ -66,7 +64,7 @@ Out cross(const U& u, const V& v) {
  * @brief Cross product of two 3D vectors (via return value of default type)
  */
 export
-template <mut_vector U, vector_like<U> V>
+template <container_traits::returnable U, vector_like<U> V>
 [[nodiscard]]
 inline constexpr
 U cross(const U& u, const V& v) {

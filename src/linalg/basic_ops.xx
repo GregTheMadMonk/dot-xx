@@ -1,0 +1,224 @@
+/**
+ * @file  basic_ops.xx
+ * @brief Basic vector aritmetic. No documentation for functions since they
+ *        are generated with macros (I know, I know, it was just too much
+ *        to just write out...)
+ */
+export module dxx.math.linalg:basic_ops;
+
+import dxx.assert;
+
+import :container_traits;
+import :traits;
+
+namespace dxx::math {
+
+#define DEF_BINARY(op_name, op_sym) \
+/* vector-vector operation */\
+export \
+template <\
+    mut_vector Out,\
+    vector_like<Out> U,\
+    vector_like<Out> V\
+> inline constexpr \
+void op_name (U&& u, V&& v, Out& out) {\
+    dxx::assert::debug( std::ranges::size(u) == std::ranges::size(v) );\
+    for (\
+        auto [ oe, ue, ve ] : std::views::zip(\
+            out, std::forward<U>(u), std::forward<V>(v)\
+        )\
+    ) { oe = ue op_sym ve; }\
+} /* <-- op_name(u, v, out) */\
+\
+export \
+template <\
+    container_traits::returnable Out,\
+    vector_like<Out> U,\
+    vector_like<Out> V\
+>\
+[[nodiscard]]\
+inline constexpr \
+Out op_name (U&& u, V&& v) {\
+    auto out = container_traits::Traits<Out>::construct(\
+        std::ranges::size(u)\
+    );\
+    op_name(std::forward<U>(u), std::forward<V>(v), out);\
+    return out;\
+} /* <-- Out op_name(u, v) */\
+\
+export \
+template <vector U, vector_like<U> V>\
+requires container_traits::returnable<std::remove_cvref_t<U>>\
+[[nodiscard]] \
+inline constexpr \
+std::remove_cvref_t<U> op_name (U&& u, V&& v) {\
+    return op_name<std::remove_cvref_t<U>, U, V>(\
+        std::forward<U>(u),\
+        std::forward<V>(v)\
+    );\
+} /* <-- ...<U> op_name(u, v) */\
+\
+namespace vector_operators {\
+\
+export \
+template <vector U, vector_like<U> V>\
+requires container_traits::returnable<std::remove_cvref_t<U>>\
+[[nodiscard]] \
+inline constexpr \
+std::remove_cvref_t<U> operator op_sym (U&& u, V&& v) {\
+    return op_name(std::forward<U>(u), std::forward<V>(v));\
+} /* <-- operator op_sym(u, v) */\
+\
+} /* <-- namespace vector_operators */\
+\
+/* vector-real operation */\
+export \
+template <\
+    mut_vector Out,\
+    vector_like<Out> U,\
+    std::convertible_to<RealOf<Out>> Scalar\
+> inline constexpr \
+void op_name (U&& u, const Scalar& scalar, Out& out) {\
+    for (\
+        auto [ oe, ue ] : std::views::zip(\
+            out, std::forward<U>(u)\
+        )\
+    ) { oe = ue op_sym static_cast<RealOf<U>>(scalar); }\
+} /* <-- op_name(u, scalar, out) */\
+\
+export \
+template <\
+    container_traits::returnable Out,\
+    vector_like<Out> U,\
+    std::convertible_to<RealOf<Out>> Scalar\
+>\
+[[nodiscard]]\
+inline constexpr \
+Out op_name (U&& u, const Scalar& scalar) {\
+    Out ret = container_traits::Traits<Out>::construct( std::ranges::size(u) );\
+    op_name(std::forward<U>(u), scalar, ret);\
+    return ret;\
+} /* <-- Out op_name(u, scalar) */ \
+export \
+template <\
+    vector U,\
+    std::convertible_to<RealOf<U>> Scalar\
+>\
+[[nodiscard]]\
+inline constexpr \
+std::remove_cvref_t<U> op_name(U&& u, const Scalar& scalar) {\
+    return op_name<std::remove_cvref_t<U>, U, Scalar>(\
+        std::forward<U>(u), scalar\
+    );\
+} /* <-- ...<U> op_name(u, scalar) */\
+\
+namespace vector_operators {\
+\
+export \
+template <\
+    vector U,\
+    std::convertible_to<RealOf<U>> Scalar\
+>\
+[[nodiscard]]\
+inline constexpr \
+std::remove_cvref_t<U> operator op_sym (U&& u, const Scalar& scalar) {\
+    return op_name(std::forward<U>(u), scalar);\
+} /* <-- ...<U> operator op_sym(u, scalar) */\
+\
+} /* <-- namespace vector_operators */\
+\
+/* real-vector operation */\
+export \
+template <\
+    mut_vector Out,\
+    std::convertible_to<RealOf<Out>> Scalar,\
+    vector_like<Out> U\
+> inline constexpr \
+void op_name (const Scalar& scalar, U&& u, Out& out) {\
+    for (\
+        auto [ oe, ue ] : std::views::zip(\
+            out, std::forward<U>(u)\
+        )\
+    ) { oe = static_cast<RealOf<U>>(scalar) op_sym ue; }\
+} /* <-- op_name(scalar, u, out) */\
+\
+export \
+template <\
+    container_traits::returnable Out,\
+    std::convertible_to<RealOf<Out>> Scalar,\
+    vector_like<Out> U\
+>\
+[[nodiscard]]\
+inline constexpr \
+Out op_name (const Scalar& scalar, U&& u) {\
+    Out ret = container_traits::Traits<Out>::construct( std::ranges::size(u) );\
+    op_name(scalar, std::forward<U>(u), ret);\
+    return ret;\
+} /* <-- Out op_name(scalar, u) */ \
+export \
+template <\
+    vector U,\
+    std::convertible_to<RealOf<U>> Scalar\
+>\
+[[nodiscard]]\
+inline constexpr \
+std::remove_cvref_t<U> op_name(const Scalar& scalar, U&& u) {\
+    return op_name<std::remove_cvref_t<U>,  Scalar, U>(\
+        scalar, std::forward<U>(u)\
+    );\
+} /* <-- ...<U> op_name(scalar, u) */\
+\
+namespace vector_operators {\
+\
+export \
+template <\
+    vector U,\
+    std::convertible_to<RealOf<U>> Scalar\
+>\
+[[nodiscard]]\
+inline constexpr \
+std::remove_cvref_t<U> operator op_sym (const Scalar& scalar, U&& u) {\
+    return op_name(scalar, std::forward<U>(u));\
+} /* <-- ...<U> operator op_sym(scalar, u) */\
+\
+} /* <-- namespace vector_operators */\
+
+DEF_BINARY(add, +)
+DEF_BINARY(sub, -)
+DEF_BINARY(mul, *)
+DEF_BINARY(div, /)
+
+#undef DEF_BINARY
+
+/**
+ * @brief Operations on vectors. Read the description
+ *
+ * Operations defined: `+`(`add`)/`-`(`sub`)/`*`(`mul`)/`/`(`div`), the
+ * following variations are supported (example for `+`/`add`, for others it's
+ * practically the same) for corresponding vector types:
+ *
+ * ```c++
+ * void add(&&u, &&v, &out); // Result via out-parameter
+ * Out add<Out>(&&u, &&v);   // Result via return-value of specified type
+ * U add(&&u, &&v);          // Result via return-value that is deduced
+ *                           // automatically
+ * void add(&&u, scalar, &out);
+ * Out add<Out>(&&u, scalar);
+ * U add(&&u, scalar);
+ * void add(scalar, &&u, &out);
+ * Out add<Out>(scalar, &&u);
+ * U add(scalar, &&u);
+ *
+ * namespace vector_operators {
+ *     U operator+(&&u, &&v);
+ *     U operator+(&&u, scalar);
+ *     U operator+(scalar, &&u);
+ * } // <-- namespace vector_operators
+ * ```
+ *
+ * For specifics about accepted argument types, see the source code. I know,
+ * I'm sorry, but there is a lot
+ */
+namespace vector_operators {}
+
+} // <-- namespace dxx::math

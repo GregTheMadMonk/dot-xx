@@ -8,6 +8,8 @@
  */
 export module dxx.math.linalg;
 
+export import :basic_ops;
+export import :container_traits;
 export import :cross;
 export import :dot;
 export import :norm;

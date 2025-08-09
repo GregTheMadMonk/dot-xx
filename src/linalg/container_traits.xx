@@ -1,0 +1,173 @@
+/**
+ * @file  container_traits.xx
+ * @brief Traits that help the library where `std::ranges` API isn't enought.
+ *        __READ THE DESCRIPTION OF__ @ref math::container_traits
+ *        __CAREFULLY__.
+ */
+export module dxx.math.linalg:container_traits;
+
+import dxx.assert;
+import dxx.cstd.fixed;
+import dxx.utils;
+import std;
+
+import :traits;
+
+/**
+ * @brief Advanced type traits for containers
+ */
+namespace dxx::math::container_traits {
+
+/**
+ * @brief Different types of sizes the vector container types can have from
+ *        the libraries' perspective
+ */
+export
+namespace size {
+
+/**
+ * @brief Size is a runtime value during construction and can be changed
+ */
+struct Dynamic      {              };
+/**
+ * @brief Size can't be changed but unknown at compile time
+ */
+struct RuntimeFixed {              };
+/**
+ * @brief Size is a runtime value during construction and can be changed,
+ *        but limited by a compile-time constant
+ */
+struct Bound        { uz max_size; };
+/**
+ * @brief Size is a compile-time constant and cannot be modified
+ */
+struct Static       { uz size;     };
+
+} // <-- namespace size
+
+/**
+ * @brief Auto-detection of container traits
+ */
+namespace autodetect {
+
+template <vector V>
+constexpr auto size = [] {
+    using namespace size;
+
+    constexpr bool has_tuple_size = requires {
+        { std::tuple_size<V>::value } -> std::same_as<const uz&>;
+    }; // <-- has_tuple_size
+
+    constexpr bool has_max_size = requires {
+        { V::max_size() } -> std::same_as<uz>;
+    }; // <-- has_max_size
+
+    if constexpr (requires (V v, uz sz) { { v.resize(sz) }; }) {
+        // The container is resizeable
+        if constexpr (has_max_size) {
+            return Bound{ .max_size = V::max_size };
+        } else {
+            return Dynamic{};
+        }
+    } else {
+        if constexpr (has_tuple_size) {
+            return Static{ .size = std::tuple_size_v<V> };
+        } else if constexpr (has_max_size) {
+            return Static{ .size = V::max_size };
+        } else {
+            // Treat everything else as something that we don't know how to
+            // resize and don't know a compile-time size of
+            return RuntimeFixed{};
+        }
+    }
+} (); // <-- size<V>
+
+template <typename T, uz t_size>
+constexpr auto size<std::span<T, t_size>> = size::Static{ .size = t_size };
+
+template <typename T>
+constexpr auto size<std::span<T, std::dynamic_extent>> = size::RuntimeFixed{};
+
+} // <-- namespace autodetect
+
+/**
+ * @brief Additional traits that tell the library how to handle the vector
+ *        container type (when `std::ranges` facilities aren't enought)
+ *
+ * Should work by default for STL, specialize for custom types or conform
+ * to STL API design
+ */
+template <vector V>
+struct Traits {
+    /**
+     * @brief The size of container, see @ref dxx::math::container_traits::size
+     */
+    static inline constexpr auto size_tag = autodetect::size<V>;
+
+    /**
+     * @brief Construct the vector of specified `size`
+     *
+     * This constructor is expected to also be provided for fixed-size types
+     * where you can check whether the runtime-provied size conforms to compile-
+     * time restrictions.
+     *
+     * The default implementation uses a debug-mode assert for this and does
+     * no checks in release builds - see overloads
+     */
+    [[nodiscard]]
+    static inline constexpr
+    V construct(uz size)
+    requires (
+        utils::declares<size::Dynamic, size_tag>
+        || utils::declares<size::RuntimeFixed, size_tag>
+    ) && std::constructible_from<V, uz>
+    { return V(size); }
+
+    /**
+     * @brief Overload for @ref size::Bound -sized containers. See the main
+     *        overload's doc
+     */
+    [[nodiscard]]
+    static inline constexpr
+    V construct(uz size)
+    requires utils::declares<size::Bound, size_tag>
+          && std::constructible_from<V, uz>
+    {
+        dxx::assert::debug(size <= size_tag.max_size);
+        return V(size);
+    } // <-- construct(size) (Bound)
+
+    /**
+     * @brief Overload for @ref size::Static -sized containers. See the main
+     *        overload's doc
+     */
+    [[nodiscard]]
+    static inline constexpr
+    V construct(uz size)
+    requires utils::declares<size::Static, size_tag>
+          && std::constructible_from<V>
+    {
+        dxx::assert::debug(size == size_tag.size);
+        return V();
+    } // <-- construct(size) (Fixed)
+}; // <-- struct Traits<V>
+
+/**
+ * @brief Checks if the library knows how to construct a vector container
+ *        from a runtime size value
+ */
+export
+template <typename V>
+concept constructible = requires (uz size) {
+    { Traits<V>::construct(size) } -> std::same_as<V>;
+}; // <-- concept constructible<V>
+
+/**
+ * @brief Checks if the library knows how to use a vector container type as
+ *        a return value from procedures
+ */
+export
+template <typename V>
+concept returnable = mut_vector<V> && constructible<V>;
+
+} // <-- namespace dxx::math::container_traits
