@@ -8,12 +8,14 @@ var searchData=
   ['sign_5',['sign',['../namespacedxx_1_1math.html#a838a49e093cfcd8e936bc7522188337a',1,'dxx::math']]],
   ['sign_2exx_6',['sign.xx',['../sign_8xx.html',1,'']]],
   ['simpletask_7',['SimpleTask',['../classdxx_1_1http_1_1SimpleTask.html',1,'dxx::http']]],
-  ['sq_5fdist_8',['sq_dist',['../namespacedxx_1_1math.html#aa8b229a6ed5f7a31ac936b091d4878f4',1,'dxx::math']]],
-  ['sq_5fnorm_9',['sq_norm',['../namespacedxx_1_1math.html#aad86f63c526c9b41c6b4d7f85836ceea',1,'dxx::math']]],
-  ['status_10',['status',['../structdxx_1_1http_1_1Response.html#aa6ce438d4477f453ddea49920ef1fc62',1,'dxx::http::Response']]],
-  ['status_5fcodes_2exx_11',['status_codes.xx',['../status__codes_8xx.html',1,'']]],
-  ['straydata_12',['StrayData',['../message_8xx.html#a3b46a36c4ab85925d9ecf6b3c7886b04ab342c973bf7a8d782768541344a7168b',1,'dxx::http']]],
-  ['streamerror_13',['StreamError',['../structdxx_1_1http_1_1StreamError.html',1,'dxx::http']]],
-  ['sub_14',['Sub',['../structdxx_1_1math_1_1Sub.html',1,'dxx::math']]],
-  ['substs_15',['substs',['../structdxx_1_1http_1_1Request.html#a9a8a42266e210816528313cd178fe643',1,'dxx::http::Request']]]
+  ['size_5ftag_8',['size_tag',['../structdxx_1_1math_1_1container__traits_1_1Traits.html#a48816596ab2ae8a654bb9b530cd5e1bb',1,'dxx::math::container_traits::Traits']]],
+  ['sq_5fdist_9',['sq_dist',['../namespacedxx_1_1math.html#aa8b229a6ed5f7a31ac936b091d4878f4',1,'dxx::math']]],
+  ['sq_5fnorm_10',['sq_norm',['../namespacedxx_1_1math.html#aad86f63c526c9b41c6b4d7f85836ceea',1,'dxx::math']]],
+  ['static_11',['Static',['../structdxx_1_1math_1_1container__traits_1_1size_1_1Static.html',1,'dxx::math::container_traits::size']]],
+  ['status_12',['status',['../structdxx_1_1http_1_1Response.html#aa6ce438d4477f453ddea49920ef1fc62',1,'dxx::http::Response']]],
+  ['status_5fcodes_2exx_13',['status_codes.xx',['../status__codes_8xx.html',1,'']]],
+  ['straydata_14',['StrayData',['../message_8xx.html#a3b46a36c4ab85925d9ecf6b3c7886b04ab342c973bf7a8d782768541344a7168b',1,'dxx::http']]],
+  ['streamerror_15',['StreamError',['../structdxx_1_1http_1_1StreamError.html',1,'dxx::http']]],
+  ['sub_16',['Sub',['../structdxx_1_1math_1_1Sub.html',1,'dxx::math']]],
+  ['substs_17',['substs',['../structdxx_1_1http_1_1Request.html#a9a8a42266e210816528313cd178fe643',1,'dxx::http::Request']]]
 ];

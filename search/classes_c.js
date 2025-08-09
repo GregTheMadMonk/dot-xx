@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['unittest_0',['UnitTest',['../classdxx_1_1selftest_1_1UnitTest.html',1,'dxx::selftest']]],
-  ['uof_1',['UOf',['../structUOf.html',1,'']]],
-  ['uof_3c_2016_20_3e_2',['UOf&lt; 16 &gt;',['../structUOf_3_0116_01_4.html',1,'']]],
-  ['uof_3c_2032_20_3e_3',['UOf&lt; 32 &gt;',['../structUOf_3_0132_01_4.html',1,'']]],
-  ['uof_3c_2064_20_3e_4',['UOf&lt; 64 &gt;',['../structUOf_3_0164_01_4.html',1,'']]],
-  ['uof_3c_208_20_3e_5',['UOf&lt; 8 &gt;',['../structUOf_3_018_01_4.html',1,'']]]
+  ['t_0',['T',['../structFOf.html',1,'T&lt; width &gt;'],['../structIOf.html',1,'T&lt; width &gt;'],['../structUOf.html',1,'T&lt; width &gt;']]],
+  ['test_5ffailure_1',['test_failure',['../structdxx_1_1selftest_1_1test__failure.html',1,'dxx::selftest']]],
+  ['traits_2',['Traits',['../structdxx_1_1math_1_1container__traits_1_1Traits.html',1,'dxx::math::container_traits']]],
+  ['type_3',['Type',['../structdxx_1_1math_1_1detail_1_1RealOf.html',1,'dxx::math::detail']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['overload_0',['overload',['../structdxx_1_1overload_1_1overload.html',1,'dxx::overload']]]
+  ['norm_0',['Norm',['../structdxx_1_1math_1_1Norm.html',1,'dxx::math']]]
 ];

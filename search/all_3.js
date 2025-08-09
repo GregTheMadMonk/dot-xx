@@ -25,8 +25,14 @@ var searchData=
   ['dxx_3a_3ac_22',['c',['../namespacedxx_1_1c.html',1,'dxx']]],
   ['dxx_3a_3ac_3a_3astdio_23',['stdio',['../namespacedxx_1_1c_1_1stdio.html',1,'dxx::c']]],
   ['dxx_3a_3amath_24',['math',['../namespacedxx_1_1math.html',1,'dxx']]],
-  ['dxx_3a_3amath_3a_3anorms_25',['norms',['../namespacedxx_1_1math_1_1norms.html',1,'dxx::math']]],
-  ['dxx_3a_3aoverload_26',['overload',['../namespacedxx_1_1overload.html',1,'dxx']]],
-  ['dxx_3a_3aselftest_27',['selftest',['../namespacedxx_1_1selftest.html',1,'dxx']]],
-  ['dxx_3a_3autils_28',['utils',['../namespacedxx_1_1utils.html',1,'dxx']]]
+  ['dxx_3a_3amath_3a_3acontainer_5ftraits_25',['container_traits',['../namespacedxx_1_1math_1_1container__traits.html',1,'dxx::math']]],
+  ['dxx_3a_3amath_3a_3acontainer_5ftraits_3a_3aautodetect_26',['autodetect',['../namespacedxx_1_1math_1_1container__traits_1_1autodetect.html',1,'dxx::math::container_traits']]],
+  ['dxx_3a_3amath_3a_3acontainer_5ftraits_3a_3asize_27',['size',['../namespacedxx_1_1math_1_1container__traits_1_1size.html',1,'dxx::math::container_traits']]],
+  ['dxx_3a_3amath_3a_3anorms_28',['norms',['../namespacedxx_1_1math_1_1norms.html',1,'dxx::math']]],
+  ['dxx_3a_3amath_3a_3aoperators_29',['operators',['../namespacedxx_1_1math_1_1operators.html',1,'dxx::math']]],
+  ['dxx_3a_3amath_3a_3avector_5foperators_30',['vector_operators',['../namespacedxx_1_1math_1_1vector__operators.html',1,'dxx::math']]],
+  ['dxx_3a_3aoverload_31',['overload',['../namespacedxx_1_1overload.html',1,'dxx']]],
+  ['dxx_3a_3aselftest_32',['selftest',['../namespacedxx_1_1selftest.html',1,'dxx']]],
+  ['dxx_3a_3autils_33',['utils',['../namespacedxx_1_1utils.html',1,'dxx']]],
+  ['dynamic_34',['Dynamic',['../structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html',1,'dxx::math::container_traits::size']]]
 ];

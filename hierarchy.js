@@ -1,7 +1,9 @@
 var hierarchy =
 [
     [ "dxx::utils::As< Range >", "structdxx_1_1utils_1_1As.html", null ],
+    [ "dxx::math::container_traits::size::Bound", "structdxx_1_1math_1_1container__traits_1_1size_1_1Bound.html", null ],
     [ "dxx::utils::Defer< TDeferred >", "classdxx_1_1utils_1_1Defer.html", null ],
+    [ "dxx::math::container_traits::size::Dynamic", "structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html", null ],
     [ "dxx::errors::Errno", "structdxx_1_1errors_1_1Errno.html", null ],
     [ "dxx::http::utils::File", "classdxx_1_1http_1_1utils_1_1File.html", null ],
     [ "dxx::overload::fn_ptr_wrapper< Callable, Class, Ret, Args >", "classdxx_1_1overload_1_1fn__ptr__wrapper.html", null ],
@@ -34,9 +36,12 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
+    [ "dxx::math::container_traits::size::RuntimeFixed", "structdxx_1_1math_1_1container__traits_1_1size_1_1RuntimeFixed.html", null ],
     [ "dxx::http::Server", "classdxx_1_1http_1_1Server.html", null ],
     [ "dxx::http::SimpleTask", "classdxx_1_1http_1_1SimpleTask.html", null ],
+    [ "dxx::math::container_traits::size::Static", "structdxx_1_1math_1_1container__traits_1_1size_1_1Static.html", null ],
     [ "dxx::math::Sub", "structdxx_1_1math_1_1Sub.html", null ],
+    [ "dxx::math::container_traits::Traits< V >", "structdxx_1_1math_1_1container__traits_1_1Traits.html", null ],
     [ "Ts...", null, [
       [ "dxx::overload::overload< Ts >", "structdxx_1_1overload_1_1overload.html", null ]
     ] ],

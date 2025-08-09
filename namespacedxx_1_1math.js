@@ -1,10 +1,13 @@
 var namespacedxx_1_1math =
 [
+    [ "container_traits", "namespacedxx_1_1math_1_1container__traits.html", "namespacedxx_1_1math_1_1container__traits" ],
     [ "norms", "namespacedxx_1_1math_1_1norms.html", [
       [ "euclidean", "namespacedxx_1_1math_1_1norms.html#a9787b29e40ffeecda74622322651dffb", null ],
       [ "infinity", "namespacedxx_1_1math_1_1norms.html#acb80fbd4f6a781a45d833496eb7713fe", null ],
       [ "p_one", "namespacedxx_1_1math_1_1norms.html#a3b7cb7c26491e1c09d4b384f84bcdfcd", null ]
     ] ],
+    [ "operators", "namespacedxx_1_1math_1_1operators.html", null ],
+    [ "vector_operators", "namespacedxx_1_1math_1_1vector__operators.html", null ],
     [ "Norm", "structdxx_1_1math_1_1Norm.html", null ],
     [ "Sub", "structdxx_1_1math_1_1Sub.html", null ],
     [ "vector", "conceptdxx_1_1math_1_1vector.html", null ],

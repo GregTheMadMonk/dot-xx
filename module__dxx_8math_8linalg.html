@@ -98,6 +98,10 @@ $(function(){initNavTree('module__dxx_8math_8linalg.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
+<tr class="memitem:dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Aconstructible" id="r_dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Aconstructible"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptdxx_1_1math_1_1container__traits_1_1constructible.html">dxx::math::container_traits::constructible</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the library knows how to construct a vector container from a runtime size value. <br /></td></tr>
+<tr class="memitem:dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Areturnable" id="r_dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Areturnable"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptdxx_1_1math_1_1container__traits_1_1returnable.html">dxx::math::container_traits::returnable</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the library knows how to use a vector container type as a return value from procedures. <br /></td></tr>
 <tr class="memitem:dxx_3A_3Amath_3A_3Avector" id="r_dxx_3A_3Amath_3A_3Avector"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptdxx_1_1math_1_1vector.html">dxx::math::vector</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">We can treat any input range as a vector. <br /></td></tr>
 <tr class="memitem:dxx_3A_3Amath_3A_3Amut_5Fvector" id="r_dxx_3A_3Amath_3A_3Amut_5Fvector"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptdxx_1_1math_1_1mut__vector.html">dxx::math::mut_vector</a></td></tr>
@@ -109,6 +113,14 @@ Concepts</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ADynamic" id="r_dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ADynamic"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html">dxx::math::container_traits::size::Dynamic</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size is a runtime value during construction and can be changed.  <a href="structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html#details">More...</a><br /></td></tr>
+<tr class="memitem:dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ARuntimeFixed" id="r_dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ARuntimeFixed"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdxx_1_1math_1_1container__traits_1_1size_1_1RuntimeFixed.html">dxx::math::container_traits::size::RuntimeFixed</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size can't be changed but unknown at compile time.  <a href="structdxx_1_1math_1_1container__traits_1_1size_1_1RuntimeFixed.html#details">More...</a><br /></td></tr>
+<tr class="memitem:dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ABound" id="r_dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ABound"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdxx_1_1math_1_1container__traits_1_1size_1_1Bound.html">dxx::math::container_traits::size::Bound</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size is a runtime value during construction and can be changed, but limited by a compile-time constant.  <a href="structdxx_1_1math_1_1container__traits_1_1size_1_1Bound.html#details">More...</a><br /></td></tr>
+<tr class="memitem:dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3AStatic" id="r_dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3AStatic"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdxx_1_1math_1_1container__traits_1_1size_1_1Static.html">dxx::math::container_traits::size::Static</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size is a compile-time constant and cannot be modified.  <a href="structdxx_1_1math_1_1container__traits_1_1size_1_1Static.html#details">More...</a><br /></td></tr>
 <tr class="memitem:dxx_3A_3Amath_3A_3ANorm_3C_20Func_2C_20SqFunc_20_3E" id="r_dxx_3A_3Amath_3A_3ANorm_3C_20Func_2C_20SqFunc_20_3E"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structdxx_1_1math_1_1Norm.html">dxx::math::Norm&lt; Func, SqFunc &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a norm. Only <span class="tt">norm</span> field is required, all other fields can be assigned a <span class="tt">nullptr</span>  <a href="structdxx_1_1math_1_1Norm.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
@@ -126,11 +138,11 @@ template&lt;mut_vector Out, vector_like&lt; Out &gt; U, vector_like&lt; Out &gt;
 <tr class="memitem:afd832683685ddcaf55d7f3106f63402a template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>dxx::math::cross</b> (const U &amp;u, const V &amp;v, Out &amp;out)</td></tr>
 <tr class="memdesc:afd832683685ddcaf55d7f3106f63402a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of two 3D vectors (via out parameter) <br /></td></tr>
 <tr class="memitem:a1b340249e65288d34c11d5ac3da2d58b" id="r_a1b340249e65288d34c11d5ac3da2d58b"><td class="memTemplParams" colspan="2"><a id="a1b340249e65288d34c11d5ac3da2d58b" name="a1b340249e65288d34c11d5ac3da2d58b"></a>
-template&lt;mut_vector Out, vector_like&lt; Out &gt; U, vector_like&lt; Out &gt; V&gt; </td></tr>
+template&lt;container_traits::returnable Out, vector_like&lt; Out &gt; U, vector_like&lt; Out &gt; V&gt; </td></tr>
 <tr class="memitem:a1b340249e65288d34c11d5ac3da2d58b template"><td class="memItemLeft" align="right" valign="top">constexpr Out&#160;</td><td class="memItemRight" valign="bottom"><b>dxx::math::cross</b> (const U &amp;u, const V &amp;v)</td></tr>
 <tr class="memdesc:a1b340249e65288d34c11d5ac3da2d58b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of two 3D vectors (via return value) <br /></td></tr>
 <tr class="memitem:a623ee5c8ff3baf10d3ea9ed15c73d898" id="r_a623ee5c8ff3baf10d3ea9ed15c73d898"><td class="memTemplParams" colspan="2"><a id="a623ee5c8ff3baf10d3ea9ed15c73d898" name="a623ee5c8ff3baf10d3ea9ed15c73d898"></a>
-template&lt;mut_vector U, vector_like&lt; U &gt; V&gt; </td></tr>
+template&lt;container_traits::returnable U, vector_like&lt; U &gt; V&gt; </td></tr>
 <tr class="memitem:a623ee5c8ff3baf10d3ea9ed15c73d898 template"><td class="memItemLeft" align="right" valign="top">constexpr U&#160;</td><td class="memItemRight" valign="bottom"><b>dxx::math::cross</b> (const U &amp;u, const V &amp;v)</td></tr>
 <tr class="memdesc:a623ee5c8ff3baf10d3ea9ed15c73d898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of two 3D vectors (via return value of default type) <br /></td></tr>
 <tr class="memitem:a186b340da5975000866155f035accbe1" id="r_a186b340da5975000866155f035accbe1"><td class="memTemplParams" colspan="2"><a id="a186b340da5975000866155f035accbe1" name="a186b340da5975000866155f035accbe1"></a>
@@ -155,6 +167,10 @@ template&lt;<a class="el" href="structdxx_1_1math_1_1Norm.html">Norm</a> t_norm 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a21b412bf2962ee71de92825bcf7daf14" id="r_a21b412bf2962ee71de92825bcf7daf14"><td class="memItemLeft" align="right" valign="top"><a id="a21b412bf2962ee71de92825bcf7daf14" name="a21b412bf2962ee71de92825bcf7daf14"></a>
+uz&#160;</td><td class="memItemRight" valign="bottom"><b>max_size</b></td></tr>
+<tr class="memitem:a62535e5a7a01de5eddedd1c6187830f1" id="r_a62535e5a7a01de5eddedd1c6187830f1"><td class="memItemLeft" align="right" valign="top"><a id="a62535e5a7a01de5eddedd1c6187830f1" name="a62535e5a7a01de5eddedd1c6187830f1"></a>
+uz&#160;</td><td class="memItemRight" valign="bottom"><b>size</b></td></tr>
 <tr class="memitem:a9787b29e40ffeecda74622322651dffb" id="r_a9787b29e40ffeecda74622322651dffb"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="structdxx_1_1math_1_1Norm.html">Norm</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedxx_1_1math_1_1norms.html#a9787b29e40ffeecda74622322651dffb">dxx::math::norms::euclidean</a></td></tr>
 <tr class="memdesc:a9787b29e40ffeecda74622322651dffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Euclidean norm (2-norm)  <br /></td></tr>
 <tr class="memitem:a3b7cb7c26491e1c09d4b384f84bcdfcd" id="r_a3b7cb7c26491e1c09d4b384f84bcdfcd"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="structdxx_1_1math_1_1Norm.html">Norm</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedxx_1_1math_1_1norms.html#a3b7cb7c26491e1c09d4b384f84bcdfcd">dxx::math::norms::p_one</a></td></tr>
@@ -169,6 +185,10 @@ Variables</h2></td></tr>
 Files</h2></td></tr>
 <tr class="memitem:linalg_2Exx" id="r_linalg_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-math-src/src/linalg/<a class="el" href="linalg_8xx.html">linalg.xx</a></td></tr>
 <tr class="memdesc:linalg_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linear algebra utilities for <a class="el" href="namespacedxx_1_1math.html">dxx::math</a>. <br /></td></tr>
+<tr class="memitem:basic_5Fops_2Exx" id="r_basic_5Fops_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-math-src/src/linalg/<a class="el" href="basic__ops_8xx.html">basic_ops.xx</a></td></tr>
+<tr class="memdesc:basic__ops_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic vector aritmetic. No documentation for functions since they are generated with macros (I know, I know, it was just too much to just write out...) <br /></td></tr>
+<tr class="memitem:container_5Ftraits_2Exx" id="r_container_5Ftraits_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-math-src/src/linalg/<a class="el" href="container__traits_8xx.html">container_traits.xx</a></td></tr>
+<tr class="memdesc:container__traits_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traits that help the library where <span class="tt">std::ranges</span> API isn't enought. <b>READ THE DESCRIPTION OF</b> math::container_traits <b>CAREFULLY</b>. <br /></td></tr>
 <tr class="memitem:cross_2Exx" id="r_cross_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-math-src/src/linalg/<a class="el" href="cross_8xx.html">cross.xx</a></td></tr>
 <tr class="memdesc:cross_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of 3D vectors. <br /></td></tr>
 <tr class="memitem:dot_2Exx" id="r_dot_2Exx"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom">/build-llvm-libcpp/_deps/dot-xx-math-src/src/linalg/<a class="el" href="dot_8xx.html">dot.xx</a></td></tr>

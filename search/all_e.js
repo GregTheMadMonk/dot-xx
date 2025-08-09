@@ -11,5 +11,7 @@ var searchData=
   ['requesterror_8',['RequestError',['../structdxx_1_1http_1_1RequestError.html',1,'dxx::http']]],
   ['resource_9',['resource',['../structdxx_1_1http_1_1Request.html#a13cd41c1589f910603a21f45fbb2243e',1,'dxx::http::Request']]],
   ['response_10',['Response',['../structdxx_1_1http_1_1Response.html',1,'dxx::http']]],
-  ['run_5fall_11',['run_all',['../namespacedxx_1_1selftest.html#abaa7ed75cd9aad2dad39d4319b63ff5d',1,'dxx::selftest']]]
+  ['returnable_11',['returnable',['../conceptdxx_1_1math_1_1container__traits_1_1returnable.html',1,'dxx::math::container_traits']]],
+  ['run_5fall_12',['run_all',['../namespacedxx_1_1selftest.html#abaa7ed75cd9aad2dad39d4319b63ff5d',1,'dxx::selftest']]],
+  ['runtimefixed_13',['RuntimeFixed',['../structdxx_1_1math_1_1container__traits_1_1size_1_1RuntimeFixed.html',1,'dxx::math::container_traits::size']]]
 ];

@@ -1,6 +1,12 @@
 var module__dxx_8math_8linalg =
 [
+    [ "Dynamic", "structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html", null ],
+    [ "RuntimeFixed", "structdxx_1_1math_1_1container__traits_1_1size_1_1RuntimeFixed.html", null ],
+    [ "Bound", "structdxx_1_1math_1_1container__traits_1_1size_1_1Bound.html", null ],
+    [ "Static", "structdxx_1_1math_1_1container__traits_1_1size_1_1Static.html", null ],
     [ "Norm", "structdxx_1_1math_1_1Norm.html", null ],
+    [ "constructible", "conceptdxx_1_1math_1_1container__traits_1_1constructible.html", null ],
+    [ "returnable", "conceptdxx_1_1math_1_1container__traits_1_1returnable.html", null ],
     [ "vector", "conceptdxx_1_1math_1_1vector.html", null ],
     [ "mut_vector", "conceptdxx_1_1math_1_1mut__vector.html", null ],
     [ "vector_like", "conceptdxx_1_1math_1_1vector__like.html", null ],

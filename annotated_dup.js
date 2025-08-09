@@ -24,6 +24,15 @@ var annotated_dup =
         [ "StreamError", "structdxx_1_1http_1_1StreamError.html", null ]
       ] ],
       [ "math", "namespacedxx_1_1math.html", [
+        [ "container_traits", "namespacedxx_1_1math_1_1container__traits.html", [
+          [ "size", "namespacedxx_1_1math_1_1container__traits_1_1size.html", [
+            [ "Bound", "structdxx_1_1math_1_1container__traits_1_1size_1_1Bound.html", null ],
+            [ "Dynamic", "structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html", null ],
+            [ "RuntimeFixed", "structdxx_1_1math_1_1container__traits_1_1size_1_1RuntimeFixed.html", null ],
+            [ "Static", "structdxx_1_1math_1_1container__traits_1_1size_1_1Static.html", null ]
+          ] ],
+          [ "Traits", "structdxx_1_1math_1_1container__traits_1_1Traits.html", null ]
+        ] ],
         [ "detail", null, [
           [ "RealOf", "structdxx_1_1math_1_1detail_1_1RealOf.html", null ],
           [ "RealOf< T >", "structdxx_1_1math_1_1detail_1_1RealOf_3_01T_01_4.html", null ]

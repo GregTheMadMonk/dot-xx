@@ -2,6 +2,10 @@ var concepts =
 [
     [ "dxx", null, [
       [ "math", "namespacedxx_1_1math.html", [
+        [ "container_traits", "namespacedxx_1_1math_1_1container__traits.html", [
+          [ "constructible", "conceptdxx_1_1math_1_1container__traits_1_1constructible.html", null ],
+          [ "returnable", "conceptdxx_1_1math_1_1container__traits_1_1returnable.html", null ]
+        ] ],
         [ "vector", "conceptdxx_1_1math_1_1vector.html", null ],
         [ "mut_vector", "conceptdxx_1_1math_1_1mut__vector.html", null ],
         [ "vector_like", "conceptdxx_1_1math_1_1vector__like.html", null ],

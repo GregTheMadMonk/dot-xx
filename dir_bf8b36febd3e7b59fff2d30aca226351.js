@@ -1,5 +1,7 @@
 var dir_bf8b36febd3e7b59fff2d30aca226351 =
 [
+    [ "basic_ops.xx", "basic__ops_8xx.html", null ],
+    [ "container_traits.xx", "container__traits_8xx.html", "container__traits_8xx" ],
     [ "cross.xx", "cross_8xx.html", "cross_8xx" ],
     [ "dot.xx", "dot_8xx.html", null ],
     [ "linalg.xx", "linalg_8xx.html", null ],
