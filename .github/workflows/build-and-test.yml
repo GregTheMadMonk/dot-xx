@@ -62,4 +62,4 @@ jobs:
       - name:  Docs - Copy generated documentation
         run:   sudo chroot root.x86_64 bash -c 'rm -rf /gh-pages/* && cp -R /build-llvm-libcpp/html/* /gh-pages'
       - name:  Docs - Upload the new version of docs
-        run:   sudo chroot root.x86_64 bash -c 'cd /gh-pages && git add -A && git commit -m "Auto-update" && git push push_origin gh-pages'
+        run:   sudo chroot root.x86_64 bash -c 'cd /gh-pages && [[ $(git status --porcelain) ]] && (git add -A && git commit -m "Auto-update" && git push push_origin gh-pages) || echo Skip updating docs due to no changes'
