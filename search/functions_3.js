@@ -1,5 +1,7 @@
 var searchData=
 [
   ['debug_0',['debug',['../namespacedxx_1_1assert.html#a0928c38ecb9e44aee154b2dcc34888fe',1,'dxx::assert']]],
-  ['dist_1',['dist',['../namespacedxx_1_1math.html#a18fd39bddfa007c9197cdac0a7fbae5f',1,'dxx::math']]]
+  ['dist_1',['dist',['../namespacedxx_1_1math.html#a18fd39bddfa007c9197cdac0a7fbae5f',1,'dxx::math']]],
+  ['div_2',['div',['../namespacedxx_1_1math.html#a7e7467b296ba052b95fbc47e72d62229',1,'dxx::math::div(U &amp;&amp;u, V &amp;&amp;v, Out &amp;out)'],['../namespacedxx_1_1math.html#a52c094bd61f5c19032d3553e1ff46f01',1,'dxx::math::div(U &amp;&amp;u, V &amp;&amp;v)'],['../namespacedxx_1_1math.html#abaf0c6ce7efbbb85564d6455a59b9495',1,'dxx::math::div(U &amp;&amp;u, V &amp;&amp;v)'],['../namespacedxx_1_1math.html#ae82b8947f93fac61da6f4181889b6f07',1,'dxx::math::div(U &amp;&amp;u, const Scalar &amp;scalar, Out &amp;out)'],['../namespacedxx_1_1math.html#ab3477ecc81d79e4a5014cf83de0c4029',1,'dxx::math::div(U &amp;&amp;u, const Scalar &amp;scalar)'],['../namespacedxx_1_1math.html#ad3b473ce909bdca62c5c005711af7c3c',1,'dxx::math::div(U &amp;&amp;u, const Scalar &amp;scalar)'],['../namespacedxx_1_1math.html#a91daf8d1849140950415b422afba0fc0',1,'dxx::math::div(const Scalar &amp;scalar, U &amp;&amp;u, Out &amp;out)'],['../namespacedxx_1_1math.html#a156245748630734e67a7b350b21dd012',1,'dxx::math::div(const Scalar &amp;scalar, U &amp;&amp;u)'],['../namespacedxx_1_1math.html#ae4bce2ae8cb8e24bfe798b5593275f25',1,'dxx::math::div(const Scalar &amp;scalar, U &amp;&amp;u)']]],
+  ['dot_3',['dot',['../namespacedxx_1_1math.html#a186b340da5975000866155f035accbe1',1,'dxx::math']]]
 ];

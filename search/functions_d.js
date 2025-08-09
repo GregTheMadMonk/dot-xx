@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['test_0',['test',['../namespacedxx_1_1selftest.html#ad01f2ed983e1e20a193bf83c020e75a7',1,'dxx::selftest']]]
+  ['sign_0',['sign',['../namespacedxx_1_1math.html#a838a49e093cfcd8e936bc7522188337a',1,'dxx::math']]],
+  ['sq_5fdist_1',['sq_dist',['../namespacedxx_1_1math.html#aa8b229a6ed5f7a31ac936b091d4878f4',1,'dxx::math']]],
+  ['sq_5fnorm_2',['sq_norm',['../namespacedxx_1_1math.html#aad86f63c526c9b41c6b4d7f85836ceea',1,'dxx::math']]],
+  ['sub_3',['sub',['../namespacedxx_1_1math.html#a3ca76e08e4b2f9231ddd104edd52fba6',1,'dxx::math::sub(U &amp;&amp;u, V &amp;&amp;v, Out &amp;out)'],['../namespacedxx_1_1math.html#a25c1913fe576ded487c9a8138a53abe2',1,'dxx::math::sub(U &amp;&amp;u, V &amp;&amp;v)'],['../namespacedxx_1_1math.html#a7789e69cc8621c50a479dc6b73038a0f',1,'dxx::math::sub(U &amp;&amp;u, V &amp;&amp;v)'],['../namespacedxx_1_1math.html#aff38e486831fd441b1b73cec9887f71d',1,'dxx::math::sub(U &amp;&amp;u, const Scalar &amp;scalar, Out &amp;out)'],['../namespacedxx_1_1math.html#aec9e78a6d9d73277d0534e9af91fb0cb',1,'dxx::math::sub(U &amp;&amp;u, const Scalar &amp;scalar)'],['../namespacedxx_1_1math.html#a003caa5505fc9441a3c77977cc2d40d8',1,'dxx::math::sub(U &amp;&amp;u, const Scalar &amp;scalar)'],['../namespacedxx_1_1math.html#af636a01b0dd2b63ddd5703b5e9fceced',1,'dxx::math::sub(const Scalar &amp;scalar, U &amp;&amp;u, Out &amp;out)'],['../namespacedxx_1_1math.html#a33b2095f1b10608e31a5ba338087be3a',1,'dxx::math::sub(const Scalar &amp;scalar, U &amp;&amp;u)'],['../namespacedxx_1_1math.html#a0b9fa6517d93a8bdfab634b2ba493b45',1,'dxx::math::sub(const Scalar &amp;scalar, U &amp;&amp;u)']]]
 ];
