@@ -44,11 +44,16 @@ if( NOT DXX_NO_CPM )
         GITHUB_REPOSITORY "gregthemadmonk/dot-xx"
         GIT_TAG "overload"
     )
+    CPMAddPackage(
+        NAME "dot-xx-utils"
+        GITHUB_REPOSITORY "gregthemadmonk/dot-xx"
+        GIT_TAG "utils"
+    )
 endif()
 
 target_link_libraries(
     dot-xx-http PRIVATE
-    dot-xx::assert dot-xx::cstd dot-xx::errors dot-xx::overload
+    dot-xx::assert dot-xx::cstd dot-xx::errors dot-xx::overload dot-xx::utils
 )
 
 add_library( dot-xx::http ALIAS dot-xx-http )

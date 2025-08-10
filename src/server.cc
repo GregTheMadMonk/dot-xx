@@ -12,12 +12,12 @@ module dxx.http;
 import dxx.assert;
 import dxx.cstd.fixed;
 import dxx.overload;
+import dxx.utils;
 import std;
 
 import :coro;
 import :errors;
 import :url;
-import :utils;
 
 namespace dxx::http {
 
@@ -113,7 +113,7 @@ std::expected<Request, RequestError> read_request(int stream) {
 } // <-- namespace <anonymous>
 
 SimpleTask Server::handle_connection(
-    utils::File stream,
+    utils::FileDescriptor stream,
     PendingConnection<std::string>& conn_handle,
     Request& request
 ) {
@@ -123,7 +123,7 @@ SimpleTask Server::handle_connection(
      * not transfer ownership to `conn_handle`
      */
     try {
-        if (auto req = read_request(stream); req.has_value()) {
+        if (auto req = read_request(*stream); req.has_value()) {
             request = std::move(req.value());
             const std::string_view head_v{ request.header };
             std::println("{}", head_v.substr(0, head_v.find('\n')));
@@ -153,7 +153,7 @@ SimpleTask Server::handle_connection(
         co_return;
     }
 
-    if (send(stream, res->data(), res->length(), 0) == -1) {
+    if (send(*stream, res->data(), res->length(), 0) == -1) {
         throw ServerError{ Errno{}, "Cannot send data to client" };
     }
 } // <-- SimpleTask Server::handle_connection(stream, conn_handle)
@@ -165,26 +165,26 @@ SimpleTask Server::listen_and_wait(const std::string& ip, u16 port) {
     }
 
     // Open socket
-    const utils::File s_fd{ socket(AF_INET, SOCK_STREAM, PF_UNSPEC) };
+    const utils::FileDescriptor s_fd{ socket(AF_INET, SOCK_STREAM, PF_UNSPEC) };
 
-    if (s_fd == -1) {
+    if (*s_fd == -1) {
         throw ServerError{ Errno{}, "Cannot open socket" };
     }
 
     static constexpr int on = 1;
-    if (setsockopt(s_fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) == -1) {
+    if (setsockopt(*s_fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) == -1) {
         throw ServerError{ Errno{}, "Cannot set socket options" };
     }
 
-    if (fcntl(s_fd, F_SETFL, O_NONBLOCK) == -1) {
+    if (fcntl(*s_fd, F_SETFL, O_NONBLOCK) == -1) {
         throw ServerError{ Errno{}, "Cannot set socket to NONBLOCK" };
     }
 
-    if (::bind(s_fd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) == -1) {
+    if (::bind(*s_fd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) == -1) {
         throw ServerError{ Errno{}, "Cannot bind socket" };
     }
 
-    if (::listen(s_fd, SOMAXCONN) == -1) { // TODO: customize backlog?
+    if (::listen(*s_fd, SOMAXCONN) == -1) { // TODO: customize backlog?
         throw ServerError{ Errno{}, "Cannot listen on the socket" };
     }
 
@@ -200,7 +200,7 @@ SimpleTask Server::listen_and_wait(const std::string& ip, u16 port) {
         socklen_t   client_addr_size = sizeof(client_addr);
 
         const int c_fd = accept(
-            s_fd,
+            *s_fd,
             reinterpret_cast<sockaddr*>(&client_addr),
             &client_addr_size
         ); // <-- c_fd
