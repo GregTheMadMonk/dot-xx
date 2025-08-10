@@ -22,4 +22,14 @@ target_sources(
 )
 target_compile_features( dot-xx-utils PUBLIC cxx_std_23 )
 
+if( NOT DXX_NO_CPM )
+    CPMAddPackage(
+        NAME "dot-xx-cstd"
+        GITHUB_REPOSITORY "gregthemadmonk/dot-xx"
+        GIT_TAG "cstd"
+    )
+endif()
+
+target_link_libraries( dot-xx-utils PRIVATE dot-xx::cstd )
+
 add_library( dot-xx::utils ALIAS dot-xx-utils )

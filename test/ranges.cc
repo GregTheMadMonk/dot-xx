@@ -1,3 +1,4 @@
+import dxx.cstd.fixed;
 import dxx.selftest;
 import dxx.utils;
 
@@ -40,6 +41,21 @@ const UnitTest range_from_to_step{
         );
     }
 }; // <-- range_from_to_step
+
+const UnitTest range_float{
+    "range_float", [] {
+        std::vector<f32> etalon;
+        for (f32 f = -1.0f; f <= 1.0f; f += 0.1f) {
+            etalon.push_back(f);
+        }
+        test(
+            stdr::equal(
+                range(-1.0f, 1.1f, 0.1f),
+                etalon
+            )
+        );
+    }
+}; // <-- range_float
 
 const UnitTest as{
     "as", [] {

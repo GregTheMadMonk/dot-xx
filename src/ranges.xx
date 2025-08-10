@@ -4,6 +4,7 @@
  */
 export module dxx.utils:ranges;
 
+import dxx.cstd.fixed;
 import std;
 
 namespace dxx::utils {
@@ -43,9 +44,15 @@ template <
 >
 [[nodiscard]]
 inline constexpr auto range(const From& from, const To& to, const Step& step) {
-    const auto sz = (static_cast<From>(to) - from) / static_cast<From>(step);
-    return std::views::iota(From{}, sz) | std::views::transform(
-        [from, step] (const auto& idx) { return from + idx * step; }
+    const auto sz = static_cast<uz>(
+        (static_cast<From>(to) - from) / static_cast<From>(step)
+    );
+    return std::views::iota(uz{}, sz) | std::views::transform(
+        [step=auto(step), from=auto(from)] (uz) mutable {
+            const auto before = from;
+            from += step;
+            return before;
+        }
     );
 } // <-- auto range(from, to, step)
 
