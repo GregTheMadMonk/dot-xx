@@ -73,6 +73,17 @@ std::remove_cvref_t<U> operator op_sym (U&& u, V&& v) {\
     return op_name(std::forward<U>(u), std::forward<V>(v));\
 } /* <-- operator op_sym(u, v) */\
 \
+/*! @brief Inplace element-wise vector op_doc */\
+export \
+template <mut_vector U, vector_like<U> V>\
+inline constexpr \
+U& operator op_sym ## = (U& u, const V& v) {\
+    for (auto [ ue, ve ] : std::views::zip(u, v)) {\
+        ue op_sym ## = ve;\
+    }\
+    return u;\
+} /* <-- operator op_sym=(u, v) */\
+\
 } /* <-- namespace vector_operators */\
 \
 /* vector-real operation */\
@@ -132,6 +143,17 @@ inline constexpr \
 std::remove_cvref_t<U> operator op_sym (U&& u, const Scalar& scalar) {\
     return op_name(std::forward<U>(u), scalar);\
 } /* <-- ...<U> operator op_sym(u, scalar) */\
+\
+/*! @brief Inplace element-wise op_doc of vector with scalar */\
+export \
+template <mut_vector U, std::convertible_to<RealOf<U>> Scalar>\
+inline constexpr \
+U& operator op_sym ## = (U& u, const Scalar& scalar) {\
+    for (auto& ue : u) {\
+        ue op_sym ## = scalar;\
+    }\
+    return u;\
+} /* <-- operator op_sym=(u, scalar) */\
 \
 } /* <-- namespace vector_operators */\
 \

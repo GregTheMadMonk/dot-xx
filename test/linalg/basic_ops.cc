@@ -23,7 +23,7 @@ const UnitTest add{
             ) == Vec3{ 1, 4, 2 }
         );
 
-        const Vec3 v1{ 1, 2, 3 };
+        Vec3 v1{ 1, 2, 3 };
         test(v1 + 1 == Vec3{ 2, 3, 4 });
         test(1 + v1 == Vec3{ 2, 3, 4 });
         test(
@@ -32,6 +32,11 @@ const UnitTest add{
                 1
             ) == Vec3{ 3, 5, 7 }
         );
+
+        v1 += Vec3{ 3, 2, 1 };
+        test(v1 == Vec3{ 4, 4, 4 });
+        v1 += 2;
+        test(v1 == Vec3{ 6, 6, 6 });
     }
 }; // <-- add
 
@@ -45,7 +50,7 @@ const UnitTest sub{
             ) == Vec3{ 1, -4, -2 }
         );
 
-        const Vec3 v1{ 1, 2, 3 };
+        Vec3 v1{ 1, 2, 3 };
         test(v1 - 1 == Vec3{ 0,  1,  2 });
         test(1 - v1 == Vec3{ 0, -1, -2 });
         test(
@@ -54,6 +59,11 @@ const UnitTest sub{
                 1
             ) == Vec3{ 1, 3, 5 }
         );
+
+        v1 -= Vec3{ 3, 2, 1 };
+        test(v1 == Vec3{ -2, 0, 2 });
+        v1 -= 4;
+        test(v1 == Vec3{ -6, -4, -2 });
     }
 }; // <-- sub
 
@@ -67,7 +77,7 @@ const UnitTest mul{
             ) == Vec3{ 8, 16, 0 }
         );
 
-        const Vec3 v1{ 1, 2, 3 };
+        Vec3 v1{ 1, 2, 3 };
         test(v1 * 3 == Vec3{ 3, 6, 9 });
         test(3 * v1 == Vec3{ 3, 6, 9 });
         test(
@@ -76,6 +86,11 @@ const UnitTest mul{
                 3
             ) == Vec3{ 6, 12, 18 }
         );
+
+        v1 *= Vec3{ 3, 2, 1 };
+        test(v1 == Vec3{ 3, 4, 3 });
+        v1 *= 3;
+        test(v1 == Vec3{ 9, 12, 9 });
     }
 }; // <-- mul
 
@@ -89,7 +104,7 @@ const UnitTest div{
             ) == Vec3{ 0.125f, 1.0f, 0.0f }
         );
 
-        const Vec3 v1{ 3, 6, 9 };
+        Vec3 v1{ 3, 6, 9 };
         test(v1 / 3 == Vec3{ 1, 2, 3 });
         test(
             ::dxx::math::div<Vec3>(
@@ -98,6 +113,11 @@ const UnitTest div{
             ) == Vec3{ 2, 4, 6 }
         );
         test(24 / Vec3{ 2, 3, 8 } == Vec3{ 12, 8, 3 });
+
+        v1 /= Vec3{ 1, 2, 3 };
+        test(v1 == Vec3{ 3, 3, 3 });
+        v1 /= 3;
+        test(v1 == Vec3{ 1, 1, 1 });
     }
 }; // <-- div
 

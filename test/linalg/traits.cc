@@ -1,5 +1,5 @@
-import dxx.math.linalg;
 import dxx.cstd.fixed;
+import dxx.math.linalg;
 import std;
 
 // Only compile-time tests
