@@ -3,15 +3,30 @@
 My personal collection of small C++ modules put in this repo as convenient to
 share between projects.
 
+### Compiler support notice
+
 All modules require C++23's `import std`. This means at least __CMake 3.30__ and
 __Ninja__ (what version?)
+
+The library is compiled and tested on Linux. Other UNIX systems might work,
+and some parts might work on Windows.
+
+The library suffesfully compiles on __Clang__ version 20 and 21.
+__GCC__ (versions 15 and 16) fails to compile it for now, due to what I suspect
+to be a mixture of my fault and compiler bugs.
+
+Some thing will fail to compile unless you `import std` alongside importing
+these modules. This is due to how [C++ standard specifies instantiation context for modules](https://eel.is/c++draft/module.context). I am looking into maybe `export import`ing
+`std` in some or all of the modules, but for now I don't so be wary of that.
+
+### Modules
 
 |Module|Docs|Depends on|Description|Included by default|
 |---|---|---|---|---|
 |[assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert)| [dxx.assert](https://gregthemadmonk.github.io/dot-xx/module__dxx_8assert.html) | - | Provides `dxx::assert::always`/`dxx::assert::debug` functions. Makes use of `<stacktrace>` if available | Yes |
 |[cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd)| [dxx.cstd](https://gregthemadmonk.github.io/dot-xx/module__dxx_8cstd.html), [dxx.cstd.compat](https://gregthemadmonk.github.io/dot-xx/module__dxx_8cstd_8compat.html), [dxx.cstd.fixed](https://gregthemadmonk.github.io/dot-xx/module__dxx_8cstd_8fixed.html) | - | Exports some of the things not provided by `std.compat` module (like `stdout`/`stdin`/etc.) Provides aliases for some fixed-width (and other) types | Yes |
 |[errors](https://github.com/GregTheMadMonk/dot-xx/tree/errors)| [dxx.errors](https://gregthemadmonk.github.io/dot-xx/module__dxx_8errors.html) | - | Fancier exceptions | Yes |
-|[http](https://github.com/GregTheMadMonk/dot-xx/tree/http)| [dxx.http](https://gregthemadmonk.github.io/dot-xx/module__dxx_8http.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd), [errors](https://github.com/GregTheMadMonk/dot-xx/tree/errors), [overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload) | A feature-poor and possibly incomplete HTTP server implementation built with C++20 coroutines. Supports networking through UNIX sockets only. Supports long polling. See [example](https://github.com/GregTheMadMonk/dot-xx/blob/http/example/main.cc). | No. Set `DXX_WITH_HTTP` CMake option to `ON` to include |
+|[http](https://github.com/GregTheMadMonk/dot-xx/tree/http)| [dxx.http](https://gregthemadmonk.github.io/dot-xx/module__dxx_8http.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd), [errors](https://github.com/GregTheMadMonk/dot-xx/tree/errors), [overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload), [utils](https://github.com/GregTheMadMonk/dot-xx/tree/utils) | A feature-poor and possibly incomplete HTTP server implementation built with C++20 coroutines. Supports networking through UNIX sockets only. Supports long polling. See [example](https://github.com/GregTheMadMonk/dot-xx/blob/http/example/main.cc). | No. Set `DXX_WITH_HTTP` CMake option to `ON` to include |
 |[math](https://github.com/GregTheMadMonk/dot-xx/tree/math)| [dxx.math](https://gregthemadmonk.github.io/dot-xx/module__dxx_8math.html), [dxx.math.linalg](https://gregthemadmonk.github.io/dot-xx/module__dxx_8math_8linalg.html), [dxx.math.utils](https://gregthemadmonk.github.io/dot-xx/module__dxx_8math_8utils.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd), [utils](https://github.com/GregTheMadMonk/dot-xx/tree/utils) | Some helpful math functions | No. Set `DXX_WITH_MATH` CMake option to `ON` to include |
 |[overload](https://github.com/GregTheMadMonk/dot-xx/tree/overload)| [dxx.overload](https://gregthemadmonk.github.io/dot-xx/module__dxx_8overload.html) | - | [Overload](https://www.cppstories.com/2019/02/2lines3featuresoverload.html/) pattern with a few bells and whistles | Yes |
 |[selftest](https://github.com/GregTheMadMonk/dot-xx/tree/selftest)| [dxx.selftest](https://gregthemadmonk.github.io/dot-xx/module__dxx_8selftest.html) | [assert](https://github.com/GregTheMadMonk/dot-xx/tree/assert), [cstd](https://github.com/GregTheMadMonk/dot-xx/tree/cstd) | Simple unit testing. Link against `dot-xx::selftest-main` if you don't need to define your own `main()` | Yes |
