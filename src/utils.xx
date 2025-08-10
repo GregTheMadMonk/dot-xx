@@ -10,6 +10,7 @@
 export module dxx.utils;
 
 export import :defer;
+export import :file_descriptor;
 export import :ranges;
 export import :traits;
 

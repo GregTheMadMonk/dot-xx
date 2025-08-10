@@ -1,0 +1,67 @@
+module;
+
+#include <unistd.h>
+
+export module dxx.utils:file_descriptor;
+
+import std;
+
+namespace dxx::utils {
+
+/**
+ * @brief RAII file descriptor. Wraps an integer file descriptor and defers
+ *        closing it to the desctructor
+ */
+export
+class FileDescriptor {
+public:
+    /**
+     * @brief Wrap a file descriptor integer
+     *
+     * If `-1` is passed, it will no be closed
+     */
+    FileDescriptor(int c_fd) : fd(c_fd) {}
+
+    FileDescriptor(const FileDescriptor&)            = delete;
+    FileDescriptor& operator=(const FileDescriptor&) = delete;
+
+    /**
+     * @brief Take ownership of another file descriptor
+     */
+    FileDescriptor(FileDescriptor&& other) : fd(other.fd) { other.fd = -1; }
+    /**
+     * @brief Take ownership of another file descriptor and close already
+     *        owned if any
+     */
+    FileDescriptor& operator=(FileDescriptor&& other) {
+        if (this == std::addressof(other)) {
+            return *this;
+        }
+        if (this->fd != -1) {
+            close(this->fd);
+        }
+        this->fd = other.fd;
+        other.fd = -1;
+        return *this;
+    } // <-- FileDescriptor::operator=(&&other)
+
+    /**
+     * @brief Close the file descriptor if opened
+     */
+    ~FileDescriptor() { if (this->fd != -1) close(this->fd); }
+
+    /**
+     * @brief Get the underlying descriptor. Sorry for implicit conversion,
+     *        I just wanted it to be a drop-in replacement
+     */
+    inline int operator*() const { return this->fd; }
+    /**
+     * @brief Get the underlying descriptor
+     */
+    inline int get() const { return this->fd; }
+
+private:
+    int fd;
+}; // <-- struct FileDescriptor
+
+} // <-- namespace dxx::utils
