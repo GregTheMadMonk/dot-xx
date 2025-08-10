@@ -5,7 +5,7 @@ var hierarchy =
     [ "dxx::utils::Defer< TDeferred >", "classdxx_1_1utils_1_1Defer.html", null ],
     [ "dxx::math::container_traits::size::Dynamic", "structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html", null ],
     [ "dxx::errors::Errno", "structdxx_1_1errors_1_1Errno.html", null ],
-    [ "dxx::http::utils::File", "classdxx_1_1http_1_1utils_1_1File.html", null ],
+    [ "dxx::utils::FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", null ],
     [ "dxx::overload::fn_ptr_wrapper< Callable, Class, Ret, Args >", "classdxx_1_1overload_1_1fn__ptr__wrapper.html", null ],
     [ "FOf< width >", "structFOf.html", null ],
     [ "FOf< 32 >", "structFOf_3_0132_01_4.html", null ],

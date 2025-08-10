@@ -9,6 +9,5 @@ var dir_d4a681df44067561cb5115546ff62783 =
     [ "path.xx", "path_8xx.html", "path_8xx" ],
     [ "server.xx", "server_8xx.html", "server_8xx" ],
     [ "status_codes.xx", "status__codes_8xx.html", null ],
-    [ "url.xx", "url_8xx.html", null ],
-    [ "utils.xx", "dot-xx-http-src_2src_2utils_8xx.html", "dot-xx-http-src_2src_2utils_8xx" ]
+    [ "url.xx", "url_8xx.html", null ]
 ];

@@ -9,9 +9,6 @@ var annotated_dup =
         [ "Error", "structdxx_1_1errors_1_1Error.html", "structdxx_1_1errors_1_1Error" ]
       ] ],
       [ "http", null, [
-        [ "utils", null, [
-          [ "File", "classdxx_1_1http_1_1utils_1_1File.html", null ]
-        ] ],
         [ "HeaderCompare", "structdxx_1_1http_1_1HeaderCompare.html", null ],
         [ "PathNode", "classdxx_1_1http_1_1PathNode.html", "classdxx_1_1http_1_1PathNode" ],
         [ "PendingConnection", "classdxx_1_1http_1_1PendingConnection.html", "classdxx_1_1http_1_1PendingConnection" ],
@@ -55,7 +52,8 @@ var annotated_dup =
       ] ],
       [ "utils", "namespacedxx_1_1utils.html", [
         [ "As", "structdxx_1_1utils_1_1As.html", null ],
-        [ "Defer", "classdxx_1_1utils_1_1Defer.html", null ]
+        [ "Defer", "classdxx_1_1utils_1_1Defer.html", null ],
+        [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ]
       ] ]
     ] ],
     [ "FOf", "structFOf.html", null ],
