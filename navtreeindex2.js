@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"structdxx_1_1http_1_1Response.html#aa6ce438d4477f453ddea49920ef1fc62":[3,0,0,2,5,4],
+"structdxx_1_1http_1_1Response.html#ada8d11336198eb9ade1aab5cb6d55dc7":[0,0,5,7,0],
 "structdxx_1_1http_1_1Response.html#ada8d11336198eb9ade1aab5cb6d55dc7":[3,0,0,2,5,0],
 "structdxx_1_1http_1_1Response.html#aea1786b947b88314e2dd8e0f6d51d329":[0,0,5,7,2],
 "structdxx_1_1http_1_1Response.html#aea1786b947b88314e2dd8e0f6d51d329":[3,0,0,2,5,2],

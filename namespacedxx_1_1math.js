@@ -19,6 +19,7 @@ var namespacedxx_1_1math =
       [ "operator+=", "namespacedxx_1_1math_1_1vector__operators.html#aa8fd68c9c2994225f55b749847efdc0a", null ],
       [ "operator+=", "namespacedxx_1_1math_1_1vector__operators.html#a27eb9da8e282076c5305ccd60cb3714d", null ],
       [ "operator-", "namespacedxx_1_1math_1_1vector__operators.html#a94294cf21fc811319bd0b241a9c5b14c", null ],
+      [ "operator-", "namespacedxx_1_1math_1_1vector__operators.html#a3a16865075d6b89b938e0656d32aa6c9", null ],
       [ "operator-", "namespacedxx_1_1math_1_1vector__operators.html#a6292b296ab927015774f44852a47379b", null ],
       [ "operator-", "namespacedxx_1_1math_1_1vector__operators.html#a3e6e62b2093b1a15476b73a2e4ddadaa", null ],
       [ "operator-=", "namespacedxx_1_1math_1_1vector__operators.html#aea60a55a9a7bb7e70753178fb37f7dd7", null ],

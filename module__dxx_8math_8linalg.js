@@ -68,6 +68,7 @@ var module__dxx_8math_8linalg =
     [ "dxx::math::div", "module__dxx_8math_8linalg.html#a156245748630734e67a7b350b21dd012", null ],
     [ "dxx::math::div", "module__dxx_8math_8linalg.html#ae4bce2ae8cb8e24bfe798b5593275f25", null ],
     [ "dxx::math::vector_operators::operator/", "module__dxx_8math_8linalg.html#a2aece2a5173b2b02699ff5162654d26e", null ],
+    [ "dxx::math::vector_operators::operator-", "module__dxx_8math_8linalg.html#a3a16865075d6b89b938e0656d32aa6c9", null ],
     [ "dxx::math::cross", "module__dxx_8math_8linalg.html#afd832683685ddcaf55d7f3106f63402a", null ],
     [ "dxx::math::cross", "module__dxx_8math_8linalg.html#a1b340249e65288d34c11d5ac3da2d58b", null ],
     [ "dxx::math::cross", "module__dxx_8math_8linalg.html#a623ee5c8ff3baf10d3ea9ed15c73d898", null ],
