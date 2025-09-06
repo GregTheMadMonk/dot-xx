@@ -250,6 +250,19 @@ DEF_BINARY(div, /, division)
  * } // <-- namespace vector_operators
  * ```
  */
-namespace vector_operators {}
+namespace vector_operators {
+
+/**
+ * @brief Unary negation for vectors
+ */
+export
+template <vector U>
+[[nodiscard]]
+inline constexpr
+std::remove_cvref_t<U> operator-(U&& u) {
+    return RealOf<U>{-1} * u;
+} // <-- operator-(u)
+
+} // <-- namespace vector_operators
 
 } // <-- namespace dxx::math

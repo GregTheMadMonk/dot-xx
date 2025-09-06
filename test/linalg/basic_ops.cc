@@ -121,6 +121,13 @@ const UnitTest div{
     }
 }; // <-- div
 
+const UnitTest neg{
+    "neg", [] {
+        using namespace ::dxx::math::vector_operators;
+        test(-Vec3{ 1, -1, 0 } == Vec3{ -1, 1, 0 });
+    }
+}; // <-- neg
+
 } // <-- test::dxx::math::linalg::basic_ops
 
 } // <-- namespace <anonymous>
