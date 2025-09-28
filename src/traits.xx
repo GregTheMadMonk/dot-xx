@@ -61,6 +61,13 @@ template <typename T, typename... Ts>
 concept either_of = (std::same_as<T, Ts> || ...);
 
 /**
+ * @brief Checks if a type is neither of provided arguments
+ */
+export
+template <typename T, typename... Ts>
+concept neither_of = !either_of<T, Ts...>;
+
+/**
  * @brief Checks if the type was used to declare a certain value
  */
 export
