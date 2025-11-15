@@ -14,6 +14,8 @@ import dxx.assert;
 import dxx.cstd.compat;
 import dxx.cstd.fixed;
 
+export import :lifetime_tester;
+
 import :name_deduce;
 
 /**

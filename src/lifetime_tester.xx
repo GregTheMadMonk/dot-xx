@@ -1,0 +1,98 @@
+/**
+ * @file  lifetime_tester.xx
+ * @brief A class for testing and tracking object lifetimes
+ */
+export module dxx.selftest:lifetime_tester;
+
+import std;
+
+namespace dxx::selftest {
+
+/**
+ * @brief A simple class for tracking object moves/copies during their lives
+ *        in containers
+ *
+ * Every instance keeps the number of times it has been copied/moved, and
+ * from which original instance it was created. Copying/moving instances only
+ * affectes the counter in the copy/move target, the original instance is
+ * unaffected
+ */
+export
+class LifetimeTester {
+public:
+    /**
+     * @brief Create a new object, set both counters to zero and init with
+     *        a unique origin ID
+     */
+    inline constexpr LifetimeTester()
+        : origin_id{++origin_counter}
+        , times_copied{}
+        , times_moved{}
+    {}
+
+    /**
+     * @brief Create a new instance with the same origin ID and move count
+     *        as @p other, and a copy count that is one more than that of
+     *        @p other
+     */
+    inline constexpr
+    LifetimeTester(const LifetimeTester& other)
+        : origin_id{other.origin_id}
+        , times_copied{other.times_copied + 1}
+        , times_moved{other.times_moved}
+    {}
+
+    /**
+     * @brief Create a new instance with the same origin ID and copy count
+     *        as @p other, and a move count that is one more than that of
+     *        @p other
+     */
+    inline constexpr
+    LifetimeTester(LifetimeTester&& other)
+        : origin_id{other.origin_id}
+        , times_copied{other.times_copied}
+        , times_moved{other.times_moved + 1}
+    {}
+
+    /**
+     * @brief Same effect as creating a new object with a copy constructor
+     */
+    inline constexpr
+    LifetimeTester& operator=(const LifetimeTester& other) {
+        this->origin_id    = other.origin_id;
+        this->times_copied = other.times_copied + 1;
+        this->times_moved  = other.times_moved;
+        return *this;
+    }
+
+    /**
+     * @brief Same effect as creating a new object with a move constructor
+     */
+    inline constexpr
+    LifetimeTester& operator=(LifetimeTester&& other) {
+        this->origin_id    = other.origin_id;
+        this->times_copied = other.times_copied;
+        this->times_moved  = other.times_moved + 1;
+        return *this;
+    }
+
+    [[nodiscard]]
+    inline constexpr
+    std::size_t get_origin_id() const { return this->origin_id; }
+
+    [[nodiscard]]
+    inline constexpr
+    std::size_t get_times_copied() const { return this->times_copied; }
+
+    [[nodiscard]]
+    inline constexpr
+    std::size_t get_times_moved() const { return this->times_moved; }
+
+private:
+    inline static std::size_t origin_counter = 0;
+    std::size_t origin_id;
+    std::size_t times_copied;
+    std::size_t times_moved;
+}; // <-- class LifetimeTester
+
+} // <-- namespace dxx::selftest
