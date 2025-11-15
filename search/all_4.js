@@ -1,10 +1,11 @@
 var searchData=
 [
   ['either_5fof_0',['either_of',['../conceptdxx_1_1utils_1_1either__of.html',1,'dxx::utils']]],
-  ['emplace_1',['emplace',['../classdxx_1_1http_1_1PathNode.html#a4faab66b69ae7afcafcf660e88a48efb',1,'dxx::http::PathNode']]],
+  ['emplace_1',['emplace',['../classdxx_1_1http_1_1PathNode.html#a4faab66b69ae7afcafcf660e88a48efb',1,'dxx::http::PathNode::emplace()'],['../classdxx_1_1utils_1_1heap_1_1Option.html#afb80ad61cb82b951b822d0807e88d322',1,'dxx::utils::heap::Option::emplace(auto &amp;&amp;... args)'],['../classdxx_1_1utils_1_1heap_1_1Option.html#a0b990ae4f6ce78703676cfc51ef1d919',1,'dxx::utils::heap::Option::emplace(std::initializer_list&lt; U &gt; i_list, Args &amp;&amp;... args)']]],
   ['errno_2',['Errno',['../structdxx_1_1errors_1_1Errno.html',1,'dxx::errors']]],
   ['error_3',['Error',['../structdxx_1_1errors_1_1Error.html',1,'dxx::errors::Error'],['../structdxx_1_1errors_1_1Error.html#af46bad6b7908d3d8cb2defb2a32235a1',1,'dxx::errors::Error::Error(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../structdxx_1_1errors_1_1Error.html#ad4ecea3f7b379f51ef02f961f1c74382',1,'dxx::errors::Error::Error(Errno, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../structdxx_1_1http_1_1ServerError.html#af46bad6b7908d3d8cb2defb2a32235a1',1,'dxx::http::ServerError::Error(std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)'],['../structdxx_1_1http_1_1ServerError.html#ad4ecea3f7b379f51ef02f961f1c74382',1,'dxx::http::ServerError::Error(Errno, std::format_string&lt; Args... &gt; fmt, Args &amp;&amp;... args)']]],
   ['errors_2exx_4',['errors.xx',['../dot-xx-errors-src_2src_2errors_8xx.html',1,'(Global Namespace)'],['../dot-xx-http-src_2src_2errors_8xx.html',1,'(Global Namespace)']]],
   ['euclidean_5',['euclidean',['../namespacedxx_1_1math_1_1norms.html#a9787b29e40ffeecda74622322651dffb',1,'dxx::math::norms']]],
-  ['exit_6',['exit',['../namespacedxx_1_1c.html#a8e789500dab09569e15d963a747cbbe4',1,'dxx::c']]]
+  ['exit_6',['exit',['../namespacedxx_1_1c.html#a8e789500dab09569e15d963a747cbbe4',1,'dxx::c']]],
+  ['explicit_7',['explicit',['../classdxx_1_1utils_1_1heap_1_1Option.html#a8e9ab0c3b323b321eb2b03dc113e4313',1,'dxx::utils::heap::Option::explicit(!std::convertible_to&lt; const U &amp;, T &gt;) Option(const Option&lt; U &gt; &amp;other)'],['../classdxx_1_1utils_1_1heap_1_1Option.html#a25bd9e4faa716f084d731c68e548d8e2',1,'dxx::utils::heap::Option::explicit(!std::convertible_to&lt; U, T &gt;) Option(Option&lt; U &gt; &amp;&amp;other)'],['../classdxx_1_1utils_1_1heap_1_1Option.html#a78ee2ed2448e032dca8347a729decdb4',1,'dxx::utils::heap::Option::explicit(!std::convertible_to&lt; U, T &gt;) Option(U &amp;&amp;value)']]]
 ];

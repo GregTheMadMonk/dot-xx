@@ -12,5 +12,6 @@ var searchData=
   ['dxx_3a_3amath_3a_3avector_5foperators_9',['vector_operators',['../namespacedxx_1_1math_1_1vector__operators.html',1,'dxx::math']]],
   ['dxx_3a_3aoverload_10',['overload',['../namespacedxx_1_1overload.html',1,'dxx']]],
   ['dxx_3a_3aselftest_11',['selftest',['../namespacedxx_1_1selftest.html',1,'dxx']]],
-  ['dxx_3a_3autils_12',['utils',['../namespacedxx_1_1utils.html',1,'dxx']]]
+  ['dxx_3a_3autils_12',['utils',['../namespacedxx_1_1utils.html',1,'dxx']]],
+  ['dxx_3a_3autils_3a_3aheap_13',['heap',['../namespacedxx_1_1utils_1_1heap.html',1,'dxx::utils']]]
 ];

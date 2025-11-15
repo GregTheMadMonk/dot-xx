@@ -9,9 +9,10 @@ var searchData=
   ['request_6',['Request',['../structdxx_1_1http_1_1Request.html',1,'dxx::http']]],
   ['request_5fstop_7',['request_stop',['../classdxx_1_1http_1_1Server.html#a035026831957a23586a98e9cbc4aeac8',1,'dxx::http::Server']]],
   ['requesterror_8',['RequestError',['../structdxx_1_1http_1_1RequestError.html',1,'dxx::http']]],
-  ['resource_9',['resource',['../structdxx_1_1http_1_1Request.html#a13cd41c1589f910603a21f45fbb2243e',1,'dxx::http::Request']]],
-  ['response_10',['Response',['../structdxx_1_1http_1_1Response.html',1,'dxx::http']]],
-  ['returnable_11',['returnable',['../conceptdxx_1_1math_1_1container__traits_1_1returnable.html',1,'dxx::math::container_traits']]],
-  ['run_5fall_12',['run_all',['../namespacedxx_1_1selftest.html#abaa7ed75cd9aad2dad39d4319b63ff5d',1,'dxx::selftest']]],
-  ['runtimefixed_13',['RuntimeFixed',['../structdxx_1_1math_1_1container__traits_1_1size_1_1RuntimeFixed.html',1,'dxx::math::container_traits::size']]]
+  ['reset_9',['reset',['../classdxx_1_1utils_1_1heap_1_1Option.html#abb5e81f54e80e393d106a7569be13d05',1,'dxx::utils::heap::Option']]],
+  ['resource_10',['resource',['../structdxx_1_1http_1_1Request.html#a13cd41c1589f910603a21f45fbb2243e',1,'dxx::http::Request']]],
+  ['response_11',['Response',['../structdxx_1_1http_1_1Response.html',1,'dxx::http']]],
+  ['returnable_12',['returnable',['../conceptdxx_1_1math_1_1container__traits_1_1returnable.html',1,'dxx::math::container_traits']]],
+  ['run_5fall_13',['run_all',['../namespacedxx_1_1selftest.html#abaa7ed75cd9aad2dad39d4319b63ff5d',1,'dxx::selftest']]],
+  ['runtimefixed_14',['RuntimeFixed',['../structdxx_1_1math_1_1container__traits_1_1size_1_1RuntimeFixed.html',1,'dxx::math::container_traits::size']]]
 ];

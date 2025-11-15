@@ -21,6 +21,7 @@ var concepts =
         [ "mut_vrp", "conceptdxx_1_1utils_1_1mut__vrp.html", null ],
         [ "is_a", "conceptdxx_1_1utils_1_1is__a.html", null ],
         [ "either_of", "conceptdxx_1_1utils_1_1either__of.html", null ],
+        [ "neither_of", "conceptdxx_1_1utils_1_1neither__of.html", null ],
         [ "declares", "conceptdxx_1_1utils_1_1declares.html", null ]
       ] ]
     ] ]

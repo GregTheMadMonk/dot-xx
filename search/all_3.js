@@ -36,5 +36,6 @@ var searchData=
   ['dxx_3a_3aoverload_33',['overload',['../namespacedxx_1_1overload.html',1,'dxx']]],
   ['dxx_3a_3aselftest_34',['selftest',['../namespacedxx_1_1selftest.html',1,'dxx']]],
   ['dxx_3a_3autils_35',['utils',['../namespacedxx_1_1utils.html',1,'dxx']]],
-  ['dynamic_36',['Dynamic',['../structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html',1,'dxx::math::container_traits::size']]]
+  ['dxx_3a_3autils_3a_3aheap_36',['heap',['../namespacedxx_1_1utils_1_1heap.html',1,'dxx::utils']]],
+  ['dynamic_37',['Dynamic',['../structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html',1,'dxx::math::container_traits::size']]]
 ];

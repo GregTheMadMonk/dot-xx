@@ -29,7 +29,8 @@ var NAVTREE =
       [ "Modules List", "modules.html", "modules_dup" ],
       [ "Module Members", "modulemembers.html", [
         [ "All", "modulemembers.html", null ],
-        [ "Functions", "modulemembers_func.html", null ]
+        [ "Functions", "modulemembers_func.html", null ],
+        [ "Variables", "modulemembers_vars.html", null ]
       ] ]
     ] ],
     [ "Namespaces", "namespaces.html", [
@@ -63,8 +64,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "abs__diff_8xx.html",
-"module__dxx_8math_8linalg.html#a52c094bd61f5c19032d3553e1ff46f01",
-"structdxx_1_1http_1_1Response.html#aa6ce438d4477f453ddea49920ef1fc62"
+"dir_a046cbdf41dafab7339aca3162a154dd.html",
+"namespacedxx_1_1selftest.html#a6b3de5700058a3000d2e56b31ef964e3"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

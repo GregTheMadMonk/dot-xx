@@ -1,12 +1,5 @@
 var namespacedxx_1_1math =
 [
-    [ "container_traits", "namespacedxx_1_1math_1_1container__traits.html", "namespacedxx_1_1math_1_1container__traits" ],
-    [ "norms", "namespacedxx_1_1math_1_1norms.html", [
-      [ "euclidean", "namespacedxx_1_1math_1_1norms.html#a9787b29e40ffeecda74622322651dffb", null ],
-      [ "infinity", "namespacedxx_1_1math_1_1norms.html#acb80fbd4f6a781a45d833496eb7713fe", null ],
-      [ "p_one", "namespacedxx_1_1math_1_1norms.html#a3b7cb7c26491e1c09d4b384f84bcdfcd", null ]
-    ] ],
-    [ "operators", "namespacedxx_1_1math_1_1operators.html", null ],
     [ "vector_operators", "namespacedxx_1_1math_1_1vector__operators.html", [
       [ "operator*", "namespacedxx_1_1math_1_1vector__operators.html#ade0a66290ce92fc5c05b09fa9f3a6e1c", null ],
       [ "operator*", "namespacedxx_1_1math_1_1vector__operators.html#a90cee2c2d65bbf1941231b9c92ecfce7", null ],
@@ -30,6 +23,13 @@ var namespacedxx_1_1math =
       [ "operator/=", "namespacedxx_1_1math_1_1vector__operators.html#a06760f1b058b5ebcae15544b319d3b4b", null ],
       [ "operator/=", "namespacedxx_1_1math_1_1vector__operators.html#a6ee94d772b9545578731723a7f93e16e", null ]
     ] ],
+    [ "container_traits", "namespacedxx_1_1math_1_1container__traits.html", "namespacedxx_1_1math_1_1container__traits" ],
+    [ "norms", "namespacedxx_1_1math_1_1norms.html", [
+      [ "euclidean", "namespacedxx_1_1math_1_1norms.html#a9787b29e40ffeecda74622322651dffb", null ],
+      [ "infinity", "namespacedxx_1_1math_1_1norms.html#acb80fbd4f6a781a45d833496eb7713fe", null ],
+      [ "p_one", "namespacedxx_1_1math_1_1norms.html#a3b7cb7c26491e1c09d4b384f84bcdfcd", null ]
+    ] ],
+    [ "operators", "namespacedxx_1_1math_1_1operators.html", null ],
     [ "Norm", "structdxx_1_1math_1_1Norm.html", null ],
     [ "Sub", "structdxx_1_1math_1_1Sub.html", null ],
     [ "vector", "conceptdxx_1_1math_1_1vector.html", null ],
@@ -37,11 +37,7 @@ var namespacedxx_1_1math =
     [ "vector_like", "conceptdxx_1_1math_1_1vector__like.html", null ],
     [ "mut_vector_like", "conceptdxx_1_1math_1_1mut__vector__like.html", null ],
     [ "RealOf", "namespacedxx_1_1math.html#a46e09c9f88a6079b4ff5d614682c0b4c", null ],
-    [ "Sign", "namespacedxx_1_1math.html#ae8b898e075e71875f70842892f1313b4", [
-      [ "Positive", "namespacedxx_1_1math.html#ae8b898e075e71875f70842892f1313b4a3289297424e01eda5b788c083bbf3147", null ],
-      [ "Zero", "namespacedxx_1_1math.html#ae8b898e075e71875f70842892f1313b4ad7ed4ee1df437474d005188535f74875", null ],
-      [ "Negative", "namespacedxx_1_1math.html#ae8b898e075e71875f70842892f1313b4affb9356ff2b7da85c75c92fa7ea03b8b", null ]
-    ] ],
+    [ "Sign", "namespacedxx_1_1math.html#ae8b898e075e71875f70842892f1313b4", null ],
     [ "abs_diff", "namespacedxx_1_1math.html#ae5404f0f4f383c98cf0fadcaca4c19e5", null ],
     [ "add", "namespacedxx_1_1math.html#aacbf3667dba4222cb5e412055ac1f38a", null ],
     [ "add", "namespacedxx_1_1math.html#a7ddf47d9e73c284232b0c7413628a1ae", null ],
@@ -52,8 +48,8 @@ var namespacedxx_1_1math =
     [ "add", "namespacedxx_1_1math.html#a4508cf58834cfc78ea53e9391cc0310c", null ],
     [ "add", "namespacedxx_1_1math.html#a4d495a14b99268062a1169ab9e509b7c", null ],
     [ "add", "namespacedxx_1_1math.html#aba73a1638577476a64ba9681873915db", null ],
-    [ "cross", "namespacedxx_1_1math.html#a1b340249e65288d34c11d5ac3da2d58b", null ],
     [ "cross", "namespacedxx_1_1math.html#a623ee5c8ff3baf10d3ea9ed15c73d898", null ],
+    [ "cross", "namespacedxx_1_1math.html#a1b340249e65288d34c11d5ac3da2d58b", null ],
     [ "cross", "namespacedxx_1_1math.html#afd832683685ddcaf55d7f3106f63402a", null ],
     [ "dist", "namespacedxx_1_1math.html#a18fd39bddfa007c9197cdac0a7fbae5f", null ],
     [ "div", "namespacedxx_1_1math.html#a156245748630734e67a7b350b21dd012", null ],

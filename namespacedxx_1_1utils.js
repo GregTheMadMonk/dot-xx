@@ -1,14 +1,16 @@
 var namespacedxx_1_1utils =
 [
-    [ "As", "structdxx_1_1utils_1_1As.html", null ],
+    [ "heap", "namespacedxx_1_1utils_1_1heap.html", "namespacedxx_1_1utils_1_1heap" ],
     [ "Defer", "classdxx_1_1utils_1_1Defer.html", null ],
     [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ],
+    [ "As", "structdxx_1_1utils_1_1As.html", null ],
     [ "pointer", "conceptdxx_1_1utils_1_1pointer.html", null ],
     [ "reference", "conceptdxx_1_1utils_1_1reference.html", null ],
     [ "const_vrp", "conceptdxx_1_1utils_1_1const__vrp.html", null ],
     [ "mut_vrp", "conceptdxx_1_1utils_1_1mut__vrp.html", null ],
     [ "is_a", "conceptdxx_1_1utils_1_1is__a.html", null ],
     [ "either_of", "conceptdxx_1_1utils_1_1either__of.html", null ],
+    [ "neither_of", "conceptdxx_1_1utils_1_1neither__of.html", null ],
     [ "declares", "conceptdxx_1_1utils_1_1declares.html", null ],
     [ "range", "namespacedxx_1_1utils.html#a983d60747421e53c644f4339ef5a242a", null ],
     [ "range", "namespacedxx_1_1utils.html#a050854d061cf6ffa3b1772a7628b0831", null ],

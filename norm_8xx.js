@@ -1,6 +1,6 @@
 var norm_8xx =
 [
-    [ "dxx::math::Norm< Func, SqFunc >", "structdxx_1_1math_1_1Norm.html", null ],
+    [ "dxx::math::Norm&lt; Func, SqFunc &gt;", "structdxx_1_1math_1_1Norm.html", null ],
     [ "dxx::math::dist", "namespacedxx_1_1math.html#a18fd39bddfa007c9197cdac0a7fbae5f", null ],
     [ "dxx::math::norm", "namespacedxx_1_1math.html#a9b7665166259eb75a98afaf1f41d9e8e", null ],
     [ "dxx::math::sq_dist", "namespacedxx_1_1math.html#aa8b229a6ed5f7a31ac936b091d4878f4", null ],
