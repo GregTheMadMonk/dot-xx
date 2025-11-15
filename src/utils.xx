@@ -12,9 +12,18 @@ export module dxx.utils;
 export import :defer;
 export import :file_descriptor;
 export import :ranges;
+export import :option;
 export import :traits;
 
 /**
  * @brief The main namespace of the @ref dxx.utils module
  */
-namespace dxx::utils {}
+namespace dxx::utils {
+
+/**
+ * @brief The namespace for heap-allocated replacements for some standard
+ *        library classes
+ */
+namespace heap {}
+
+}

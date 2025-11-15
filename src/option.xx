@@ -1,0 +1,469 @@
+/**
+ * @file  option.xx
+ * @brief Heap-allocated optional type
+ */
+export module dxx.utils:option;
+
+import std;
+
+namespace dxx::utils::heap {
+
+/** @cond Internal stuff */
+
+template <
+    typename T,
+    typename U,
+    typename V
+> concept constructible_from_container = requires {
+    requires std::constructible_from<T, U>;
+    requires (
+        std::same_as<std::remove_cv_t<T>, bool> || (
+            !std::constructible_from<T, V&>
+            && !std::constructible_from<T, const V&>
+            && !std::constructible_from<T, V&&>
+            && !std::constructible_from<T, const V&&>
+            && !std::convertible_to<V&, T>
+            && !std::convertible_to<const V&, T>
+            && !std::convertible_to<V&&, T>
+            && !std::convertible_to<const V&&, T>
+        )
+    );
+}; // <-- concept constructible_from_container
+
+template <
+    typename T,
+    typename V
+> concept assignable_from_container = requires {
+    requires !std::constructible_from<T, V&>;
+    requires !std::constructible_from<T, const V&>;
+    requires !std::constructible_from<T, V&&>;
+    requires !std::constructible_from<T, const V&&>;
+    requires !std::convertible_to<V&, T>;
+    requires !std::convertible_to<const V&, T>;
+    requires !std::convertible_to<V&&, T>;
+    requires !std::convertible_to<const V&&, T>;
+    requires !std::is_assignable_v<T&, V&>;
+    requires !std::is_assignable_v<T&, const V&>;
+    requires !std::is_assignable_v<T&, V&&>;
+    requires !std::is_assignable_v<T&, const V&&>;
+}; // <-- concept assignable_from_container
+
+/** @endcond */
+
+/**
+ * @brief An `std::optional` replacement with heap-allocated storage
+ *
+ * Practically useless and inferior alternative to `std::optional` except
+ * for the cases where a type needs to contain an optional member of the same
+ * type and refactoring this is not an option (e.g. when using reflection
+ * to read web APIs)
+ */
+export
+template <typename T>
+class Option {
+public:
+    /**
+     * @brief Default constructor - initialize an empty optional
+     */
+    inline constexpr
+    Option() noexcept : data{nullptr} {}
+
+    /**
+     * @brief Construct from `std::nullopt` - same as default
+     */
+    inline constexpr
+    Option(std::nullopt_t) noexcept : Option() {}
+
+    /**
+     * @brief Copy the optional value if the underlying type is copyable
+     */
+    inline constexpr
+    Option(const Option& other)
+    requires std::copyable<T>
+        : data{new T(*other.data)}
+    {}
+
+    /**
+     * @brief Transfer ownership over the value from another optional
+     *
+     * Resets the other optional to empty
+     */
+    inline constexpr
+    Option(Option&& other) noexcept : Option()
+    { std::swap(this->data, other.data); }
+
+    /**
+     * @brief Construct from a different optional type
+     */
+    template <typename U>
+    inline constexpr
+    explicit(!std::convertible_to<const U&, T>)
+    Option(const Option<U>& other)
+    requires constructible_from_container<T, const U&, Option<U>>
+        : Option{}
+    { if (other.has_value()) { this->data = new T(*other); } }
+
+    /**
+     * @brief Move from a different optional type
+     */
+    template <typename U>
+    inline constexpr
+    explicit(!std::convertible_to<U, T>)
+    Option(Option<U>&& other)
+    requires constructible_from_container<T, U, Option<U>>
+        : Option{}
+    { if (other.has_value()) { this->data = new T(std::move(*other)); } }
+
+    /**
+     * @brief Construct in-place
+     */
+    template <typename... Args>
+    inline constexpr
+    explicit
+    Option(std::in_place_t, Args&&... args)
+    requires std::constructible_from<T, Args...>
+        : data{new T(std::forward<Args>(args)...)}
+    {}
+
+    /**
+     * @brief Construct in-place with initializer list
+     */
+    template <typename U, typename... Args>
+    inline constexpr
+    explicit
+    Option(std::in_place_t, std::initializer_list<U> i_list, Args&&... args)
+    requires std::constructible_from<T, std::initializer_list<U>&, Args...>
+        : data{new T(i_list, std::forward<Args>(args)...)}
+    {}
+
+    /**
+     * @brief Construct with conversion
+     */
+    template <typename U = std::remove_cv_t<T>>
+    inline constexpr
+    explicit(!std::convertible_to<U, T>)
+    Option(U&& value)
+    requires requires {
+        requires std::constructible_from<T, U>;
+        requires !std::same_as<std::remove_cvref_t<U>, std::in_place_t>;
+        requires !std::same_as<std::remove_cvref_t<U>, Option<T>>;
+        requires !(
+            std::same_as<std::remove_cv_t<T>, bool> && (
+                requires (const std::remove_cvref_t<U>* u1) {
+                    { [] <typename V> (const Option<V>*) {} (u1) };
+                }
+            )
+        );
+    }
+        : data{new T(std::forward<U>(value))}
+    {}
+
+    /**
+     * @brief Reset the optional
+     */
+    inline constexpr
+    Option& operator=(std::nullopt_t) { this->reset(); return *this; }
+
+    /**
+     * @brief Copy from another optional
+     */
+    inline constexpr
+    Option& operator=(const Option& other)
+    requires std::copy_constructible<T> && std::is_copy_assignable_v<T>
+    {
+        if (this->has_value()) {
+            *this->data = *other.data;
+        } else {
+            this->data = new T(*other.data);
+        }
+        return *this;
+    } // <-- Option& operator=(const Option&)
+
+    /**
+     * @brief Move in from another optional
+     */
+    inline constexpr
+    Option& operator=(Option&& other)
+    requires std::is_move_assignable_v<T>
+    {
+        if (this->has_value()) {
+            if (other.has_value()) {
+                *this->data = std::move(*other.data);
+            } else {
+                this->reset();
+            }
+        } else {
+            std::swap(this->data, other.data);
+        }
+        return *this;
+    } // <-- Option& operator=(Operator&&)
+
+    /**
+     * @brief Convert from another optional type
+     */
+    template <typename U>
+    inline constexpr
+    Option& operator=(const Option<U>& other)
+    requires
+        assignable_from_container<T, Option<U>>
+        && std::constructible_from<T, const U&>
+        && std::is_assignable_v<T&, const U&>
+    {
+        if (this->has_value()) {
+            if (other.has_value()) {
+                *this->data = *other.data;
+            } else {
+                this->reset();
+            }
+        } else {
+            this->data = new T(*other.data);
+        }
+        return *this;
+    } // <-- Option& operator=(const Option<U>&)
+
+    /**
+     * @brief Move in from another optional type
+     */
+    template <typename U>
+    inline constexpr
+    Option& operator=(Option<U>&& other)
+    requires
+        assignable_from_container<T, Option<U>>
+        && std::constructible_from<T, U>
+        && std::is_assignable_v<T&, U>
+    {
+        if (this->has_value()) {
+            if (other.has_value()) {
+                *this->data = std::move(*other.data);
+            } else {
+                this->reset();
+            }
+        } else {
+            this->data = new T(std::move(*other.data));
+        }
+        return *this;
+    } // <-- Option& operator=(Option<U>&&)
+
+    /**
+     * @brief Assign or construct the contained value from argument
+     */
+    template <typename U = std::remove_cv_t<T>>
+    inline constexpr
+    Option& operator=(U&& u)
+    requires requires {
+        requires !std::same_as<std::remove_cvref_t<U>, Option<T>>;
+        requires std::constructible_from<T, U>;
+        requires std::is_assignable_v<T&, U>;
+        requires (!std::is_scalar_v<T> || !std::same_as<std::decay_t<U>, T>);
+    }
+    {
+        if (this->has_value()) {
+            *this->data = std::forward<U>(u);
+        } else {
+            this->data = new T(std::forward<U>(u));
+        }
+        return *this;
+    } // <-- Operatpr& operator=(U&&)
+
+    /**
+     * @brief Destroys the contained value if any is allocated
+     */
+    inline constexpr ~Option() { delete this->data; }
+
+    /**
+     * @brief Convert to bool
+     */
+    constexpr explicit operator bool() const noexcept
+    { return this->data != nullptr; }
+
+    /**
+     * @brief Check if the optional contains a value
+     */
+    [[nodiscard]] inline constexpr
+    bool has_value() const noexcept { return this->data != nullptr; }
+
+    /**
+     * @brief Access the underlying value without safety meeasures
+     */
+    [[nodiscard]] inline constexpr
+    decltype(auto) operator*(this auto&& self)
+    { return std::forward_like<decltype(self)>(*self.data); }
+
+    /**
+     * @brief Access the contained value
+     */
+    inline constexpr auto* operator->(this auto&& self)
+    { return std::addressof(*std::forward<decltype(self)>(self)); }
+
+    /**
+     * @brief Access the contained value in a safer way
+     *
+     * @throw `std::bad_optional_access` if the optional contains no value
+     */
+    [[nodiscard]]
+    inline constexpr
+    decltype(auto) value(this auto&& self) {
+        if (!self.has_value()) {
+            throw std::bad_optional_access{};
+        }
+        return *std::forward<decltype(self)>(self);
+    } // <-- decltype(auto) value(this self)
+
+    /**
+     * @brief Returns the contained value if exists, or a provided default
+     *        value
+     */
+    template <typename U = std::remove_cv_t<T>>
+    [[nodiscard]] inline constexpr
+    T value_or(this auto&& self, U&& u) {
+        if (self.data == nullptr) {
+            return std::forward<U>(u);
+        }
+        return *std::forward<decltype(self)>(self);
+    } // <-- T value_or(this self, u)
+
+    /**
+     * @brief Swap the two optionals
+     */
+    inline constexpr
+    void swap(Option& other) noexcept { std::swap(this->data, other.data); }
+
+    /**
+     * @brief Resets the state, destroys the contained value
+     */
+    inline constexpr
+    void reset() { delete this->data; this->data = nullptr; }
+
+    /**
+     * @brief Initialize the optional by constructing from @p args
+     */
+    inline constexpr
+    T& emplace(auto&&... args) {
+        delete this->data;
+        return *(this->data = new T(std::forward<decltype(args)>(args)...));
+    } // <-- T& emplace(...args)
+
+    /**
+     * @brief Initialize the optional by constructing from @p i_list and
+     *        @p args
+     */
+    template <typename U, typename... Args>
+    inline constexpr
+    T& emplace(std::initializer_list<U> i_list, Args&&... args) {
+        delete this->data;
+        return (*this->data = new T(i_list, std::forward<Args>(args)...));
+    } // <-- T& emplace(i_list, ...args)
+
+    /**
+     * @brief If the optional cotains a value, invokes @p f with the contained
+     *        value as an argument and returns the result of that invokation,
+     *        otherwise returns an empty optional
+     */
+    template <typename Self, typename F>
+    inline constexpr
+    decltype(auto) and_then(this Self&& self, F&& f) {
+        using V = decltype(*std::forward<Self>(self));
+        if (self.has_value()) {
+            return std::invoke(std::forward<F>(f), *std::forward<Self>(self));
+        }
+        return std::remove_cvref_t<std::invoke_result_t<F, V>>{};
+    } // <-- decltype(auto) and_then(self, f)
+
+    /**
+     * @brief If the optional contains a value, returns an optional that
+     *        contains the result of applying @p f to it, otherwise returns
+     *        an empty optional
+     */
+    template <typename Self, typename F>
+    inline constexpr
+    decltype(auto) transform(this Self&& self, F&& f) {
+        using V = decltype(*std::forward<Self>(self));
+        using R = std::remove_cvref_t<std::invoke_result_t<F, V>>;
+        if (self.has_value()) {
+            return Option<R>{
+                std::invoke(std::forward<F>(f), *std::forward<Self>(self))
+            };
+        }
+        return Option<R>{};
+    } // <-- decltype(auto) transform(this self, f)
+
+    /**
+     * @brief Returns a copy of the optional if it contains a value, otherwise
+     *        returns the result of @p f
+     */
+    template <typename Self, typename F>
+    inline constexpr
+    std::remove_cvref_t<Self> or_else(this Self&& self, F&& f) {
+        return self.has_value() ? std::forward<Self>(self)
+                                : std::invoke(std::forward<F>(f));
+    } // <-- <Self> or_else(this self, f)
+
+private:
+    /**
+     * @brief A pointer to the contained value or `nullptr` for the empty
+     *        optional
+     */
+    T* data;
+}; // <-- class Option<T>
+
+export
+template <typename T, std::three_way_comparable_with<T> U>
+[[nodiscard]]
+inline constexpr
+std::compare_three_way_result_t<T, U>
+operator<=>(const Option<T>& lhs, const Option<U>& rhs) {
+    return (lhs.has_value() && rhs.has_value())
+         ? *lhs <=> *rhs
+         : lhs.has_value() <=> rhs.has_value();
+} // <-- ... operator<=>(lhs, rhs)
+
+export
+template <typename T>
+[[nodiscard]]
+inline constexpr
+std::compare_three_way_result_t<bool, bool>
+operator<=>(const Option<T>& lhs, std::nullopt_t)
+{ return lhs.has_value() <=> false; }
+
+export
+template <typename T, typename U>
+[[nodiscard]]
+inline constexpr
+std::compare_three_way_result_t<T, U>
+operator<=>(const Option<T>& lhs, const U& rhs) {
+    return lhs.has_value() ? *lhs <=> rhs : std::strong_ordering::less;
+} // <-- operator<=>(lhs, rhs)
+
+export
+template <typename T, std::equality_comparable_with<T> U>
+[[nodiscard]] inline constexpr
+bool operator==(const Option<T>& lhs, const Option<U>& rhs) {
+    return (lhs.has_value() && rhs.has_value())
+         ? *lhs == *rhs
+         : lhs.has_value() == rhs.has_value();
+}
+
+export
+template <typename T, std::equality_comparable_with<T> U>
+[[nodiscard]] inline constexpr
+bool operator==(const Option<T>& lhs, const U& rhs)
+{ return lhs.has_value() ? *lhs == rhs : false; }
+
+export
+template <typename T>
+[[nodiscard]] inline constexpr
+bool operator==(const Option<T>& lhs, std::nullopt_t)
+{ return !lhs.has_value(); }
+
+} // <-- namespace dxx::utils::heap
+
+namespace std {
+
+export
+template <typename T>
+inline constexpr
+void swap(dxx::utils::heap::Option<T>& lhs, dxx::utils::heap::Option<T>& rhs)
+noexcept
+{ lhs.swap(rhs); }
+
+} // <-- namespace std
