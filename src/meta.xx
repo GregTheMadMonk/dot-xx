@@ -1,0 +1,40 @@
+/**
+ * @file  meta.xx
+ * @brief Metaprogramming stuff
+ */
+export module dxx.utils:meta;
+
+import :traits;
+
+import std;
+
+namespace dxx::utils {
+
+/** @cond Internal stuff */
+
+template <std::size_t idx, typename T, typename... Ts>
+struct FindTypeIn; // base template
+
+template <std::size_t idx, typename T, typename... Ts>
+struct FindTypeIn<idx, T, T, Ts...> { static constexpr auto value = idx; };
+
+template <std::size_t idx, typename T, typename T1, typename... Ts>
+struct FindTypeIn<idx, T, T1, Ts...> {
+    static constexpr auto value = FindTypeIn<idx + 1, T, Ts...>::value;
+}; // <-- struct FindTypeIn<idx, T, T1, Ts...>
+
+template <std::size_t idx, typename T>
+struct FindTypeIn<idx, T> { static constexpr auto value = std::nullopt; };
+
+/** @endcond */
+
+/**
+ * @brief Find the type @p T in the list of types @p Ts, return its index
+ *        if present, otherwise is `std::nullopt`
+ */
+export
+template <typename T, typename... Ts>
+constexpr
+std::optional<std::size_t> find_type_in = FindTypeIn<0, T, Ts...>::value;
+
+} // <-- namespace dxx::utils
