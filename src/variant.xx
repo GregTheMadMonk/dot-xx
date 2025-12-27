@@ -1,0 +1,208 @@
+/**
+ * @file  variant.xx
+ * @brief Heap-allocated `std::variant` reaplacement
+ */
+export module dxx.utils:variant;
+
+import :meta;
+import :traits;
+
+import dxx.cstd.fixed;
+import std;
+
+namespace dxx::utils::heap {
+
+/**
+ * @brief An `std::variant` replacement with heap-allocated storage
+ *
+ * Practically useless and inferior alternative to `std::variant` except
+ * for the cases where a type needs to contain an optional member of the same
+ * type and refactoring this is not an option (e.g. when using reflection
+ * to read web APIs)
+ */
+export
+template <typename... Ts>
+class Variant {
+public:
+    inline constexpr 
+    Variant() : idx{0}, data{nullptr}
+    { this->data = new Ts...[0] (); }
+
+    inline constexpr
+    Variant(const Variant& other)
+        : idx{other.idx}
+        , data{nullptr}
+    {
+        if (!other.valueless_by_exception()) {
+            other.visit(
+                [this] <typename T> (const T& t) {
+                    this->data = new std::remove_cv_t<T>(t);
+                }
+            );
+        }
+    }
+
+    inline constexpr
+    Variant(Variant&& other) noexcept
+        : idx{other.idx}
+        , data{nullptr}
+    { std::swap(this->data, other.data); }
+
+    template <typename T>
+    inline constexpr
+    Variant(T&& t) {
+        // TODO:
+    }
+
+    /**
+     * @brief Get the zero-based index of the alternative held by the variant
+     */
+    [[nodiscard]]
+    inline constexpr
+    std::size_t index() const { return this->idx; }
+
+    /**
+     * @brief Swap with another variant of the same type
+     */
+    inline constexpr
+    void swap(Variant& other) noexcept {
+        std::swap(this->idx,  other.idx);
+        std::swap(this->data, other.data);
+    } // <-- void swap(other)
+
+    template <either_of<Ts...> T, typename... Args>
+    inline constexpr
+    T& emplace(Args&&... args) {
+        static constexpr auto new_idx = find_type_in<T, Ts...>.value();
+        this->destroy_current();
+        this->idx  = new_idx;
+        this->data = new T(std::forward<Args>(args)...);
+        return *reinterpret_cast<T*>(this->data);
+    } // <-- T& emplace(args...)
+
+    template <either_of<Ts...> T, typename U, typename... Args>
+    inline constexpr
+    T& emplace(std::initializer_list<U> i_list, Args&&... args)
+    { return this->emplace<T>(i_list, std::forward<Args>(args)...); }
+
+    template <uz new_idx, typename... Args>
+    inline constexpr
+    auto& emplace(Args&&... args)
+    { return this->emplace<Ts...[new_idx]>(std::forward<Args>(args)...); }
+
+    template <uz new_idx, typename U, typename... Args>
+    inline constexpr
+    auto& emplace(std::initializer_list<U> i_list, Args&&... args)
+    { return this->emplace<new_idx>(i_list, std::forward<Args>(args)...); }
+
+    [[nodiscard]]
+    inline constexpr
+    bool valueless_by_exception() const noexcept
+    { return this->data == nullptr; }
+
+    template <typename Self, typename Vis>
+    inline constexpr
+    decltype(auto) visit(this Self&& self, Vis&& vis)
+    requires (
+        requires (Ts t) {
+            { std::invoke(std::forward<Vis>(vis), std::forward_like<Self>(t)) };
+        } && ...
+    )
+    {
+        return std::forward<Self>(self).template visit_maybe<Ts...>(
+            std::forward<Vis>(vis)
+        );
+    } // <-- decltype(auto) visit(this self, vis)
+
+private:
+    template <typename Curr, typename... Next, typename Self, typename Vis>
+    inline constexpr
+    decltype(auto) visit_maybe(this Self&& self, Vis&& vis) {
+        static constexpr auto s_idx = find_type_in<Curr, Ts...>.value();
+        if (s_idx == self.idx) {
+            return std::invoke(
+                std::forward<Vis>(vis),
+                std::forward_like<Self>(*reinterpret_cast<Curr*>(self.data))
+            );
+        } else if constexpr (sizeof...(Next) != 0) {
+            return std::forward<Self>(self).template visit_maybe<Next...>(
+                std::forward<Vis>(vis)
+            );
+        } else {
+            throw std::bad_variant_access{};
+        }
+    } // <-- visit_maybe(self, vis)
+
+    /**
+     * @brief If the stored value is indeed of type @p T, it is destroyed
+     *        via `operator delete` and the pointer is reset to `nullptr`.
+     *        Otherwise does nothing
+     */
+    template <either_of<Ts...> T>
+    void destroy_maybe() {
+        static constexpr auto s_idx = find_type_in<T, Ts...>.value();
+        if (s_idx == this->idx) {
+            T* tp = reinterpret_cast<T*>(this->data);
+            delete tp;
+            this->data = nullptr;
+        }
+    } // <-- void destroy<T>()
+
+    /**
+     * @brief Destroy the currently stored value. Does not reset the @ref data
+     *        pointer
+     */
+    void destroy_current() {
+        if (this->data == nullptr) {
+            return;
+        }
+
+        (this->destroy_maybe<Ts>(), ...);
+    } // <-- void destroy()
+
+    /**
+     * @brief The index of the current alternative
+     */
+    std::size_t idx;
+    /**
+     * @brief A pointer to the variant data
+     *
+     * `void*` because variant can store multiple different types
+     */
+    void*       data;
+}; // <-- class Variant<Ts...>
+
+} // <-- namespace dxx::utils::heap
+
+namespace std {
+
+export
+template <typename T, typename... Ts>
+requires dxx::utils::either_of<T, Ts...>
+[[nodiscard]]
+inline constexpr
+bool holds_alternative(const dxx::utils::heap::Variant<Ts...>& var) {
+    static constexpr auto idx = dxx::utils::find_type_in<T, Ts...>.value();
+    return var.index() == idx;
+} // <-- bool holds_alternative(var)
+
+export
+template <dxx::utils::is_a<dxx::utils::heap::Variant> Var, typename Vis>
+inline constexpr
+decltype(auto) visit(Var&& var, Vis&& vis)
+{ return std::forward<Var>(var).visit(std::forward<Vis>(vis)); }
+
+export
+template <typename T, dxx::utils::is_a<dxx::utils::heap::Variant> Var>
+inline constexpr
+auto* get_if(Var&& var) {
+    using Ret = decltype(&std::forward_like<Var>(std::declval<T&&>()));
+} // <-- auto* get_if(var)
+
+export
+template <uz idx, typename... Ts>
+struct variant_alternative<idx, ::dxx::utils::heap::Variant<Ts...>> {
+    using type = Ts...[idx];
+}; // <-- struct variant_alternative<idx, heap::Variant<Ts...>>
+
+} // <-- namespace std

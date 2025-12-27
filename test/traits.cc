@@ -29,6 +29,7 @@ static_assert( is_a<S<int>, S>);
 static_assert( is_a<S<int, float>, S>);
 static_assert(!is_a<S<int>, T>);
 static_assert(!is_a<S<int, float>, T>);
+static_assert(!is_a<T<int, float>, S>);
 static_assert( is_a<T<int>, T>);
 static_assert( is_a<T<int, float>, T>);
 

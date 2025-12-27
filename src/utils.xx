@@ -15,6 +15,7 @@ export import :meta;
 export import :option;
 export import :ranges;
 export import :traits;
+export import :variant;
 
 /**
  * @brief The main namespace of the @ref dxx.utils module

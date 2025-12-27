@@ -1,6 +1,6 @@
 /**
  * @file  option.xx
- * @brief Heap-allocated optional type
+ * @brief Heap-allocated `std::optional` replacement
  */
 export module dxx.utils:option;
 

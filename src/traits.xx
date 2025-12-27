@@ -43,13 +43,14 @@ concept const_vrp = [] {
 export template <typename T> concept mut_vrp = !const_vrp<T>;
 
 /**
- * @brief Checks if the type is an instance of a template
+ * @brief Checks if the type is an instance of a template (removes references
+ *        and qualifiers)
  *
  * Templates with NTTP are not supported :(
  */
 export
 template <typename T, template <typename...> typename Template>
-concept is_a = requires (T t) {
+concept is_a = requires (std::remove_cvref_t<T> t) {
     { [] <typename... Args> (const Template<Args...>&) {} (t) };
 }; // <-- concept is_a<T, Template>
 
