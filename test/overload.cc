@@ -11,7 +11,7 @@ using namespace std::literals;
 
 using ::dxx::selftest::test;
 using ::dxx::selftest::UnitTest;
-using ::dxx::overload::overload;
+using ::dxx::overload::Overload;
 
 struct S {
     auto f()      const { return "S::f()"s; }
@@ -27,7 +27,7 @@ auto g(float f) { return std::format("free g({})", f); }
 
 const UnitTest simple{
     "simple", [] {
-        const overload callback{
+        const Overload callback{
             [] (int)   { return "int"s;   },
             [] (float) { return "float"s; },
             [] (char)  { return "char"s;  },
@@ -41,7 +41,7 @@ const UnitTest simple{
 
 const UnitTest member{
     "method", [] {
-        const overload callback{
+        const Overload callback{
             [] (int) { return "int"s; },
             &S::f,
             &S::g,
@@ -56,7 +56,7 @@ const UnitTest member{
 
 const UnitTest all{
     "all", [] {
-        const overload callback{
+        const Overload callback{
             [] (int) { return "int"s; },
             &S::f,
             &S::g,
@@ -72,7 +72,7 @@ const UnitTest all{
 
 const UnitTest visit{
     "visit", [] {
-        const overload callback{
+        const Overload callback{
             [] (int) { return "int"s; },
             &S::f,
             &g
@@ -93,7 +93,7 @@ const UnitTest visit{
 
 const UnitTest value_categories{
     "value_categories", [] {
-        const overload callback{
+        const Overload callback{
             &S::i,
             &S::j,
             &S::k,
@@ -110,7 +110,7 @@ const UnitTest value_categories{
 
 const UnitTest pipe_operator{
     "pipe_operator", [] {
-        const overload callback{
+        const Overload callback{
             &S::i,
             &S::j,
             &S::k,

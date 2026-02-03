@@ -19,12 +19,12 @@
  *
  * // ... someplace else
  *
- * const dxx::overload::overload callback{
+ * const dxx::overload::Overload callback{
  *     [] (int i) { std::println("lambda"); },
  *     &S::f,
  *     &S::g,
  *     h,
- * }; // <-- const overload callback
+ * }; // <-- const Overload callback
  *
  * callback(10);         // lambda
  * callback(S{});        // S::f()
@@ -105,21 +105,21 @@ struct wrap_callable<Ret (*)(Args...)> {
  */
 export
 template <typename... Ts>
-struct overload : public Ts... {
+struct Overload : public Ts... {
     using Ts::operator()...;
 
     template <typename V, typename O>
-    requires std::same_as<std::remove_cvref_t<O>, overload>
+    requires std::same_as<std::remove_cvref_t<O>, Overload>
     friend inline constexpr
     decltype(auto) operator|(V&& v, O&& o)
     { return std::visit(std::forward<O>(o), std::forward<V>(v)); }
-}; // <-- struct overload<Ts...>
+}; // <-- struct Overload<Ts...>
 
 /**
  * @brief CTAD is not necessary for basic overload pattern, but here we also
  *        want to support free and member function pointers
  */
 template <typename... Ts>
-overload(Ts...) -> overload<typename wrap_callable<Ts>::type...>;
+Overload(Ts...) -> Overload<typename wrap_callable<Ts>::type...>;
 
 } // <-- namespace dxx::overload
