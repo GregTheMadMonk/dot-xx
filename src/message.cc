@@ -254,7 +254,7 @@ std::string Response::pack() const {
     std::stringstream ret;
     ret << this->protocol << ' '
         << (
-            this->status | dxx::overload::overload{
+            this->status | dxx::overload::Overload{
                 [] (const std::string& s) -> std::string_view { return s; },
                 [] (StatusCode sc) -> std::string_view {
                     return status_text(sc);

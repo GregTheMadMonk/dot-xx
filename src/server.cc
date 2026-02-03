@@ -245,7 +245,7 @@ SimpleTask Server::listen_and_wait(const std::string& ip, u16 port) {
                 auto* target = router->second.find(req.resource, &req.substs);
                 if (target != nullptr) {
                     dxx::assert::debug(target->get_data().has_value());
-                    target->get_data().value() | dxx::overload::overload{
+                    target->get_data().value() | dxx::overload::Overload{
                         [&] (const DispatcherImmediate& di) {
                             di(req, res);
                             conn->respond_with(res);
