@@ -6,6 +6,8 @@ export module dxx.utils:option;
 
 import std;
 
+import :traits;
+
 namespace dxx::utils::heap {
 
 /** @cond Internal stuff */
@@ -148,11 +150,8 @@ public:
         requires !std::same_as<std::remove_cvref_t<U>, std::in_place_t>;
         requires !std::same_as<std::remove_cvref_t<U>, Option<T>>;
         requires !(
-            std::same_as<std::remove_cv_t<T>, bool> && (
-                requires (const std::remove_cvref_t<U>* u1) {
-                    { [] <typename V> (const Option<V>*) {} (u1) };
-                }
-            )
+            std::same_as<std::remove_cv_t<T>, bool>
+            && is_a<std::remove_cvref_t<U>, Option>
         );
     }
         : data{new T(std::forward<U>(value))}
