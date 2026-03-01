@@ -171,9 +171,13 @@ public:
     requires std::copy_constructible<T> && std::is_copy_assignable_v<T>
     {
         if (this->has_value()) {
-            *this->data = *other.data;
+            if (other.has_value()) {
+                *this->data = *other.data;
+            } else {
+                this->reset();
+            }
         } else {
-            this->data = new T(*other.data);
+            this->emplace(*other.data);
         }
         return *this;
     } // <-- Option& operator=(const Option&)
@@ -210,12 +214,12 @@ public:
     {
         if (this->has_value()) {
             if (other.has_value()) {
-                *this->data = *other.data;
+                *this->data = *other;
             } else {
                 this->reset();
             }
         } else {
-            this->data = new T(*other.data);
+            this->emplace(*other);
         }
         return *this;
     } // <-- Option& operator=(const Option<U>&)
@@ -233,12 +237,12 @@ public:
     {
         if (this->has_value()) {
             if (other.has_value()) {
-                *this->data = std::move(*other.data);
+                *this->data = std::move(*other);
             } else {
                 this->reset();
             }
         } else {
-            this->data = new T(std::move(*other.data));
+            this->emplace(std::move(*other));
         }
         return *this;
     } // <-- Option& operator=(Option<U>&&)
@@ -259,7 +263,7 @@ public:
         if (this->has_value()) {
             *this->data = std::forward<U>(u);
         } else {
-            this->data = new T(std::forward<U>(u));
+            this->emplace(std::forward<U>(u));
         }
         return *this;
     } // <-- Operatpr& operator=(U&&)

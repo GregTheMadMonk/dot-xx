@@ -205,6 +205,21 @@ const UnitTest emplace_initializer_list{
     }
 }; // <-- emplace_initializer_list
 
+const UnitTest copy_from_empty_optional{
+    "copy_from_empty_optional", [] {
+        Option<int> oi{};
+        oi.emplace(10);
+        Option<int> oj{};
+        oi = oj;
+        test(!oi.has_value());
+
+        oi.emplace(10);
+        Option<float> of{};
+        oi = of;
+        test(!oi.has_value());
+    }
+}; // <-- copy_from_empty_optional
+
 } // <-- namespace test::dxx::utils::heap::option
 
 } // <-- namespace <anonymous>
