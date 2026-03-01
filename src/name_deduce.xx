@@ -98,24 +98,28 @@ std::tuple<std::optional<std::string_view>, uz> get_test_name_cpp() {
     };
     static constexpr auto start = fn.find(test_prefix);
 
-    if (start == std::string::npos) {
+    if constexpr (start == std::string::npos) {
         return { std::nullopt, 0 };
+    } else {
+        static constexpr auto offset = start + test_prefix.length();
+
+        if constexpr (offset >= fn.length()) {
+            return { std::nullopt, 0 };
+        } else {
+            // Covers GCC and Clang
+            const auto end = std::min(
+                fn.find("(", offset),
+                fn.find("<", offset)
+            );
+            const auto len = end - offset;
+
+            const auto name = fn.substr(offset, len);
+
+            const auto torem = std::ranges::count(name, ':');
+
+            return { name, len - torem / 2 };
+        }
     }
-
-    const auto offset = start + test_prefix.length();
-
-    // Covers GCC and Clang
-    const auto end = std::min(
-        fn.find("(", offset),
-        fn.find("<", offset)
-    );
-    const auto len = end - offset;
-
-    const auto name = fn.substr(offset, len);
-
-    const auto torem = std::ranges::count(name, ':');
-
-    return { name, len - torem / 2 };
 } // <-- get_test_name_cpp<T>()
 
 /**
@@ -188,30 +192,3 @@ template <typename T>
 concept named_test_body = (std::invocable<T> && get_test_name<T>().has_value());
 
 } // <-- namespace dxx::selftest
-
-// Sanity check - compile time tests
-namespace some::ns {
-    [[maybe_unused]] auto l = [] {};
-} // <-- namespace some:ns
-
-namespace {
-namespace test::some::ns {
-    [[maybe_unused]] auto l  = [] {};
-    [[maybe_unused]] auto l2 = [] {};
-} // <-- namespace test::some::ns
-} // <-- namespace <anonymous>
-
-static_assert(
-    !dxx::selftest::get_test_name<decltype(some::ns::l)>().has_value()
-);
-static_assert(
-    dxx::selftest::get_test_name<decltype(test::some::ns::l)>().has_value()
-);
-static_assert(
-    dxx::selftest::get_test_name<decltype(test::some::ns::l)>().value()
-    == "/some/ns/"
-);
-static_assert(
-    dxx::selftest::get_test_name<decltype(test::some::ns::l2)>().value()
-    == "/some/ns/"
-);

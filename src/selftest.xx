@@ -15,7 +15,6 @@ import dxx.cstd.compat;
 import dxx.cstd.fixed;
 
 export import :lifetime_tester;
-
 import :name_deduce;
 
 /**
@@ -32,7 +31,7 @@ using TestsMap     = std::map<std::string, TestBody>;
  * `constinit` to ensure the smart pointer is initialized before the tests
  * are
  */
-inline constinit std::unique_ptr<TestsMap>     all_tests = nullptr;
+inline constinit std::unique_ptr<TestsMap> all_tests = nullptr;
 
 /**
  * @brief Create an object of that class to declare a unit test
