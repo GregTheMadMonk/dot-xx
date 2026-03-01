@@ -350,7 +350,7 @@ public:
     inline constexpr
     T& emplace(std::initializer_list<U> i_list, Args&&... args) {
         delete this->data;
-        return (*this->data = new T(i_list, std::forward<Args>(args)...));
+        return *(this->data = new T(i_list, std::forward<Args>(args)...));
     } // <-- T& emplace(i_list, ...args)
 
     /**

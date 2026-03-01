@@ -197,6 +197,14 @@ const UnitTest and_then{
     }
 }; // <-- and_then
 
+const UnitTest emplace_initializer_list{
+    "emplace_initializer_list", [] {
+        Option<std::vector<int>> ov{};
+        test(std::ranges::equal(ov.emplace({1, 2, 3}), std::vector{1, 2, 3}));
+        test(std::ranges::equal(ov.value(), std::vector{1, 2, 3}));
+    }
+}; // <-- emplace_initializer_list
+
 } // <-- namespace test::dxx::utils::heap::option
 
 } // <-- namespace <anonymous>
