@@ -12,7 +12,7 @@ var classdxx_1_1utils_1_1heap_1_1Option =
     [ "emplace", "classdxx_1_1utils_1_1heap_1_1Option.html#a0b990ae4f6ce78703676cfc51ef1d919", null ],
     [ "explicit", "classdxx_1_1utils_1_1heap_1_1Option.html#a8e9ab0c3b323b321eb2b03dc113e4313", null ],
     [ "explicit", "classdxx_1_1utils_1_1heap_1_1Option.html#a25bd9e4faa716f084d731c68e548d8e2", null ],
-    [ "explicit", "classdxx_1_1utils_1_1heap_1_1Option.html#a78ee2ed2448e032dca8347a729decdb4", null ],
+    [ "explicit", "classdxx_1_1utils_1_1heap_1_1Option.html#ad64d2b5e2bacdced4fc51a8308daeea5", null ],
     [ "has_value", "classdxx_1_1utils_1_1heap_1_1Option.html#aa3b670399dee0c2d53ea4ebc865c8ce4", null ],
     [ "operator bool", "classdxx_1_1utils_1_1heap_1_1Option.html#aa804d0fd4860aee19c1d13e3a6065f5f", null ],
     [ "operator*", "classdxx_1_1utils_1_1heap_1_1Option.html#ac6fd311ddaa70d467065843b3af78c9e", null ],

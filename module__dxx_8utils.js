@@ -14,5 +14,6 @@ var module__dxx_8utils =
     [ "dxx::utils::range", "module__dxx_8utils.html#ad73397990824007384f48e7ae64557fb", null ],
     [ "dxx::utils::range", "module__dxx_8utils.html#a983d60747421e53c644f4339ef5a242a", null ],
     [ "dxx::utils::range", "module__dxx_8utils.html#a050854d061cf6ffa3b1772a7628b0831", null ],
+    [ "dxx::utils::find_type_in", "module__dxx_8utils.html#a6f955144fde0a11b9a349e97d948b974", null ],
     [ "dxx::utils::as", "module__dxx_8utils.html#ac033a4ccf24a3ce6cea329af10c3dc66", null ]
 ];

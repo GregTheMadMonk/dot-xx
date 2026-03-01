@@ -45,7 +45,7 @@ var hierarchy =
     [ "dxx::math::Sub", "structdxx_1_1math_1_1Sub.html", null ],
     [ "dxx::math::container_traits::Traits&lt; V &gt;", "structdxx_1_1math_1_1container__traits_1_1Traits.html", null ],
     [ "Ts...", null, [
-      [ "dxx::overload::overload< Ts >", "structdxx_1_1overload_1_1overload.html", null ]
+      [ "dxx::overload::Overload< Ts >", "structdxx_1_1overload_1_1Overload.html", null ]
     ] ],
     [ "dxx::selftest::UnitTest&lt; TFunc &gt;", "classdxx_1_1selftest_1_1UnitTest.html", null ],
     [ "UOf&lt; width &gt;", "structUOf.html", null ],

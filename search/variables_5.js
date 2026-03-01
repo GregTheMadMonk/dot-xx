@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['method_0',['method',['../structdxx_1_1http_1_1Request.html#a70698838279b7da80394479bc392eefd',1,'dxx::http::Request']]],
-  ['method_5fstring_1',['method_string',['../structdxx_1_1http_1_1Request.html#a51568d4d6282ec877e359599a6e413b8',1,'dxx::http::Request']]],
-  ['mime_5ftypes_2',['mime_types',['../mime_8xx.html#abee544ac8dde5b6b22c2acc7cbfc5ad1',1,'dxx::http']]]
+  ['infinity_0',['infinity',['../namespacedxx_1_1math_1_1norms.html#acb80fbd4f6a781a45d833496eb7713fe',1,'dxx::math::norms']]]
 ];

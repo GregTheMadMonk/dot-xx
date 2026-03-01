@@ -44,7 +44,7 @@ var annotated_dup =
         [ "wrap_callable&lt; Ret(Class::*)(Args...) const &gt;", "structdxx_1_1overload_1_1wrap__callable_3_01Ret_07Class_1_1_5_08_07Args_8_8_8_08_01const_01_4.html", null ],
         [ "wrap_callable&lt; Ret(Class::*)(Args...) &amp;&amp; &gt;", "structdxx_1_1overload_1_1wrap__callable_3_01Ret_07Class_1_1_5_08_07Args_8_8_8_08_01_6_6_01_4.html", null ],
         [ "wrap_callable&lt; Ret(*)(Args...)&gt;", "structdxx_1_1overload_1_1wrap__callable_3_01Ret_07_5_08_07Args_8_8_8_08_4.html", null ],
-        [ "overload", "structdxx_1_1overload_1_1overload.html", null ]
+        [ "Overload", "structdxx_1_1overload_1_1Overload.html", null ]
       ] ],
       [ "selftest", "namespacedxx_1_1selftest.html", [
         [ "LifetimeTester", "classdxx_1_1selftest_1_1LifetimeTester.html", "classdxx_1_1selftest_1_1LifetimeTester" ],
