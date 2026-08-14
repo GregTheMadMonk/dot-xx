@@ -18,9 +18,9 @@ public:
     /**
      * @brief Wrap a file descriptor integer
      *
-     * If `-1` is passed, it will no be closed
+     * If `-1` is passed, it will not be closed
      */
-    FileDescriptor(int c_fd) : fd(c_fd) {}
+    inline FileDescriptor(int c_fd) : fd(c_fd) {}
 
     FileDescriptor(const FileDescriptor&)            = delete;
     FileDescriptor& operator=(const FileDescriptor&) = delete;
@@ -28,12 +28,14 @@ public:
     /**
      * @brief Take ownership of another file descriptor
      */
-    FileDescriptor(FileDescriptor&& other) : fd(other.fd) { other.fd = -1; }
+    inline FileDescriptor(FileDescriptor&& other)
+        : fd(other.fd)
+    { other.fd = -1; }
     /**
      * @brief Take ownership of another file descriptor and close already
      *        owned if any
      */
-    FileDescriptor& operator=(FileDescriptor&& other) {
+    inline FileDescriptor& operator=(FileDescriptor&& other) {
         if (this == std::addressof(other)) {
             return *this;
         }
@@ -48,17 +50,16 @@ public:
     /**
      * @brief Close the file descriptor if opened
      */
-    ~FileDescriptor() { if (this->fd != -1) close(this->fd); }
+    inline ~FileDescriptor() { if (this->fd != -1) close(this->fd); }
 
     /**
-     * @brief Get the underlying descriptor. Sorry for implicit conversion,
-     *        I just wanted it to be a drop-in replacement
+     * @brief Get the underlying descriptor 
      */
-    inline int operator*() const { return this->fd; }
+    [[nodiscard]] inline int operator*() const { return this->fd; }
     /**
      * @brief Get the underlying descriptor
      */
-    inline int get() const { return this->fd; }
+    [[nodiscard]] inline int get() const { return this->fd; }
 
 private:
     int fd;
