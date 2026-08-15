@@ -6,16 +6,18 @@ share between projects.
 ### Compiler support notice
 
 All modules require C++23's `import std`. This means at least __CMake 3.30__ and
-__Ninja__ (what version?)
+a modern __Ninja__. If your toolchain does __not__ support `std`/`std.compat`
+modules, you might be able to "fake" them by writing your own `module std`
+that re-export necessary entities and linking the `dot-xx` targets against
+the target that provides it - I've successfully done it once.
 
 The library is compiled and tested on Linux. Other UNIX systems might work,
 and some parts might work on Windows.
 
-The library suffesfully compiles on __Clang__ version 20 and 21.
-__GCC__ (versions 15 and 16) fails to compile it for now, due to what I suspect
-to be a mixture of my fault and compiler bugs.
+The library suffesfully compiles on __Clang__ and __GCC__, at least the versions
+available in the Arch Linux repos - see GitHub actions.
 
-Some thing will fail to compile unless you `import std` alongside importing
+Some things will fail to compile unless you `import std` alongside importing
 these modules. This is due to how [C++ standard specifies instantiation context for modules](https://eel.is/c++draft/module.context). I am looking into maybe `export import`ing
 `std` in some or all of the modules, but for now I don't so be wary of that.
 

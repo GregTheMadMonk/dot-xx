@@ -12,7 +12,7 @@ option( DXX_SELFTEST "Test the modules"                               OFF )
 option( DXX_DOXYGEN  "Generate docs with doxygen"                     OFF )
 
 option( DXX_WITH_HTTP "Include dxx.http module" OFF )
-option( DXX_WIHT_MATH "Include dxx.math module" OFF )
+option( DXX_WITH_MATH "Include dxx.math module" OFF )
 
 if( DXX_SELFTEST )
     set( CMAKE_CXX_MODULE_STD ON )
