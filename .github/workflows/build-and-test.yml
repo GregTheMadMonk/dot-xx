@@ -51,6 +51,12 @@ jobs:
         run:   sudo chroot root.x86_64 cmake --build build-llvm-libstdcpp
       - name:  Clang + libstdc++ - Run the unit tests
         run:   sudo chroot root.x86_64 /build-llvm-libstdcpp/selftest
+      - name:  GCC - Configure build
+        run:   sudo chroot root.x86_64 bash -c 'CC=gcc CXX=g++ cmake dot-xx -B build-gcc -GNinja -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -Wall -Wextra -pedantic" -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD="f35a9ac6-8463-4d38-8eec-5d6008153e7d" -DCMAKE_BUILD_TYPE=Debug -DDXX_SELFTEST=ON -DDXX_DOXYGEN=ON -DDXX_WITH_HTTP=ON -DDXX_WITH_MATH=ON'
+      - name:  GCC - Build the library
+        run:   sudo chroot root.x86_64 cmake --build build-gcc
+      - name:  GCC - Run the unit tests
+        run:   sudo chroot root.x86_64 /build-gcc/selftest
       - name:  Docs - Build the docs
         run:   sudo chroot root.x86_64 cmake --build build-llvm-libcpp --target docs
       - name:  Docs - Add a remote to push to
