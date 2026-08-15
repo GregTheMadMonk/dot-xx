@@ -107,16 +107,11 @@ auto get_test_name_cpp() {
                 fns.find("(", offset),
                 fns.find("<", offset)
             );
-            const auto len = end - offset;
-
-            const auto name = fns.substr(offset, len);
-
-            const auto torem = std::ranges::count(name, ':');
 
             auto& str = ret.emplace();
             str.fill('\0');
-            for (uz i = 0; i < len; ++i) {
-                str[i] = name[i];
+            for (uz i = offset; i < end; ++i) {
+                str[i - offset] = fns[i];
             }
         }
     }
