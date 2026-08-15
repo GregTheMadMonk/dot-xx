@@ -20,6 +20,13 @@ inline constexpr std::array anonymous_indicators{
 };
 
 /**
+ * @brief A helper for monadic optional operations
+ */
+inline constexpr auto view_buf = [] (const auto& buf) {
+    return std::string_view(buf.data());
+}; // <-- view_buf(buf)
+
+/**
  * @brief Forwards its own `std::source_location::function_name()`
  *
  * Required because we want to use it as a constexpr variable and some compilers
@@ -35,18 +42,25 @@ std::string_view function_name() {
 } // <-- function_name<T>()
 
 /**
- * @brief Removes anonymous namespace mentions from the function name
+ * @brief Gets the C++ name of the type's scope (if it starts with `test::`)
+ *        and gets rid of the `test::` part, e.g. for `test::a::b::c` it will
+ *        return `a::b::c`
+ *
+ * @return An optional that either contains a C++ name of the type's scope
+ *         or a `nullopt` if the scope is not a test scope. The buffer, if
+ *         the optional is not empty, is properly null-terminated
  */
 template <typename T>
 consteval
-auto function_name_sanitize() {
+auto get_test_name_cpp() {
+    // Sanitize the name
     constexpr auto fn      = function_name<T>();
     // Return value length <= starting value length. Can "right-size" it
     // in order to not pollute the binary, but hoperfully the values produced
     // by it will be unused (only used at compile-time) and optimized away
     // anyway
     constexpr auto max_len = fn.length();
-    using Data = std::array<char, max_len>;
+    using Data = std::array<char, max_len + 1>;
     Data data;
     data.fill('\0');
 
@@ -78,60 +92,50 @@ auto function_name_sanitize() {
         in = std::next(fn.cbegin(), resume);
     }
 
-    return std::tuple{ data, std::distance(data.begin(), out) };
-} // <-- function_name_sanitize<T>()
+    // The function name is sanitized of anonymous namespaces. Can convert
+    // to the actual test name
+    const auto fns   = view_buf(data);
+    const auto start = fns.find(test_prefix);
 
-/**
- * @brief Gets the C++ name of the type's scope (if it starts with `test::`)
- *        and gets rid of the `test::` part, e.g. for `test::a::b::c` it will
- *        return `a::b::c`
- *
- * @return A tuple of C++ name of the type's scope (or `nullopt` if the scope
- *         is not test scope) and an expected length of the test name string
- */
-template <typename T>
-consteval
-std::tuple<std::optional<std::string_view>, uz> get_test_name_cpp() {
-    static constexpr auto fns = function_name_sanitize<T>();
-    static constexpr std::string_view fn{
-        std::get<0>(fns).data(), std::get<1>(fns)
-    };
-    static constexpr auto start = fn.find(test_prefix);
+    std::optional<Data> ret = std::nullopt;
 
-    if constexpr (start == std::string::npos) {
-        return { std::nullopt, 0 };
-    } else {
-        static constexpr auto offset = start + test_prefix.length();
-
-        if constexpr (offset >= fn.length()) {
-            return { std::nullopt, 0 };
-        } else {
+    if (start != std::string::npos) {
+        const auto offset = start + test_prefix.length();
+        if (offset < fns.length()) {
             // Covers GCC and Clang
             const auto end = std::min(
-                fn.find("(", offset),
-                fn.find("<", offset)
+                fns.find("(", offset),
+                fns.find("<", offset)
             );
             const auto len = end - offset;
 
-            const auto name = fn.substr(offset, len);
+            const auto name = fns.substr(offset, len);
 
             const auto torem = std::ranges::count(name, ':');
 
-            return { name, len - torem / 2 };
+            auto& str = ret.emplace();
+            str.fill('\0');
+            for (uz i = 0; i < len; ++i) {
+                str[i] = name[i];
+            }
         }
     }
+
+    return ret;
 } // <-- get_test_name_cpp<T>()
 
 /**
- * @brief Convertes @ref get_test_name_cpp return value into a fixed length
- *        character array (or an empty optional)
+ * @brief Convertes @ref get_test_name_cpp return value into a proper test
+ *        "path" format
  */
 template <typename T>
 consteval
 auto get_test_name_data() {
     static constexpr auto tnpp     = get_test_name_cpp<T>();
-    static constexpr auto cpp_name = std::get<0>(tnpp);
-    static constexpr auto len      = std::get<1>(tnpp);
+    static constexpr auto cpp_name = tnpp.transform(view_buf);
+    static constexpr auto len      = tnpp.has_value()
+                                   ? cpp_name->length()
+                                   : 0;
 
     using Array = std::array<char, len + 1>;
 
@@ -181,11 +185,7 @@ inline constexpr auto test_name = get_test_name_data<T>();
 template <typename T>
 consteval
 std::optional<std::string_view> get_test_name() {
-    if constexpr (test_name<T>.has_value()) {
-        return std::string_view{ test_name<T>->data(), test_name<T>->size() };
-    } else {
-        return std::nullopt;
-    }
+    return test_name<T>.transform(view_buf);
 } // <-- get_test_name<T>()
 
 template <typename T>
