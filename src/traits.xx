@@ -69,9 +69,11 @@ concept neither_of = !either_of<T, Ts...>;
 
 /**
  * @brief Checks if the type was used to declare a certain value
+ *
+ * Ignores `const`/`volatile` qualifiers
  */
 export
 template <typename T, auto val>
-concept declares = std::same_as<T, decltype(val)>;
+concept declares = std::same_as<T, std::remove_cv_t<decltype(val)>>;
 
 } // <-- namespace dxx::utils
