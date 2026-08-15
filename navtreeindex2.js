@@ -1,10 +1,10 @@
 var NAVTREEINDEX2 =
 {
-"namespacedxx_1_1selftest.html#a6b3de5700058a3000d2e56b31ef964e3":[1,0,0,4,5],
-"namespacedxx_1_1selftest.html#aae10cbc5f67422b2e4778fa8f65c5660":[1,0,0,4,6],
-"namespacedxx_1_1selftest.html#abaa7ed75cd9aad2dad39d4319b63ff5d":[1,0,0,4,9],
-"namespacedxx_1_1selftest.html#ad01f2ed983e1e20a193bf83c020e75a7":[1,0,0,4,10],
-"namespacedxx_1_1selftest.html#add08cd735bffb594d6e5288544707cb7":[1,0,0,4,8],
+"namespacedxx_1_1selftest.html#aae10cbc5f67422b2e4778fa8f65c5660":[1,0,0,4,5],
+"namespacedxx_1_1selftest.html#aafadd49bd1141f1e56df7f2e8e1eacf1":[1,0,0,4,6],
+"namespacedxx_1_1selftest.html#abaa7ed75cd9aad2dad39d4319b63ff5d":[1,0,0,4,8],
+"namespacedxx_1_1selftest.html#ad01f2ed983e1e20a193bf83c020e75a7":[1,0,0,4,9],
+"namespacedxx_1_1selftest.html#add08cd735bffb594d6e5288544707cb7":[1,0,0,4,7],
 "namespacedxx_1_1utils.html":[1,0,0,5],
 "namespacedxx_1_1utils.html#a050854d061cf6ffa3b1772a7628b0831":[1,0,0,5,13],
 "namespacedxx_1_1utils.html#a6f955144fde0a11b9a349e97d948b974":[1,0,0,5,16],

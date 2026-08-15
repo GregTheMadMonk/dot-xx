@@ -246,8 +246,8 @@ var NAVTREEINDEX1 =
 "namespacedxx_1_1overload.html":[1,0,0,3],
 "namespacedxx_1_1overload.html#a907b57cc07e49165cce13a730ea841ab":[1,0,0,3,7],
 "namespacedxx_1_1selftest.html":[1,0,0,4],
-"namespacedxx_1_1selftest.html#a23c78c7b1849cfb8e5cc5a89cee74da3":[1,0,0,4,12],
-"namespacedxx_1_1selftest.html#a5c4cc9ba4f4359828c5f4299dc9c2fbe":[1,0,0,4,11],
-"namespacedxx_1_1selftest.html#a5d50bf496faf9d6693b551372f345ee8":[1,0,0,4,7],
+"namespacedxx_1_1selftest.html#a23c78c7b1849cfb8e5cc5a89cee74da3":[1,0,0,4,11],
+"namespacedxx_1_1selftest.html#a35e5995ab3ebe2257ce33d7e951b2c10":[1,0,0,4,12],
+"namespacedxx_1_1selftest.html#a5c4cc9ba4f4359828c5f4299dc9c2fbe":[1,0,0,4,10],
 "namespacedxx_1_1selftest.html#a63ced55ad03368aa9cfd557252544fd3":[1,0,0,4,4]
 };

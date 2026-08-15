@@ -13,6 +13,5 @@ var searchData=
   ['fof_10',['FOf',['../structFOf.html',1,'']]],
   ['fof_3c_2032_20_3e_11',['FOf&lt; 32 &gt;',['../structFOf_3_0132_01_4.html',1,'']]],
   ['fof_3c_2064_20_3e_12',['FOf&lt; 64 &gt;',['../structFOf_3_0164_01_4.html',1,'']]],
-  ['function_5fname_13',['function_name',['../namespacedxx_1_1selftest.html#a63ced55ad03368aa9cfd557252544fd3',1,'dxx::selftest']]],
-  ['function_5fname_5fsanitize_14',['function_name_sanitize',['../namespacedxx_1_1selftest.html#a6b3de5700058a3000d2e56b31ef964e3',1,'dxx::selftest']]]
+  ['function_5fname_13',['function_name',['../namespacedxx_1_1selftest.html#a63ced55ad03368aa9cfd557252544fd3',1,'dxx::selftest']]]
 ];
