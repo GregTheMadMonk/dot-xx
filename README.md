@@ -14,7 +14,7 @@ the target that provides it - I've successfully done it once.
 The library is compiled and tested on Linux. Other UNIX systems might work,
 and some parts might work on Windows.
 
-The library suffesfully compiles on __Clang__ and __GCC__, at least the versions
+The library succesfully compiles on __Clang__ and __GCC__, at least the versions
 available in the Arch Linux repos - see GitHub actions.
 
 Some things will fail to compile unless you `import std` alongside importing
