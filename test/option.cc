@@ -53,7 +53,7 @@ const UnitTest value{
         bool exception = false;
         try {
             auto _ = i.value();
-        } catch (std::bad_optional_access) {
+        } catch (const std::bad_optional_access&) {
             exception = true;
         }
         test(exception);
