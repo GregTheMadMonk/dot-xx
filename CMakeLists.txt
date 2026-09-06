@@ -20,7 +20,11 @@ target_sources(
     TYPE CXX_MODULES
     FILES "${DXX_MATH_XX}"
 )
-target_compile_features( dot-xx-math PUBLIC cxx_std_23 )
+if( NOT DXX_COMPILE_FEATURES )
+    target_compile_features( dot-xx-assert PUBLIC cxx_std_23 )
+else()
+    target_compile_features( dot-xx-assert PUBLIC ${DXX_COMPILE_FEATURES} )
+endif()
 
 if( NOT DXX_NO_CPM )
     CPMAddPackage(
