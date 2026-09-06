@@ -20,7 +20,11 @@ target_sources(
     TYPE CXX_MODULES
     FILES "${DXX_SELFTEST_XX}"
 )
-target_compile_features( dot-xx-selftest PUBLIC cxx_std_23 )
+if( NOT DXX_COMPILE_FEATURES )
+    target_compile_features( dot-xx-selftest PUBLIC cxx_std_23 )
+else()
+    target_compile_features( dot-xx-selftest PUBLIC ${DXX_COMPILE_FEATURES} )
+endif()
 
 if( NOT DXX_NO_CPM )
     CPMAddPackage(
@@ -40,6 +44,10 @@ target_link_libraries( dot-xx-selftest PRIVATE dot-xx::assert dot-xx::cstd )
 add_library( dot-xx::selftest ALIAS dot-xx-selftest )
 
 add_library( dot-xx-selftest-main STATIC src/selftest_main.cc )
-target_compile_features( dot-xx-selftest-main PUBLIC cxx_std_23 )
+if( NOT DXX_COMPILE_FEATURES )
+    target_compile_features( dot-xx-selftest-main PUBLIC cxx_std_23 )
+else()
+    target_compile_features( dot-xx-selftest-main PUBLIC ${DXX_COMPILE_FEATURES} )
+endif()
 target_link_libraries( dot-xx-selftest-main PUBLIC dot-xx-selftest )
 add_library( dot-xx::selftest-main ALIAS dot-xx-selftest-main )
