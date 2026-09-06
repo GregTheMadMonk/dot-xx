@@ -1,8 +1,8 @@
 var namespacedxx_1_1selftest =
 [
     [ "LifetimeTester", "classdxx_1_1selftest_1_1LifetimeTester.html", "classdxx_1_1selftest_1_1LifetimeTester" ],
-    [ "UnitTest", "classdxx_1_1selftest_1_1UnitTest.html", "classdxx_1_1selftest_1_1UnitTest" ],
     [ "test_failure", "structdxx_1_1selftest_1_1test__failure.html", null ],
+    [ "UnitTest", "classdxx_1_1selftest_1_1UnitTest.html", "classdxx_1_1selftest_1_1UnitTest" ],
     [ "named_test_body", "conceptdxx_1_1selftest_1_1named__test__body.html", null ],
     [ "function_name", "namespacedxx_1_1selftest.html#a63ced55ad03368aa9cfd557252544fd3", null ],
     [ "get_test_name", "namespacedxx_1_1selftest.html#aae10cbc5f67422b2e4778fa8f65c5660", null ],

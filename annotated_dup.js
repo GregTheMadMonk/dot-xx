@@ -9,16 +9,16 @@ var annotated_dup =
         [ "Error", "structdxx_1_1errors_1_1Error.html", "structdxx_1_1errors_1_1Error" ]
       ] ],
       [ "http", null, [
-        [ "SimpleTask", "classdxx_1_1http_1_1SimpleTask.html", "classdxx_1_1http_1_1SimpleTask" ],
-        [ "PendingConnection", "classdxx_1_1http_1_1PendingConnection.html", "classdxx_1_1http_1_1PendingConnection" ],
-        [ "ServerError", "structdxx_1_1http_1_1ServerError.html", "structdxx_1_1http_1_1ServerError" ],
-        [ "StreamError", "structdxx_1_1http_1_1StreamError.html", null ],
-        [ "RequestError", "structdxx_1_1http_1_1RequestError.html", null ],
         [ "HeaderCompare", "structdxx_1_1http_1_1HeaderCompare.html", null ],
-        [ "Request", "structdxx_1_1http_1_1Request.html", "structdxx_1_1http_1_1Request" ],
-        [ "Response", "structdxx_1_1http_1_1Response.html", "structdxx_1_1http_1_1Response" ],
         [ "PathNode", "classdxx_1_1http_1_1PathNode.html", "classdxx_1_1http_1_1PathNode" ],
-        [ "Server", "classdxx_1_1http_1_1Server.html", "classdxx_1_1http_1_1Server" ]
+        [ "PendingConnection", "classdxx_1_1http_1_1PendingConnection.html", "classdxx_1_1http_1_1PendingConnection" ],
+        [ "Request", "structdxx_1_1http_1_1Request.html", "structdxx_1_1http_1_1Request" ],
+        [ "RequestError", "structdxx_1_1http_1_1RequestError.html", null ],
+        [ "Response", "structdxx_1_1http_1_1Response.html", "structdxx_1_1http_1_1Response" ],
+        [ "Server", "classdxx_1_1http_1_1Server.html", "classdxx_1_1http_1_1Server" ],
+        [ "ServerError", "structdxx_1_1http_1_1ServerError.html", "structdxx_1_1http_1_1ServerError" ],
+        [ "SimpleTask", "classdxx_1_1http_1_1SimpleTask.html", "classdxx_1_1http_1_1SimpleTask" ],
+        [ "StreamError", "structdxx_1_1http_1_1StreamError.html", null ]
       ] ],
       [ "math", "namespacedxx_1_1math.html", [
         [ "container_traits", "namespacedxx_1_1math_1_1container__traits.html", [
@@ -48,16 +48,16 @@ var annotated_dup =
       ] ],
       [ "selftest", "namespacedxx_1_1selftest.html", [
         [ "LifetimeTester", "classdxx_1_1selftest_1_1LifetimeTester.html", "classdxx_1_1selftest_1_1LifetimeTester" ],
-        [ "UnitTest", "classdxx_1_1selftest_1_1UnitTest.html", "classdxx_1_1selftest_1_1UnitTest" ],
-        [ "test_failure", "structdxx_1_1selftest_1_1test__failure.html", null ]
+        [ "test_failure", "structdxx_1_1selftest_1_1test__failure.html", null ],
+        [ "UnitTest", "classdxx_1_1selftest_1_1UnitTest.html", "classdxx_1_1selftest_1_1UnitTest" ]
       ] ],
       [ "utils", "namespacedxx_1_1utils.html", [
         [ "heap", "namespacedxx_1_1utils_1_1heap.html", [
           [ "Option", "classdxx_1_1utils_1_1heap_1_1Option.html", "classdxx_1_1utils_1_1heap_1_1Option" ]
         ] ],
+        [ "As", "structdxx_1_1utils_1_1As.html", null ],
         [ "Defer", "classdxx_1_1utils_1_1Defer.html", null ],
-        [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ],
-        [ "As", "structdxx_1_1utils_1_1As.html", null ]
+        [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ]
       ] ]
     ] ],
     [ "FOf", "structFOf.html", null ],
