@@ -21,7 +21,11 @@ target_sources(
     TYPE CXX_MODULES
     FILES ${DXX_HTTP_SRC_XX}
 )
-target_compile_features( dot-xx-http PUBLIC cxx_std_23 )
+if( NOT DXX_COMPILE_FEATURES )
+    target_compile_features( dot-xx-http PUBLIC cxx_std_23 )
+else()
+    target_compile_features( dot-xx-http PUBLIC ${DXX_COMPILE_FEATURES} )
+endif()
 
 if( NOT DXX_NO_CPM )
     CPMAddPackage(
@@ -62,5 +66,9 @@ if( DXX_SELFTEST )
     file( GLOB_RECURSE DXX_HTTP_DEMO_SRC_CC "example/*.cc" )
     add_executable( http_example ${DXX_HTTP_DEMO_SRC_CC} )
     target_link_libraries( http_example PRIVATE dot-xx::http )
-    target_compile_features( http_example PRIVATE cxx_std_23 )
+    if( NOT DXX_COMPILE_FEATURES )
+        target_compile_features( http_example PRIVATE cxx_std_23 )
+    else()
+        target_compile_features( http_example PRIVATE ${DXX_COMPILE_FEATURES} )
+    endif()
 endif()
