@@ -11,6 +11,8 @@ option( DXX_NO_CPM   "Don't try to use CPM.cmake"                     OFF )
 option( DXX_SELFTEST "Test the modules"                               OFF )
 option( DXX_DOXYGEN  "Generate docs with doxygen"                     OFF )
 
+option( DXX_COMPILE_FEATURES "target_compile_features override" "cxx_std_23" )
+
 option( DXX_WITH_HTTP "Include dxx.http module" OFF )
 option( DXX_WITH_MATH "Include dxx.math module" OFF )
 
