@@ -18,6 +18,10 @@ target_sources(
     TYPE CXX_MODULES
     FILES "src/assert.xx"
 )
-target_compile_features( dot-xx-assert PUBLIC cxx_std_23 )
+if( NOT DXX_COMPILE_FEATURES )
+    target_compile_features( dot-xx-assert PUBLIC cxx_std_23 )
+else()
+    target_compile_features( dot-xx-assert PUBLIC ${DXX_COMPILE_FEATURES}
+endif()
 
 add_library( dot-xx::assert ALIAS dot-xx-assert )
