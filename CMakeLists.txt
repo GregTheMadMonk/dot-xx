@@ -21,9 +21,9 @@ target_sources(
     FILES "${DXX_MATH_XX}"
 )
 if( NOT DXX_COMPILE_FEATURES )
-    target_compile_features( dot-xx-assert PUBLIC cxx_std_23 )
+    target_compile_features( dot-xx-math PUBLIC cxx_std_23 )
 else()
-    target_compile_features( dot-xx-assert PUBLIC ${DXX_COMPILE_FEATURES} )
+    target_compile_features( dot-xx-math PUBLIC ${DXX_COMPILE_FEATURES} )
 endif()
 
 if( NOT DXX_NO_CPM )
