@@ -23,7 +23,7 @@ target_sources(
 if( NOT DXX_COMPILE_FEATURES )
     target_compile_features( dot-xx-errors PUBLIC cxx_std_23 )
 else()
-    target_compile_features( dot-xx-errors PUBLIC ${DXX_COMPILE_FEATURES}
+    target_compile_features( dot-xx-errors PUBLIC ${DXX_COMPILE_FEATURES} )
 endif()
 
 add_library( dot-xx::errors ALIAS dot-xx-errors )
