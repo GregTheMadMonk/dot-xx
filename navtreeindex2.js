@@ -1,5 +1,11 @@
 var NAVTREEINDEX2 =
 {
+"namespacedxx_1_1math_1_1vector__operators.html#aa9f245fcfb231ea2f9aefa88d8014053":[1,0,0,2,3,6],
+"namespacedxx_1_1math_1_1vector__operators.html#ab3f0cac7a05ea04470d9d44275897780":[1,0,0,2,3,4],
+"namespacedxx_1_1math_1_1vector__operators.html#ad7e8e38a397d6df5f80bde960f25cf34":[1,0,0,2,3,15],
+"namespacedxx_1_1math_1_1vector__operators.html#ade0a66290ce92fc5c05b09fa9f3a6e1c":[1,0,0,2,3,0],
+"namespacedxx_1_1math_1_1vector__operators.html#aea60a55a9a7bb7e70753178fb37f7dd7":[1,0,0,2,3,14],
+"namespacedxx_1_1overload.html":[1,0,0,3],
 "namespacedxx_1_1overload.html#a907b57cc07e49165cce13a730ea841ab":[1,0,0,3,7],
 "namespacedxx_1_1selftest.html":[1,0,0,4],
 "namespacedxx_1_1selftest.html#a23c78c7b1849cfb8e5cc5a89cee74da3":[1,0,0,4,11],

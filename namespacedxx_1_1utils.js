@@ -2,7 +2,7 @@ var namespacedxx_1_1utils =
 [
     [ "heap", "namespacedxx_1_1utils_1_1heap.html", "namespacedxx_1_1utils_1_1heap" ],
     [ "As", "structdxx_1_1utils_1_1As.html", null ],
-    [ "Defer", "classdxx_1_1utils_1_1Defer.html", null ],
+    [ "Defer", "classdxx_1_1utils_1_1Defer.html", "classdxx_1_1utils_1_1Defer" ],
     [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ],
     [ "pointer", "conceptdxx_1_1utils_1_1pointer.html", null ],
     [ "reference", "conceptdxx_1_1utils_1_1reference.html", null ],

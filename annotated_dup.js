@@ -56,7 +56,7 @@ var annotated_dup =
           [ "Option", "classdxx_1_1utils_1_1heap_1_1Option.html", "classdxx_1_1utils_1_1heap_1_1Option" ]
         ] ],
         [ "As", "structdxx_1_1utils_1_1As.html", null ],
-        [ "Defer", "classdxx_1_1utils_1_1Defer.html", null ],
+        [ "Defer", "classdxx_1_1utils_1_1Defer.html", "classdxx_1_1utils_1_1Defer" ],
         [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ]
       ] ]
     ] ],

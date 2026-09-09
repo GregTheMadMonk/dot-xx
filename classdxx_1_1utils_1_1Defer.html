@@ -133,6 +133,12 @@ Defer &amp;&#160;</td><td class="memItemRight"><b>operator=</b> (const Defer &am
 constexpr&#160;</td><td class="memItemRight"><b>Defer</b> (Defer &amp;&amp;other)</td></tr>
 <tr class="memitem:af3646c40695f69871595e3dc1d6faccd" id="r_af3646c40695f69871595e3dc1d6faccd"><td class="memItemLeft"><a id="af3646c40695f69871595e3dc1d6faccd" name="af3646c40695f69871595e3dc1d6faccd"></a>
 constexpr Defer &amp;&#160;</td><td class="memItemRight"><b>operator=</b> (Defer &amp;&amp;other)</td></tr>
+<tr class="memitem:a574541032e549ac0693f88193b96a4fa" id="r_a574541032e549ac0693f88193b96a4fa"><td class="memItemLeft"><a id="a574541032e549ac0693f88193b96a4fa" name="a574541032e549ac0693f88193b96a4fa"></a>
+constexpr void&#160;</td><td class="memItemRight"><b>disarm</b> ()</td></tr>
+<tr class="memdesc:a574541032e549ac0693f88193b96a4fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abort the deferred operation. <br /></td></tr>
+<tr class="memitem:a8e14c2d6447e0ed4e9f1b35e15ee369c" id="r_a8e14c2d6447e0ed4e9f1b35e15ee369c"><td class="memItemLeft"><a id="a8e14c2d6447e0ed4e9f1b35e15ee369c" name="a8e14c2d6447e0ed4e9f1b35e15ee369c"></a>
+constexpr bool&#160;</td><td class="memItemRight"><b>armed</b> () const</td></tr>
+<tr class="memdesc:a8e14c2d6447e0ed4e9f1b35e15ee369c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the defer is active. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename TDeferred&gt;<br />

@@ -6,7 +6,8 @@ var searchData=
   ['all_5ftests_3',['all_tests',['../namespacedxx_1_1selftest.html#a5c4cc9ba4f4359828c5f4299dc9c2fbe',1,'dxx::selftest']]],
   ['always_4',['always',['../namespacedxx_1_1assert.html#a99dc3111a8e74ea086ee742407c6b812',1,'dxx::assert']]],
   ['and_5fthen_5',['and_then',['../classdxx_1_1utils_1_1heap_1_1Option.html#a01256d527afcd105eb62273426116055',1,'dxx::utils::heap::Option']]],
-  ['as_6',['As',['../structdxx_1_1utils_1_1As.html',1,'dxx::utils']]],
-  ['as_7',['as',['../namespacedxx_1_1utils.html#ac033a4ccf24a3ce6cea329af10c3dc66',1,'dxx::utils']]],
-  ['assert_2exx_8',['assert.xx',['../assert_8xx.html',1,'']]]
+  ['armed_6',['armed',['../classdxx_1_1utils_1_1Defer.html#a8e14c2d6447e0ed4e9f1b35e15ee369c',1,'dxx::utils::Defer']]],
+  ['as_7',['As',['../structdxx_1_1utils_1_1As.html',1,'dxx::utils']]],
+  ['as_8',['as',['../namespacedxx_1_1utils.html#ac033a4ccf24a3ce6cea329af10c3dc66',1,'dxx::utils']]],
+  ['assert_2exx_9',['assert.xx',['../assert_8xx.html',1,'']]]
 ];

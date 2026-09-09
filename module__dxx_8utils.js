@@ -2,7 +2,7 @@ var module__dxx_8utils =
 [
     [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ],
     [ "Option", "classdxx_1_1utils_1_1heap_1_1Option.html", "classdxx_1_1utils_1_1heap_1_1Option" ],
-    [ "Defer", "classdxx_1_1utils_1_1Defer.html", null ],
+    [ "Defer", "classdxx_1_1utils_1_1Defer.html", "classdxx_1_1utils_1_1Defer" ],
     [ "pointer", "conceptdxx_1_1utils_1_1pointer.html", null ],
     [ "reference", "conceptdxx_1_1utils_1_1reference.html", null ],
     [ "const_vrp", "conceptdxx_1_1utils_1_1const__vrp.html", null ],
