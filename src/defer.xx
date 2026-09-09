@@ -46,6 +46,17 @@ public:
         if (this->deferred.has_value()) { std::invoke(*this->deferred); }
     } // <-- ~Defer()
 
+    /**
+     * @brief Abort the deferred operation
+     */
+    inline constexpr void disarm() { this->deferred.reset(); }
+
+    /**
+     * @brief Check if the defer is active
+     */
+    [[nodiscard]]
+    inline constexpr bool armed() const { return this->deferred.has_value(); }
+
 private:
     std::optional<Deferred> deferred;
 }; // <-- class Defer<TDeferred>

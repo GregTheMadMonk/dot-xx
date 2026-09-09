@@ -23,8 +23,8 @@ const UnitTest defer{
     }
 }; // <-- defer
 
-const UnitTest defer_order{
-    "defer_order", [] {
+const UnitTest order{
+    "order", [] {
         int i = 10;
         {
             // C++26's allows to use placeholder `_` for both here
@@ -34,7 +34,20 @@ const UnitTest defer_order{
         }
         test(i == 0);
     }
-}; // <-- defer_order
+}; // <-- order
+
+const UnitTest disarm{
+    "disarm", [] {
+        int i = 10;
+        {
+            Defer a = [&i] { i = 0; };
+            Defer b = [&i] { i = 15; };
+            i = 20;
+            a.disarm();
+        }
+        test(i == 15);
+    }
+}; // <-- disarm
 
 } // <-- namespace test::dxx::utils::defer
 
