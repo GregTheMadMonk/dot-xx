@@ -15,7 +15,10 @@ The library is compiled and tested on Linux. Other UNIX systems might work,
 and some parts might work on Windows.
 
 The library succesfully compiles on __Clang__ and __GCC__, at least the versions
-available in the Arch Linux repos - see GitHub actions.
+available in the Arch Linux repos - see GitHub actions. __GCC__ fails to compile
+the [errors](https://github.com/GregTheMadMonk/dot-xx/tree/errors) literals
+test with `-fsanitize=undefined` for some reason, though - this is why this
+particular sanitizer is turned off for GCC in CI.
 
 Some things will fail to compile unless you `import std` alongside importing
 these modules. This is due to how [C++ standard specifies instantiation context for modules](https://eel.is/c++draft/module.context). I am looking into maybe `export import`ing
