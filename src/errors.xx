@@ -20,10 +20,10 @@ import std.compat;
 namespace dxx::errors {
 
 /**
- * @brief Tag type, helps indicate that `errno` info should be added to the
- *        error message
+ * @brief Tag, helps indicate that `errno` info should be added to the error
+ *        message
  */
-export struct Errno {};
+export constexpr struct Errno {} err_no;
 
 /**
  * @brief Exception class that supports construction from `std::format`-like
