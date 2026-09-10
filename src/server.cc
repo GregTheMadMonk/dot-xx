@@ -31,7 +31,7 @@ public:
     inline void next() {
         auto read_bytes = read(this->fd, &this->cur, sizeof(T));
         if (read_bytes == -1) {
-            throw StreamError{ Errno{}, "Can't read bytes from stream" };
+            throw StreamError{ err_no, "Can't read bytes from stream" };
         }
         if (read_bytes == 0) {
             this->fd = -1;
@@ -154,7 +154,7 @@ SimpleTask Server::handle_connection(
     }
 
     if (send(*stream, res->data(), res->length(), 0) == -1) {
-        throw ServerError{ Errno{}, "Cannot send data to client" };
+        throw ServerError{ err_no, "Cannot send data to client" };
     }
 } // <-- SimpleTask Server::handle_connection(stream, conn_handle)
 
@@ -168,24 +168,24 @@ SimpleTask Server::listen_and_wait(const std::string& ip, u16 port) {
     const utils::FileDescriptor s_fd{ socket(AF_INET, SOCK_STREAM, PF_UNSPEC) };
 
     if (*s_fd == -1) {
-        throw ServerError{ Errno{}, "Cannot open socket" };
+        throw ServerError{ err_no, "Cannot open socket" };
     }
 
     static constexpr int on = 1;
     if (setsockopt(*s_fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on)) == -1) {
-        throw ServerError{ Errno{}, "Cannot set socket options" };
+        throw ServerError{ err_no, "Cannot set socket options" };
     }
 
     if (fcntl(*s_fd, F_SETFL, O_NONBLOCK) == -1) {
-        throw ServerError{ Errno{}, "Cannot set socket to NONBLOCK" };
+        throw ServerError{ err_no, "Cannot set socket to NONBLOCK" };
     }
 
     if (::bind(*s_fd, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) == -1) {
-        throw ServerError{ Errno{}, "Cannot bind socket" };
+        throw ServerError{ err_no, "Cannot bind socket" };
     }
 
     if (::listen(*s_fd, SOMAXCONN) == -1) { // TODO: customize backlog?
-        throw ServerError{ Errno{}, "Cannot listen on the socket" };
+        throw ServerError{ err_no, "Cannot listen on the socket" };
     }
 
     this->running = true;
@@ -207,7 +207,7 @@ SimpleTask Server::listen_and_wait(const std::string& ip, u16 port) {
         if (c_fd == -1) {
             if (errno != EAGAIN && errno != EWOULDBLOCK) {
                 perror(nullptr);
-                throw ServerError{ Errno{}, "Cannot accept client" };
+                throw ServerError{ err_no, "Cannot accept client" };
             }
             // Non-blocking wait didn't find any clients
             continue;

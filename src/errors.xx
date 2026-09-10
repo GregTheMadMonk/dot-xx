@@ -8,7 +8,7 @@ import dxx.errors;
 
 namespace dxx::http {
 
-using Errno = dxx::errors::Errno;
+constexpr auto& err_no = dxx::errors::err_no;
 
 export
 struct ServerError : public dxx::errors::Error {
