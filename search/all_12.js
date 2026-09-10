@@ -4,5 +4,6 @@ var searchData=
   ['value_5for_1',['value_or',['../classdxx_1_1utils_1_1heap_1_1Option.html#aa5e1bbc390b10169b7f3497651b0a668',1,'dxx::utils::heap::Option']]],
   ['vector_2',['vector',['../conceptdxx_1_1math_1_1vector.html',1,'dxx::math']]],
   ['vector_5flike_3',['vector_like',['../conceptdxx_1_1math_1_1vector__like.html',1,'dxx::math']]],
-  ['view_5fbuf_4',['view_buf',['../namespacedxx_1_1selftest.html#a35e5995ab3ebe2257ce33d7e951b2c10',1,'dxx::selftest']]]
+  ['view_4',['view',['../structdxx_1_1utils_1_1FixedString.html#a467295b4a8afd52d2ed86b379af0c4d0',1,'dxx::utils::FixedString']]],
+  ['view_5fbuf_5',['view_buf',['../namespacedxx_1_1selftest.html#a35e5995ab3ebe2257ce33d7e951b2c10',1,'dxx::selftest']]]
 ];

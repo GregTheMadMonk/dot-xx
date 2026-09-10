@@ -57,7 +57,8 @@ var annotated_dup =
         ] ],
         [ "As", "structdxx_1_1utils_1_1As.html", null ],
         [ "Defer", "classdxx_1_1utils_1_1Defer.html", "classdxx_1_1utils_1_1Defer" ],
-        [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ]
+        [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ],
+        [ "FixedString", "structdxx_1_1utils_1_1FixedString.html", "structdxx_1_1utils_1_1FixedString" ]
       ] ]
     ] ],
     [ "FOf", "structFOf.html", null ],

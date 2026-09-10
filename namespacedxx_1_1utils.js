@@ -4,6 +4,7 @@ var namespacedxx_1_1utils =
     [ "As", "structdxx_1_1utils_1_1As.html", null ],
     [ "Defer", "classdxx_1_1utils_1_1Defer.html", "classdxx_1_1utils_1_1Defer" ],
     [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ],
+    [ "FixedString", "structdxx_1_1utils_1_1FixedString.html", "structdxx_1_1utils_1_1FixedString" ],
     [ "pointer", "conceptdxx_1_1utils_1_1pointer.html", null ],
     [ "reference", "conceptdxx_1_1utils_1_1reference.html", null ],
     [ "const_vrp", "conceptdxx_1_1utils_1_1const__vrp.html", null ],

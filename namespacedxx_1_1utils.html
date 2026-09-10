@@ -128,6 +128,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class for deferring operations until the end of lifetime.  <a href="classdxx_1_1utils_1_1Defer.html#details">More...</a><br /></td></tr>
 <tr class="memitem:FileDescriptor" id="r_FileDescriptor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classdxx_1_1utils_1_1FileDescriptor.html">FileDescriptor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII file descriptor. Wraps an integer file descriptor and defers closing it to the desctructor.  <a href="classdxx_1_1utils_1_1FileDescriptor.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FixedString" id="r_FixedString"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1utils_1_1FixedString.html">FixedString</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A compile-time string wrapper usable as NTTP.  <a href="structdxx_1_1utils_1_1FixedString.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-concepts" class="groupheader"><a id="concepts" name="concepts"></a>
 Concepts</h2></td></tr>
@@ -150,6 +152,9 @@ Concepts</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ab46dae198655435561a31a2724810dd5" id="r_ab46dae198655435561a31a2724810dd5"><td class="memTemplParams" colspan="2"><a id="ab46dae198655435561a31a2724810dd5" name="ab46dae198655435561a31a2724810dd5"></a>
+template&lt;typename Char, uz size&gt; </td></tr>
+<tr class="memitem:ab46dae198655435561a31a2724810dd5 template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><b>FixedString</b> (const Char(&amp;)[size]) -&gt; FixedString&lt; Char, size &gt;</td></tr>
 <tr class="memitem:ad73397990824007384f48e7ae64557fb" id="r_ad73397990824007384f48e7ae64557fb"><td class="memTemplParams" colspan="2">template&lt;typename Integer&gt; </td></tr>
 <tr class="memitem:ad73397990824007384f48e7ae64557fb template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#ad73397990824007384f48e7ae64557fb">range</a> (const Integer &amp;to)</td></tr>
 <tr class="memdesc:ad73397990824007384f48e7ae64557fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Python-like <span class="tt"><a class="el" href="#ad73397990824007384f48e7ae64557fb" title="Python-like range function ([ 0, to )).">range</a></span> function (<span class="tt">[ 0, to )</span>).  <br /></td></tr>

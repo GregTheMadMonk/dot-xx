@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['find_5ftype_5fin_0',['find_type_in',['../namespacedxx_1_1utils.html#a6f955144fde0a11b9a349e97d948b974',1,'dxx::utils']]]
+  ['euclidean_0',['euclidean',['../namespacedxx_1_1math_1_1norms.html#a9787b29e40ffeecda74622322651dffb',1,'dxx::math::norms']]]
 ];
