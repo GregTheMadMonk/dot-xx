@@ -1,9 +1,9 @@
 var module__dxx_8utils =
 [
-    [ "FixedString", "structdxx_1_1utils_1_1FixedString.html", "structdxx_1_1utils_1_1FixedString" ],
     [ "FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", "classdxx_1_1utils_1_1FileDescriptor" ],
-    [ "Defer", "classdxx_1_1utils_1_1Defer.html", "classdxx_1_1utils_1_1Defer" ],
+    [ "FixedString", "structdxx_1_1utils_1_1FixedString.html", "structdxx_1_1utils_1_1FixedString" ],
     [ "Option", "classdxx_1_1utils_1_1heap_1_1Option.html", "classdxx_1_1utils_1_1heap_1_1Option" ],
+    [ "Defer", "classdxx_1_1utils_1_1Defer.html", "classdxx_1_1utils_1_1Defer" ],
     [ "pointer", "conceptdxx_1_1utils_1_1pointer.html", null ],
     [ "reference", "conceptdxx_1_1utils_1_1reference.html", null ],
     [ "const_vrp", "conceptdxx_1_1utils_1_1const__vrp.html", null ],

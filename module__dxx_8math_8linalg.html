@@ -133,6 +133,8 @@ Concepts</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:dxx_3A_3Amath_3A_3ANorm_3C_20Func_2C_20SqFunc_20_3E" id="r_dxx_3A_3Amath_3A_3ANorm_3C_20Func_2C_20SqFunc_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1math_1_1Norm.html">dxx::math::Norm&lt; Func, SqFunc &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a norm. Only <span class="tt"><a class="el" href="namespacedxx_1_1math.html#a9b7665166259eb75a98afaf1f41d9e8e" title="Calculates norm t_norm for vector v.">norm</a></span> field is required, all other fields can be assigned a <span class="tt">nullptr</span>.  <a href="structdxx_1_1math_1_1Norm.html#details">More...</a><br /></td></tr>
 <tr class="memitem:dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ADynamic" id="r_dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ADynamic"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html">dxx::math::container_traits::size::Dynamic</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size is a runtime value during construction and can be changed.  <a href="structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html#details">More...</a><br /></td></tr>
 <tr class="memitem:dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ARuntimeFixed" id="r_dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3ARuntimeFixed"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1math_1_1container__traits_1_1size_1_1RuntimeFixed.html">dxx::math::container_traits::size::RuntimeFixed</a></td></tr>
@@ -141,8 +143,6 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size is a runtime value during construction and can be changed, but limited by a compile-time constant.  <a href="structdxx_1_1math_1_1container__traits_1_1size_1_1Bound.html#details">More...</a><br /></td></tr>
 <tr class="memitem:dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3AStatic" id="r_dxx_3A_3Amath_3A_3Acontainer_5Ftraits_3A_3Asize_3A_3AStatic"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1math_1_1container__traits_1_1size_1_1Static.html">dxx::math::container_traits::size::Static</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size is a compile-time constant and cannot be modified.  <a href="structdxx_1_1math_1_1container__traits_1_1size_1_1Static.html#details">More...</a><br /></td></tr>
-<tr class="memitem:dxx_3A_3Amath_3A_3ANorm_3C_20Func_2C_20SqFunc_20_3E" id="r_dxx_3A_3Amath_3A_3ANorm_3C_20Func_2C_20SqFunc_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1math_1_1Norm.html">dxx::math::Norm&lt; Func, SqFunc &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a norm. Only <span class="tt"><a class="el" href="namespacedxx_1_1math.html#a9b7665166259eb75a98afaf1f41d9e8e" title="Calculates norm t_norm for vector v.">norm</a></span> field is required, all other fields can be assigned a <span class="tt">nullptr</span>.  <a href="structdxx_1_1math_1_1Norm.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -389,22 +389,6 @@ template&lt;vector U, std::convertible_to&lt; <a class="el" href="namespacedxx_1
 template&lt;vector U&gt; </td></tr>
 <tr class="memitem:a3a16865075d6b89b938e0656d32aa6c9 template"><td class="memItemLeft">constexpr std::remove_cvref_t&lt; U &gt;&#160;</td><td class="memItemRight"><b>dxx::math::vector_operators::operator-</b> (U &amp;&amp;u)</td></tr>
 <tr class="memdesc:a3a16865075d6b89b938e0656d32aa6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unary negation for vectors. <br /></td></tr>
-<tr class="memitem:afd832683685ddcaf55d7f3106f63402a" id="r_afd832683685ddcaf55d7f3106f63402a"><td class="memTemplParams" colspan="2"><a id="afd832683685ddcaf55d7f3106f63402a" name="afd832683685ddcaf55d7f3106f63402a"></a>
-template&lt;mut_vector Out, vector_like&lt; Out &gt; U, vector_like&lt; Out &gt; V&gt; </td></tr>
-<tr class="memitem:afd832683685ddcaf55d7f3106f63402a template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><b>dxx::math::cross</b> (const U &amp;u, const V &amp;v, Out &amp;out)</td></tr>
-<tr class="memdesc:afd832683685ddcaf55d7f3106f63402a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of two 3D vectors (via out parameter). <br /></td></tr>
-<tr class="memitem:a1b340249e65288d34c11d5ac3da2d58b" id="r_a1b340249e65288d34c11d5ac3da2d58b"><td class="memTemplParams" colspan="2"><a id="a1b340249e65288d34c11d5ac3da2d58b" name="a1b340249e65288d34c11d5ac3da2d58b"></a>
-template&lt;container_traits::returnable Out, vector_like&lt; Out &gt; U, vector_like&lt; Out &gt; V&gt; </td></tr>
-<tr class="memitem:a1b340249e65288d34c11d5ac3da2d58b template"><td class="memItemLeft">constexpr Out&#160;</td><td class="memItemRight"><b>dxx::math::cross</b> (const U &amp;u, const V &amp;v)</td></tr>
-<tr class="memdesc:a1b340249e65288d34c11d5ac3da2d58b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of two 3D vectors (via return value). <br /></td></tr>
-<tr class="memitem:a623ee5c8ff3baf10d3ea9ed15c73d898" id="r_a623ee5c8ff3baf10d3ea9ed15c73d898"><td class="memTemplParams" colspan="2"><a id="a623ee5c8ff3baf10d3ea9ed15c73d898" name="a623ee5c8ff3baf10d3ea9ed15c73d898"></a>
-template&lt;container_traits::returnable U, vector_like&lt; U &gt; V&gt; </td></tr>
-<tr class="memitem:a623ee5c8ff3baf10d3ea9ed15c73d898 template"><td class="memItemLeft">constexpr U&#160;</td><td class="memItemRight"><b>dxx::math::cross</b> (const U &amp;u, const V &amp;v)</td></tr>
-<tr class="memdesc:a623ee5c8ff3baf10d3ea9ed15c73d898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of two 3D vectors (via return value of default type). <br /></td></tr>
-<tr class="memitem:a186b340da5975000866155f035accbe1" id="r_a186b340da5975000866155f035accbe1"><td class="memTemplParams" colspan="2"><a id="a186b340da5975000866155f035accbe1" name="a186b340da5975000866155f035accbe1"></a>
-template&lt;vector U, vector_like&lt; U &gt; V&gt; </td></tr>
-<tr class="memitem:a186b340da5975000866155f035accbe1 template"><td class="memItemLeft">constexpr <a class="el" href="namespacedxx_1_1math.html#a46e09c9f88a6079b4ff5d614682c0b4c">RealOf</a>&lt; U &gt;&#160;</td><td class="memItemRight"><b>dxx::math::dot</b> (const U &amp;u, const V &amp;v)</td></tr>
-<tr class="memdesc:a186b340da5975000866155f035accbe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector dot product. <br /></td></tr>
 <tr class="memitem:a9b7665166259eb75a98afaf1f41d9e8e" id="r_a9b7665166259eb75a98afaf1f41d9e8e"><td class="memTemplParams" colspan="2"><a id="a9b7665166259eb75a98afaf1f41d9e8e" name="a9b7665166259eb75a98afaf1f41d9e8e"></a>
 template&lt;<a class="el" href="structdxx_1_1math_1_1Norm.html">Norm</a> t_norm = norms::euclidean, vector V&gt; </td></tr>
 <tr class="memitem:a9b7665166259eb75a98afaf1f41d9e8e template"><td class="memItemLeft">constexpr <a class="el" href="namespacedxx_1_1math.html#a46e09c9f88a6079b4ff5d614682c0b4c">RealOf</a>&lt; V &gt;&#160;</td><td class="memItemRight"><b>dxx::math::norm</b> (const V &amp;v)</td></tr>
@@ -421,6 +405,22 @@ template&lt;<a class="el" href="structdxx_1_1math_1_1Norm.html">Norm</a> t_norm 
 template&lt;<a class="el" href="structdxx_1_1math_1_1Norm.html">Norm</a> t_norm = norms::euclidean, vector V, vector_like&lt; V &gt; U&gt; </td></tr>
 <tr class="memitem:aa8b229a6ed5f7a31ac936b091d4878f4 template"><td class="memItemLeft">constexpr <a class="el" href="namespacedxx_1_1math.html#a46e09c9f88a6079b4ff5d614682c0b4c">RealOf</a>&lt; V &gt;&#160;</td><td class="memItemRight"><b>dxx::math::sq_dist</b> (const V &amp;v, const U &amp;u)</td></tr>
 <tr class="memdesc:aa8b229a6ed5f7a31ac936b091d4878f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the square of the distance between vector <span class="tt">v</span> and <span class="tt">u</span> according to norm <span class="tt">t_norm</span>. <br /></td></tr>
+<tr class="memitem:afd832683685ddcaf55d7f3106f63402a" id="r_afd832683685ddcaf55d7f3106f63402a"><td class="memTemplParams" colspan="2"><a id="afd832683685ddcaf55d7f3106f63402a" name="afd832683685ddcaf55d7f3106f63402a"></a>
+template&lt;mut_vector Out, vector_like&lt; Out &gt; U, vector_like&lt; Out &gt; V&gt; </td></tr>
+<tr class="memitem:afd832683685ddcaf55d7f3106f63402a template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><b>dxx::math::cross</b> (const U &amp;u, const V &amp;v, Out &amp;out)</td></tr>
+<tr class="memdesc:afd832683685ddcaf55d7f3106f63402a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of two 3D vectors (via out parameter). <br /></td></tr>
+<tr class="memitem:a1b340249e65288d34c11d5ac3da2d58b" id="r_a1b340249e65288d34c11d5ac3da2d58b"><td class="memTemplParams" colspan="2"><a id="a1b340249e65288d34c11d5ac3da2d58b" name="a1b340249e65288d34c11d5ac3da2d58b"></a>
+template&lt;container_traits::returnable Out, vector_like&lt; Out &gt; U, vector_like&lt; Out &gt; V&gt; </td></tr>
+<tr class="memitem:a1b340249e65288d34c11d5ac3da2d58b template"><td class="memItemLeft">constexpr Out&#160;</td><td class="memItemRight"><b>dxx::math::cross</b> (const U &amp;u, const V &amp;v)</td></tr>
+<tr class="memdesc:a1b340249e65288d34c11d5ac3da2d58b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of two 3D vectors (via return value). <br /></td></tr>
+<tr class="memitem:a623ee5c8ff3baf10d3ea9ed15c73d898" id="r_a623ee5c8ff3baf10d3ea9ed15c73d898"><td class="memTemplParams" colspan="2"><a id="a623ee5c8ff3baf10d3ea9ed15c73d898" name="a623ee5c8ff3baf10d3ea9ed15c73d898"></a>
+template&lt;container_traits::returnable U, vector_like&lt; U &gt; V&gt; </td></tr>
+<tr class="memitem:a623ee5c8ff3baf10d3ea9ed15c73d898 template"><td class="memItemLeft">constexpr U&#160;</td><td class="memItemRight"><b>dxx::math::cross</b> (const U &amp;u, const V &amp;v)</td></tr>
+<tr class="memdesc:a623ee5c8ff3baf10d3ea9ed15c73d898"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of two 3D vectors (via return value of default type). <br /></td></tr>
+<tr class="memitem:a186b340da5975000866155f035accbe1" id="r_a186b340da5975000866155f035accbe1"><td class="memTemplParams" colspan="2"><a id="a186b340da5975000866155f035accbe1" name="a186b340da5975000866155f035accbe1"></a>
+template&lt;vector U, vector_like&lt; U &gt; V&gt; </td></tr>
+<tr class="memitem:a186b340da5975000866155f035accbe1 template"><td class="memItemLeft">constexpr <a class="el" href="namespacedxx_1_1math.html#a46e09c9f88a6079b4ff5d614682c0b4c">RealOf</a>&lt; U &gt;&#160;</td><td class="memItemRight"><b>dxx::math::dot</b> (const U &amp;u, const V &amp;v)</td></tr>
+<tr class="memdesc:a186b340da5975000866155f035accbe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector dot product. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -436,20 +436,20 @@ Variables</h2></td></tr>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-files" class="groupheader"><a id="files" name="files"></a>
 Files</h2></td></tr>
-<tr class="memitem:linalg_2Exx" id="r_linalg_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a2e38e835a56e622ae6ce8e4a230638af3dbd/src/linalg/<a class="el" href="linalg_8xx.html">linalg.xx</a></td></tr>
+<tr class="memitem:linalg_2Exx" id="r_linalg_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a/src/linalg/<a class="el" href="linalg_8xx.html">linalg.xx</a></td></tr>
 <tr class="memdesc:linalg_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linear algebra utilities for <a class="el" href="namespacedxx_1_1math.html" title="dxx::math">dxx::math</a>. <br /></td></tr>
-<tr class="memitem:basic_5Fops_2Exx" id="r_basic_5Fops_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a2e38e835a56e622ae6ce8e4a230638af3dbd/src/linalg/<a class="el" href="basic__ops_8xx.html">basic_ops.xx</a></td></tr>
+<tr class="memitem:basic_5Fops_2Exx" id="r_basic_5Fops_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a/src/linalg/<a class="el" href="basic__ops_8xx.html">basic_ops.xx</a></td></tr>
 <tr class="memdesc:basic__ops_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic vector aritmetic. No documentation for functions since they are generated with macros (I know, I know, it was just too much to just write out...). <br /></td></tr>
-<tr class="memitem:container_5Ftraits_2Exx" id="r_container_5Ftraits_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a2e38e835a56e622ae6ce8e4a230638af3dbd/src/linalg/<a class="el" href="container__traits_8xx.html">container_traits.xx</a></td></tr>
+<tr class="memitem:container_5Ftraits_2Exx" id="r_container_5Ftraits_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a/src/linalg/<a class="el" href="container__traits_8xx.html">container_traits.xx</a></td></tr>
 <tr class="memdesc:container__traits_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traits that help the library where <span class="tt">std::ranges</span> API isn't enought. <b>READ THE DESCRIPTION OF</b> math::container_traits <b>CAREFULLY</b>. <br /></td></tr>
-<tr class="memitem:cross_2Exx" id="r_cross_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a2e38e835a56e622ae6ce8e4a230638af3dbd/src/linalg/<a class="el" href="cross_8xx.html">cross.xx</a></td></tr>
+<tr class="memitem:cross_2Exx" id="r_cross_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a/src/linalg/<a class="el" href="cross_8xx.html">cross.xx</a></td></tr>
 <tr class="memdesc:cross_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cross product of 3D vectors. <br /></td></tr>
-<tr class="memitem:dot_2Exx" id="r_dot_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a2e38e835a56e622ae6ce8e4a230638af3dbd/src/linalg/<a class="el" href="dot_8xx.html">dot.xx</a></td></tr>
+<tr class="memitem:dot_2Exx" id="r_dot_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a/src/linalg/<a class="el" href="dot_8xx.html">dot.xx</a></td></tr>
 <tr class="memdesc:dot_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dot product. <br /></td></tr>
-<tr class="memitem:norm_2Exx" id="r_norm_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a2e38e835a56e622ae6ce8e4a230638af3dbd/src/linalg/<a class="el" href="norm_8xx.html">norm.xx</a></td></tr>
+<tr class="memitem:norm_2Exx" id="r_norm_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a/src/linalg/<a class="el" href="norm_8xx.html">norm.xx</a></td></tr>
 <tr class="memdesc:norm_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector norms. <br /></td></tr>
-<tr class="memitem:traits_2Exx" id="r_traits_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a2e38e835a56e622ae6ce8e4a230638af3dbd/src/linalg/<a class="el" href="dot-xx-math_2404a2e38e835a56e622ae6ce8e4a230638af3dbd_2src_2linalg_2traits_8xx.html">traits.xx</a></td></tr>
-<tr class="memdesc:dot-xx-math_2404a2e38e835a56e622ae6ce8e4a230638af3dbd_2src_2linalg_2traits_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type traits and concepts for linear algebra utilities. <br /></td></tr>
+<tr class="memitem:traits_2Exx" id="r_traits_2Exx"><td class="memItemLeft">file &#160;</td><td class="memItemRight">//dot-xx-math/404a/src/linalg/<a class="el" href="dot-xx-math_2404a_2src_2linalg_2traits_8xx.html">traits.xx</a></td></tr>
+<tr class="memdesc:dot-xx-math_2404a_2src_2linalg_2traits_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type traits and concepts for linear algebra utilities. <br /></td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
