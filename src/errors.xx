@@ -63,8 +63,6 @@ struct Error : public std::runtime_error {
  */
 namespace literals {
 
-namespace {
-
 template <dxx::utils::FixedString fs>
 constexpr int num_args = [] -> int {
     int ret = 0;
@@ -93,8 +91,6 @@ constexpr int num_args = [] -> int {
     }
     return ret;
 } (); // <-- num_args
-
-} // <-- namespace anonymous
 
 /**
  * @brief Construct an error from a string literal
