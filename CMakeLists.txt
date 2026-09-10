@@ -26,4 +26,14 @@ else()
     target_compile_features( dot-xx-errors PUBLIC ${DXX_COMPILE_FEATURES} )
 endif()
 
+if( NOT DXX_NO_CPM )
+    CPMAddPackage(
+        NAME "dox-xx-utils"
+        GITHUB_REPOSITORY "gregthemadmonk/dot-xx"
+        GIT_TAG "utils"
+    )
+endif()
+
+target_link_libraries( dot-xx-errors PRIVATE dot-xx::utils )
+
 add_library( dot-xx::errors ALIAS dot-xx-errors )

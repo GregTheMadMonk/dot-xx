@@ -14,14 +14,15 @@ module;
  */
 export module dxx.errors;
 
+import dxx.utils;
 import std;
 import std.compat;
 
 namespace dxx::errors {
 
 /**
- * @brief Tag, helps indicate that `errno` info should be added to the error
- *        message
+ * @brief Tag, helps indicate that `errno` info should be added to @ref Error
+ *        error message
  */
 export constexpr struct Errno {} err_no;
 
@@ -56,5 +57,98 @@ struct Error : public std::runtime_error {
           }
     {}
 }; // <-- struct Error
+
+/**
+ * @brief Error creation literal operators
+ */
+namespace literals {
+
+namespace {
+
+template <dxx::utils::FixedString fs>
+constexpr int num_args = [] -> int {
+    int ret = 0;
+    int lvl = 0;
+
+    char prev = '\0';
+    for (char c : fs.view()) {
+        switch (prev) {
+        case '{':
+            lvl += (c != '{');
+            ret += (lvl == 1);
+            prev = '\0';
+            break;
+        case '}':
+            lvl -= (c != '}');
+            prev = '\0';
+            break;
+        default:
+            prev = c;
+            break;
+        }
+
+        if (lvl < 0) {
+            return -1;
+        }
+    }
+    return ret;
+} (); // <-- num_args
+
+} // <-- namespace anonymous
+
+/**
+ * @brief Construct an error from a string literal
+ *
+ * Automatically creates an @ref Error if the literal contains no format args,
+ * and returns a lambda that needs to be called with arguments to substitute
+ * into the literal before it's an @ref Error:
+ *
+ * ```c++
+ * test("hi"_err.what() == "hi"sv);
+ * test("hi, {}"_err("world").what() == "hi, world"sv);
+ * ```
+ */
+export
+template <dxx::utils::FixedString fs>
+constexpr auto operator ""_err() {
+    if constexpr (num_args<fs> == 0) {
+        // Return the exception
+        return Error{ fs.view() };
+    } else {
+        // Return formatter
+        return [] <typename... Args> (Args&&... args) {
+            return Error{ fs.view(), std::forward<Args>(args)... };
+        };
+    }
+} // <-- operator ""_err<fs>()
+
+/**
+ * @brief Construct an error with errno from a string literal
+ *
+ * Works almost identical to @ref `operator ""_err`, but constructs @ref Error
+ * with @ref Errno as the first argument:
+ *
+ * ```c++
+ * errno = EIO;
+ *
+ * test("hi"_errno.what() == "hi (errno 5: Input/output error)"sv);
+ * test("{}"_errno(42).what() == "42 (errno 5: Input/output error)"sv);
+ * ```
+ */
+export
+template <dxx::utils::FixedString fs>
+constexpr auto operator ""_errno() {
+    if constexpr (num_args<fs> == 0) {
+        // Return the exception
+        return Error{ err_no, fs.view() };
+    } else {
+        // Return formatter
+        return [] <typename... Args> (Args&&... args) {
+            return Error{ err_no, fs.view(), std::forward<Args>(args)... };
+        };
+    }
+} // <-- operator ""_errno<fs>()
+
+} // <-- namespace literals
 
 } // <-- namespace dxx::errors
