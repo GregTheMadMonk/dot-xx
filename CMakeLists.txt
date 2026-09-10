@@ -28,7 +28,7 @@ endif()
 
 if( NOT DXX_NO_CPM )
     CPMAddPackage(
-        NAME "dox-xx-utils"
+        NAME "dot-xx-utils"
         GITHUB_REPOSITORY "gregthemadmonk/dot-xx"
         GIT_TAG "utils"
     )
