@@ -1,0 +1,63 @@
+/**
+ * @file  fixed_string.xx
+ * @brief A common pattern for compile-time string wrapper usable as NTTP
+ */
+export module dxx.utils:fixed_string;
+
+import dxx.cstd.fixed;
+import std;
+
+namespace dxx::utils {
+
+/**
+ * @brief A compile-time string wrapper usable as NTTP
+ *
+ * @tpar TChar  string character type
+ * @tpar t_size string literal size (including null terminator)
+ */
+export
+template <typename TChar, uz t_size>
+struct FixedString {
+    /**
+     * @brief String character type
+     */
+    using Char = TChar;
+    /**
+     * @brief String literal size (excluding null terminator)
+     */
+    static consteval uz size() { return t_size - 1; }
+    /**
+     * @brief Same as @ref size
+     */
+    static consteval uz length() { return size(); }
+
+    /**
+     * @brief Construct from a compile-time character array (literal)
+     */
+    consteval FixedString(const Char (&str)[t_size]) {
+        std::copy_n(str, t_size, this->data.begin());
+    } // <-- FixedString(str)
+
+    /**
+     * @brief Convert to string view
+     */
+    constexpr auto view() const
+    { return std::basic_string_view(this->data.data(), size()); }
+
+    /**
+     * @brief Convert to string
+     */
+    constexpr auto string() const
+    { return std::basic_string(this->data.data(), size()); }
+
+    /**
+     * @brief The underlying storage
+     */
+    std::array<Char, t_size> data;
+}; // <-- class FixedString
+
+export
+template <typename Char, uz size>
+FixedString(const Char (&)[size]) -> FixedString<Char, size>;
+
+} // <-- namespace dxx::utils

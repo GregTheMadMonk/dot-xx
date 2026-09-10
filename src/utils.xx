@@ -11,6 +11,7 @@ export module dxx.utils;
 
 export import :defer;
 export import :file_descriptor;
+export import :fixed_string;
 export import :meta;
 export import :option;
 export import :ranges;
