@@ -12,8 +12,8 @@ namespace dxx::utils {
 /**
  * @brief A compile-time string wrapper usable as NTTP
  *
- * @tpar TChar  string character type
- * @tpar t_size string literal size (including null terminator)
+ * @tparam TChar  string character type
+ * @tparam t_size string literal size (including null terminator)
  */
 export
 template <typename TChar, uz t_size>
@@ -25,10 +25,12 @@ struct FixedString {
     /**
      * @brief String literal size (excluding null terminator)
      */
+    [[nodiscard]]
     static consteval uz size() { return t_size - 1; }
     /**
      * @brief Same as @ref size
      */
+    [[nodiscard]]
     static consteval uz length() { return size(); }
 
     /**
@@ -41,12 +43,14 @@ struct FixedString {
     /**
      * @brief Convert to string view
      */
+    [[nodiscard]]
     constexpr auto view() const
     { return std::basic_string_view(this->data.data(), size()); }
 
     /**
      * @brief Convert to string
      */
+    [[nodiscard]]
     constexpr auto string() const
     { return std::basic_string(this->data.data(), size()); }
 
