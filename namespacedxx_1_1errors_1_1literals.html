@@ -124,11 +124,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a5eea1508ea797078e8742e072550826d" id="r_a5eea1508ea797078e8742e072550826d"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="structdxx_1_1utils_1_1FixedString.html">dxx::utils::FixedString</a> fs&gt; </td></tr>
 <tr class="memitem:a5eea1508ea797078e8742e072550826d template"><td class="memItemLeft">constexpr auto&#160;</td><td class="memItemRight"><a class="el" href="#a5eea1508ea797078e8742e072550826d">operator&quot;&quot;_errno</a> ()</td></tr>
 <tr class="memdesc:a5eea1508ea797078e8742e072550826d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an error with errno from a string literal.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ac4cfc66984f131fe849946f640005148" id="r_ac4cfc66984f131fe849946f640005148"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="structdxx_1_1utils_1_1FixedString.html">dxx::utils::FixedString</a> fs&gt; </td></tr>
-<tr class="memitem:ac4cfc66984f131fe849946f640005148 template"><td class="memItemLeft">constexpr int&#160;</td><td class="memItemRight"><a class="el" href="#ac4cfc66984f131fe849946f640005148">num_args</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="structdxx_1_1errors_1_1Error.html" title="Exception class that supports construction from std::format-like args and automatic errno capture in ...">Error</a> creation literal operators. </p>
@@ -153,7 +148,7 @@ template&lt;<a class="el" href="structdxx_1_1utils_1_1FixedString.html">dxx::uti
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel export">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel export">export</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -185,7 +180,7 @@ template&lt;<a class="el" href="structdxx_1_1utils_1_1FixedString.html">dxx::uti
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel export">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel constexpr">constexpr</span><span class="mlabel export">export</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -197,59 +192,6 @@ template&lt;<a class="el" href="structdxx_1_1utils_1_1FixedString.html">dxx::uti
 <div class="line">test(<span class="stringliteral">&quot;hi&quot;</span>_errno.what() == <span class="stringliteral">&quot;hi (errno 5: Input/output error)&quot;</span>sv);</div>
 <div class="line">test(<span class="stringliteral">&quot;{}&quot;</span>_errno(42).what() == <span class="stringliteral">&quot;42 (errno 5: Input/output error)&quot;</span>sv);</div>
 </div><!-- fragment --> 
-</div>
-</div>
-<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
-<a id="ac4cfc66984f131fe849946f640005148" name="ac4cfc66984f131fe849946f640005148"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4cfc66984f131fe849946f640005148">&#9670;&#160;</a></span>num_args</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;<a class="el" href="structdxx_1_1utils_1_1FixedString.html">dxx::utils::FixedString</a> fs&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int dxx::errors::literals::num_args</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">                       = [] -&gt; <span class="keywordtype">int</span> {</div>
-<div class="line">    <span class="keywordtype">int</span> ret = 0;</div>
-<div class="line">    <span class="keywordtype">int</span> lvl = 0;</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordtype">char</span> prev = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">char</span> <a class="code hl_namespace" href="namespacedxx_1_1c.html">c</a> : fs.view()) {</div>
-<div class="line">        <span class="keywordflow">switch</span> (prev) {</div>
-<div class="line">        <span class="keywordflow">case</span> <span class="charliteral">&#39;{&#39;</span>:</div>
-<div class="line">            lvl += (<a class="code hl_namespace" href="namespacedxx_1_1c.html">c</a> != <span class="charliteral">&#39;{&#39;</span>);</div>
-<div class="line">            ret += (lvl == 1);</div>
-<div class="line">            prev = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line">            <span class="keywordflow">break</span>;</div>
-<div class="line">        <span class="keywordflow">case</span> <span class="charliteral">&#39;}&#39;</span>:</div>
-<div class="line">            lvl -= (<a class="code hl_namespace" href="namespacedxx_1_1c.html">c</a> != <span class="charliteral">&#39;}&#39;</span>);</div>
-<div class="line">            prev = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line">            <span class="keywordflow">break</span>;</div>
-<div class="line">        <span class="keywordflow">default</span>:</div>
-<div class="line">            prev = <a class="code hl_namespace" href="namespacedxx_1_1c.html">c</a>;</div>
-<div class="line">            <span class="keywordflow">break</span>;</div>
-<div class="line">        }</div>
-<div class="line"> </div>
-<div class="line">        <span class="keywordflow">if</span> (lvl &lt; 0) {</div>
-<div class="line">            <span class="keywordflow">return</span> -1;</div>
-<div class="line">        }</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> ret;</div>
-<div class="line">} ()</div>
-<div class="ttc" id="anamespacedxx_1_1c_html"><div class="ttname"><a href="namespacedxx_1_1c.html">dxx::c</a></div><div class="ttdoc">Main namespace for dxx.cstd module.</div><div class="ttdef"><b>Definition</b> cstd.xx:17</div></div>
-</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
