@@ -63,6 +63,8 @@ struct Error : public std::runtime_error {
  */
 namespace literals {
 
+/** @cond internals */
+
 template <dxx::utils::FixedString fs>
 constexpr int num_args = [] -> int {
     int ret = 0;
@@ -92,6 +94,8 @@ constexpr int num_args = [] -> int {
     return ret;
 } (); // <-- num_args
 
+/** @endcond */
+
 /**
  * @brief Construct an error from a string literal
  *
@@ -106,6 +110,7 @@ constexpr int num_args = [] -> int {
  */
 export
 template <dxx::utils::FixedString fs>
+[[nodiscard]]
 constexpr auto operator ""_err() {
     if constexpr (num_args<fs> == 0) {
         // Return the exception
@@ -133,6 +138,7 @@ constexpr auto operator ""_err() {
  */
 export
 template <dxx::utils::FixedString fs>
+[[nodiscard]]
 constexpr auto operator ""_errno() {
     if constexpr (num_args<fs> == 0) {
         // Return the exception
