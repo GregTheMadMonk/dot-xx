@@ -2,6 +2,9 @@
  * @file selftest.xx
  * @brief Main interface file for @ref dxx.selftest module
  */
+module;
+
+#include <version>
 
 /**
  * @brief Unit testing. See @ref dxx::selftest::run_all for usage help
