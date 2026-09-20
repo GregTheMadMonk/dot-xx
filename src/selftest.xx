@@ -59,6 +59,7 @@ inline constinit std::unique_ptr<TestsMap> all_tests = nullptr;
  * namespace test::project::suite::case {
  *
  * // Declares `/test/project/suite/case/file.cc:42` test
+ * // OR `/test/project/suite/case/test2` if reflection is used!
  * static const UnitTest test2  = [] { ... };
  * // Declares `/test/project/suite/case/my_case` test
  * static const UnitTest amogus{ "my_case", [] { ... } };
@@ -98,6 +99,42 @@ public:
         this->self_ref = it;
     } // <-- UnitTest(name, func)
 
+#if (__cpp_impl_reflection >= 202506L) && (__cpp_lib_reflection >= 202506L)
+    /**
+     * @brief Declare a unit test
+     *
+     * The unit test name deduced automatically from the variable name, requires
+     * the test to be declared strictly in the namespace scope
+     */
+    template <std::meta::info ns = std::meta::current_namespace()>
+    inline constexpr
+    UnitTest(const TFunc& func)
+        : UnitTest(
+              [this] {
+                  // get the name - look for variables that correspond to this
+                  // one
+                  static constexpr auto mems = std::define_static_array(
+                      std::meta::members_of(
+                          ns,
+                          std::meta::access_context::current()
+                      )
+                  );
+                  template for (constexpr auto mem : mems) {
+                      /*
+                       * TODO: is there a way to know `this` at compile-time?
+                       * `UnitTest`s are static variables, so their addresses
+                       * are constant expressions. But not inside of
+                       * constructors :(
+                       */
+                      if (std::addressof([:mem:]) == this) {
+                          return std::meta::identifier_of(mem);
+                      }
+                  }
+                  std::unreachable();
+              } (), func
+          )
+    {}
+#else
     /**
      * @brief Declare a unit test. `func` needs to be a lambda local to the
      *        declaration
@@ -113,6 +150,7 @@ public:
               sl.line()
           ), func
         ) {}
+#endif
 
 private:
     /**
