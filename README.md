@@ -140,7 +140,7 @@ from __GitHub__.
 
 |Option|Type|Default|Description|
 |-|-|-|-|
-|`DXX_LOCAL`|Path|Unset|Development option, when enabled must be set |
+|`DXX_LOCAL`|Path|Unset|Development option, when enabled must be set according to what's explained in the previous section|
 |`DXX_NO_CPM`|`ON`/`OFF`|`OFF`|Disable automatic dependency fetching via [CPM](https://github.com/cpm-cmake/CPM.cmake). When this flag is specified, all libraries must be fetched and configured in correct order manually|
 |`DXX_SELFTEST`|`ON`/`OFF`|`OFF`|Build library tests, creates `selftest` executable target|
 |`DXX_DOXYGEN`|`ON`/`OFF`|`OFF`|Turn on documents generation with __Doxygen__. Target - `docs`|
