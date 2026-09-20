@@ -136,6 +136,18 @@ containing them. You then pass `-DDXX_LOCAL=/path/to/dir` to __CMake__,
 which will make it use your local copies of modules instead of fetching them
 from __GitHub__.
 
+### CMake options
+
+|Option|Type|Default|Description|
+|-|-|-|-|
+|`DXX_LOCAL`|Path|Unset|Development option, when enabled must be set |
+|`DXX_NO_CPM`|`ON`/`OFF`|`OFF`|Disable automatic dependency fetching via [CPM](https://github.com/cpm-cmake/CPM.cmake). When this flag is specified, all libraries must be fetched and configured in correct order manually|
+|`DXX_SELFTEST`|`ON`/`OFF`|`OFF`|Build library tests, creates `selftest` executable target|
+|`DXX_DOXYGEN`|`ON`/`OFF`|`OFF`|Turn on documents generation with __Doxygen__. Target - `docs`|
+|`DXX_COMPILE_FEATURES`|Features string|Unset, means `cxx_std_23`|Override default `target_compile_features` for __dot-xx__ targets|
+|`DXX_WITH_HTTP`|`ON`/`OFF`|`OFF`|Build [dxx.http](https://github.com/GregTheMadMonk/dot-xx/tree/http)|
+|`DXX_WITH_MATH`|`ON`/`OFF`|`OFF`|Build [dxx.math](https://github.com/GregTheMadMonk/dot-xx/tree/math)|
+
 ### Contributing etc.
 
 There are no guidelines yet. Open issues and PRs as you wish.
