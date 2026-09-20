@@ -2,7 +2,9 @@
  * @file assert.xx
  * @brief Main and only file of the `dxx.assert` module
  */
+module;
 
+#include <version>
 
 /**
  * @brief Provides and `assert` function and its debug-only counterpart. Uses

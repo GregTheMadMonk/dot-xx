@@ -18,6 +18,11 @@ target_sources(
     TYPE CXX_MODULES
     FILES "src/assert.xx"
 )
+
+if( NOT "${CMAKE_CXX_FLAGS}" MATCHES ".*stdlib=libc.*" )
+    target_link_libraries( dot-xx-assert PRIVATE stdc++exp )
+endif()
+
 if( NOT DXX_COMPILE_FEATURES )
     target_compile_features( dot-xx-assert PUBLIC cxx_std_23 )
 else()
