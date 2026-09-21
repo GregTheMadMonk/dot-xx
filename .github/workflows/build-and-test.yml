@@ -60,7 +60,10 @@ jobs:
       - name:  GCC - Run the unit tests
         run:   sudo chroot root.x86_64 /build-gcc/selftest
 
+      # For some reason, CMake really doesn't like configuring with `-freflection` specified in the command-line right away. Configure without, then re-configure with it
       - name:  GCC (C++26 + reflection) - Configure build
+        run:   sudo chroot root.x86_64 bash -c 'CC=gcc CXX=g++ CPM_SOURCE_CACHE=/ cmake dot-xx -B build-gcc-cxx26 -GNinja -DCMAKE_CXX_FLAGS="-fsanitize=address -Wall -Wextra -pedantic" -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD="f35a9ac6-8463-4d38-8eec-5d6008153e7d" -DCMAKE_BUILD_TYPE=Debug -DDXX_SELFTEST=ON -DDXX_WITH_HTTP=ON -DDXX_WITH_MATH=ON -DDXX_COMPILE_FEATURES="cxx_std_26" -DCMAKE_CXX_STANDARD=26'
+      - name:  GCC (C++26 + reflection) - Configure build (2)
         run:   sudo chroot root.x86_64 bash -c 'CC=gcc CXX=g++ CPM_SOURCE_CACHE=/ cmake dot-xx -B build-gcc-cxx26 -GNinja -DCMAKE_CXX_FLAGS="-fsanitize=address -Wall -Wextra -pedantic -freflection" -DCMAKE_EXPERIMENTAL_CXX_IMPORT_STD="f35a9ac6-8463-4d38-8eec-5d6008153e7d" -DCMAKE_BUILD_TYPE=Debug -DDXX_SELFTEST=ON -DDXX_WITH_HTTP=ON -DDXX_WITH_MATH=ON -DDXX_COMPILE_FEATURES="cxx_std_26" -DCMAKE_CXX_STANDARD=26'
       - name:  GCC (C++26 + reflection) - Build the library
         run:   sudo chroot root.x86_64 cmake --build build-gcc-cxx26
