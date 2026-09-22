@@ -1,0 +1,44 @@
+/**
+ * @file  location.xx
+ * @brief Abstraction over `stacktrace`/`source_location` to avoid ifdef hell
+ *        in the main implementation
+ */
+module;
+
+#include <version>
+
+export module dxx.assert:location;
+
+import std;
+
+namespace dxx::assert {
+
+export
+class Location {
+public:
+#ifdef __cpp_lib_stacktrace
+    using Type = std::stacktrace;
+#else
+    using Type = std::source_location;
+#endif
+
+    constexpr Location(Type l = Type::current()) : location{l} {}
+
+    [[nodiscard]]
+    constexpr std::string fmt() const {
+#ifdef __cpp_lib_stacktrace
+        return std::to_string(this->location);
+#else
+        return std::format(
+            "{}:{}", this->location.file_name(), this->location.line()
+        );
+#endif
+    } // <-- std::string fmt() const
+
+    [[nodiscard]]
+    constexpr const Type& get() const noexcept { return this->location; }
+private:
+    Type location;
+}; // <-- struct Location
+
+} // <-- namespace dxx::assert

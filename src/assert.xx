@@ -2,9 +2,6 @@
  * @file assert.xx
  * @brief Main and only file of the `dxx.assert` module
  */
-module;
-
-#include <version>
 
 /**
  * @brief Provides and `assert` function and its debug-only counterpart. Uses
@@ -20,6 +17,8 @@ module;
  */
 export module dxx.assert;
 
+export import :location;
+
 import std;
 
 /**
@@ -30,9 +29,17 @@ namespace dxx::assert {
 /**
  * @brief A default error type that is thrown when the assertion fails
  */
-export struct failure : public std::logic_error {
-    using std::logic_error::logic_error;
-}; // <-- struct failure
+export
+struct Failure : public std::logic_error {
+    Failure(
+        const Location& l,
+        std::format_string<std::string> fmt = "Assertion failed at {}"
+    ) : std::logic_error{std::format(fmt, l.fmt())}
+      , location{l}
+    {}
+
+    Location location;
+}; // <-- struct Failure
 
 /**
  * @brief Check if the condition is `true` and throw `Failure` if it's not
@@ -40,28 +47,13 @@ export struct failure : public std::logic_error {
  * @par condition
  *      the condition to check
  * @par st
- *      if `<stacktrace>` is not available, defaut argument provides minimal
- *      info about the failure location
+ *      provides info about the failure location
  */
 export
-template <std::constructible_from<std::string> Failure = failure>
-inline void always(
-#ifdef __cpp_lib_stacktrace
-    bool condition
-#else // ifdef __cpp_lib_stacktrace
-    bool condition,
-    std::source_location st = std::source_location::current()
-#endif // ifdef __cpp_lib_stacktrace
-) {
+template <std::constructible_from<const Location&> TFailure = Failure>
+inline void always(bool condition, Location l = {}) {
     if (condition) return;
-
-#ifdef __cpp_lib_stacktrace
-    const auto loc = std::to_string(std::stacktrace::current());
-#else // ifdef __cpp_lib_stacktrace
-    const auto loc = std::format("{}:{}", st.file_name(), st.line());
-#endif // ifdef __cpp_lib_stacktrace
-
-    throw Failure{ std::format("Assertion failed at {}", loc) };
+    throw TFailure{l};
 } // <-- always()
 
 /**
@@ -70,26 +62,19 @@ inline void always(
  *
  * @par condition
  *      the condition to check
- * @par st
- *      if `<stacktrace>` is not available, defaut argument provides minimal
- *      info about the failure location
+ * @par l
+ *      provides info about the failure location
  */
 export
-template <std::constructible_from<std::string> Failure = failure>
+template <std::constructible_from<const Location&> TFailure = Failure>
 #ifdef NDEBUG
 
 inline void debug(bool) {}
 
 #else // ifdef NDEBUG
 
-#ifdef __cpp_lib_stacktrace
-inline void debug(bool condition) { always<Failure>(condition); }
-#else // ifdef __cpp_lib_stacktrace
-inline void debug(
-    bool condition,
-    std::source_location st = std::source_location::current()
-) { always<Failure>(condition, st); }
-#endif // ifdef __cpp_lib_stacktrace
+inline void debug(bool condition, Location l = {})
+{ always<TFailure>(condition, l); }
 
 #endif // ifdef NDEBUG
 
