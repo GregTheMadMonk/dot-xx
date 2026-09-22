@@ -58,17 +58,14 @@ inline constinit std::unique_ptr<TestsMap> all_tests = nullptr;
  *
  * namespace test::project::suite::case {
  *
- * // Declares `/test/project/suite/case/file.cc:42` test
- * // OR `/test/project/suite/case/test2` if reflection is used!
+ * // Declares `/project/suite/case/file.cc:42` test
+ * // OR `/project/suite/case/test2` if reflection is used!
  * static const UnitTest test2  = [] { ... };
- * // Declares `/test/project/suite/case/my_case` test
+ * // Declares `/project/suite/case/my_case` test
  * static const UnitTest amogus{ "my_case", [] { ... } };
  *
  * } // <-- namespace test::project::suite::case
  * ```
- *
- * TODO: Find a way to remove redundancy in naming and infer test name from
- *       the variable name!
  */
 export
 template <named_test_body TFunc>
@@ -162,20 +159,15 @@ private:
 /**
  * @brief The exception type used by test assertions
  */
-export struct test_failure : public std::logic_error {
-    using std::logic_error::logic_error;
-}; // <-- struct test_failure
+export struct TestFailure : public assert::Failure {
+    TestFailure(const assert::Location& l)
+        : assert::Failure(l, "Test condition failed at {}")
+    {}
+}; // <-- struct TestFailure
 
-/// @brief Test assertion. Calls @ref dxx::assert::always with @ref test_failure
-export inline void test(
-#ifdef __cpp_lib_stacktrace
-    bool condition
-) { dxx::assert::always<test_failure>(condition); }
-#else // ifdef __cpp_lib_stacktrace
-    bool condition,
-    std::source_location st = std::source_location::current()
-) { dxx::assert::always<test_failure>(condition, st); }
-#endif // ifdef __cpp_lib_stacktrace
+/// @brief Test assertion. Calls @ref dxx::assert::always with @ref TestFailure
+export inline void test(bool condition, assert::Location l = {})
+{ assert::always<TestFailure>(condition, l); }
 
 /**
  * @brief Run all tests that match a filter
@@ -197,7 +189,7 @@ export inline void test(
  * ```
  *
  * The test is __successful__ if it does not produce exceptions. The test
- * is __failed__ if it produced an exception of type @ref test_failure (or
+ * is __failed__ if it produced an exception of type @ref TestFailure (or
  * derived). If the test produces any other exception type, it is not caught
  * by this function and will lead to program termination if not caught by
  * code surrounding @ref run_all.
@@ -235,7 +227,7 @@ export int run_all(const std::unordered_set<std::string>& filters = {}) {
         std::println("RUN {}", name);
         try {
             body();
-        } catch (const test_failure& tf) {
+        } catch (const TestFailure& tf) {
             std::println(stderr, "FAILED:");
             std::println(stderr, "{}", tf.what());
             failed_tests.push_back(name);
