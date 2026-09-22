@@ -18,7 +18,7 @@ template <vector U, vector_like<U> V>
 [[nodiscard]]
 inline constexpr
 RealOf<U> dot(const U& u, const V& v) {
-    assert::debug(std::ranges::size(u) == std::ranges::size(v));
+    assert::test(std::ranges::size(u) == std::ranges::size(v));
 
     using Real = RealOf<U>;
 

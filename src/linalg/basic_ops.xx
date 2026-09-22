@@ -23,7 +23,7 @@ template <\
     vector_like<Out> V\
 > inline constexpr \
 void op_name (U&& u, V&& v, Out& out) {\
-    dxx::assert::debug( std::ranges::size(u) == std::ranges::size(v) );\
+    assert::test( std::ranges::size(u) == std::ranges::size(v) );\
     for (\
         auto [ oe, ue, ve ] : std::views::zip(\
             out, std::forward<U>(u), std::forward<V>(v)\

@@ -133,7 +133,7 @@ struct Traits {
     requires utils::declares<size::Bound, size_tag>
           && std::constructible_from<V, uz>
     {
-        dxx::assert::debug(size <= size_tag.max_size);
+        assert::test(size <= size_tag.max_size);
         return V(size);
     } // <-- construct(size) (Bound)
 
@@ -147,7 +147,7 @@ struct Traits {
     requires utils::declares<size::Static, size_tag>
           && std::constructible_from<V>
     {
-        dxx::assert::debug(size == size_tag.size);
+        assert::test(size == size_tag.size);
         return V();
     } // <-- construct(size) (Fixed)
 }; // <-- struct Traits<V>

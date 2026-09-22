@@ -18,9 +18,9 @@ namespace dxx::math {
 export
 template <mut_vector Out, vector_like<Out> U, vector_like<Out> V>
 void cross(const U& u, const V& v, Out& out) {
-    assert::debug(std::ranges::size(u)   == 3);
-    assert::debug(std::ranges::size(v)   == 3);
-    assert::debug(std::ranges::size(out) == 3);
+    assert::test(std::ranges::size(u)   == 3);
+    assert::test(std::ranges::size(v)   == 3);
+    assert::test(std::ranges::size(out) == 3);
 
     // We don't know if the vectors have random-access storage. Extract their
     // elemenst here
