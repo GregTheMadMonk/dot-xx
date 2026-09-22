@@ -115,13 +115,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('assert_8xx.htm
 
 <p>Main and only file of the <span class="tt"><a class="el" href="namespacedxx_1_1assert.html" title="Main namespace for dxx::assert module.">dxx.assert</a></span> module.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;version&gt;</code><br />
-<code>import std;</code><br />
+<div class="textblock"><code>import std;</code><br />
+<code>import <a class="el" href="assert_8xx.html">dxx.assert:location</a>;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:dxx_3A_3Aassert_3A_3Afailure" id="r_dxx_3A_3Aassert_3A_3Afailure"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1assert_1_1failure.html">dxx::assert::failure</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A default error type that is thrown when the assertion fails.  <a href="structdxx_1_1assert_1_1failure.html#details">More...</a><br /></td></tr>
+<tr class="memitem:dxx_3A_3Aassert_3A_3AFailure" id="r_dxx_3A_3Aassert_3A_3AFailure"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1assert_1_1Failure.html">dxx::assert::Failure</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A default error type that is thrown when the assertion fails.  <a href="structdxx_1_1assert_1_1Failure.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -130,12 +130,12 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a99dc3111a8e74ea086ee742407c6b812" id="r_a99dc3111a8e74ea086ee742407c6b812"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; </td></tr>
-<tr class="memitem:a99dc3111a8e74ea086ee742407c6b812 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacedxx_1_1assert.html#a99dc3111a8e74ea086ee742407c6b812">dxx::assert::always</a> (bool condition, std::source_location st=std::source_location::current())</td></tr>
-<tr class="memdesc:a99dc3111a8e74ea086ee742407c6b812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the condition is <span class="tt">true</span> and throw <span class="tt">Failure</span> if it's not.  <br /></td></tr>
-<tr class="memitem:a0928c38ecb9e44aee154b2dcc34888fe" id="r_a0928c38ecb9e44aee154b2dcc34888fe"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; </td></tr>
-<tr class="memitem:a0928c38ecb9e44aee154b2dcc34888fe template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacedxx_1_1assert.html#a0928c38ecb9e44aee154b2dcc34888fe">dxx::assert::debug</a> (bool condition, std::source_location st=std::source_location::current())</td></tr>
-<tr class="memdesc:a0928c38ecb9e44aee154b2dcc34888fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="namespacedxx_1_1assert.html" title="assert">assert</a> but only performs the check if the library is built in <b>Debug</b> mode.  <br /></td></tr>
+<tr class="memitem:aec19ec57d4096548a493f478bcb0fdb4" id="r_aec19ec57d4096548a493f478bcb0fdb4"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </td></tr>
+<tr class="memitem:aec19ec57d4096548a493f478bcb0fdb4 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacedxx_1_1assert.html#aec19ec57d4096548a493f478bcb0fdb4">dxx::assert::always</a> (bool condition, <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> l={})</td></tr>
+<tr class="memdesc:aec19ec57d4096548a493f478bcb0fdb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the condition is <span class="tt">true</span> and throw <span class="tt"><a class="el" href="structdxx_1_1assert_1_1Failure.html" title="A default error type that is thrown when the assertion fails.">Failure</a></span> if it's not.  <br /></td></tr>
+<tr class="memitem:a7542371d20c72aba8ffe8c6482c88812" id="r_a7542371d20c72aba8ffe8c6482c88812"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </td></tr>
+<tr class="memitem:a7542371d20c72aba8ffe8c6482c88812 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="namespacedxx_1_1assert.html#a7542371d20c72aba8ffe8c6482c88812">dxx::assert::debug</a> (bool condition, <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> l={})</td></tr>
+<tr class="memdesc:a7542371d20c72aba8ffe8c6482c88812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="namespacedxx_1_1assert.html" title="assert">assert</a> but only performs the check if the library is built in <b>Debug</b> mode.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main and only file of the <span class="tt"><a class="el" href="namespacedxx_1_1assert.html" title="Main namespace for dxx::assert module.">dxx.assert</a></span> module. </p>

@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('namespacedxx_1
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">dxx::assert Namespace Reference</div></div>
+  <div class="headertitle"><div class="title">dxx::assert Namespace Reference<span class="mlabels"><span class="mlabel export">export</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -118,28 +118,30 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('namespacedxx_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:failure" id="r_failure"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1assert_1_1failure.html">failure</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A default error type that is thrown when the assertion fails.  <a href="structdxx_1_1assert_1_1failure.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Failure" id="r_Failure"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1assert_1_1Failure.html">Failure</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A default error type that is thrown when the assertion fails.  <a href="structdxx_1_1assert_1_1Failure.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Location" id="r_Location"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper for storing source location information.  <a href="classdxx_1_1assert_1_1Location.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a99dc3111a8e74ea086ee742407c6b812" id="r_a99dc3111a8e74ea086ee742407c6b812"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; </td></tr>
-<tr class="memitem:a99dc3111a8e74ea086ee742407c6b812 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a99dc3111a8e74ea086ee742407c6b812">always</a> (bool condition, std::source_location st=std::source_location::current())</td></tr>
-<tr class="memdesc:a99dc3111a8e74ea086ee742407c6b812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the condition is <span class="tt">true</span> and throw <span class="tt">Failure</span> if it's not.  <br /></td></tr>
-<tr class="memitem:a0928c38ecb9e44aee154b2dcc34888fe" id="r_a0928c38ecb9e44aee154b2dcc34888fe"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; </td></tr>
-<tr class="memitem:a0928c38ecb9e44aee154b2dcc34888fe template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0928c38ecb9e44aee154b2dcc34888fe">debug</a> (bool condition, std::source_location st=std::source_location::current())</td></tr>
-<tr class="memdesc:a0928c38ecb9e44aee154b2dcc34888fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="namespacedxx_1_1assert.html" title="assert">assert</a> but only performs the check if the library is built in <b>Debug</b> mode.  <br /></td></tr>
+<tr class="memitem:aec19ec57d4096548a493f478bcb0fdb4" id="r_aec19ec57d4096548a493f478bcb0fdb4"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </td></tr>
+<tr class="memitem:aec19ec57d4096548a493f478bcb0fdb4 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aec19ec57d4096548a493f478bcb0fdb4">always</a> (bool condition, <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> l={})</td></tr>
+<tr class="memdesc:aec19ec57d4096548a493f478bcb0fdb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the condition is <span class="tt">true</span> and throw <span class="tt"><a class="el" href="structdxx_1_1assert_1_1Failure.html" title="A default error type that is thrown when the assertion fails.">Failure</a></span> if it's not.  <br /></td></tr>
+<tr class="memitem:a7542371d20c72aba8ffe8c6482c88812" id="r_a7542371d20c72aba8ffe8c6482c88812"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </td></tr>
+<tr class="memitem:a7542371d20c72aba8ffe8c6482c88812 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7542371d20c72aba8ffe8c6482c88812">debug</a> (bool condition, <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> l={})</td></tr>
+<tr class="memdesc:a7542371d20c72aba8ffe8c6482c88812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="namespacedxx_1_1assert.html" title="assert">assert</a> but only performs the check if the library is built in <b>Debug</b> mode.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main namespace for <a class="el" href="namespacedxx_1_1assert.html" title="dxx::assert">dxx::assert</a> module. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="a99dc3111a8e74ea086ee742407c6b812" name="a99dc3111a8e74ea086ee742407c6b812"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99dc3111a8e74ea086ee742407c6b812">&#9670;&#160;</a></span>always()</h2>
+<a id="aec19ec57d4096548a493f478bcb0fdb4" name="aec19ec57d4096548a493f478bcb0fdb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec19ec57d4096548a493f478bcb0fdb4">&#9670;&#160;</a></span>always()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; </div>
+template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -152,7 +154,7 @@ template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; <
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::source_location</td>          <td class="paramname"><span class="paramname"><em>st</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::source_location::current()</span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a></td>          <td class="paramname"><span class="paramname"><em>l</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -162,19 +164,19 @@ template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; <
 </table>
 </div><div class="memdoc">
 
-<p>Check if the condition is <span class="tt">true</span> and throw <span class="tt">Failure</span> if it's not. </p>
+<p>Check if the condition is <span class="tt">true</span> and throw <span class="tt"><a class="el" href="structdxx_1_1assert_1_1Failure.html" title="A default error type that is thrown when the assertion fails.">Failure</a></span> if it's not. </p>
 <dl class="section user"><dt>condition</dt><dd>the condition to check </dd></dl>
-<dl class="section user"><dt>st</dt><dd>if <span class="tt">&lt;stacktrace&gt;</span> is not available, defaut argument provides minimal info about the failure location </dd></dl>
+<dl class="section user"><dt>st</dt><dd>provides info about the failure location </dd></dl>
 
 </div>
 </div>
-<a id="a0928c38ecb9e44aee154b2dcc34888fe" name="a0928c38ecb9e44aee154b2dcc34888fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0928c38ecb9e44aee154b2dcc34888fe">&#9670;&#160;</a></span>debug()</h2>
+<a id="a7542371d20c72aba8ffe8c6482c88812" name="a7542371d20c72aba8ffe8c6482c88812"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7542371d20c72aba8ffe8c6482c88812">&#9670;&#160;</a></span>debug()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; </div>
+template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -187,7 +189,7 @@ template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; <
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::source_location</td>          <td class="paramname"><span class="paramname"><em>st</em></span><span class="paramdefsep"> = </span><span class="paramdefval">std::source_location::current()</span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a></td>          <td class="paramname"><span class="paramname"><em>l</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -199,7 +201,7 @@ template&lt;std::constructible_from&lt; std::string &gt; Failure = failure&gt; <
 
 <p>Same as <a class="el" href="namespacedxx_1_1assert.html" title="assert">assert</a> but only performs the check if the library is built in <b>Debug</b> mode. </p>
 <dl class="section user"><dt>condition</dt><dd>the condition to check </dd></dl>
-<dl class="section user"><dt>st</dt><dd>if <span class="tt">&lt;stacktrace&gt;</span> is not available, defaut argument provides minimal info about the failure location </dd></dl>
+<dl class="section user"><dt>l</dt><dd>provides info about the failure location </dd></dl>
 
 </div>
 </div>

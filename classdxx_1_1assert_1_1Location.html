@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dot-xx: //dot-xx-assert/d1bd/src Directory Reference</title>
+<title>dot-xx: dxx::assert::Location Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('dir_94436bc27aed36dc211d05c637af44fb.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('classdxx_1_1assert_1_1Location.html','','classdxx_1_1assert_1_1Location-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -109,17 +109,53 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('dir_94436bc27a
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">src Directory Reference</div></div>
+  <div class="headertitle"><div class="title">dxx::assert::Location Class Reference<span class="mlabels"><span class="mlabel export">export</span></span><div class="ingroups">module <a class="el" href="module__dxx_8assert.html">dxx.assert</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A wrapper for storing source location information.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-files" class="groupheader"><a id="files" name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:assert_2Exx" id="r_assert_2Exx"><td class="memItemLeft"><span class="icondoc"><div class="doc-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="assert_8xx.html">assert.xx</a></td></tr>
-<tr class="memdesc:assert_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main and only file of the <span class="tt"><a class="el" href="namespacedxx_1_1assert.html" title="Main namespace for dxx::assert module.">dxx.assert</a></span> module. <br /></td></tr>
-<tr class="memitem:location_2Exx" id="r_location_2Exx"><td class="memItemLeft"><span class="icondoc"><div class="doc-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="location_8xx.html">location.xx</a></td></tr>
-<tr class="memdesc:location_8xx"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstraction over <span class="tt">stacktrace</span>/<span class="tt">source_location</span> to avoid ifdef hell in the main implementation. <br /></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-pub-types" class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a5756afeabb1253e76442b7a82c87c3bc" id="r_a5756afeabb1253e76442b7a82c87c3bc"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a5756afeabb1253e76442b7a82c87c3bc">Type</a> = std::source_location</td></tr>
+<tr class="memdesc:a5756afeabb1253e76442b7a82c87c3bc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="#a5756afeabb1253e76442b7a82c87c3bc" title="Type of the source location holder.">Type</a> of the source location holder.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:acdad101ea426932a2db9b422e2c47392" id="r_acdad101ea426932a2db9b422e2c47392"><td class="memItemLeft"><a id="acdad101ea426932a2db9b422e2c47392" name="acdad101ea426932a2db9b422e2c47392"></a>
+constexpr&#160;</td><td class="memItemRight"><b>Location</b> (<a class="el" href="#a5756afeabb1253e76442b7a82c87c3bc">Type</a> l=Type::current())</td></tr>
+<tr class="memitem:a9983c731e5834bcdd44edf3a35ef5f52" id="r_a9983c731e5834bcdd44edf3a35ef5f52"><td class="memItemLeft"><a id="a9983c731e5834bcdd44edf3a35ef5f52" name="a9983c731e5834bcdd44edf3a35ef5f52"></a>
+constexpr std::string&#160;</td><td class="memItemRight"><b>fmt</b> () const</td></tr>
+<tr class="memdesc:a9983c731e5834bcdd44edf3a35ef5f52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a printable string out of the storage. <br /></td></tr>
+<tr class="memitem:a1b46405b80099ed1b503423a6c106b18" id="r_a1b46405b80099ed1b503423a6c106b18"><td class="memItemLeft"><a id="a1b46405b80099ed1b503423a6c106b18" name="a1b46405b80099ed1b503423a6c106b18"></a>
+constexpr const <a class="el" href="#a5756afeabb1253e76442b7a82c87c3bc">Type</a> &amp;&#160;</td><td class="memItemRight"><b>get</b> () const noexcept</td></tr>
+<tr class="memdesc:a1b46405b80099ed1b503423a6c106b18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the underlying locator. <br /></td></tr>
 </table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A wrapper for storing source location information. </p>
+<p>Not all standard library implmentations provide <span class="tt">std::stacktrace</span>, so we shove all feature-macro-dependent code here </p>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Member Typedef Documentation</h2>
+<a id="a5756afeabb1253e76442b7a82c87c3bc" name="a5756afeabb1253e76442b7a82c87c3bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5756afeabb1253e76442b7a82c87c3bc">&#9670;&#160;</a></span>Type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="#a5756afeabb1253e76442b7a82c87c3bc">dxx::assert::Location::Type</a> = std::source_location</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="#a5756afeabb1253e76442b7a82c87c3bc" title="Type of the source location holder.">Type</a> of the source location holder. </p>
+<p>Either <span class="tt">std::stacktrace</span> or <span class="tt">std::source_location</span>, depending on your toolchain </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>//dot-xx-assert/d1bd/src/<a class="el" href="location_8xx.html">location.xx</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -133,7 +169,7 @@ Files</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>dot-xx-assert</b></li><li class="navelem"><b>d1bd</b></li><li class="navelem"><b>src</b></li>
+    <li class="navelem"><b>dxx</b></li><li class="navelem"><a href="namespacedxx_1_1assert.html">assert</a></li><li class="navelem"><a href="classdxx_1_1assert_1_1Location.html">Location</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['failure_0',['failure',['../structdxx_1_1assert_1_1failure.html',1,'dxx::assert']]],
+  ['failure_0',['Failure',['../structdxx_1_1assert_1_1Failure.html',1,'dxx::assert']]],
   ['filedescriptor_1',['FileDescriptor',['../classdxx_1_1utils_1_1FileDescriptor.html',1,'dxx::utils']]],
   ['fixedstring_2',['FixedString',['../structdxx_1_1utils_1_1FixedString.html',1,'dxx::utils']]],
   ['fn_5fptr_5fwrapper_3',['fn_ptr_wrapper',['../classdxx_1_1overload_1_1fn__ptr__wrapper.html',1,'dxx::overload']]],

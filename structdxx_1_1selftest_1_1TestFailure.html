@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dot-xx: dxx::assert::failure Struct Reference</title>
+<title>dot-xx: dxx::selftest::TestFailure Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('structdxx_1_1assert_1_1failure.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('structdxx_1_1selftest_1_1TestFailure.html','','structdxx_1_1selftest_1_1TestFailure-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -109,22 +109,40 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('structdxx_1_1a
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">dxx::assert::failure Struct Reference<span class="mlabels"><span class="mlabel export">export</span></span><div class="ingroups">module <a class="el" href="module__dxx_8assert.html">dxx.assert</a></div></div></div>
+  <div class="headertitle"><div class="title">dxx::selftest::TestFailure Struct Reference<span class="mlabels"><span class="mlabel export">export</span></span><div class="ingroups">module <a class="el" href="module__dxx_8selftest.html">dxx.selftest</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A default error type that is thrown when the assertion fails.  
+<p>The exception type used by test assertions.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
-Inheritance diagram for dxx::assert::failure:</div>
+Inheritance diagram for dxx::selftest::TestFailure:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="structdxx_1_1assert_1_1failure.png" alt=""/>
- </div></div>
+  <img src="structdxx_1_1selftest_1_1TestFailure.png" usemap="#dxx_3A_3Aselftest_3A_3ATestFailure_map" alt=""/>
+  <map id="dxx_3A_3Aselftest_3A_3ATestFailure_map" name="dxx_3A_3Aselftest_3A_3ATestFailure_map">
+<area href="structdxx_1_1assert_1_1Failure.html" title="A default error type that is thrown when the assertion fails." alt="dxx::assert::Failure" shape="rect" coords="0,56,145,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:ae97596083adeac93b4564ef862c021c7" id="r_ae97596083adeac93b4564ef862c021c7"><td class="memItemLeft"><a id="ae97596083adeac93b4564ef862c021c7" name="ae97596083adeac93b4564ef862c021c7"></a>
+&#160;</td><td class="memItemRight"><b>TestFailure</b> (const <a class="el" href="classdxx_1_1assert_1_1Location.html">assert::Location</a> &amp;l)</td></tr>
+<tr class="inherit_header pub_methods_structdxx_1_1assert_1_1Failure"><td colspan="2">Public Member Functions inherited from <a class="el" href="structdxx_1_1assert_1_1Failure.html">dxx::assert::Failure</a></td></tr>
+<tr class="memitem:a76d24139dcea215fd946e462f342527f pub_methods_structdxx_1_1assert_1_1Failure" id="r_a76d24139dcea215fd946e462f342527f"><td class="memItemLeft">
+&#160;</td><td class="memItemRight"><b>Failure</b> (const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp;l, std::format_string&lt; std::string &gt; fmt=&quot;Assertion failed at {}&quot;)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_structdxx_1_1assert_1_1Failure"><td colspan="2">Public Attributes inherited from <a class="el" href="structdxx_1_1assert_1_1Failure.html">dxx::assert::Failure</a></td></tr>
+<tr class="memitem:a7f235d4616f69da33d4c5a59943d25a8 pub_attribs_structdxx_1_1assert_1_1Failure" id="r_a7f235d4616f69da33d4c5a59943d25a8"><td class="memItemLeft">
+<a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a>&#160;</td><td class="memItemRight"><b>location</b></td></tr>
+</table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A default error type that is thrown when the assertion fails. </p>
+<div class="textblock"><p>The exception type used by test assertions. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>//dot-xx-assert/d1bd/src/<a class="el" href="assert_8xx.html">assert.xx</a></li>
+<li>//dot-xx-selftest/4d96/src/<a class="el" href="selftest_8xx.html">selftest.xx</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -139,7 +157,7 @@ Inheritance diagram for dxx::assert::failure:</div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>dxx</b></li><li class="navelem"><a href="namespacedxx_1_1assert.html">assert</a></li><li class="navelem"><a href="structdxx_1_1assert_1_1failure.html">failure</a></li>
+    <li class="navelem"><b>dxx</b></li><li class="navelem"><a href="namespacedxx_1_1selftest.html">selftest</a></li><li class="navelem"><a href="structdxx_1_1selftest_1_1TestFailure.html">TestFailure</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.18.0 </li>
   </ul>
 </div>

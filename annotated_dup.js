@@ -2,7 +2,8 @@ var annotated_dup =
 [
     [ "dxx", null, [
       [ "assert", "namespacedxx_1_1assert.html", [
-        [ "failure", "structdxx_1_1assert_1_1failure.html", null ]
+        [ "Failure", "structdxx_1_1assert_1_1Failure.html", null ],
+        [ "Location", "classdxx_1_1assert_1_1Location.html", "classdxx_1_1assert_1_1Location" ]
       ] ],
       [ "errors", null, [
         [ "Errno", "structdxx_1_1errors_1_1Errno.html", null ],
@@ -48,7 +49,7 @@ var annotated_dup =
       ] ],
       [ "selftest", "namespacedxx_1_1selftest.html", [
         [ "LifetimeTester", "classdxx_1_1selftest_1_1LifetimeTester.html", "classdxx_1_1selftest_1_1LifetimeTester" ],
-        [ "test_failure", "structdxx_1_1selftest_1_1test__failure.html", null ],
+        [ "TestFailure", "structdxx_1_1selftest_1_1TestFailure.html", null ],
         [ "UnitTest", "classdxx_1_1selftest_1_1UnitTest.html", "classdxx_1_1selftest_1_1UnitTest" ]
       ] ],
       [ "utils", "namespacedxx_1_1utils.html", [

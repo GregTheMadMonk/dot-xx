@@ -1,7 +1,7 @@
 var namespacedxx_1_1selftest =
 [
     [ "LifetimeTester", "classdxx_1_1selftest_1_1LifetimeTester.html", "classdxx_1_1selftest_1_1LifetimeTester" ],
-    [ "test_failure", "structdxx_1_1selftest_1_1test__failure.html", null ],
+    [ "TestFailure", "structdxx_1_1selftest_1_1TestFailure.html", null ],
     [ "UnitTest", "classdxx_1_1selftest_1_1UnitTest.html", "classdxx_1_1selftest_1_1UnitTest" ],
     [ "named_test_body", "conceptdxx_1_1selftest_1_1named__test__body.html", null ],
     [ "function_name", "namespacedxx_1_1selftest.html#a63ced55ad03368aa9cfd557252544fd3", null ],
@@ -9,7 +9,7 @@ var namespacedxx_1_1selftest =
     [ "get_test_name_cpp", "namespacedxx_1_1selftest.html#aafadd49bd1141f1e56df7f2e8e1eacf1", null ],
     [ "get_test_name_data", "namespacedxx_1_1selftest.html#add08cd735bffb594d6e5288544707cb7", null ],
     [ "run_all", "namespacedxx_1_1selftest.html#abaa7ed75cd9aad2dad39d4319b63ff5d", null ],
-    [ "test", "namespacedxx_1_1selftest.html#ad01f2ed983e1e20a193bf83c020e75a7", null ],
+    [ "test", "namespacedxx_1_1selftest.html#a7c730681986e291bd9a10600441e6f6f", null ],
     [ "all_tests", "namespacedxx_1_1selftest.html#a5c4cc9ba4f4359828c5f4299dc9c2fbe", null ],
     [ "test_name", "namespacedxx_1_1selftest.html#a23c78c7b1849cfb8e5cc5a89cee74da3", null ],
     [ "view_buf", "namespacedxx_1_1selftest.html#a35e5995ab3ebe2257ce33d7e951b2c10", null ]

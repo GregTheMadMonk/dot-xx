@@ -18,9 +18,11 @@ var hierarchy =
     [ "IOf&lt; 64 &gt;", "structIOf_3_0164_01_4.html", null ],
     [ "IOf&lt; 8 &gt;", "structIOf_3_018_01_4.html", null ],
     [ "dxx::selftest::LifetimeTester", "classdxx_1_1selftest_1_1LifetimeTester.html", null ],
+    [ "dxx::assert::Location", "classdxx_1_1assert_1_1Location.html", null ],
     [ "std::logic_error", null, [
-      [ "dxx::assert::failure", "structdxx_1_1assert_1_1failure.html", null ],
-      [ "dxx::selftest::test_failure", "structdxx_1_1selftest_1_1test__failure.html", null ]
+      [ "dxx::assert::Failure", "structdxx_1_1assert_1_1Failure.html", [
+        [ "dxx::selftest::TestFailure", "structdxx_1_1selftest_1_1TestFailure.html", null ]
+      ] ]
     ] ],
     [ "dxx::math::Norm&lt; Func, SqFunc &gt;", "structdxx_1_1math_1_1Norm.html", null ],
     [ "dxx::utils::heap::Option&lt; T &gt;", "classdxx_1_1utils_1_1heap_1_1Option.html", null ],
