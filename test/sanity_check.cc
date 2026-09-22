@@ -28,29 +28,30 @@ const ::dxx::selftest::UnitTest lifetime_tester{
     "lifetime_tester", [] {
         using ::dxx::selftest::LifetimeTester;
         using ::dxx::selftest::test;
+        using ::dxx::selftest::check;
 
         LifetimeTester t1{};
         LifetimeTester t2{};
 
-        test(t1.get_origin_id() != t2.get_origin_id());
-        test(t1.get_times_copied() == 0);
-        test(t1.get_times_moved() == 0);
-        test(t2.get_times_copied() == 0);
-        test(t2.get_times_moved() == 0);
+        check(t1.get_origin_id()) != t2.get_origin_id();
+        check(t1.get_times_copied()) == 0uz;
+        check(t1.get_times_moved()) == 0uz;
+        check(t2.get_times_copied()) == 0uz;
+        check(t2.get_times_moved()) == 0uz;
 
         LifetimeTester t3 = t1;
         LifetimeTester t4 = std::move(t2);
-        test(t1.get_origin_id() == t3.get_origin_id());
-        test(t2.get_origin_id() == t4.get_origin_id());
-        test(t3.get_times_copied() == 1);
-        test(t3.get_times_moved() == 0);
-        test(t4.get_times_copied() == 0);
-        test(t4.get_times_moved() == 1);
+        check(t1.get_origin_id()) == t3.get_origin_id();
+        check(t2.get_origin_id()) == t4.get_origin_id();
+        check(t3.get_times_copied()) == 1uz;
+        check(t3.get_times_moved()) == 0uz;
+        check(t4.get_times_copied()) == 0uz;
+        check(t4.get_times_moved()) == 1uz;
 
         t4 = t3;
 
-        test(t4.get_times_copied() == 2);
-        test(t4.get_times_moved()  == 0);
+        check(t4.get_times_copied()) == 2uz;
+        check(t4.get_times_moved())  == 0uz;
     }
 }; // <-- lifetime_tester
 

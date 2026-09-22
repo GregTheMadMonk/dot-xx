@@ -92,7 +92,7 @@ public:
             "{}{}", get_test_name<TFunc>().value(), name
         );
         const auto [ it, ret ] = all_tests->emplace(full_name, func);
-        assert::always(ret);
+        assert::test[ret];
         this->self_ref = it;
     } // <-- UnitTest(name, func)
 
@@ -161,13 +161,25 @@ private:
  */
 export struct TestFailure : public assert::Failure {
     TestFailure(const assert::Location& l)
-        : assert::Failure(l, "Test condition failed at {}")
+        : assert::Failure(l, "Test condition failed")
+    {}
+
+    TestFailure(const assert::Location& l, std::string_view msg)
+        : assert::Failure(l, std::string_view{std::format("In test: {}", msg)})
     {}
 }; // <-- struct TestFailure
 
 /// @brief Test assertion. Calls @ref dxx::assert::always with @ref TestFailure
 export inline void test(bool condition, assert::Location l = {})
-{ assert::always<TestFailure>(condition, l); }
+{ assert::test_with<TestFailure>[condition, l]; }
+
+/**
+ * @brief Test check. Calls @ref dxx::assert::check with @ref TestFailure
+ */
+export
+template <typename T>
+inline auto check(T&& t, assert::Location l = {})
+{ return assert::check_with<TestFailure>[std::forward<T>(t), l]; }
 
 /**
  * @brief Run all tests that match a filter
