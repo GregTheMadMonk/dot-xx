@@ -4,19 +4,24 @@
  */
 
 /**
- * @brief Provides and `assert` function and its debug-only counterpart. Uses
- *        `<stacktrace>` to display stack trace on failure if possible
+ * @brief Provides `test` and `check` function-like objects. Uses `<stacktrace>`
+ *        to display stack trace on failure if possible
  *
- * Exports two functions:
- * * @ref dxx::assert::always that asserts if the condition is `true`
- * * @ref dxx::assert::debug that does the same but only if the library was
- *        built in __Debug__ mode
+ * Exports two function-like objects:
+ * * @ref dxx::assert::test  that asserts if the condition is `true`
+ * * @ref dxx::assert::check that wraps a value or reference in a special
+ *                           "checker" object for further comparisons
  *
- * Both functions throw @ref dxx::assert::failure (or a user-provided exception
- * type) if the assertion fails.
+ * All failed checks throw @ref dxx::assert::Failure by default (customizeable)
+ *
+ * Custom `operator[]` is used to invoke the same checks in all build types
+ * instead of just __Debug__ mode builds, see documentation for @ref test_with
+ * and @ref check_with
  */
 export module dxx.assert;
 
+export import :checker;
+export import :failure;
 export import :location;
 
 import std;
@@ -26,56 +31,91 @@ import std;
  */
 namespace dxx::assert {
 
-/**
- * @brief A default error type that is thrown when the assertion fails
- */
-export
-struct Failure : public std::logic_error {
-    Failure(
-        const Location& l,
-        std::format_string<std::string> fmt = "Assertion failed at {}"
-    ) : std::logic_error{std::format(fmt, l.fmt())}
-      , location{l}
-    {}
+template <typename TFailure>
+struct Test {
+    static inline void operator[](bool condition, Location l = {}) {
+        if (condition) return;
+        throw TFailure{l};
+    } // <-- operator[]
 
-    Location location;
-}; // <-- struct Failure
+    static inline void operator()(bool condition, Location l = {}) {
+#ifndef NDEBUG
+        Test::operator[](condition, l);
+#endif
+    } // <-- operator()
+}; // <-- struct Test<TFailure>
 
 /**
- * @brief Check if the condition is `true` and throw `Failure` if it's not
+ * @brief Check if the condition is `true` and throw if it's not
  *
- * @par condition
- *      the condition to check
- * @par st
- *      provides info about the failure location
+ * @tparam TFailure
+ *         exception type to be thrown on failure
+ *
+ * Different calling methods decide whether the assertion is performed in
+ * all builds, or in __Debug__ builds only:
+ *
+ * ```c++
+ * test(false); // fires in debug build only
+ * test[false]; // fires in all builds
+ * ```
  */
 export
 template <std::constructible_from<const Location&> TFailure = Failure>
-inline void always(bool condition, Location l = {}) {
-    if (condition) return;
-    throw TFailure{l};
-} // <-- always()
+constexpr Test<TFailure> test_with {};
 
 /**
- * @brief Same as @ref assert but only performs the check if the library
- *        is built in __Debug__ mode
- *
- * @par condition
- *      the condition to check
- * @par l
- *      provides info about the failure location
+ * @brief See @ref test_with
  */
 export
-template <std::constructible_from<const Location&> TFailure = Failure>
-#ifdef NDEBUG
+constexpr auto test = test_with<Failure>;
 
-inline void debug(bool) {}
+template <typename TFailure>
+struct Check {
+    template <typename T>
+    [[nodiscard]]
+    static inline auto operator[](T&& t, Location l = {})
+    { return Checker<T, TFailure>{std::forward<T>(t), l}; }
 
-#else // ifdef NDEBUG
+    template <typename T>
+    [[nodiscard]]
+    static inline auto operator()(T&& t, Location l = {}) {
+#ifndef NDEBUG
+        return Check::operator[](std::forward<T>(t), l);
+#else
+        return DummyChecker{};
+#endif
+    } // <-- operator()
+}; // <-- struct Check<TFailure>
 
-inline void debug(bool condition, Location l = {})
-{ always<TFailure>(condition, l); }
+/**
+ * @brief Begin a check on a value
+ *
+ * @tparam TFailure
+ *         exception type to be thrown on failure
+ *
+ * Checks allow to output more detailed information about a failed assertion,
+ * e.g. the values that are being compared etc. Debug/all-build behavior is
+ * similar to @ref test:
+ *
+ * ```c++
+ * check(42) == 43; // fires in debug build only
+ * check[42] == 43; // fires in all builds
+ * ```
+ *
+ * In both cases, exception messages contain `42 != 43`. Other comparison
+ * operators are supported.
+ */
+export
+template <
+    std::constructible_from<
+        const Location&, const std::string&
+    > TFailure = Failure
+> constexpr Check<TFailure> check_with {};
 
-#endif // ifdef NDEBUG
+/**
+ * @brief See @ref check_with
+ */
+export
+constexpr auto check = check_with<Failure>;
 
 } // <-- namespace dxx::assert

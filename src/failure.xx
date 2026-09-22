@@ -1,0 +1,30 @@
+/**
+ * @file  failure.xx
+ * @brief Assertion failure exception
+ */
+export module dxx.assert:failure;
+
+import :location;
+
+import std;
+
+namespace dxx::assert {
+
+/**
+ * @brief A default error type that is thrown when the assertion fails
+ */
+export
+struct Failure : public std::logic_error {
+    Failure(
+        const Location& l,
+        std::string_view msg = "Assertion failed"
+    ) : std::logic_error{std::format("{} at {}", msg, l.fmt())}
+      , message{msg}
+      , location{l}
+    {}
+
+    std::string message;
+    Location    location;
+}; // <-- struct Failure
+
+} // <-- namespace dxx::assert

@@ -10,15 +10,15 @@ project(
     LANGUAGES C CXX
 )
 
-set_source_files_properties(
-    "src/assert.xx" "src/location.xx" PROPERTIES LANGUAGE CXX
-)
+file( GLOB DXX_ASSERT_XX CONFIGURE_DEPENDS "src/*.xx" )
+
+set_source_files_properties( ${DXX_ASSERT_XX} PROPERTIES LANGUAGE CXX )
 add_library( dot-xx-assert STATIC )
 target_sources(
     dot-xx-assert PUBLIC
     FILE_SET dot_xx_assert_module
     TYPE CXX_MODULES
-    FILES "src/assert.xx" "src/location.xx"
+    FILES ${DXX_ASSERT_XX}
 )
 
 if( NOT "${CMAKE_CXX_FLAGS}" MATCHES ".*stdlib=libc.*" )

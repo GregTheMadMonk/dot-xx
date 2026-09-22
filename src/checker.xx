@@ -1,0 +1,102 @@
+/**
+ * @file  checker.xx
+ * @brief Value checker for asserts
+ */
+
+export module dxx.assert:checker;
+
+import :location;
+
+namespace dxx::assert {
+
+[[nodiscard]]
+std::string check_print(const auto& t) {
+    if constexpr (
+        requires { { std::to_string(t) } -> std::convertible_to<std::string>; }
+    ) {
+        return std::to_string(t);
+    } else if constexpr (
+        requires { { t.string() } -> std::convertible_to<std::string>; }
+    ) {
+        return t.string();
+    } else if constexpr (
+        std::formattable<decltype(t), char>
+    ) {
+        return std::format("{}", t);
+    } else {
+        return "VALUE";
+    }
+} // <-- string check_print(t)
+
+/**
+ * @brief Value assert-checker
+ */
+template <
+    typename T,
+    std::constructible_from<const Location&, const std::string&> TFailure
+>
+class Checker {
+public:
+    using Type = T;
+    using Fail = TFailure;
+
+    Checker(Type&& v, Location l)
+        : value{v}
+        , location{l}
+    {}
+
+#define ALL_CHECKS \
+    CHECK_OP_CMP(==) \
+    CHECK_OP_CMP(!=) \
+    CHECK_OP_CMP(<) \
+    CHECK_OP_CMP(>) \
+    CHECK_OP_CMP(<=) \
+    CHECK_OP_CMP(>=) \
+
+#define CHECK_OP_CMP(op) \
+    void operator op (auto&& other) const \
+    requires requires (const Type& v) { \
+        { v op other } -> std::convertible_to<bool>; \
+    } \
+    { \
+        if (!(this->value op other)) { \
+            throw Fail{ \
+                this->location, \
+                std::format( \
+                    "{} != {}", \
+                    check_print(this->value), \
+                    check_print(other) \
+                ) \
+            }; \
+        } \
+    }
+
+    ALL_CHECKS
+
+#undef CHECK_OP_CMP
+
+private:
+    /**
+     * @brief Stored value (or a reference to an external value)
+     */
+    Type        value;
+    /**
+     * @brief Source location of the assert
+     */
+    Location    location;
+}; // <-- struct Checker<T, TFailure>
+
+/**
+ * @brief No-op value checker - used instead of @ref Checker for debug checks
+ *        in release builds
+ */
+class DummyChecker {
+#define CHECK_OP_CMP(op) \
+    inline void operator op (auto&&) const {}
+
+    ALL_CHECKS
+
+#undef CHECK_OP_CMP
+}; // <-- class DummyChecker
+
+} // <-- namespace dxx::assert
