@@ -151,7 +151,7 @@ public:
                     path_cur->string(),
                     std::make_unique<PathNode>(path_cur->string())
                 );
-                dxx::assert::debug(ok);
+                assert::test(ok);
                 cur = it_new->second.get();
             } else {
                 // The node does not exist and is our final destination
@@ -161,7 +161,7 @@ public:
                         path_cur->string(), std::forward<Args>(args)...
                     )
                 );
-                dxx::assert::debug(ok);
+                assert::test(ok);
                 cur = it_new->second.get();
             }
         }

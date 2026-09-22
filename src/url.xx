@@ -13,7 +13,7 @@ namespace dxx::http::url {
 inline constexpr
 char hex_to_half(char c) {
     if !consteval {
-        dxx::assert::debug(('0' <= c && c <= '9') || ('A' <= c && (c <= 'F')));
+        assert::test(('0' <= c && c <= '9') || ('A' <= c && (c <= 'F')));
     }
     auto off1 = c - '0';
     return (off1 < 10) * off1 + (off1 >= 10) * (c - 'A' + 10);
@@ -22,7 +22,7 @@ char hex_to_half(char c) {
 inline constexpr
 char half_to_hex(char c) {
     if !consteval {
-        dxx::assert::debug(c < 16);
+        assert::test(c < 16);
     }
     return (c < 10) * ('0' + c) + (c >= 10) * ('A' + c - 10);
 } // <-- hex_to_fourbit(c)

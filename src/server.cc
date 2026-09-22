@@ -244,7 +244,7 @@ SimpleTask Server::listen_and_wait(const std::string& ip, u16 port) {
                 // FIXME: `/` in the name that is not a separator
                 auto* target = router->second.find(req.resource, &req.substs);
                 if (target != nullptr) {
-                    dxx::assert::debug(target->get_data().has_value());
+                    assert::test(target->get_data().has_value());
                     target->get_data().value() | dxx::overload::Overload{
                         [&] (const DispatcherImmediate& di) {
                             di(req, res);

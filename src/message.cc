@@ -170,7 +170,7 @@ HeaderError Request::parse_header(bool skip_method) {
         }
     } else {
         this->resource = url::decode(this->url);
-        dxx::assert::debug(this->params_string.empty());
+        assert::test(this->params_string.empty());
     }
 
     return ret;
@@ -239,7 +239,7 @@ std::expected<std::vector<Request>, MultipartError> Request::parse_multipart() c
             return std::unexpected{MultipartError::InvalidHeader};
         case Method:
             // Method is not parsed when going through multipart parts
-            dxx::assert::debug(false);
+            assert::test(false);
         case None: case StrayData:
             break; // Non-fatal errors
         }
