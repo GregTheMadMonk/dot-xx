@@ -4,6 +4,7 @@ var namespacedxx_1_1selftest =
     [ "TestFailure", "structdxx_1_1selftest_1_1TestFailure.html", null ],
     [ "UnitTest", "classdxx_1_1selftest_1_1UnitTest.html", "classdxx_1_1selftest_1_1UnitTest" ],
     [ "named_test_body", "conceptdxx_1_1selftest_1_1named__test__body.html", null ],
+    [ "check", "namespacedxx_1_1selftest.html#a5399872ac0208585de1a648bd938f8a4", null ],
     [ "function_name", "namespacedxx_1_1selftest.html#a63ced55ad03368aa9cfd557252544fd3", null ],
     [ "get_test_name", "namespacedxx_1_1selftest.html#aae10cbc5f67422b2e4778fa8f65c5660", null ],
     [ "get_test_name_cpp", "namespacedxx_1_1selftest.html#aafadd49bd1141f1e56df7f2e8e1eacf1", null ],

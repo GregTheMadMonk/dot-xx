@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['data_0',['data',['../structdxx_1_1utils_1_1FixedString.html#a98e4a3c7017fcc78198f255ad6efcddd',1,'dxx::utils::FixedString']]]
+  ['check_0',['check',['../namespacedxx_1_1assert.html#afc52b81bc143102a703144445d99d63c',1,'dxx::assert']]],
+  ['check_5fwith_1',['check_with',['../namespacedxx_1_1assert.html#a820a145772efd912932aa1071f0db8e4',1,'dxx::assert']]]
 ];

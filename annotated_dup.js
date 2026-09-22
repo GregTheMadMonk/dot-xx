@@ -2,8 +2,12 @@ var annotated_dup =
 [
     [ "dxx", null, [
       [ "assert", "namespacedxx_1_1assert.html", [
+        [ "Check", "structdxx_1_1assert_1_1Check.html", null ],
+        [ "Checker", "classdxx_1_1assert_1_1Checker.html", null ],
+        [ "DummyChecker", "classdxx_1_1assert_1_1DummyChecker.html", null ],
         [ "Failure", "structdxx_1_1assert_1_1Failure.html", null ],
-        [ "Location", "classdxx_1_1assert_1_1Location.html", "classdxx_1_1assert_1_1Location" ]
+        [ "Location", "classdxx_1_1assert_1_1Location.html", "classdxx_1_1assert_1_1Location" ],
+        [ "Test", "structdxx_1_1assert_1_1Test.html", null ]
       ] ],
       [ "errors", null, [
         [ "Errno", "structdxx_1_1errors_1_1Errno.html", null ],

@@ -64,8 +64,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "abs__diff_8xx.html",
-"container__traits_8xx.html",
-"namespacedxx_1_1math_1_1norms.html#acb80fbd4f6a781a45d833496eb7713fe"
+"conceptdxx_1_1utils_1_1pointer.html",
+"namespacedxx_1_1math.html#aec9e78a6d9d73277d0534e9af91fb0cb"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

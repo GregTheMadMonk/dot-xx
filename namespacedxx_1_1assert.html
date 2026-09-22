@@ -118,25 +118,79 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('namespacedxx_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:Check" id="r_Check"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1assert_1_1Check.html">Check</a></td></tr>
+<tr class="memitem:Checker" id="r_Checker"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classdxx_1_1assert_1_1Checker.html">Checker</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value assert-checker.  <a href="classdxx_1_1assert_1_1Checker.html#details">More...</a><br /></td></tr>
+<tr class="memitem:DummyChecker" id="r_DummyChecker"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classdxx_1_1assert_1_1DummyChecker.html">DummyChecker</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">No-op value checker - used instead of <a class="el" href="classdxx_1_1assert_1_1Checker.html" title="Checker">Checker</a> for debug checks in release builds.  <a href="classdxx_1_1assert_1_1DummyChecker.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Failure" id="r_Failure"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1assert_1_1Failure.html">Failure</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A default error type that is thrown when the assertion fails.  <a href="structdxx_1_1assert_1_1Failure.html#details">More...</a><br /></td></tr>
 <tr class="memitem:Location" id="r_Location"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A wrapper for storing source location information.  <a href="classdxx_1_1assert_1_1Location.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Test" id="r_Test"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structdxx_1_1assert_1_1Test.html">Test</a></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aec19ec57d4096548a493f478bcb0fdb4" id="r_aec19ec57d4096548a493f478bcb0fdb4"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </td></tr>
-<tr class="memitem:aec19ec57d4096548a493f478bcb0fdb4 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aec19ec57d4096548a493f478bcb0fdb4">always</a> (bool condition, <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> l={})</td></tr>
-<tr class="memdesc:aec19ec57d4096548a493f478bcb0fdb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the condition is <span class="tt">true</span> and throw <span class="tt"><a class="el" href="structdxx_1_1assert_1_1Failure.html" title="A default error type that is thrown when the assertion fails.">Failure</a></span> if it's not.  <br /></td></tr>
-<tr class="memitem:a7542371d20c72aba8ffe8c6482c88812" id="r_a7542371d20c72aba8ffe8c6482c88812"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </td></tr>
-<tr class="memitem:a7542371d20c72aba8ffe8c6482c88812 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7542371d20c72aba8ffe8c6482c88812">debug</a> (bool condition, <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> l={})</td></tr>
-<tr class="memdesc:a7542371d20c72aba8ffe8c6482c88812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="namespacedxx_1_1assert.html" title="assert">assert</a> but only performs the check if the library is built in <b>Debug</b> mode.  <br /></td></tr>
+<tr class="memitem:ad7a62bca84ce0b42726368b0e1cb33b1" id="r_ad7a62bca84ce0b42726368b0e1cb33b1"><td class="memItemLeft"><a id="ad7a62bca84ce0b42726368b0e1cb33b1" name="ad7a62bca84ce0b42726368b0e1cb33b1"></a>
+std::string&#160;</td><td class="memItemRight"><b>check_print</b> (const auto &amp;t)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ac2b9f1c6f242eff48d2daee421238b23" id="r_ac2b9f1c6f242eff48d2daee421238b23"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </td></tr>
+<tr class="memitem:ac2b9f1c6f242eff48d2daee421238b23 template"><td class="memItemLeft">constexpr <a class="el" href="structdxx_1_1assert_1_1Test.html">Test</a>&lt; TFailure &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac2b9f1c6f242eff48d2daee421238b23">test_with</a> {}</td></tr>
+<tr class="memdesc:ac2b9f1c6f242eff48d2daee421238b23"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structdxx_1_1assert_1_1Check.html">Check</a> if the condition is <span class="tt">true</span> and throw if it's not.  <br /></td></tr>
+<tr class="memitem:ad1977801b7f48209190ad6560a8fae5e" id="r_ad1977801b7f48209190ad6560a8fae5e"><td class="memItemLeft"><a id="ad1977801b7f48209190ad6560a8fae5e" name="ad1977801b7f48209190ad6560a8fae5e"></a>
+constexpr auto&#160;</td><td class="memItemRight"><b>test</b> = <a class="el" href="#ac2b9f1c6f242eff48d2daee421238b23">test_with</a>&lt;<a class="el" href="structdxx_1_1assert_1_1Failure.html">Failure</a>&gt;</td></tr>
+<tr class="memdesc:ad1977801b7f48209190ad6560a8fae5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="#ac2b9f1c6f242eff48d2daee421238b23" title="test_with">test_with</a>. <br /></td></tr>
+<tr class="memitem:a820a145772efd912932aa1071f0db8e4" id="r_a820a145772efd912932aa1071f0db8e4"><td class="memTemplParams" colspan="2">template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp;, const std::string &amp; &gt; TFailure = Failure&gt; </td></tr>
+<tr class="memitem:a820a145772efd912932aa1071f0db8e4 template"><td class="memItemLeft">constexpr <a class="el" href="structdxx_1_1assert_1_1Check.html">Check</a>&lt; TFailure &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a820a145772efd912932aa1071f0db8e4">check_with</a> {}</td></tr>
+<tr class="memdesc:a820a145772efd912932aa1071f0db8e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin a check on a value.  <br /></td></tr>
+<tr class="memitem:afc52b81bc143102a703144445d99d63c" id="r_afc52b81bc143102a703144445d99d63c"><td class="memItemLeft"><a id="afc52b81bc143102a703144445d99d63c" name="afc52b81bc143102a703144445d99d63c"></a>
+constexpr auto&#160;</td><td class="memItemRight"><b>check</b> = <a class="el" href="#a820a145772efd912932aa1071f0db8e4">check_with</a>&lt;<a class="el" href="structdxx_1_1assert_1_1Failure.html">Failure</a>&gt;</td></tr>
+<tr class="memdesc:afc52b81bc143102a703144445d99d63c"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="#a820a145772efd912932aa1071f0db8e4" title="check_with">check_with</a>. <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main namespace for <a class="el" href="namespacedxx_1_1assert.html" title="dxx::assert">dxx::assert</a> module. </p>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="aec19ec57d4096548a493f478bcb0fdb4" name="aec19ec57d4096548a493f478bcb0fdb4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec19ec57d4096548a493f478bcb0fdb4">&#9670;&#160;</a></span>always()</h2>
+</div><a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="a820a145772efd912932aa1071f0db8e4" name="a820a145772efd912932aa1071f0db8e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a820a145772efd912932aa1071f0db8e4">&#9670;&#160;</a></span>check_with</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp;, const std::string &amp; &gt; TFailure = Failure&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structdxx_1_1assert_1_1Check.html">Check</a>&lt;TFailure&gt; dxx::assert::check_with {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel export">export</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Begin a check on a value. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TFailure</td><td>exception type to be thrown on failure</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Checks allow to output more detailed information about a failed assertion, e.g. the values that are being compared etc. Debug/all-build behavior is similar to test:</p>
+<div class="fragment"><div class="line"><a class="code hl_variable" href="#afc52b81bc143102a703144445d99d63c">check</a>(42) == 43; <span class="comment">// fires in debug build only</span></div>
+<div class="line"><a class="code hl_variable" href="#afc52b81bc143102a703144445d99d63c">check</a>[42] == 43; <span class="comment">// fires in all builds</span></div>
+<div class="ttc" id="anamespacedxx_1_1assert_html_afc52b81bc143102a703144445d99d63c"><div class="ttname"><a href="#afc52b81bc143102a703144445d99d63c">dxx::assert::check</a></div><div class="ttdeci">constexpr auto check</div><div class="ttdoc">See check_with.</div><div class="ttdef"><b>Definition</b> assert.xx:115</div></div>
+</div><!-- fragment --><p>In both cases, exception messages contain <span class="tt">42 != 43</span>. Other comparison operators are supported. </p>
+
+</div>
+</div>
+<a id="ac2b9f1c6f242eff48d2daee421238b23" name="ac2b9f1c6f242eff48d2daee421238b23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2b9f1c6f242eff48d2daee421238b23">&#9670;&#160;</a></span>test_with</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -147,62 +201,28 @@ template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1as
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void dxx::assert::always </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>condition</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a></td>          <td class="paramname"><span class="paramname"><em>l</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
+          <td class="memname"><a class="el" href="structdxx_1_1assert_1_1Test.html">Test</a>&lt;TFailure&gt; dxx::assert::test_with {}</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel export">export</span></span>  </td>
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span><span class="mlabel export">export</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Check if the condition is <span class="tt">true</span> and throw <span class="tt"><a class="el" href="structdxx_1_1assert_1_1Failure.html" title="A default error type that is thrown when the assertion fails.">Failure</a></span> if it's not. </p>
-<dl class="section user"><dt>condition</dt><dd>the condition to check </dd></dl>
-<dl class="section user"><dt>st</dt><dd>provides info about the failure location </dd></dl>
-
-</div>
-</div>
-<a id="a7542371d20c72aba8ffe8c6482c88812" name="a7542371d20c72aba8ffe8c6482c88812"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7542371d20c72aba8ffe8c6482c88812">&#9670;&#160;</a></span>debug()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::constructible_from&lt; const <a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a> &amp; &gt; TFailure = Failure&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void dxx::assert::debug </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>condition</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classdxx_1_1assert_1_1Location.html">Location</a></td>          <td class="paramname"><span class="paramname"><em>l</em></span><span class="paramdefsep"> = </span><span class="paramdefval">{}</span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel export">export</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Same as <a class="el" href="namespacedxx_1_1assert.html" title="assert">assert</a> but only performs the check if the library is built in <b>Debug</b> mode. </p>
-<dl class="section user"><dt>condition</dt><dd>the condition to check </dd></dl>
-<dl class="section user"><dt>l</dt><dd>provides info about the failure location </dd></dl>
-
+<p><a class="el" href="structdxx_1_1assert_1_1Check.html">Check</a> if the condition is <span class="tt">true</span> and throw if it's not. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TFailure</td><td>exception type to be thrown on failure</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Different calling methods decide whether the assertion is performed in all builds, or in <b>Debug</b> builds only:</p>
+<div class="fragment"><div class="line"><a class="code hl_variable" href="#ad1977801b7f48209190ad6560a8fae5e">test</a>(<span class="keyword">false</span>); <span class="comment">// fires in debug build only</span></div>
+<div class="line"><a class="code hl_variable" href="#ad1977801b7f48209190ad6560a8fae5e">test</a>[<span class="keyword">false</span>]; <span class="comment">// fires in all builds</span></div>
+<div class="ttc" id="anamespacedxx_1_1assert_html_ad1977801b7f48209190ad6560a8fae5e"><div class="ttname"><a href="#ad1977801b7f48209190ad6560a8fae5e">dxx::assert::test</a></div><div class="ttdeci">constexpr auto test</div><div class="ttdoc">See test_with.</div><div class="ttdef"><b>Definition</b> assert.xx:68</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 </div><!-- contents -->

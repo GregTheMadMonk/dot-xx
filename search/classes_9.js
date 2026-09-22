@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['option_0',['Option',['../classdxx_1_1utils_1_1heap_1_1Option.html',1,'dxx::utils::heap']]],
-  ['overload_1',['Overload',['../structdxx_1_1overload_1_1Overload.html',1,'dxx::overload']]]
+  ['norm_0',['Norm',['../structdxx_1_1math_1_1Norm.html',1,'dxx::math']]]
 ];

@@ -2,7 +2,10 @@ var hierarchy =
 [
     [ "dxx::utils::As&lt; Range &gt;", "structdxx_1_1utils_1_1As.html", null ],
     [ "dxx::math::container_traits::size::Bound", "structdxx_1_1math_1_1container__traits_1_1size_1_1Bound.html", null ],
+    [ "dxx::assert::Check&lt; TFailure &gt;", "structdxx_1_1assert_1_1Check.html", null ],
+    [ "dxx::assert::Checker&lt; T, TFailure &gt;", "classdxx_1_1assert_1_1Checker.html", null ],
     [ "dxx::utils::Defer&lt; TDeferred &gt;", "classdxx_1_1utils_1_1Defer.html", null ],
+    [ "dxx::assert::DummyChecker", "classdxx_1_1assert_1_1DummyChecker.html", null ],
     [ "dxx::math::container_traits::size::Dynamic", "structdxx_1_1math_1_1container__traits_1_1size_1_1Dynamic.html", null ],
     [ "dxx::errors::Errno", "structdxx_1_1errors_1_1Errno.html", null ],
     [ "dxx::utils::FileDescriptor", "classdxx_1_1utils_1_1FileDescriptor.html", null ],
@@ -46,6 +49,7 @@ var hierarchy =
     [ "dxx::http::SimpleTask", "classdxx_1_1http_1_1SimpleTask.html", null ],
     [ "dxx::math::container_traits::size::Static", "structdxx_1_1math_1_1container__traits_1_1size_1_1Static.html", null ],
     [ "dxx::math::Sub", "structdxx_1_1math_1_1Sub.html", null ],
+    [ "dxx::assert::Test&lt; TFailure &gt;", "structdxx_1_1assert_1_1Test.html", null ],
     [ "dxx::math::container_traits::Traits&lt; V &gt;", "structdxx_1_1math_1_1container__traits_1_1Traits.html", null ],
     [ "Ts...", null, [
       [ "dxx::overload::Overload< Ts >", "structdxx_1_1overload_1_1Overload.html", null ]
