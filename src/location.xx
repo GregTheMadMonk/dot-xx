@@ -13,9 +13,21 @@ import std;
 
 namespace dxx::assert {
 
+/**
+ * @brief A wrapper for storing source location information
+ *
+ * Not all standard library implmentations provide `std::stacktrace`, so we
+ * shove all feature-macro-dependent code here
+ */
 export
 class Location {
 public:
+    /**
+     * @brief Type of the source location holder
+     *
+     * Either `std::stacktrace` or `std::source_location`, depending on your
+     * toolchain
+     */
 #ifdef __cpp_lib_stacktrace
     using Type = std::stacktrace;
 #else
@@ -24,6 +36,9 @@ public:
 
     constexpr Location(Type l = Type::current()) : location{l} {}
 
+    /**
+     * @brief Get a printable string out of the storage
+     */
     [[nodiscard]]
     constexpr std::string fmt() const {
 #ifdef __cpp_lib_stacktrace
@@ -35,6 +50,9 @@ public:
 #endif
     } // <-- std::string fmt() const
 
+    /**
+     * @brief Get the underlying locator
+     */
     [[nodiscard]]
     constexpr const Type& get() const noexcept { return this->location; }
 private:
