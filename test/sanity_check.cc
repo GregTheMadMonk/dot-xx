@@ -24,6 +24,10 @@ static const ::dxx::selftest::UnitTest unnamed = [] {
     ::dxx::selftest::test(true);
 }; // <-- unnamed
 
+static const ::dxx::selftest::UnitTest unnamed2 = [] {
+    ::dxx::selftest::test(true);
+}; // <-- unnamed2
+
 const ::dxx::selftest::UnitTest lifetime_tester{
     "lifetime_tester", [] {
         using ::dxx::selftest::LifetimeTester;

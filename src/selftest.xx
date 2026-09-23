@@ -123,8 +123,14 @@ public:
                        * are constant expressions. But not inside of
                        * constructors :(
                        */
-                      if (std::addressof([:mem:]) == this) {
-                          return std::meta::identifier_of(mem);
+                      if constexpr (
+                          std::meta::remove_cvref(
+                              std::meta::type_of(mem)
+                          ) == ^^UnitTest
+                      ) {
+                          if (std::addressof([:mem:]) == this) {
+                              return std::meta::identifier_of(mem);
+                          }
                       }
                   }
                   std::unreachable();
