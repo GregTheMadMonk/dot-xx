@@ -12,17 +12,17 @@ namespace dxx::assert {
 [[nodiscard]]
 std::string check_print(const auto& t) {
     if constexpr (
-        requires { { std::to_string(t) } -> std::convertible_to<std::string>; }
+        std::formattable<decltype(t), char>
     ) {
-        return std::to_string(t);
+        return std::format("{}", t);
     } else if constexpr (
         requires { { t.string() } -> std::convertible_to<std::string>; }
     ) {
         return t.string();
     } else if constexpr (
-        std::formattable<decltype(t), char>
+        requires { { std::to_string(t) } -> std::convertible_to<std::string>; }
     ) {
-        return std::format("{}", t);
+        return std::to_string(t);
     } else {
         return "VALUE";
     }
