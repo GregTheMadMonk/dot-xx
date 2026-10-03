@@ -13,7 +13,11 @@ project(
 file( GLOB_RECURSE DXX_MATH_XX "src/*.xx" )
 
 set_source_files_properties( ${DXX_MATH_XX} PROPERTIES LANGUAGE CXX )
-add_library( dot-xx-math STATIC )
+if( DXX_BUILD_SHARED )
+    add_library( dot-xx-math SHARED )
+else()
+    add_library( dot-xx-math STATIC )
+endif()
 target_sources(
     dot-xx-math PUBLIC
     FILE_SET dot_xx_math_module
