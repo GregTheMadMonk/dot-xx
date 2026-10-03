@@ -6,10 +6,11 @@ project(
     LANGUAGES C CXX
 )
 
-option( DXX_LOCAL    "Specify a local directory to load modules from" OFF )
-option( DXX_NO_CPM   "Don't try to use CPM.cmake"                     OFF )
-option( DXX_SELFTEST "Test the modules"                               OFF )
-option( DXX_DOXYGEN  "Generate docs with doxygen"                     OFF )
+option( DXX_LOCAL        "Specify a local directory to load modules from" OFF )
+option( DXX_NO_CPM       "Don't try to use CPM.cmake"                     OFF )
+option( DXX_SELFTEST     "Test the modules"                               OFF )
+option( DXX_DOXYGEN      "Generate docs with doxygen"                     OFF )
+option( DXX_BUILD_SHARED "Build dot-xx libs as shared"                    OFF )
 
 option( DXX_COMPILE_FEATURES "target_compile_features override" "cxx_std_23" )
 
