@@ -70,7 +70,7 @@ const UnitTest non_formattable_conv{
             test(false);
         } catch (const Failure& fail) {
             // Non-formattable
-            check(fail.message) == "VALUE != 1";
+            check(fail.message) == std::format("VALUE != {}", true);
         }
     }
 }; // <-- non_formattable_conv
