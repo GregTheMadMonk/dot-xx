@@ -13,7 +13,11 @@ project(
 file( GLOB_RECURSE DXX_ERRORS_XX "src/*.xx" )
 
 set_source_files_properties( ${DXX_ERRORS_XX} PROPERTIES LANGUAGE CXX )
-add_library( dot-xx-errors STATIC )
+if( DXX_BUILD_SHARED )
+    add_library( dot-xx-errors SHARED )
+else()
+    add_library( dot-xx-errors STATIC )
+endif()
 target_sources(
     dot-xx-errors PUBLIC
     FILE_SET dot_xx_errors_module
