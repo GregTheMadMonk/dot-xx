@@ -13,7 +13,11 @@ project(
 file( GLOB_RECURSE DXX_OVERLOAD_XX "src/*.xx" )
 
 set_source_files_properties( ${DXX_OVERLOAD_XX} PROPERTIES LANGUAGE CXX )
-add_library( dot-xx-overload STATIC )
+if( DXX_BUILD_SHARED )
+    add_library( dot-xx-overload SHARED )
+else()
+    add_library( dot-xx-overload STATIC )
+endif()
 target_sources(
     dot-xx-overload PUBLIC
     FILE_SET dot_xx_overload_module
