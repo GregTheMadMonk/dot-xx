@@ -13,7 +13,12 @@ project(
 file( GLOB_RECURSE DXX_CSTD_XX "src/*.xx" )
 
 set_source_files_properties( ${DXX_CSTD_XX} PROPERTIES LANGUAGE CXX )
-add_library( dot-xx-cstd STATIC )
+
+if( DXX_BUILD_SHARED )
+    add_library( dot-xx-cstd SHARED )
+else()
+    add_library( dot-xx-cstd STATIC )
+endif()
 target_sources(
     dot-xx-cstd PUBLIC
     FILE_SET dot_xx_cstd_module
