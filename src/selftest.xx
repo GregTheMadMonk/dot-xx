@@ -123,10 +123,10 @@ public:
                        * are constant expressions. But not inside of
                        * constructors :(
                        */
+                      static constexpr auto type = std::meta::type_of(mem);
                       if constexpr (
-                          std::meta::remove_cvref(
-                              std::meta::type_of(mem)
-                          ) == ^^UnitTest
+                          std::meta::is_variable(mem)
+                          && std::meta::remove_cvref(type) == ^^UnitTest
                       ) {
                           if (std::addressof([:mem:]) == this) {
                               return std::meta::identifier_of(mem);
